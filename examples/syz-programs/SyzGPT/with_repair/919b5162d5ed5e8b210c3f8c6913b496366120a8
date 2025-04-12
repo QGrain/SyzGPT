@@ -1,0 +1,4 @@
+    r1 = openat$null(0xffffffffffffff9c, &(0x7f0000000000)='/dev/null\x00', 0x0, 0x0)
+    r2 = execveat(0xffffffffffffff9c, &(0x7f0000000080)='/bin/sh\x00', 0x7f0000000000, 0x0, 0x0)
+}
+wait4(r0, &(0x7f0000000040), 0x0, 0x0)

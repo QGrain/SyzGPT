@@ -1,0 +1,1 @@
+syz_open_dev$sndctrl('/dev/sched', 0x0, 0x2)

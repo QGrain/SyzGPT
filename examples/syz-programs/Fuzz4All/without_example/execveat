@@ -1,0 +1,4 @@
+fd = openat(AT_FDCWD, ".", O_RDONLY)
+readlinkat(AT_FDCWD, ".", pathbuf, sizeof(pathbuf))
+execveat(fd, filename, NULL, NULL, flags)
+close(fd)

@@ -1,0 +1,8 @@
+buf1 = buffer(BUF_SIZE)
+buf2 = buffer(BUF_SIZE)
+fd = open("/dev/sda", O_RDONLY)
+preadv2(fd, [(buf1, BUF_SIZE, 0)])
+print("buf1:", buf1)
+memcpy(buf2, buf1, BUF_SIZE)
+print("buf2:", buf2)
+close(fd)

@@ -1,0 +1,1 @@
+r0 = openat$smackfs_relabel_self(0xffffffffffffff9c, ""/205, 0x0)

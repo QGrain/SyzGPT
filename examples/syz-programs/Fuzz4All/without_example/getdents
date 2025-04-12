@@ -1,0 +1,2 @@
+getdents(fd=3, dirp=buf, count=MAX_PATH)
+for i in range(0, MAX_PATH):

@@ -1,0 +1,1 @@
+getresgid(&(gid_t[3]){AUTO, AUTO, AUTO});

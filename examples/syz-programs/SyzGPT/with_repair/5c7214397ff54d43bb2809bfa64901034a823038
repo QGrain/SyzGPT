@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./', 0x0, 0x0)
+fsopen(r0, &AUTO='./', 0x1, 0x0)

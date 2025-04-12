@@ -1,0 +1,1 @@
+prctl$PR_PAC_RESET_KEYS(0x0)

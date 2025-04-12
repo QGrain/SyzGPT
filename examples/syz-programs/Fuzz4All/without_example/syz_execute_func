@@ -1,0 +1,1 @@
+r0 = syz_execute_func((void*)0x12345678, sizeof(struct my_struct), &my_struct, 0, 0);

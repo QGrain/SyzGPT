@@ -1,0 +1,7 @@
+mount(NULL, "/source", "sockfs", 0, NULL)
+mount(NULL, "/target", "sockfs", 0, NULL)
+fd1 = open("/source", O_RDONLY)
+fd2 = open("/target", O_RDONLY)
+move_mount(fd1, "", fd2, "", MS_MOVE)
+close(fd1)
+close(fd2)

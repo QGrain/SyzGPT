@@ -1,0 +1,2 @@
+resource fd[4] = AUTO()
+r0 = inotify_init()

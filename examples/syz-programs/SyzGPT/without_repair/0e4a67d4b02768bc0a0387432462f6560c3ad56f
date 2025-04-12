@@ -1,0 +1,2 @@
+r0 = openat$fsync(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+fsync(r0)

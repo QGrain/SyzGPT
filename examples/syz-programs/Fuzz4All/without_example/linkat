@@ -1,0 +1,1 @@
+syz_emit_linkat(AT_FDCWD, "/path/to/source", AT_FDCWD, "/path/to/destination", AT_SYMLINK_FOLLOW);

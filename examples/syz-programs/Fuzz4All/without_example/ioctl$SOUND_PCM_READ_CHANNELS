@@ -1,0 +1,3 @@
+ioctl$SOUND_PCM_READ_CHANNELS(fd[0], SOUND_PCM_READ_CHANNELS, buf[0])
+fd[0] = open("/dev/snd/pcmC0D0p", O_RDWR|O_NONBLOCK)
+buf[0] = alloc(4)

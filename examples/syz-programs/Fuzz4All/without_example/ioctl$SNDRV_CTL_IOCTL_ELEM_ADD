@@ -1,0 +1,1 @@
+ioctl$SNDRV_CTL_IOCTL_ELEM_ADD(0, &elem_info)

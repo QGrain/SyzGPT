@@ -1,0 +1,2 @@
+r0, r1 = pipe$pipe()
+r2 = read$fd(r0, &(0x7f00000000c0), 0x10)

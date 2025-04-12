@@ -1,0 +1,1 @@
+newfstatat(AT_FDCWD, path, flags);

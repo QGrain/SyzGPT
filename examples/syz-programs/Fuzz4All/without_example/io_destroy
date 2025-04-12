@@ -1,0 +1,5 @@
+const fd = fd(0xdeadbeef)
+resource r = res6(fd)
+io_destroy(fd)
+result = errno()
+print(result)

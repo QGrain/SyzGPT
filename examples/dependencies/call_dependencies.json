@@ -1,0 +1,4367 @@
+{
+    "accept": {
+        "depend": [
+            "open",
+            "poll",
+            "bind",
+            "close",
+            "socket",
+            "select",
+            "write",
+            "listen",
+            "fcntl",
+            "read"
+        ],
+        "depended": [
+            "close",
+            "getpeername",
+            "socketpair",
+            "fanotify_mark",
+            "write",
+            "listen",
+            "setsockopt",
+            "getsockopt",
+            "shutdown",
+            "read"
+        ]
+    },
+    "accept4": {
+        "depend": [
+            "open",
+            "poll",
+            "bind",
+            "execve",
+            "socketpair",
+            "dup2",
+            "socket",
+            "select",
+            "setsockopt",
+            "listen",
+            "getsockopt",
+            "fcntl"
+        ],
+        "depended": []
+    },
+    "acct": {
+        "depend": [],
+        "depended": []
+    },
+    "add_key": {
+        "depend": [],
+        "depended": [
+            "request_key",
+            "keyctl"
+        ]
+    },
+    "alarm": {
+        "depend": [
+            "timer_settime",
+            "setitimer"
+        ],
+        "depended": [
+            "setitimer"
+        ]
+    },
+    "brk": {
+        "depend": [
+            "mprotect",
+            "munmap",
+            "mremap",
+            "madvise",
+            "mmap"
+        ],
+        "depended": []
+    },
+    "capget": {
+        "depend": [
+            "getresuid",
+            "getresgid",
+            "setreuid",
+            "getpid",
+            "gettid"
+        ],
+        "depended": [
+            "fanotify_mark"
+        ]
+    },
+    "chdir": {
+        "depend": [
+            "execve",
+            "getcwd",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "fchdir"
+        ]
+    },
+    "chmod": {
+        "depend": [
+            "open",
+            "fchmod",
+            "lstat",
+            "fstat",
+            "open_by_handle_at",
+            "stat"
+        ],
+        "depended": [
+            "open",
+            "fchmod",
+            "lstat",
+            "fchmodat",
+            "fstat",
+            "stat"
+        ]
+    },
+    "chown": {
+        "depend": [
+            "open_by_handle_at",
+            "fchownat"
+        ],
+        "depended": [
+            "open",
+            "fchown",
+            "fchownat",
+            "lchown"
+        ]
+    },
+    "chroot": {
+        "depend": [
+            "execve",
+            "getcwd"
+        ],
+        "depended": [
+            "execve"
+        ]
+    },
+    "clock_adjtime": {
+        "depend": [],
+        "depended": [
+            "clock_gettime",
+            "clock_getres",
+            "clock_settime"
+        ]
+    },
+    "clock_getres": {
+        "depend": [
+            "time",
+            "clock_gettime",
+            "clock_adjtime",
+            "clock_settime"
+        ],
+        "depended": [
+            "timer_create",
+            "clock_settime"
+        ]
+    },
+    "clock_gettime": {
+        "depend": [
+            "time",
+            "clock_nanosleep",
+            "clock_adjtime"
+        ],
+        "depended": [
+            "clock_getres",
+            "clock_nanosleep",
+            "timer_create",
+            "clock_settime"
+        ]
+    },
+    "clock_nanosleep": {
+        "depend": [
+            "nanosleep",
+            "clock_gettime"
+        ],
+        "depended": [
+            "clock_gettime",
+            "timer_create",
+            "restart_syscall"
+        ]
+    },
+    "clock_settime": {
+        "depend": [
+            "clock_getres",
+            "clock_gettime",
+            "clock_adjtime"
+        ],
+        "depended": [
+            "clock_getres",
+            "timer_create"
+        ]
+    },
+    "clone": {
+        "depend": [
+            "kcmp",
+            "execve",
+            "setns",
+            "set_mempolicy",
+            "pidfd_send_signal",
+            "sigaltstack"
+        ],
+        "depended": [
+            "tkill",
+            "clone3",
+            "kcmp",
+            "set_robust_list",
+            "set_tid_address",
+            "setns",
+            "ioprio_get",
+            "tgkill",
+            "gettid",
+            "pidfd_send_signal",
+            "ioprio_set",
+            "waitid",
+            "timer_create"
+        ]
+    },
+    "clone3": {
+        "depend": [
+            "clone3",
+            "exit",
+            "kcmp",
+            "clone",
+            "pidfd_send_signal"
+        ],
+        "depended": [
+            "clone3",
+            "pidfd_send_signal",
+            "exit",
+            "kcmp"
+        ]
+    },
+    "close_range": {
+        "depend": [
+            "execve",
+            "close"
+        ],
+        "depended": [
+            "execve",
+            "unshare"
+        ]
+    },
+    "copy_file_range": {
+        "depend": [
+            "lseek",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "link"
+        ]
+    },
+    "creat": {
+        "depend": [
+            "open",
+            "openat2",
+            "mknod",
+            "ioctl",
+            "statx",
+            "write",
+            "openat",
+            "fcntl",
+            "read"
+        ],
+        "depended": [
+            "mknod",
+            "ioctl",
+            "statx",
+            "write",
+            "fcntl",
+            "read"
+        ]
+    },
+    "delete_module": {
+        "depend": [
+            "finit_module"
+        ],
+        "depended": []
+    },
+    "dup": {
+        "depend": [
+            "getcwd",
+            "close"
+        ],
+        "depended": [
+            "pidfd_open",
+            "dup3",
+            "dup2",
+            "fanotify_mark",
+            "fstat",
+            "pipe",
+            "fcntl"
+        ]
+    },
+    "dup2": {
+        "depend": [
+            "getcwd",
+            "close",
+            "pipe2",
+            "dup",
+            "fcntl",
+            "timerfd_create"
+        ],
+        "depended": [
+            "vmsplice",
+            "pidfd_open",
+            "pwritev",
+            "dup3",
+            "fanotify_mark",
+            "sendfile",
+            "fstat",
+            "accept4"
+        ]
+    },
+    "dup3": {
+        "depend": [
+            "dup2",
+            "getcwd",
+            "dup"
+        ],
+        "depended": [
+            "pidfd_open",
+            "fstat",
+            "fanotify_mark"
+        ]
+    },
+    "epoll_create": {
+        "depend": [
+            "epoll_create",
+            "close",
+            "open_by_handle_at",
+            "sigaltstack"
+        ],
+        "depended": [
+            "epoll_create",
+            "poll",
+            "epoll_ctl",
+            "epoll_wait",
+            "sigaltstack"
+        ]
+    },
+    "epoll_create1": {
+        "depend": [],
+        "depended": [
+            "epoll_ctl",
+            "epoll_wait",
+            "signalfd",
+            "inotify_init1"
+        ]
+    },
+    "epoll_ctl": {
+        "depend": [
+            "poll",
+            "epoll_create",
+            "epoll_create1",
+            "epoll_pwait",
+            "epoll_ctl",
+            "epoll_wait",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "poll",
+            "epoll_pwait",
+            "signalfd",
+            "epoll_pwait2",
+            "epoll_ctl",
+            "epoll_wait"
+        ]
+    },
+    "epoll_pwait": {
+        "depend": [
+            "ppoll",
+            "epoll_pwait2",
+            "epoll_ctl",
+            "epoll_wait",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "epoll_ctl",
+            "epoll_wait",
+            "epoll_pwait2",
+            "ppoll"
+        ]
+    },
+    "epoll_pwait2": {
+        "depend": [
+            "epoll_ctl",
+            "epoll_wait",
+            "epoll_pwait"
+        ],
+        "depended": [
+            "epoll_pwait"
+        ]
+    },
+    "epoll_wait": {
+        "depend": [
+            "epoll_create",
+            "epoll_create1",
+            "epoll_pwait",
+            "signalfd",
+            "epoll_ctl",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "epoll_ctl",
+            "poll",
+            "epoll_pwait2",
+            "epoll_pwait"
+        ]
+    },
+    "eventfd": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "poll",
+            "close",
+            "ppoll",
+            "select",
+            "write",
+            "pipe",
+            "io_uring_register",
+            "read"
+        ]
+    },
+    "eventfd2": {
+        "depend": [
+            "poll",
+            "close",
+            "ppoll",
+            "select",
+            "write",
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "poll",
+            "close",
+            "ppoll",
+            "select",
+            "write",
+            "read"
+        ]
+    },
+    "execve": {
+        "depend": [
+            "close_range",
+            "rt_sigpending",
+            "getcwd",
+            "personality",
+            "chroot",
+            "mlock",
+            "timerfd_gettime",
+            "set_mempolicy",
+            "getrusage",
+            "rt_sigprocmask",
+            "uselib",
+            "semop",
+            "setgroups",
+            "shmat",
+            "getpgid",
+            "timerfd_create",
+            "sigaltstack"
+        ],
+        "depended": [
+            "sched_setaffinity",
+            "chroot",
+            "setgid",
+            "shmdt",
+            "setrlimit",
+            "setresgid",
+            "setregid",
+            "getpriority",
+            "prlimit64",
+            "accept4",
+            "getgroups",
+            "tkill",
+            "memfd_secret",
+            "getpgrp",
+            "semtimedop",
+            "signalfd",
+            "fanotify_mark",
+            "setreuid",
+            "chdir",
+            "ioperm",
+            "setpgid",
+            "sigaltstack",
+            "close_range",
+            "setresuid",
+            "fchdir",
+            "getpgid",
+            "mlock2",
+            "timer_create",
+            "memfd_create",
+            "mlock",
+            "setpriority",
+            "setuid",
+            "rt_sigaction",
+            "clone",
+            "shmat",
+            "timerfd_settime"
+        ]
+    },
+    "exit": {
+        "depend": [
+            "prctl",
+            "exit",
+            "clone3",
+            "exit_group"
+        ],
+        "depended": [
+            "tkill",
+            "clone3",
+            "exit",
+            "exit_group"
+        ]
+    },
+    "faccessat": {
+        "depend": [
+            "open",
+            "open_by_handle_at",
+            "faccessat2",
+            "rename",
+            "openat",
+            "fcntl"
+        ],
+        "depended": [
+            "link",
+            "faccessat2"
+        ]
+    },
+    "faccessat2": {
+        "depend": [
+            "faccessat"
+        ],
+        "depended": [
+            "open",
+            "faccessat"
+        ]
+    },
+    "fadvise64": {
+        "depend": [
+            "fdatasync",
+            "fsync",
+            "mmap"
+        ],
+        "depended": [
+            "open",
+            "sync",
+            "close",
+            "msync",
+            "madvise",
+            "write",
+            "syncfs",
+            "pwrite64",
+            "fallocate",
+            "mincore",
+            "fcntl",
+            "pread64",
+            "read"
+        ]
+    },
+    "fallocate": {
+        "depend": [
+            "open",
+            "close",
+            "fadvise64",
+            "fcntl"
+        ],
+        "depended": [
+            "link"
+        ]
+    },
+    "fanotify_init": {
+        "depend": [],
+        "depended": [
+            "fanotify_mark"
+        ]
+    },
+    "fanotify_mark": {
+        "depend": [
+            "open",
+            "munmap",
+            "fanotify_init",
+            "setgid",
+            "setresgid",
+            "dup2",
+            "select",
+            "setregid",
+            "mmap",
+            "setfsuid",
+            "pipe",
+            "dup",
+            "poll",
+            "close",
+            "setreuid",
+            "futex",
+            "setresuid",
+            "execve",
+            "gettid",
+            "capget",
+            "accept",
+            "dup3",
+            "setuid",
+            "write",
+            "setfsgid",
+            "shmat",
+            "fcntl",
+            "read"
+        ],
+        "depended": []
+    },
+    "fchdir": {
+        "depend": [
+            "execve",
+            "getcwd",
+            "chdir"
+        ],
+        "depended": [
+            "getcwd"
+        ]
+    },
+    "fchmod": {
+        "depend": [
+            "chmod"
+        ],
+        "depended": [
+            "fchmodat",
+            "chmod"
+        ]
+    },
+    "fchown": {
+        "depend": [
+            "open",
+            "chown",
+            "fchownat",
+            "lchown",
+            "mkdir"
+        ],
+        "depended": []
+    },
+    "fchownat": {
+        "depend": [
+            "open_by_handle_at",
+            "chown"
+        ],
+        "depended": [
+            "lchown",
+            "fchown",
+            "link",
+            "chown"
+        ]
+    },
+    "fcntl": {
+        "depend": [
+            "mq_open",
+            "getcwd",
+            "open_by_handle_at",
+            "flock",
+            "statx",
+            "creat",
+            "fadvise64",
+            "dup",
+            "fcntl",
+            "timerfd_create"
+        ],
+        "depended": [
+            "userfaultfd",
+            "socketpair",
+            "dup2",
+            "creat",
+            "accept4",
+            "get_robust_list",
+            "pidfd_open",
+            "pwritev",
+            "fanotify_mark",
+            "fallocate",
+            "futimesat",
+            "lseek",
+            "flock",
+            "statx",
+            "accept",
+            "faccessat",
+            "mq_open",
+            "link",
+            "vmsplice",
+            "memfd_create",
+            "fstat",
+            "readlinkat",
+            "fcntl"
+        ]
+    },
+    "fdatasync": {
+        "depend": [
+            "quotactl",
+            "open_by_handle_at",
+            "sync",
+            "fsync"
+        ],
+        "depended": [
+            "syncfs",
+            "fadvise64"
+        ]
+    },
+    "fgetxattr": {
+        "depend": [
+            "open",
+            "close",
+            "fsetxattr",
+            "flistxattr",
+            "lgetxattr"
+        ],
+        "depended": [
+            "rmdir",
+            "getxattr",
+            "llistxattr",
+            "removexattr",
+            "lgetxattr",
+            "lremovexattr"
+        ]
+    },
+    "finit_module": {
+        "depend": [
+            "init_module"
+        ],
+        "depended": [
+            "init_module",
+            "delete_module"
+        ]
+    },
+    "flistxattr": {
+        "depend": [
+            "open"
+        ],
+        "depended": [
+            "rmdir",
+            "llistxattr",
+            "removexattr",
+            "listxattr",
+            "fgetxattr"
+        ]
+    },
+    "flock": {
+        "depend": [
+            "fcntl"
+        ],
+        "depended": [
+            "open",
+            "close",
+            "fcntl"
+        ]
+    },
+    "fremovexattr": {
+        "depend": [
+            "setxattr"
+        ],
+        "depended": [
+            "lremovexattr",
+            "removexattr",
+            "rmdir",
+            "llistxattr"
+        ]
+    },
+    "fsetxattr": {
+        "depend": [
+            "open",
+            "setxattr",
+            "lsetxattr",
+            "stat"
+        ],
+        "depended": [
+            "rmdir",
+            "llistxattr",
+            "lsetxattr",
+            "removexattr",
+            "fgetxattr"
+        ]
+    },
+    "fstat": {
+        "depend": [
+            "open",
+            "getcwd",
+            "close",
+            "open_by_handle_at",
+            "dup3",
+            "sysfs",
+            "statx",
+            "dup2",
+            "lstat",
+            "fcntl",
+            "write",
+            "read",
+            "listxattr",
+            "readlink",
+            "chmod",
+            "dup",
+            "stat"
+        ],
+        "depended": [
+            "link",
+            "pidfd_open",
+            "statx",
+            "getxattr",
+            "lstat",
+            "utimensat",
+            "readlink",
+            "chmod",
+            "newfstatat"
+        ]
+    },
+    "fstatfs": {
+        "depend": [
+            "quotactl",
+            "statfs"
+        ],
+        "depended": [
+            "pidfd_open"
+        ]
+    },
+    "fsync": {
+        "depend": [
+            "open",
+            "sync",
+            "close",
+            "quotactl",
+            "write",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "sync",
+            "fdatasync",
+            "syncfs",
+            "fadvise64",
+            "sync_file_range"
+        ]
+    },
+    "futex": {
+        "depend": [
+            "open",
+            "set_robust_list",
+            "mmap",
+            "pipe",
+            "shmat"
+        ],
+        "depended": [
+            "vmsplice",
+            "link",
+            "set_tid_address",
+            "fanotify_mark",
+            "restart_syscall"
+        ]
+    },
+    "futimesat": {
+        "depend": [
+            "utimensat",
+            "openat",
+            "fcntl"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "getcwd": {
+        "depend": [
+            "fchdir",
+            "readlinkat",
+            "open_by_handle_at",
+            "getdents64"
+        ],
+        "depended": [
+            "open",
+            "chroot",
+            "setgid",
+            "dup2",
+            "pwrite64",
+            "readlink",
+            "pipe",
+            "symlink",
+            "unlink",
+            "dup",
+            "pread64",
+            "stat",
+            "close",
+            "utime",
+            "lchown",
+            "chdir",
+            "rename",
+            "utimensat",
+            "openat",
+            "getuid",
+            "lseek",
+            "rmdir",
+            "linkat",
+            "execve",
+            "statx",
+            "getegid",
+            "symlinkat",
+            "fchdir",
+            "getgid",
+            "renameat",
+            "link",
+            "getdents64",
+            "dup3",
+            "setuid",
+            "geteuid",
+            "mkdirat",
+            "mkdir",
+            "write",
+            "fstat",
+            "readlinkat",
+            "unlinkat",
+            "fcntl",
+            "read"
+        ]
+    },
+    "getdents": {
+        "depend": [],
+        "depended": [
+            "open",
+            "openat",
+            "close",
+            "read"
+        ]
+    },
+    "getdents64": {
+        "depend": [
+            "open",
+            "getcwd",
+            "close",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "getcwd",
+            "link"
+        ]
+    },
+    "getegid": {
+        "depend": [
+            "getcwd"
+        ],
+        "depended": [
+            "getgroups",
+            "getresuid",
+            "getuid",
+            "link",
+            "open",
+            "tkill",
+            "getresgid",
+            "shmctl",
+            "setregid",
+            "getgid",
+            "setgroups"
+        ]
+    },
+    "geteuid": {
+        "depend": [
+            "getcwd"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "getuid",
+            "link",
+            "shmctl"
+        ]
+    },
+    "getgroups": {
+        "depend": [
+            "execve",
+            "getegid"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "setgroups",
+            "tkill"
+        ]
+    },
+    "getitimer": {
+        "depend": [
+            "setitimer"
+        ],
+        "depended": [
+            "link",
+            "timer_create"
+        ]
+    },
+    "getpeername": {
+        "depend": [
+            "bind",
+            "connect",
+            "socket",
+            "write",
+            "listen",
+            "accept",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "connect",
+            "socketpair",
+            "recvfrom"
+        ]
+    },
+    "getpgid": {
+        "depend": [
+            "setpgid",
+            "getpgrp",
+            "getpid",
+            "execve"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "execve",
+            "getpgrp",
+            "setpgid"
+        ]
+    },
+    "getpgrp": {
+        "depend": [
+            "setpgid",
+            "getpgid",
+            "execve"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "setpgid",
+            "getpgid"
+        ]
+    },
+    "getpriority": {
+        "depend": [
+            "execve",
+            "setpriority",
+            "sched_getattr"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "setpriority",
+            "tkill"
+        ]
+    },
+    "getrandom": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "poll",
+            "link",
+            "read"
+        ]
+    },
+    "getresgid": {
+        "depend": [
+            "getegid"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "setresgid",
+            "capget"
+        ]
+    },
+    "getresuid": {
+        "depend": [
+            "getegid"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "setresuid",
+            "setgid",
+            "setresgid",
+            "setuid",
+            "setreuid",
+            "setfsgid",
+            "setregid",
+            "setgroups",
+            "setfsuid",
+            "capget"
+        ]
+    },
+    "getrlimit": {
+        "depend": [
+            "prlimit64",
+            "setrlimit"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "timer_create",
+            "setrlimit",
+            "setpriority",
+            "prlimit64"
+        ]
+    },
+    "getrusage": {
+        "depend": [
+            "wait4"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "timer_create",
+            "execve",
+            "sysinfo"
+        ]
+    },
+    "getsockname": {
+        "depend": [
+            "bind",
+            "socket",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "socketpair",
+            "link"
+        ]
+    },
+    "getsockopt": {
+        "depend": [
+            "bind",
+            "sendmsg",
+            "socketpair",
+            "socket",
+            "setsockopt",
+            "listen",
+            "accept",
+            "recvmsg",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "socketpair",
+            "setsockopt",
+            "accept4"
+        ]
+    },
+    "gettid": {
+        "depend": [
+            "getpid",
+            "ioprio_get",
+            "clone"
+        ],
+        "depended": [
+            "open",
+            "tkill",
+            "link",
+            "sched_rr_get_interval",
+            "set_robust_list",
+            "ioprio_get",
+            "fanotify_mark",
+            "capget",
+            "ioprio_set",
+            "timer_create"
+        ]
+    },
+    "getxattr": {
+        "depend": [
+            "lstat",
+            "fstat",
+            "listxattr",
+            "lgetxattr",
+            "fgetxattr",
+            "open_by_handle_at",
+            "stat"
+        ],
+        "depended": [
+            "removexattr",
+            "lremovexattr",
+            "link",
+            "llistxattr"
+        ]
+    },
+    "get_mempolicy": {
+        "depend": [
+            "mbind",
+            "set_mempolicy"
+        ],
+        "depended": [
+            "move_pages",
+            "migrate_pages"
+        ]
+    },
+    "get_robust_list": {
+        "depend": [
+            "fcntl",
+            "set_robust_list"
+        ],
+        "depended": [
+            "set_robust_list"
+        ]
+    },
+    "get_thread_area": {
+        "depend": [
+            "set_thread_area",
+            "arch_prctl"
+        ],
+        "depended": []
+    },
+    "init_module": {
+        "depend": [
+            "open",
+            "finit_module",
+            "read"
+        ],
+        "depended": [
+            "close",
+            "finit_module"
+        ]
+    },
+    "inotify_add_watch": {
+        "depend": [
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "inotify_rm_watch",
+            "inotify_init",
+            "read"
+        ]
+    },
+    "inotify_init": {
+        "depend": [
+            "inotify_add_watch"
+        ],
+        "depended": [
+            "close",
+            "read"
+        ]
+    },
+    "inotify_init1": {
+        "depend": [
+            "open_by_handle_at",
+            "epoll_create1"
+        ],
+        "depended": [
+            "inotify_rm_watch"
+        ]
+    },
+    "inotify_rm_watch": {
+        "depend": [
+            "inotify_add_watch",
+            "open_by_handle_at",
+            "inotify_init1"
+        ],
+        "depended": []
+    },
+    "ioperm": {
+        "depend": [
+            "execve",
+            "iopl"
+        ],
+        "depended": [
+            "iopl"
+        ]
+    },
+    "iopl": {
+        "depend": [
+            "ioperm"
+        ],
+        "depended": [
+            "ioperm"
+        ]
+    },
+    "ioprio_get": {
+        "depend": [
+            "clone",
+            "gettid"
+        ],
+        "depended": [
+            "gettid"
+        ]
+    },
+    "ioprio_set": {
+        "depend": [
+            "clone",
+            "gettid"
+        ],
+        "depended": []
+    },
+    "io_cancel": {
+        "depend": [
+            "io_destroy",
+            "io_submit"
+        ],
+        "depended": []
+    },
+    "io_destroy": {
+        "depend": [],
+        "depended": [
+            "io_setup",
+            "io_getevents",
+            "io_cancel",
+            "io_submit"
+        ]
+    },
+    "io_getevents": {
+        "depend": [
+            "io_setup",
+            "io_submit",
+            "io_destroy"
+        ],
+        "depended": [
+            "io_setup"
+        ]
+    },
+    "io_setup": {
+        "depend": [
+            "io_destroy",
+            "io_getevents",
+            "io_submit"
+        ],
+        "depended": [
+            "io_getevents",
+            "io_submit"
+        ]
+    },
+    "io_submit": {
+        "depend": [
+            "open",
+            "io_destroy",
+            "write",
+            "io_setup",
+            "read"
+        ],
+        "depended": [
+            "io_setup",
+            "io_getevents",
+            "io_cancel"
+        ]
+    },
+    "io_uring_register": {
+        "depend": [
+            "open",
+            "eventfd",
+            "io_uring_setup",
+            "socket",
+            "io_uring_enter",
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "io_uring_setup": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "io_uring_enter",
+            "io_uring_register"
+        ]
+    },
+    "kcmp": {
+        "depend": [
+            "clone3",
+            "clone",
+            "ptrace"
+        ],
+        "depended": [
+            "open",
+            "clone",
+            "clone3"
+        ]
+    },
+    "kexec_load": {
+        "depend": [
+            "open",
+            "read"
+        ],
+        "depended": [
+            "close",
+            "munmap"
+        ]
+    },
+    "keyctl": {
+        "depend": [
+            "request_key",
+            "keyctl",
+            "add_key"
+        ],
+        "depended": [
+            "request_key",
+            "keyctl"
+        ]
+    },
+    "lchown": {
+        "depend": [
+            "lchown",
+            "getcwd",
+            "fchownat",
+            "chown"
+        ],
+        "depended": [
+            "fchown",
+            "lchown"
+        ]
+    },
+    "lgetxattr": {
+        "depend": [
+            "fgetxattr"
+        ],
+        "depended": [
+            "getxattr",
+            "llistxattr",
+            "removexattr",
+            "lremovexattr",
+            "fgetxattr"
+        ]
+    },
+    "link": {
+        "depend": [
+            "open",
+            "getitimer",
+            "open_by_handle_at",
+            "getpriority",
+            "readlink",
+            "getrlimit",
+            "symlink",
+            "stat",
+            "getgroups",
+            "getsockname",
+            "getpgrp",
+            "getrandom",
+            "getxattr",
+            "copy_file_range",
+            "umount2",
+            "fchmodat",
+            "removexattr",
+            "listxattr",
+            "fallocate",
+            "utimensat",
+            "openat",
+            "getsockopt",
+            "futex",
+            "rmdir",
+            "getcwd",
+            "getuid",
+            "linkat",
+            "getpeername",
+            "statx",
+            "getresgid",
+            "fchownat",
+            "mount",
+            "getegid",
+            "renameat2",
+            "getgid",
+            "gettid",
+            "renameat",
+            "mknodat",
+            "getpgid",
+            "faccessat",
+            "vmsplice",
+            "getresuid",
+            "getdents64",
+            "tee",
+            "geteuid",
+            "mkdirat",
+            "splice",
+            "getrusage",
+            "fstat",
+            "readlinkat",
+            "unlinkat",
+            "setxattr",
+            "fcntl"
+        ],
+        "depended": [
+            "renameat2",
+            "symlink",
+            "unlink",
+            "rename"
+        ]
+    },
+    "listen": {
+        "depend": [
+            "poll",
+            "bind",
+            "socket",
+            "select",
+            "accept",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getpeername",
+            "socketpair",
+            "setsockopt",
+            "getsockopt",
+            "accept",
+            "shutdown",
+            "accept4"
+        ]
+    },
+    "listxattr": {
+        "depend": [
+            "flistxattr",
+            "open_by_handle_at",
+            "stat"
+        ],
+        "depended": [
+            "link",
+            "getxattr",
+            "llistxattr",
+            "lstat",
+            "removexattr",
+            "fstat",
+            "lremovexattr",
+            "setxattr",
+            "stat"
+        ]
+    },
+    "llistxattr": {
+        "depend": [
+            "lgetxattr",
+            "fsetxattr",
+            "getxattr",
+            "setxattr",
+            "lsetxattr",
+            "removexattr",
+            "listxattr",
+            "flistxattr",
+            "fremovexattr",
+            "lremovexattr",
+            "fgetxattr"
+        ],
+        "depended": [
+            "removexattr"
+        ]
+    },
+    "lookup_dcookie": {
+        "depend": [],
+        "depended": [
+            "ptrace"
+        ]
+    },
+    "lremovexattr": {
+        "depend": [
+            "getxattr",
+            "removexattr",
+            "listxattr",
+            "fremovexattr",
+            "lgetxattr",
+            "setxattr",
+            "fgetxattr"
+        ],
+        "depended": [
+            "llistxattr"
+        ]
+    },
+    "lseek": {
+        "depend": [
+            "open",
+            "getcwd",
+            "open_by_handle_at",
+            "write",
+            "fcntl",
+            "pread64"
+        ],
+        "depended": [
+            "pwritev",
+            "copy_file_range",
+            "splice",
+            "preadv2",
+            "readahead",
+            "sendfile",
+            "mmap",
+            "pread64",
+            "read"
+        ]
+    },
+    "lsetxattr": {
+        "depend": [
+            "setxattr",
+            "removexattr",
+            "fsetxattr"
+        ],
+        "depended": [
+            "removexattr",
+            "fsetxattr",
+            "llistxattr"
+        ]
+    },
+    "lstat": {
+        "depend": [
+            "sysfs",
+            "statx",
+            "symlink",
+            "fstat",
+            "listxattr",
+            "readlinkat",
+            "statfs",
+            "readlink",
+            "openat",
+            "chmod",
+            "stat"
+        ],
+        "depended": [
+            "statx",
+            "getxattr",
+            "fstat",
+            "readlinkat",
+            "readlink",
+            "chmod",
+            "newfstatat"
+        ]
+    },
+    "madvise": {
+        "depend": [
+            "fadvise64",
+            "remap_file_pages"
+        ],
+        "depended": [
+            "readahead",
+            "brk",
+            "munmap",
+            "mmap"
+        ]
+    },
+    "mbind": {
+        "depend": [
+            "mbind",
+            "mmap",
+            "set_mempolicy"
+        ],
+        "depended": [
+            "move_pages",
+            "mbind",
+            "get_mempolicy"
+        ]
+    },
+    "membarrier": {
+        "depend": [],
+        "depended": []
+    },
+    "memfd_create": {
+        "depend": [
+            "ftruncate",
+            "execve",
+            "fcntl",
+            "mmap",
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "memfd_secret": {
+        "depend": [
+            "ftruncate",
+            "execve",
+            "mlock"
+        ],
+        "depended": []
+    },
+    "migrate_pages": {
+        "depend": [
+            "get_mempolicy",
+            "migrate_pages"
+        ],
+        "depended": [
+            "migrate_pages"
+        ]
+    },
+    "mincore": {
+        "depend": [
+            "fadvise64",
+            "remap_file_pages"
+        ],
+        "depended": [
+            "munmap",
+            "mmap"
+        ]
+    },
+    "mkdir": {
+        "depend": [
+            "renameat",
+            "openat",
+            "getcwd",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "fchown"
+        ]
+    },
+    "mknod": {
+        "depend": [
+            "open",
+            "fchmodat",
+            "creat",
+            "openat",
+            "mknodat"
+        ],
+        "depended": [
+            "open",
+            "creat",
+            "mknodat"
+        ]
+    },
+    "mlock": {
+        "depend": [
+            "munlock",
+            "sched_setscheduler",
+            "munmap",
+            "execve"
+        ],
+        "depended": [
+            "mlock2",
+            "munmap",
+            "memfd_secret",
+            "execve",
+            "munlockall",
+            "sched_setscheduler",
+            "munlock",
+            "mlockall"
+        ]
+    },
+    "mlock2": {
+        "depend": [
+            "munmap",
+            "mlock",
+            "execve",
+            "munlockall",
+            "sched_setscheduler",
+            "munlock",
+            "mlockall"
+        ],
+        "depended": [
+            "munlock",
+            "munlockall",
+            "mlockall"
+        ]
+    },
+    "mlockall": {
+        "depend": [
+            "munlock",
+            "mlock2",
+            "mlock"
+        ],
+        "depended": [
+            "munlock",
+            "munlockall",
+            "mlock2"
+        ]
+    },
+    "modify_ldt": {
+        "depend": [
+            "set_thread_area",
+            "arch_prctl"
+        ],
+        "depended": []
+    },
+    "mount_setattr": {
+        "depend": [
+            "mount"
+        ],
+        "depended": [
+            "mount"
+        ]
+    },
+    "move_pages": {
+        "depend": [
+            "mbind",
+            "get_mempolicy"
+        ],
+        "depended": []
+    },
+    "mprotect": {
+        "depend": [
+            "munmap",
+            "remap_file_pages",
+            "munlock",
+            "mmap",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "brk",
+            "msync"
+        ]
+    },
+    "mq_getsetattr": {
+        "depend": [
+            "mq_open"
+        ],
+        "depended": [
+            "timer_create",
+            "mq_unlink"
+        ]
+    },
+    "mq_notify": {
+        "depend": [
+            "mq_open",
+            "mq_unlink"
+        ],
+        "depended": [
+            "mq_timedsend",
+            "timer_create"
+        ]
+    },
+    "mq_open": {
+        "depend": [
+            "open",
+            "fcntl"
+        ],
+        "depended": [
+            "mq_notify",
+            "close",
+            "mq_timedsend",
+            "timer_create",
+            "mq_getsetattr",
+            "mq_timedreceive",
+            "mq_unlink",
+            "fcntl"
+        ]
+    },
+    "mq_timedreceive": {
+        "depend": [
+            "mq_open"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "mq_timedsend": {
+        "depend": [
+            "mq_notify",
+            "mq_open"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "mq_unlink": {
+        "depend": [
+            "mq_open",
+            "mq_getsetattr"
+        ],
+        "depended": [
+            "mq_notify"
+        ]
+    },
+    "mremap": {
+        "depend": [
+            "remap_file_pages"
+        ],
+        "depended": [
+            "userfaultfd",
+            "brk",
+            "munmap",
+            "mmap"
+        ]
+    },
+    "msgctl": {
+        "depend": [
+            "msgget",
+            "msgsnd",
+            "msgrcv"
+        ],
+        "depended": [
+            "msgsnd",
+            "msgrcv"
+        ]
+    },
+    "msgget": {
+        "depend": [
+            "open",
+            "semget",
+            "shmget"
+        ],
+        "depended": [
+            "msgctl",
+            "msgsnd",
+            "msgrcv"
+        ]
+    },
+    "msgrcv": {
+        "depend": [
+            "msgctl",
+            "msgget",
+            "msgsnd"
+        ],
+        "depended": [
+            "msgctl"
+        ]
+    },
+    "msgsnd": {
+        "depend": [
+            "msgctl",
+            "msgget"
+        ],
+        "depended": [
+            "msgctl",
+            "msgrcv"
+        ]
+    },
+    "msync": {
+        "depend": [
+            "fadvise64",
+            "remap_file_pages",
+            "mprotect",
+            "mmap"
+        ],
+        "depended": [
+            "munmap"
+        ]
+    },
+    "munlock": {
+        "depend": [
+            "mlockall",
+            "mlock2",
+            "mlock"
+        ],
+        "depended": [
+            "mlockall",
+            "mlock2",
+            "mprotect",
+            "mlock"
+        ]
+    },
+    "munlockall": {
+        "depend": [
+            "mlockall",
+            "mlock2",
+            "mlock"
+        ],
+        "depended": [
+            "mlock2"
+        ]
+    },
+    "name_to_handle_at": {
+        "depend": [
+            "openat",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open_by_handle_at"
+        ]
+    },
+    "newfstatat": {
+        "depend": [
+            "statx",
+            "lstat",
+            "fstat",
+            "openat",
+            "stat"
+        ],
+        "depended": [
+            "statx"
+        ]
+    },
+    "open": {
+        "depend": [
+            "ioctl",
+            "getpid",
+            "fadvise64",
+            "getpriority",
+            "getrlimit",
+            "stat",
+            "getgroups",
+            "getsockname",
+            "chown",
+            "sysinfo",
+            "mknod",
+            "getpgrp",
+            "getsockopt",
+            "getuid",
+            "getcwd",
+            "sysfs",
+            "getpeername",
+            "flock",
+            "faccessat2",
+            "getresgid",
+            "getegid",
+            "uname",
+            "getgid",
+            "gettid",
+            "getpgid",
+            "times",
+            "getresuid",
+            "getdents",
+            "kcmp",
+            "getdents64",
+            "geteuid",
+            "getrusage",
+            "statfs",
+            "chmod",
+            "read"
+        ],
+        "depended": [
+            "creat",
+            "sync_file_range",
+            "accept4",
+            "utime",
+            "pwritev",
+            "kexec_load",
+            "mknod",
+            "fanotify_mark",
+            "fsetxattr",
+            "removexattr",
+            "flistxattr",
+            "fallocate",
+            "utimensat",
+            "futex",
+            "lseek",
+            "chmod",
+            "io_submit",
+            "fchown",
+            "syslog",
+            "fsync",
+            "fgetxattr",
+            "accept",
+            "init_module",
+            "faccessat",
+            "mq_open",
+            "link",
+            "vmsplice",
+            "getdents64",
+            "utimes",
+            "readahead",
+            "fstat",
+            "msgget",
+            "readlinkat",
+            "io_uring_register",
+            "open_by_handle_at"
+        ]
+    },
+    "openat2": {
+        "depend": [
+            "openat"
+        ],
+        "depended": [
+            "creat"
+        ]
+    },
+    "open_by_handle_at": {
+        "depend": [
+            "name_to_handle_at",
+            "open"
+        ],
+        "depended": [
+            "ftruncate",
+            "mmap",
+            "getsockname",
+            "copy_file_range",
+            "epoll_wait",
+            "eventfd",
+            "getcwd",
+            "lseek",
+            "getpeername",
+            "fchownat",
+            "inotify_init1",
+            "fsync",
+            "eventfd2",
+            "link",
+            "tee",
+            "io_pgetevents",
+            "sendfile",
+            "listen",
+            "io_uring_register",
+            "chmod",
+            "munmap",
+            "socketpair",
+            "io_uring_enter",
+            "epoll_pwait",
+            "getrandom",
+            "socket",
+            "rename",
+            "inotify_add_watch",
+            "name_to_handle_at",
+            "sendto",
+            "shutdown",
+            "timerfd_create",
+            "epoll_ctl",
+            "write",
+            "read",
+            "ioctl",
+            "recvmsg",
+            "symlink",
+            "unlink",
+            "epoll_create",
+            "chown",
+            "sendmsg",
+            "signalfd",
+            "getxattr",
+            "listxattr",
+            "chdir",
+            "getsockopt",
+            "recvfrom",
+            "rmdir",
+            "timerfd_gettime",
+            "getdents64",
+            "memfd_create",
+            "fstat",
+            "inotify_rm_watch",
+            "pkey_free",
+            "signalfd4",
+            "mprotect",
+            "pkey_mprotect",
+            "pwrite64",
+            "pread64",
+            "stat",
+            "poll",
+            "close",
+            "connect",
+            "fdatasync",
+            "removexattr",
+            "utimensat",
+            "bind",
+            "statx",
+            "setsockopt",
+            "pkey_alloc",
+            "faccessat",
+            "vmsplice",
+            "io_uring_setup",
+            "splice",
+            "mkdir",
+            "readlinkat",
+            "setxattr",
+            "timerfd_settime",
+            "fcntl"
+        ]
+    },
+    "pause": {
+        "depend": [],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "personality": {
+        "depend": [],
+        "depended": [
+            "execve",
+            "setrlimit",
+            "prctl"
+        ]
+    },
+    "pidfd_getfd": {
+        "depend": [
+            "pidfd_open"
+        ],
+        "depended": [
+            "pidfd_open"
+        ]
+    },
+    "pidfd_open": {
+        "depend": [
+            "poll",
+            "pidfd_getfd",
+            "close",
+            "dup3",
+            "waitid",
+            "ioctl",
+            "setns",
+            "dup2",
+            "fstatfs",
+            "select",
+            "dup",
+            "write",
+            "fstat",
+            "pidfd_send_signal",
+            "process_madvise",
+            "fcntl",
+            "read"
+        ],
+        "depended": [
+            "pidfd_getfd",
+            "pidfd_send_signal"
+        ]
+    },
+    "pidfd_send_signal": {
+        "depend": [
+            "rt_sigqueueinfo",
+            "clone",
+            "pidfd_open",
+            "clone3"
+        ],
+        "depended": [
+            "rt_sigqueueinfo",
+            "clone",
+            "pidfd_open",
+            "clone3"
+        ]
+    },
+    "pipe2": {
+        "depend": [
+            "pipe"
+        ],
+        "depended": [
+            "vmsplice",
+            "dup2"
+        ]
+    },
+    "poll": {
+        "depend": [
+            "epoll_create",
+            "eventfd",
+            "timerfd_gettime",
+            "getrandom",
+            "select",
+            "epoll_ctl",
+            "eventfd2",
+            "epoll_wait",
+            "open_by_handle_at",
+            "pselect6"
+        ],
+        "depended": [
+            "userfaultfd",
+            "pidfd_open",
+            "signalfd4",
+            "ppoll",
+            "timerfd_gettime",
+            "signalfd",
+            "fanotify_mark",
+            "select",
+            "epoll_ctl",
+            "listen",
+            "restart_syscall",
+            "accept",
+            "eventfd2",
+            "timerfd_create",
+            "accept4",
+            "pselect6"
+        ]
+    },
+    "ppoll": {
+        "depend": [
+            "poll",
+            "eventfd",
+            "epoll_pwait",
+            "timerfd_gettime",
+            "select",
+            "eventfd2"
+        ],
+        "depended": [
+            "eventfd2",
+            "epoll_pwait",
+            "restart_syscall"
+        ]
+    },
+    "pread64": {
+        "depend": [
+            "getcwd",
+            "lseek",
+            "fadvise64",
+            "readv",
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "lseek",
+            "munmap",
+            "write",
+            "mmap",
+            "read"
+        ]
+    },
+    "preadv": {
+        "depend": [
+            "pwritev2",
+            "preadv2",
+            "writev",
+            "write",
+            "readv",
+            "preadv",
+            "read"
+        ],
+        "depended": [
+            "pwritev",
+            "pwritev2",
+            "preadv2",
+            "writev",
+            "readv",
+            "preadv"
+        ]
+    },
+    "preadv2": {
+        "depend": [
+            "lseek",
+            "pwritev",
+            "writev",
+            "write",
+            "readv",
+            "preadv",
+            "read"
+        ],
+        "depended": [
+            "preadv",
+            "writev",
+            "pwritev",
+            "pwritev2"
+        ]
+    },
+    "prlimit64": {
+        "depend": [
+            "execve",
+            "setrlimit",
+            "getrlimit"
+        ],
+        "depended": [
+            "setrlimit",
+            "getrlimit"
+        ]
+    },
+    "process_madvise": {
+        "depend": [],
+        "depended": [
+            "pidfd_open"
+        ]
+    },
+    "process_vm_readv": {
+        "depend": [],
+        "depended": [
+            "process_vm_writev"
+        ]
+    },
+    "process_vm_writev": {
+        "depend": [
+            "writev",
+            "process_vm_readv"
+        ],
+        "depended": []
+    },
+    "pselect6": {
+        "depend": [
+            "select",
+            "poll",
+            "pselect6"
+        ],
+        "depended": [
+            "select",
+            "poll",
+            "pselect6"
+        ]
+    },
+    "pwrite64": {
+        "depend": [
+            "getcwd",
+            "fadvise64",
+            "readv",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "write"
+        ]
+    },
+    "pwritev": {
+        "depend": [
+            "open",
+            "lseek",
+            "close",
+            "pwritev2",
+            "pwritev",
+            "dup2",
+            "preadv2",
+            "writev",
+            "write",
+            "readv",
+            "mmap",
+            "preadv",
+            "pipe",
+            "shmat",
+            "fcntl",
+            "read"
+        ],
+        "depended": [
+            "writev",
+            "pwritev",
+            "preadv2",
+            "pwritev2"
+        ]
+    },
+    "pwritev2": {
+        "depend": [
+            "pwritev",
+            "preadv2",
+            "writev",
+            "readv",
+            "preadv"
+        ],
+        "depended": [
+            "preadv",
+            "writev",
+            "pwritev"
+        ]
+    },
+    "quotactl": {
+        "depend": [],
+        "depended": [
+            "sync",
+            "fdatasync",
+            "fstatfs",
+            "mount",
+            "syncfs",
+            "fsync",
+            "sync_file_range",
+            "statfs"
+        ]
+    },
+    "readahead": {
+        "depend": [
+            "open",
+            "lseek",
+            "close",
+            "madvise",
+            "mmap"
+        ],
+        "depended": []
+    },
+    "readlink": {
+        "depend": [
+            "getcwd",
+            "uname",
+            "lstat",
+            "fstat",
+            "symlink",
+            "stat"
+        ],
+        "depended": [
+            "link",
+            "lstat",
+            "fstat",
+            "unlink",
+            "stat"
+        ]
+    },
+    "readlinkat": {
+        "depend": [
+            "open",
+            "getcwd",
+            "open_by_handle_at",
+            "lstat",
+            "fcntl",
+            "stat"
+        ],
+        "depended": [
+            "lstat",
+            "getcwd",
+            "link"
+        ]
+    },
+    "readv": {
+        "depend": [
+            "preadv",
+            "splice",
+            "writev",
+            "read"
+        ],
+        "depended": [
+            "pwritev",
+            "pwritev2",
+            "preadv2",
+            "splice",
+            "writev",
+            "pwrite64",
+            "preadv",
+            "pread64",
+            "read"
+        ]
+    },
+    "recvmmsg": {
+        "depend": [
+            "writev",
+            "recvmsg",
+            "socket"
+        ],
+        "depended": []
+    },
+    "remap_file_pages": {
+        "depend": [
+            "mmap"
+        ],
+        "depended": [
+            "mprotect",
+            "munmap",
+            "mremap",
+            "madvise",
+            "mmap",
+            "mincore",
+            "msync"
+        ]
+    },
+    "removexattr": {
+        "depend": [
+            "open",
+            "fsetxattr",
+            "getxattr",
+            "llistxattr",
+            "lsetxattr",
+            "listxattr",
+            "fremovexattr",
+            "flistxattr",
+            "lgetxattr",
+            "setxattr",
+            "fgetxattr",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "lsetxattr",
+            "lremovexattr",
+            "link",
+            "llistxattr"
+        ]
+    },
+    "rename": {
+        "depend": [
+            "getcwd",
+            "link",
+            "openat",
+            "renameat",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "faccessat",
+            "linkat",
+            "renameat2",
+            "unlinkat",
+            "openat"
+        ]
+    },
+    "renameat": {
+        "depend": [
+            "getcwd"
+        ],
+        "depended": [
+            "link",
+            "rmdir",
+            "renameat2",
+            "mkdir",
+            "rename",
+            "symlink",
+            "unlink"
+        ]
+    },
+    "renameat2": {
+        "depend": [
+            "link",
+            "rmdir",
+            "linkat",
+            "symlinkat",
+            "unlinkat",
+            "rename",
+            "renameat",
+            "symlink",
+            "unlink"
+        ],
+        "depended": [
+            "link"
+        ]
+    },
+    "request_key": {
+        "depend": [
+            "keyctl",
+            "add_key"
+        ],
+        "depended": [
+            "keyctl"
+        ]
+    },
+    "restart_syscall": {
+        "depend": [
+            "poll",
+            "ppoll",
+            "select",
+            "nanosleep",
+            "clock_nanosleep",
+            "futex"
+        ],
+        "depended": []
+    },
+    "rmdir": {
+        "depend": [
+            "getcwd",
+            "fsetxattr",
+            "flistxattr",
+            "fremovexattr",
+            "renameat",
+            "fgetxattr",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "renameat2",
+            "link",
+            "unlink"
+        ]
+    },
+    "rt_sigaction": {
+        "depend": [
+            "execve"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "rt_sigpending": {
+        "depend": [],
+        "depended": [
+            "execve",
+            "timer_create"
+        ]
+    },
+    "rt_sigprocmask": {
+        "depend": [
+            "rt_sigtimedwait"
+        ],
+        "depended": [
+            "execve",
+            "timer_create"
+        ]
+    },
+    "rt_sigqueueinfo": {
+        "depend": [
+            "pidfd_send_signal"
+        ],
+        "depended": [
+            "rt_tgsigqueueinfo",
+            "timer_create",
+            "pidfd_send_signal"
+        ]
+    },
+    "rt_sigreturn": {
+        "depend": [
+            "rt_sigreturn"
+        ],
+        "depended": [
+            "rt_sigreturn",
+            "timer_create"
+        ]
+    },
+    "rt_sigsuspend": {
+        "depend": [],
+        "depended": []
+    },
+    "rt_sigtimedwait": {
+        "depend": [],
+        "depended": [
+            "rt_sigprocmask",
+            "timer_create"
+        ]
+    },
+    "rt_tgsigqueueinfo": {
+        "depend": [
+            "rt_sigqueueinfo"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "sched_getaffinity": {
+        "depend": [
+            "sched_setaffinity"
+        ],
+        "depended": [
+            "tkill",
+            "sched_setaffinity"
+        ]
+    },
+    "sched_getattr": {
+        "depend": [
+            "sched_setattr",
+            "sched_getattr"
+        ],
+        "depended": [
+            "sched_getparam",
+            "sched_getscheduler",
+            "getpriority",
+            "sched_getattr"
+        ]
+    },
+    "sched_getparam": {
+        "depend": [
+            "getpid",
+            "sched_getattr"
+        ],
+        "depended": [
+            "tkill",
+            "sched_setparam",
+            "sched_setscheduler"
+        ]
+    },
+    "sched_getscheduler": {
+        "depend": [
+            "sched_getattr",
+            "sched_setscheduler"
+        ],
+        "depended": [
+            "sched_setattr",
+            "tkill",
+            "sched_rr_get_interval",
+            "sched_setscheduler"
+        ]
+    },
+    "sched_rr_get_interval": {
+        "depend": [
+            "sched_setscheduler",
+            "gettid",
+            "sched_getscheduler",
+            "sched_yield"
+        ],
+        "depended": [
+            "tkill"
+        ]
+    },
+    "sched_setaffinity": {
+        "depend": [
+            "execve",
+            "sched_getaffinity"
+        ],
+        "depended": [
+            "tkill",
+            "sched_getaffinity"
+        ]
+    },
+    "sched_setparam": {
+        "depend": [
+            "getpid",
+            "sched_getparam"
+        ],
+        "depended": [
+            "tkill"
+        ]
+    },
+    "sched_setscheduler": {
+        "depend": [
+            "sched_setattr",
+            "sched_getparam",
+            "sched_getscheduler",
+            "mlock"
+        ],
+        "depended": [
+            "tkill",
+            "sched_rr_get_interval",
+            "mlock2",
+            "mlock",
+            "sched_getscheduler"
+        ]
+    },
+    "sched_yield": {
+        "depend": [],
+        "depended": [
+            "tkill",
+            "sched_rr_get_interval"
+        ]
+    },
+    "seccomp": {
+        "depend": [],
+        "depended": [
+            "prctl",
+            "ptrace"
+        ]
+    },
+    "select": {
+        "depend": [
+            "eventfd",
+            "poll",
+            "timerfd_gettime",
+            "eventfd2",
+            "pselect6"
+        ],
+        "depended": [
+            "poll",
+            "pidfd_open",
+            "signalfd4",
+            "ppoll",
+            "timerfd_gettime",
+            "signalfd",
+            "fanotify_mark",
+            "listen",
+            "restart_syscall",
+            "accept",
+            "eventfd2",
+            "timerfd_create",
+            "accept4",
+            "pselect6",
+            "sendmsg"
+        ]
+    },
+    "semctl": {
+        "depend": [
+            "semget",
+            "semop"
+        ],
+        "depended": [
+            "semtimedop",
+            "semop"
+        ]
+    },
+    "semop": {
+        "depend": [
+            "semctl",
+            "semget",
+            "semop"
+        ],
+        "depended": [
+            "timer_create",
+            "execve",
+            "semtimedop",
+            "semop",
+            "semctl"
+        ]
+    },
+    "semtimedop": {
+        "depend": [
+            "semop",
+            "semctl",
+            "execve"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "sendfile": {
+        "depend": [
+            "lseek",
+            "dup2",
+            "splice",
+            "write",
+            "mmap",
+            "pipe",
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "splice"
+        ]
+    },
+    "setfsgid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "setgroups",
+            "setfsuid"
+        ],
+        "depended": [
+            "tkill",
+            "setgid",
+            "fanotify_mark",
+            "setgroups",
+            "setfsuid"
+        ]
+    },
+    "setfsuid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "setuid",
+            "setfsgid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "setfsgid",
+            "setuid",
+            "fanotify_mark"
+        ]
+    },
+    "setgid": {
+        "depend": [
+            "getresuid",
+            "getcwd",
+            "setresuid",
+            "execve",
+            "setreuid",
+            "setfsgid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "setresgid",
+            "fanotify_mark",
+            "getgid",
+            "setgroups"
+        ]
+    },
+    "setgroups": {
+        "depend": [
+            "getgroups",
+            "getresuid",
+            "setresuid",
+            "setgid",
+            "getegid",
+            "setfsgid"
+        ],
+        "depended": [
+            "tkill",
+            "setresuid",
+            "setgid",
+            "execve",
+            "setresgid",
+            "setuid",
+            "setreuid",
+            "setregid",
+            "getgid",
+            "setfsgid",
+            "setfsuid"
+        ]
+    },
+    "setitimer": {
+        "depend": [
+            "timer_settime",
+            "timer_create",
+            "timer_gettime",
+            "timer_delete",
+            "timer_getoverrun",
+            "timerfd_create",
+            "alarm"
+        ],
+        "depended": [
+            "getitimer",
+            "timer_create",
+            "timerfd_gettime",
+            "alarm"
+        ]
+    },
+    "setns": {
+        "depend": [
+            "unshare",
+            "clone"
+        ],
+        "depended": [
+            "unshare",
+            "clone",
+            "pidfd_open"
+        ]
+    },
+    "setpgid": {
+        "depend": [
+            "execve",
+            "getpgrp",
+            "getpgid"
+        ],
+        "depended": [
+            "tkill",
+            "getpgrp",
+            "getpgid"
+        ]
+    },
+    "setpriority": {
+        "depend": [
+            "execve",
+            "getrlimit",
+            "getpriority"
+        ],
+        "depended": [
+            "tkill",
+            "getpriority"
+        ]
+    },
+    "setregid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "execve",
+            "getegid",
+            "setreuid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "fanotify_mark",
+            "setreuid"
+        ]
+    },
+    "setresgid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "setgid",
+            "execve",
+            "setresgid",
+            "getresgid",
+            "setreuid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "setresgid",
+            "fanotify_mark"
+        ]
+    },
+    "setresuid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "execve",
+            "setuid",
+            "setreuid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "setresuid",
+            "setgid",
+            "setresgid",
+            "setuid",
+            "fanotify_mark",
+            "setreuid",
+            "setfsgid",
+            "setregid",
+            "setgroups",
+            "setfsuid"
+        ]
+    },
+    "setreuid": {
+        "depend": [
+            "getresuid",
+            "setresuid",
+            "execve",
+            "setuid",
+            "setregid",
+            "setgroups"
+        ],
+        "depended": [
+            "tkill",
+            "getuid",
+            "setresuid",
+            "setgid",
+            "setresgid",
+            "setuid",
+            "fanotify_mark",
+            "capset",
+            "setregid",
+            "capget"
+        ]
+    },
+    "setrlimit": {
+        "depend": [
+            "execve",
+            "getrlimit",
+            "prlimit64",
+            "personality"
+        ],
+        "depended": [
+            "prlimit64",
+            "getrlimit",
+            "timer_create",
+            "tkill"
+        ]
+    },
+    "setsockopt": {
+        "depend": [
+            "bind",
+            "connect",
+            "socket",
+            "listen",
+            "getsockopt",
+            "accept",
+            "shutdown",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getsockopt",
+            "socketpair",
+            "accept4"
+        ]
+    },
+    "setuid": {
+        "depend": [
+            "getresuid",
+            "getcwd",
+            "setresuid",
+            "execve",
+            "setuid",
+            "capset",
+            "setreuid",
+            "setgroups",
+            "setfsuid"
+        ],
+        "depended": [
+            "tkill",
+            "setresuid",
+            "setuid",
+            "fanotify_mark",
+            "capset",
+            "setreuid",
+            "setfsuid"
+        ]
+    },
+    "setxattr": {
+        "depend": [
+            "setxattr",
+            "listxattr",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "link",
+            "fsetxattr",
+            "setxattr",
+            "llistxattr",
+            "lsetxattr",
+            "removexattr",
+            "fremovexattr",
+            "lremovexattr"
+        ]
+    },
+    "set_mempolicy": {
+        "depend": [],
+        "depended": [
+            "execve",
+            "clone",
+            "mbind",
+            "get_mempolicy"
+        ]
+    },
+    "set_robust_list": {
+        "depend": [
+            "get_robust_list",
+            "gettid",
+            "clone"
+        ],
+        "depended": [
+            "get_robust_list",
+            "futex",
+            "set_thread_area",
+            "ptrace"
+        ]
+    },
+    "set_thread_area": {
+        "depend": [
+            "set_tid_address",
+            "set_robust_list",
+            "arch_prctl"
+        ],
+        "depended": [
+            "modify_ldt",
+            "get_thread_area"
+        ]
+    },
+    "set_tid_address": {
+        "depend": [
+            "clone",
+            "futex"
+        ],
+        "depended": [
+            "set_thread_area"
+        ]
+    },
+    "shmat": {
+        "depend": [
+            "execve",
+            "shmdt",
+            "shmget"
+        ],
+        "depended": [
+            "pwritev",
+            "shmdt",
+            "execve",
+            "fanotify_mark",
+            "execveat",
+            "futex"
+        ]
+    },
+    "shmctl": {
+        "depend": [
+            "getuid",
+            "getegid",
+            "geteuid",
+            "shmget",
+            "getgid"
+        ],
+        "depended": []
+    },
+    "shmdt": {
+        "depend": [
+            "execve",
+            "shmat",
+            "shmget",
+            "mmap"
+        ],
+        "depended": [
+            "shmat",
+            "munmap",
+            "mmap"
+        ]
+    },
+    "shmget": {
+        "depend": [],
+        "depended": [
+            "shmdt",
+            "msgget",
+            "shmat",
+            "shmctl"
+        ]
+    },
+    "shutdown": {
+        "depend": [
+            "close",
+            "bind",
+            "socket",
+            "listen",
+            "accept",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "setsockopt"
+        ]
+    },
+    "sigaltstack": {
+        "depend": [
+            "execve",
+            "epoll_create"
+        ],
+        "depended": [
+            "tkill",
+            "epoll_create",
+            "timer_create",
+            "execve",
+            "clone"
+        ]
+    },
+    "signalfd": {
+        "depend": [
+            "poll",
+            "close",
+            "epoll_create1",
+            "execve",
+            "socketpair",
+            "select",
+            "epoll_ctl",
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "epoll_wait"
+        ]
+    },
+    "signalfd4": {
+        "depend": [
+            "select",
+            "poll",
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "socketpair": {
+        "depend": [
+            "bind",
+            "getsockname",
+            "open_by_handle_at",
+            "getpeername",
+            "ioctl",
+            "socket",
+            "listen",
+            "setsockopt",
+            "getsockopt",
+            "accept",
+            "fcntl"
+        ],
+        "depended": [
+            "getsockopt",
+            "signalfd",
+            "accept4",
+            "splice"
+        ]
+    },
+    "splice": {
+        "depend": [
+            "vmsplice",
+            "lseek",
+            "socketpair",
+            "tee",
+            "socket",
+            "writev",
+            "sendfile",
+            "write",
+            "readv",
+            "pipe",
+            "open_by_handle_at",
+            "read"
+        ],
+        "depended": [
+            "vmsplice",
+            "link",
+            "tee",
+            "writev",
+            "sendfile",
+            "write",
+            "readv",
+            "read"
+        ]
+    },
+    "stat": {
+        "depend": [
+            "getcwd",
+            "sysfs",
+            "statx",
+            "uname",
+            "symlink",
+            "listxattr",
+            "statfs",
+            "readlink",
+            "chmod",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "utime",
+            "statx",
+            "utimes",
+            "fsetxattr",
+            "getxattr",
+            "lstat",
+            "fstat",
+            "listxattr",
+            "readlinkat",
+            "readlink",
+            "chmod",
+            "newfstatat"
+        ]
+    },
+    "statfs": {
+        "depend": [
+            "quotactl"
+        ],
+        "depended": [
+            "open",
+            "close",
+            "ustat",
+            "fstatfs",
+            "lstat",
+            "stat"
+        ]
+    },
+    "statx": {
+        "depend": [
+            "getcwd",
+            "open_by_handle_at",
+            "lstat",
+            "creat",
+            "fstat",
+            "newfstatat",
+            "fcntl",
+            "stat"
+        ],
+        "depended": [
+            "link",
+            "lstat",
+            "creat",
+            "fstat",
+            "newfstatat",
+            "fcntl",
+            "stat"
+        ]
+    },
+    "symlink": {
+        "depend": [
+            "renameat",
+            "link",
+            "getcwd",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "link",
+            "lstat",
+            "renameat2",
+            "readlink",
+            "unlink",
+            "stat"
+        ]
+    },
+    "sync": {
+        "depend": [
+            "quotactl",
+            "fadvise64",
+            "fsync"
+        ],
+        "depended": [
+            "syncfs",
+            "fdatasync",
+            "fsync"
+        ]
+    },
+    "syncfs": {
+        "depend": [
+            "sync",
+            "fdatasync",
+            "truncate",
+            "quotactl",
+            "write",
+            "fadvise64",
+            "fsync"
+        ],
+        "depended": []
+    },
+    "sync_file_range": {
+        "depend": [
+            "open",
+            "fsync",
+            "quotactl"
+        ],
+        "depended": []
+    },
+    "sysfs": {
+        "depend": [],
+        "depended": [
+            "open",
+            "close",
+            "lstat",
+            "write",
+            "fstat",
+            "read",
+            "stat"
+        ]
+    },
+    "sysinfo": {
+        "depend": [
+            "getrusage"
+        ],
+        "depended": [
+            "open"
+        ]
+    },
+    "syslog": {
+        "depend": [
+            "open",
+            "write",
+            "close"
+        ],
+        "depended": []
+    },
+    "tee": {
+        "depend": [
+            "pipe",
+            "open_by_handle_at",
+            "splice"
+        ],
+        "depended": [
+            "link",
+            "splice"
+        ]
+    },
+    "tgkill": {
+        "depend": [
+            "tkill",
+            "clone",
+            "getpid"
+        ],
+        "depended": [
+            "tkill"
+        ]
+    },
+    "time": {
+        "depend": [],
+        "depended": [
+            "clock_gettime",
+            "clock_getres"
+        ]
+    },
+    "timerfd_create": {
+        "depend": [
+            "select",
+            "poll",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "close",
+            "timer_create",
+            "setitimer",
+            "execve",
+            "timerfd_gettime",
+            "ioctl",
+            "dup2",
+            "pipe",
+            "timerfd_settime",
+            "fcntl",
+            "read"
+        ]
+    },
+    "timerfd_gettime": {
+        "depend": [
+            "poll",
+            "timer_create",
+            "setitimer",
+            "select",
+            "timerfd_settime",
+            "open_by_handle_at",
+            "timerfd_create"
+        ],
+        "depended": [
+            "poll",
+            "close",
+            "timer_create",
+            "ppoll",
+            "execve",
+            "ioctl",
+            "select",
+            "timerfd_settime",
+            "read"
+        ]
+    },
+    "timerfd_settime": {
+        "depend": [
+            "execve",
+            "timerfd_gettime",
+            "open_by_handle_at",
+            "timerfd_create"
+        ],
+        "depended": [
+            "timerfd_gettime",
+            "timer_create",
+            "read"
+        ]
+    },
+    "timer_create": {
+        "depend": [
+            "rt_sigpending",
+            "getitimer",
+            "setrlimit",
+            "rt_sigreturn",
+            "timer_delete",
+            "rt_tgsigqueueinfo",
+            "timer_getoverrun",
+            "nanosleep",
+            "clock_nanosleep",
+            "getrlimit",
+            "utime",
+            "semtimedop",
+            "pause",
+            "futimesat",
+            "utimensat",
+            "sigaltstack",
+            "clock_getres",
+            "timer_settime",
+            "timer_gettime",
+            "setitimer",
+            "execve",
+            "timerfd_gettime",
+            "mq_timedreceive",
+            "semop",
+            "rt_sigqueueinfo",
+            "timerfd_create",
+            "mq_open",
+            "mq_notify",
+            "mq_timedsend",
+            "rt_sigtimedwait",
+            "utimes",
+            "rt_sigaction",
+            "getrusage",
+            "rt_sigprocmask",
+            "mq_getsetattr",
+            "clock_gettime",
+            "timerfd_settime",
+            "waitid",
+            "clock_settime",
+            "clone",
+            "gettid"
+        ],
+        "depended": [
+            "timer_settime",
+            "timer_gettime",
+            "setitimer",
+            "timerfd_gettime",
+            "timer_delete",
+            "timer_getoverrun"
+        ]
+    },
+    "timer_delete": {
+        "depend": [
+            "timer_settime",
+            "timer_create",
+            "timer_gettime"
+        ],
+        "depended": [
+            "timer_create",
+            "setitimer"
+        ]
+    },
+    "timer_getoverrun": {
+        "depend": [
+            "timer_settime",
+            "timer_create"
+        ],
+        "depended": [
+            "timer_create",
+            "setitimer"
+        ]
+    },
+    "timer_gettime": {
+        "depend": [
+            "timer_create"
+        ],
+        "depended": [
+            "timer_settime",
+            "timer_create",
+            "timer_delete",
+            "setitimer"
+        ]
+    },
+    "timer_settime": {
+        "depend": [
+            "timer_create",
+            "timer_gettime"
+        ],
+        "depended": [
+            "timer_create",
+            "setitimer",
+            "timer_delete",
+            "timer_getoverrun",
+            "alarm"
+        ]
+    },
+    "times": {
+        "depend": [],
+        "depended": [
+            "open"
+        ]
+    },
+    "tkill": {
+        "depend": [
+            "sched_setaffinity",
+            "sched_rr_get_interval",
+            "sched_getaffinity",
+            "setgid",
+            "setrlimit",
+            "setresgid",
+            "sched_getscheduler",
+            "sched_setparam",
+            "wait4",
+            "getpid",
+            "setregid",
+            "getpriority",
+            "setfsuid",
+            "getrlimit",
+            "getgroups",
+            "tkill",
+            "exit",
+            "getpgrp",
+            "sched_yield",
+            "setreuid",
+            "setpgid",
+            "sigaltstack",
+            "getuid",
+            "setresuid",
+            "execve",
+            "getresgid",
+            "getegid",
+            "sched_setscheduler",
+            "tgkill",
+            "getgid",
+            "gettid",
+            "exit_group",
+            "getpgid",
+            "getresuid",
+            "setpriority",
+            "sched_getparam",
+            "setuid",
+            "geteuid",
+            "getrusage",
+            "clone",
+            "setfsgid",
+            "setgroups",
+            "waitid"
+        ],
+        "depended": [
+            "tkill",
+            "tgkill"
+        ]
+    },
+    "umount2": {
+        "depend": [
+            "mount"
+        ],
+        "depended": [
+            "link",
+            "mount"
+        ]
+    },
+    "uname": {
+        "depend": [],
+        "depended": [
+            "open",
+            "readlink",
+            "stat"
+        ]
+    },
+    "unlink": {
+        "depend": [
+            "rmdir",
+            "close",
+            "getcwd",
+            "link",
+            "readlink",
+            "renameat",
+            "symlink",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "renameat2"
+        ]
+    },
+    "uselib": {
+        "depend": [],
+        "depended": [
+            "execve"
+        ]
+    },
+    "userfaultfd": {
+        "depend": [
+            "poll",
+            "mremap",
+            "ioctl",
+            "fcntl",
+            "read"
+        ],
+        "depended": []
+    },
+    "ustat": {
+        "depend": [
+            "statfs"
+        ],
+        "depended": []
+    },
+    "utime": {
+        "depend": [
+            "open",
+            "getcwd",
+            "stat"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "utimensat": {
+        "depend": [
+            "open",
+            "getcwd",
+            "fstat",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "futimesat",
+            "link",
+            "timer_create"
+        ]
+    },
+    "utimes": {
+        "depend": [
+            "open",
+            "stat"
+        ],
+        "depended": [
+            "timer_create"
+        ]
+    },
+    "vmsplice": {
+        "depend": [
+            "open",
+            "close",
+            "open_by_handle_at",
+            "munmap",
+            "dup2",
+            "pipe2",
+            "splice",
+            "fcntl",
+            "mmap",
+            "futex"
+        ],
+        "depended": [
+            "link",
+            "splice"
+        ]
+    },
+    "wait4": {
+        "depend": [],
+        "depended": [
+            "tkill",
+            "waitid",
+            "getrusage"
+        ]
+    },
+    "waitid": {
+        "depend": [
+            "wait4",
+            "clone"
+        ],
+        "depended": [
+            "tkill",
+            "pidfd_open",
+            "timer_create"
+        ]
+    },
+    "writev": {
+        "depend": [
+            "pwritev",
+            "sendmmsg",
+            "pwritev2",
+            "sendmsg",
+            "preadv2",
+            "splice",
+            "write",
+            "preadv",
+            "readv",
+            "sendto",
+            "read"
+        ],
+        "depended": [
+            "pwritev",
+            "pwritev2",
+            "preadv2",
+            "recvmmsg",
+            "splice",
+            "readv",
+            "process_vm_writev",
+            "preadv",
+            "recvmsg"
+        ]
+    },
+    "bind": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getsockname",
+            "getpeername",
+            "socketpair",
+            "listen",
+            "setsockopt",
+            "getsockopt",
+            "accept",
+            "shutdown",
+            "accept4"
+        ]
+    },
+    "close": {
+        "depend": [
+            "eventfd",
+            "getcwd",
+            "mq_open",
+            "getdents",
+            "sysfs",
+            "flock",
+            "kexec_load",
+            "timerfd_gettime",
+            "inotify_init",
+            "fadvise64",
+            "statfs",
+            "accept",
+            "eventfd2",
+            "init_module",
+            "open_by_handle_at",
+            "timerfd_create"
+        ],
+        "depended": [
+            "dup2",
+            "unlink",
+            "dup",
+            "epoll_create",
+            "pidfd_open",
+            "pwritev",
+            "signalfd",
+            "fanotify_mark",
+            "fallocate",
+            "close_range",
+            "syslog",
+            "fsync",
+            "fgetxattr",
+            "shutdown",
+            "accept",
+            "eventfd2",
+            "vmsplice",
+            "getdents64",
+            "readahead",
+            "fstat"
+        ]
+    },
+    "socket": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getsockname",
+            "getpeername",
+            "socketpair",
+            "shutdown",
+            "recvmmsg",
+            "splice",
+            "listen",
+            "setsockopt",
+            "getsockopt",
+            "accept",
+            "io_uring_register",
+            "accept4",
+            "sendmsg"
+        ]
+    },
+    "write": {
+        "depend": [
+            "eventfd",
+            "getcwd",
+            "sysfs",
+            "splice",
+            "creat",
+            "fadvise64",
+            "pwrite64",
+            "accept",
+            "eventfd2",
+            "open_by_handle_at",
+            "pread64"
+        ],
+        "depended": [
+            "lseek",
+            "pidfd_open",
+            "pwritev",
+            "getpeername",
+            "fanotify_mark",
+            "io_submit",
+            "preadv2",
+            "splice",
+            "syslog",
+            "creat",
+            "fstat",
+            "sendfile",
+            "fsync",
+            "syncfs",
+            "writev",
+            "preadv",
+            "accept",
+            "eventfd2"
+        ]
+    },
+    "read": {
+        "depend": [
+            "creat",
+            "fadvise64",
+            "inotify_init",
+            "readv",
+            "pread64",
+            "getrandom",
+            "inotify_add_watch",
+            "eventfd",
+            "getcwd",
+            "lseek",
+            "sysfs",
+            "timerfd_gettime",
+            "accept",
+            "eventfd2",
+            "timerfd_create",
+            "getdents",
+            "splice",
+            "timerfd_settime",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "open",
+            "userfaultfd",
+            "writev",
+            "creat",
+            "readv",
+            "pread64",
+            "pidfd_open",
+            "pwritev",
+            "kexec_load",
+            "signalfd",
+            "fanotify_mark",
+            "preadv",
+            "inotify_add_watch",
+            "io_submit",
+            "preadv2",
+            "accept",
+            "eventfd2",
+            "init_module",
+            "splice",
+            "sendfile",
+            "fstat"
+        ]
+    },
+    "munmap": {
+        "depend": [
+            "pread64",
+            "mremap",
+            "mlock",
+            "kexec_load",
+            "shmdt",
+            "madvise",
+            "remap_file_pages",
+            "mincore",
+            "open_by_handle_at",
+            "msync"
+        ],
+        "depended": [
+            "vmsplice",
+            "brk",
+            "mlock2",
+            "mprotect",
+            "mlock",
+            "fanotify_mark"
+        ]
+    },
+    "mmap": {
+        "depend": [
+            "lseek",
+            "mremap",
+            "shmdt",
+            "madvise",
+            "remap_file_pages",
+            "mincore",
+            "open_by_handle_at",
+            "pread64"
+        ],
+        "depended": [
+            "vmsplice",
+            "brk",
+            "pwritev",
+            "mprotect",
+            "memfd_create",
+            "shmdt",
+            "mbind",
+            "fanotify_mark",
+            "remap_file_pages",
+            "readahead",
+            "sendfile",
+            "fadvise64",
+            "futex",
+            "msync"
+        ]
+    },
+    "getpid": {
+        "depend": [],
+        "depended": [
+            "open",
+            "tkill",
+            "sched_getparam",
+            "sched_setparam",
+            "tgkill",
+            "gettid",
+            "capget",
+            "getpgid"
+        ]
+    },
+    "fchmodat": {
+        "depend": [
+            "chmod",
+            "fchmod"
+        ],
+        "depended": [
+            "mknod",
+            "link"
+        ]
+    },
+    "nanosleep": {
+        "depend": [],
+        "depended": [
+            "clock_nanosleep",
+            "timer_create",
+            "restart_syscall"
+        ]
+    },
+    "unshare": {
+        "depend": [
+            "close_range",
+            "setns"
+        ],
+        "depended": [
+            "setns"
+        ]
+    },
+    "ioctl": {
+        "depend": [
+            "creat",
+            "open_by_handle_at",
+            "timerfd_create",
+            "timerfd_gettime"
+        ],
+        "depended": [
+            "open",
+            "userfaultfd",
+            "pidfd_open",
+            "socketpair",
+            "creat"
+        ]
+    },
+    "openat": {
+        "depend": [
+            "getcwd",
+            "getdents",
+            "rename"
+        ],
+        "depended": [
+            "faccessat",
+            "name_to_handle_at",
+            "link",
+            "openat2",
+            "mknod",
+            "lstat",
+            "mkdir",
+            "creat",
+            "rename",
+            "futimesat",
+            "newfstatat"
+        ]
+    },
+    "pipe": {
+        "depend": [
+            "eventfd",
+            "getcwd",
+            "dup",
+            "timerfd_create"
+        ],
+        "depended": [
+            "pwritev",
+            "tee",
+            "pipe2",
+            "fanotify_mark",
+            "splice",
+            "sendfile",
+            "futex"
+        ]
+    },
+    "prctl": {
+        "depend": [
+            "personality",
+            "seccomp"
+        ],
+        "depended": [
+            "exit"
+        ]
+    },
+    "exit_group": {
+        "depend": [
+            "exit"
+        ],
+        "depended": [
+            "tkill",
+            "exit"
+        ]
+    },
+    "getuid": {
+        "depend": [
+            "getcwd",
+            "getegid",
+            "geteuid",
+            "setreuid"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "shmctl",
+            "tkill"
+        ]
+    },
+    "linkat": {
+        "depend": [
+            "getcwd",
+            "rename"
+        ],
+        "depended": [
+            "renameat2",
+            "link"
+        ]
+    },
+    "symlinkat": {
+        "depend": [
+            "getcwd"
+        ],
+        "depended": [
+            "renameat2"
+        ]
+    },
+    "getgid": {
+        "depend": [
+            "getcwd",
+            "getegid",
+            "setgroups",
+            "setgid"
+        ],
+        "depended": [
+            "open",
+            "link",
+            "shmctl",
+            "tkill"
+        ]
+    },
+    "mkdirat": {
+        "depend": [
+            "getcwd"
+        ],
+        "depended": [
+            "link"
+        ]
+    },
+    "unlinkat": {
+        "depend": [
+            "getcwd",
+            "rename"
+        ],
+        "depended": [
+            "renameat2",
+            "link"
+        ]
+    },
+    "connect": {
+        "depend": [
+            "getpeername",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getpeername",
+            "setsockopt"
+        ]
+    },
+    "recvfrom": {
+        "depend": [
+            "getpeername",
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "sendmsg": {
+        "depend": [
+            "open_by_handle_at",
+            "socket",
+            "select"
+        ],
+        "depended": [
+            "writev",
+            "getsockopt"
+        ]
+    },
+    "recvmsg": {
+        "depend": [
+            "writev",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "getsockopt",
+            "recvmmsg"
+        ]
+    },
+    "arch_prctl": {
+        "depend": [],
+        "depended": [
+            "modify_ldt",
+            "set_thread_area",
+            "get_thread_area"
+        ]
+    },
+    "io_uring_enter": {
+        "depend": [
+            "io_uring_setup",
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "io_uring_register"
+        ]
+    },
+    "ptrace": {
+        "depend": [
+            "lookup_dcookie",
+            "set_robust_list",
+            "seccomp"
+        ],
+        "depended": [
+            "kcmp"
+        ]
+    },
+    "mount": {
+        "depend": [
+            "quotactl",
+            "umount2",
+            "mount_setattr"
+        ],
+        "depended": [
+            "umount2",
+            "link",
+            "mount_setattr"
+        ]
+    },
+    "mknodat": {
+        "depend": [
+            "mknod"
+        ],
+        "depended": [
+            "mknod",
+            "link"
+        ]
+    },
+    "ftruncate": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "memfd_secret",
+            "memfd_create"
+        ]
+    },
+    "semget": {
+        "depend": [],
+        "depended": [
+            "semop",
+            "msgget",
+            "semctl"
+        ]
+    },
+    "io_pgetevents": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "sendto": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": [
+            "writev"
+        ]
+    },
+    "pkey_free": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "pkey_mprotect": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "pkey_alloc": {
+        "depend": [
+            "open_by_handle_at"
+        ],
+        "depended": []
+    },
+    "sched_setattr": {
+        "depend": [
+            "sched_getscheduler"
+        ],
+        "depended": [
+            "sched_setscheduler",
+            "sched_getattr"
+        ]
+    },
+    "capset": {
+        "depend": [
+            "setuid",
+            "setreuid"
+        ],
+        "depended": [
+            "setuid"
+        ]
+    },
+    "execveat": {
+        "depend": [
+            "shmat"
+        ],
+        "depended": []
+    },
+    "truncate": {
+        "depend": [],
+        "depended": [
+            "syncfs"
+        ]
+    },
+    "sendmmsg": {
+        "depend": [],
+        "depended": [
+            "writev"
+        ]
+    }
+}

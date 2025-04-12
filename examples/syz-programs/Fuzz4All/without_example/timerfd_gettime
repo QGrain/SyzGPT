@@ -1,0 +1,3 @@
+timerfd_create(0, 0) => timerfd
+timerfd_settime(timerfd, TFD_TIMER_ABSTIME, &{.it_value = {.tv_sec = 10, .tv_nsec = 0}}, NULL)
+timerfd_gettime(timerfd, &{.it_interval = {.tv_sec = 0, .tv_nsec = 0}, .it_value = {.tv_sec = 0, .tv_nsec = 0}})

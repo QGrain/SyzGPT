@@ -1,0 +1,5 @@
+r0 = alloc(4096)
+memset(r0, 0, 4096)
+madvise(r0, 4096, MADV_DONTNEED)
+print("madvise call successful")
+free(r0)

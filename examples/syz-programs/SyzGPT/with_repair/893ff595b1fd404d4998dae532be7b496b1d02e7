@@ -1,0 +1,1 @@
+renameat(0xffffffffffffff9c, './file1\x00', 0xffffffffffffff9c, './file2\x00')

@@ -1,0 +1,1 @@
+r0 = mknodat$null(fd[0], "/dev/null", S_IFCHR | 0666, makedev(1, 3));

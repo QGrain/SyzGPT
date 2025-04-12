@@ -1,0 +1,2 @@
+clock_gettime(CLOCK_REALTIME, &result)
+print("Clock time: sec =", result.sec, "nsec =", result.nsec)

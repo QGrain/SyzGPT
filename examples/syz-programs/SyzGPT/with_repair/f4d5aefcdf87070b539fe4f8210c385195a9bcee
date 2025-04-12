@@ -1,0 +1,3 @@
+mknodat(0xffffffffffffff9c, &(0x7f0000000000)='./file0\x00', 0x0, 0x0)
+lsetxattr$system_posix_acl(&(0x7f0000000040)='./file0\x00', &(0x7f0000000080)='system.posix_acl_access\x00', &(0x7f0000000240)={{}, {}, [{}], {}, [{0x8, 0x0, 0xee00}]}, 0x34, 0x0)
+lremovexattr(&(0x7f00000000c0)='./file0\x00', &(0x7f0000000140)=@known='system.posix_acl_access\x00')

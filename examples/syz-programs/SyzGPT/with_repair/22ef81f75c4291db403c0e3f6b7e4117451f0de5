@@ -1,0 +1,2 @@
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f00000000c0), 0x88401)
+ioctl$SNDRV_SEQ_IOCTL_GET_CLIENT_INFO(r0, 0x7f0000000080)

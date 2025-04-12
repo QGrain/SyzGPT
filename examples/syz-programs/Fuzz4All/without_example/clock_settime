@@ -1,0 +1,1 @@
+clock_settime(CLOCK_REALTIME, AUTO_TIME);

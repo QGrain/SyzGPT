@@ -1,0 +1,5 @@
+r0 = openat$9root(root, "/source", 0x0, 0x0)
+r1 = openat$9root(root, "/target", 0x0, 0x0)
+move_mount(r0, r1, flags)
+close$fd(r0)
+close$fd(r1)

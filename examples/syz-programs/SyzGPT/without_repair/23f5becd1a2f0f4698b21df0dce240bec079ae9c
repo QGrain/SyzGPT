@@ -1,0 +1,4 @@
+r0 = openat$fanotify_init(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+readlinkat(0xffffffffffffff9c, &(0x7f00000000c0), &(0x7f0000000000)=0x100)
+r1 = openat$fanotify_init(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+finit_module(r1, &(0x7f00000000c0), 0x0)

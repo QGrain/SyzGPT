@@ -1,0 +1,1 @@
+ioctl$KVM_GET_CPUID2(fd[0], KVM_CPUID_FLAG_SIGNIFCANT_INDEX, buf[0], len)

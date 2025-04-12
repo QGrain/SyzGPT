@@ -1,0 +1,2 @@
+getitimer(0x1, &(0x7f0000000040))
+getitimer(0x1, &(0x7f0000000180))

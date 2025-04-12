@@ -1,0 +1,4 @@
+const eventfd_fd = fd(0)
+const ring_id = const(0)
+const event_type = const(1)
+io_uring_register$IORING_REGISTER_EVENTFD_ASYNC(ring_id, event_type, eventfd_fd)

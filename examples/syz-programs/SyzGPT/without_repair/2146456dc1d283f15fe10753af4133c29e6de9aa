@@ -1,0 +1,5 @@
+sched_setscheduler(0xfffffffffffffffd, 0x1, &(0x7f0000000680)=<r0=>0x0)
+ioctl$FIONBIO(0xfffffffffffffffd, &(0x7f0000000680)=<r0=>0x0)
+syz_open_dev("/dev/urandom", 0x0, 0x0)
+ioctl$FIONBIO(0xfffffffffffffffd, &(0x7f0000000680)=<r0=>0x0)
+sched_setscheduler(0xfffffffffffffffd, 0x0, &(0x7f0000000680)=<r0=>0x0)

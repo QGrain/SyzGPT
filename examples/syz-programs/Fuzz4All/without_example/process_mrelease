@@ -1,0 +1,4 @@
+r0 = alloc(SIZE)
+memset(r0, 0, SIZE)
+process_mrelease(r0, SIZE)
+print(r0)

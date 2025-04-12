@@ -1,0 +1,5 @@
+r0 = openat('/dev/shm/trace_pipe', 0x2, 0x0)
+ioctl$PERF_EVENT_IOC_SET_FILTER(r0, 0x40000002, 0x0)
+ioctl$PERF_EVENT_IOC_ENABLE(r0, 0x0)
+mmap(nil, 0x1000, 0x3, 0x1, 0x0, 0x0)
+close(r0)

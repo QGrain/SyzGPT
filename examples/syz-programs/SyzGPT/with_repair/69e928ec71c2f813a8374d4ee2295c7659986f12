@@ -1,0 +1,2 @@
+ptrace$PTRACE_SETSIGMASK()
+unshare(0x20000000)

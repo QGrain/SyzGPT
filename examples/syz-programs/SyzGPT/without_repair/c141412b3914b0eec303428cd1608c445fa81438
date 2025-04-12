@@ -1,0 +1,1 @@
+seccomp$SECCOMP_GET_ACTION_AVAIL(0x0, 0x0, 0x0)

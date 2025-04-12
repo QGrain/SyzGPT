@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f00000000c0)='./cpuinfo\x00', 0x0)
+lseek(r0, 0x0, 0x0)

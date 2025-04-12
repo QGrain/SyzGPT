@@ -1,0 +1,6 @@
+path[0] = alloc(10)
+memcpy(path[0], "/tmp/test", 9)
+faccessat(AT_FDCWD, path[0], F_OK, 0)
+stat(path[0], statbuf[0])
+print(statbuf[0].st_mode)
+free(path[0])

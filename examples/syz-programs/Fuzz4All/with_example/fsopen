@@ -1,0 +1,3 @@
+filename = alloc_buffer(256)
+filename_len = generate_filename(filename)
+fd = fsopen(filename, filename_len, flags, mode)

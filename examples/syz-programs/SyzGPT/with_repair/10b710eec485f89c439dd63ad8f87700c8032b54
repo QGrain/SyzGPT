@@ -1,0 +1,1 @@
+memfd_secret('syz_memfd_secret', 0x0)

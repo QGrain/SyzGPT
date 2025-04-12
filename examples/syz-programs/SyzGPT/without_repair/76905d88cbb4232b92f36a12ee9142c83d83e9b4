@@ -1,0 +1,2 @@
+r0 = syz_open_dev$snddsp(&(0x7f0000000100), 0x0, 0x0)
+write(r0, "data", 0x4)

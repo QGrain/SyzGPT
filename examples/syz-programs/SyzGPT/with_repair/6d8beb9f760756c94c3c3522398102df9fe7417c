@@ -1,0 +1,3 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./dev/null\x00', 0x2, 0x0)
+truncate(&AUTO='./dev/null\x00', 0x0)
+close(r0)

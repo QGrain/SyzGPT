@@ -1,0 +1,1 @@
+fd = io_uring_setup(&params, sizeof(params))

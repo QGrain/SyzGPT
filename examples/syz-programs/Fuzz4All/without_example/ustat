@@ -1,0 +1,4 @@
+ustat(path, &ustat_res)
+print("ustat syscall results:")
+print(" - f_tfree: %d", ustat_res.f_tfree)
+print(" - f_tinode: %d", ustat_res.f_tinode)

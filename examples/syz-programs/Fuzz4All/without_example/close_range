@@ -1,0 +1,2 @@
+fd = openat(-100, "/path/to/file", O_RDWR|O_CREAT, 0644)
+close_range(fd, 1, CLOSE_RANGE_CLOSEREADER)

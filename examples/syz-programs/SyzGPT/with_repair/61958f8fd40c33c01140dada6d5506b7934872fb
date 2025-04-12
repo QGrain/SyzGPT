@@ -1,0 +1,2 @@
+r0 = open$dir(&(0x7f0000000000)='./file0\x00', 0x80040, 0x0)
+fchown(r0, 0xee01, 0xffffffffffffffff)

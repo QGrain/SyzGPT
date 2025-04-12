@@ -1,0 +1,2 @@
+ret = AUTO()
+ret = sched_yield()

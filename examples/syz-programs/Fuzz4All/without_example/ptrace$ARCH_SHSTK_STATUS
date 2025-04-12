@@ -1,0 +1,1 @@
+r0 = ptrace$ARCH_SHSTK_STATUS(PID, stack_status_buf, sizeof(stack_status_buf))

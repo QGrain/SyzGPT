@@ -1,0 +1,4 @@
+fill_data(input_buf, BUFSIZE)
+tee(0, 1, BUFSIZE, 0)
+verify_data(input_buf, output_buf, BUFSIZE)
+func fill_data(buf, size)

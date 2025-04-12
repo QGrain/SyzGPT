@@ -1,0 +1,5 @@
+r0 = openat(fd, path, flags)
+r1 = read(r0, buf, count)
+r2 = pkey_alloc(0, 0)
+r3 = pkey_mprotect(addr, size, prot, r2)
+pkey_free(r2)

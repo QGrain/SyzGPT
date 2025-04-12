@@ -1,0 +1,1 @@
+r0 = symlinkat(&(0x7f0000000040)='target\x00', 0x0, 0x0)

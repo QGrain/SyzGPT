@@ -1,0 +1,2 @@
+pid = proc(pid)
+ret = rt_tgsigqueueinfo(pid, SIGRTMIN, &siginfo)

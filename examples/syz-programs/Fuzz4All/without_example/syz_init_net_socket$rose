@@ -1,0 +1,1 @@
+syz_init_net_socket$rose(SOCK_STREAM, sockaddr_ptr, sizeof(sockaddr_any), fd)

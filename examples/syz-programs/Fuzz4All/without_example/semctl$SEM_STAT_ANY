@@ -1,0 +1,2 @@
+semget(0, 1, IPC_CREAT|IPC_EXCL|0666);
+semctl$SEM_STAT_ANY(0, 0, &AUTO, 0);

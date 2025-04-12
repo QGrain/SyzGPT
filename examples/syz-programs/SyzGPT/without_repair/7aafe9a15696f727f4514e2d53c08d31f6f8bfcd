@@ -1,0 +1,3 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000100)='file.txt\x00', 0x0, 0x0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000180)='output.txt\x00', 0x0, 0x0)
+sendfile(r1, r0, &(0x7f0000000200)=0x0, 0x1000)

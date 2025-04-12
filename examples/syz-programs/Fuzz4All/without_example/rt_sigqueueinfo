@@ -1,0 +1,3 @@
+pid = proc.pid()
+rt_sigqueueinfo(pid, SIGUSR1, 0, 0)
+rt_sigqueueinfo(pid, SIGUSR1, AUTO, AUTO)

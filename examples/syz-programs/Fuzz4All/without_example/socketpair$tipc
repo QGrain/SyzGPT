@@ -1,0 +1,1 @@
+fd1 = socketpair$tipc(TIPC_ADDR_NAMESEQ, SOCK_STREAM, 0)

@@ -1,0 +1,4 @@
+fd = open("/path/to/file", O_RDWR|O_CREAT, 0644)
+write(fd, "Hello, Syzkaller!", 18)
+fsync(fd)
+close(fd)

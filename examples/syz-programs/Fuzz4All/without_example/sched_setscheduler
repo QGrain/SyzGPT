@@ -1,0 +1,7 @@
+syz_test(SCHED_SETSCHEDULER, "policy = AUTO, pid = AUTO, param = AUTO")
+syz_value(policy, 1)
+syz_value(priority, 10)
+syz_assign(param, policy)
+syz_assign(param, priority)
+syz_save(pid)
+sched_setscheduler(pid, policy, priority)

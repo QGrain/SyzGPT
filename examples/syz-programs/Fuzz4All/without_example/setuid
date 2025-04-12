@@ -1,0 +1,4 @@
+setuid0(1000)
+setuid1(2000)
+setuid0(uid) {
+r0 = setuid(uid)

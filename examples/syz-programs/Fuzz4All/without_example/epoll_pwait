@@ -1,0 +1,4 @@
+epoll_create1(EPOLL_CLOEXEC);
+epoll_ctl$add(fd0, EPOLL_CTL_ADD, fd1, &(struct epoll_event){.events = EPOLLIN | EPOLLOUT, .data = {.u32 = 0x12345678}});
+epoll_ctl$add(fd0, EPOLL_CTL_ADD, fd2, &(struct epoll_event){.events = EPOLLIN | EPOLLET, .data = {.ptr = 0xdeadbeef}});
+epoll_pwait(fd0, &(struct epoll_event[2]){0}, 2, -1, &(sigset_t){.val = {0x1, 0x2}});

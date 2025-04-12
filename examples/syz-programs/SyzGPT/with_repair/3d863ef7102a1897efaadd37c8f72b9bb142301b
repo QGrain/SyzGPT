@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, '/dev/sdb', 0x0, 0x0)
+r1 = fcntl$F_GET_RW_HINT(r0, 0x0)

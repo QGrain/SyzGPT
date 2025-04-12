@@ -1,0 +1,5 @@
+setpgid$pid1(pid1 fd pid2) {
+pid1 = proc.pid();
+pid2 = proc.pid();
+fd = openat(-100, "/dev/null", O_RDWR);
+setpgid(pid1, pid2);

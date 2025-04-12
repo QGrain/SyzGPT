@@ -1,0 +1,8 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./', 0x0, 0x0)
+r1 = openat(r0, &AUTO='new_root', 0x0, 0x0)
+mkdirat(r1, &AUTO='old_root', 0x0)
+chdir(&AUTO='./', 0x0)
+umount2(&AUTO='old_root', 0x2)
+rmdir(&AUTO='old_root')
+close(r1)
+close(r0)

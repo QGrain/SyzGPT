@@ -1,0 +1,1 @@
+utimensat(fd, path, SYZ_UTIME_OMIT, &atime, &mtime);

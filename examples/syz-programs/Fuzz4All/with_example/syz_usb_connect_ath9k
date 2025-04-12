@@ -1,0 +1,8 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r1 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+ioctl$LOOP_SET_FD(r0, 0x4c00, r1)
+r2 = syz_usb_connect_ath9k(0x1, &(0x7f00000000c0), &(0x7f00000011c0), &(0x7f00000022c0), &(0x7f00000033c0), &(0x7f00000044c0))
+r3 = syz_usb_alloc_urb(r2, 0x100)
+syz_usb_fill_bulk_urb(r3, r2, 0x3, &(0x7f00000055c0), 0x100, NULL, NULL)
+syz_usb_submit_urb(r3)
+syz_usb_disconnect_ath9k(r2)

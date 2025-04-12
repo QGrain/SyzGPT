@@ -1,0 +1,8 @@
+r0 = socket$inet6_tcp(0x1c, 0x1, 0x0)
+r1 = bind$inet6(r0, &(0x7f00000000c0), 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f00000000c0), &(0x7f00000000c0))
+r4 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r5 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+ioctl$LOOP_SET_FD(r4, 0x4c00, r5)
+r6 = setsockopt$inet6_tcp_TCP_REPAIR(r3, 0x29, 0x1, &(0x7f00000000c0), 0x10)

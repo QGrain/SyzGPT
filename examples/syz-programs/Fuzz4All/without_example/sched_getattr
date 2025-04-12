@@ -1,0 +1,2 @@
+buf := alloc(bufsize)
+res = sched_getattr(0, buf, bufsize, 0)

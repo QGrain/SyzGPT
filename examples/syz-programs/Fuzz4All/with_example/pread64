@@ -1,0 +1,5 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r1 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+ioctl$LOOP_SET_FD(r0, 0x4c00, r1)
+r2 = pread64(r0, &(0x7f00000000e0), 0x100, 0x200)
+syz_compare(r2, 0xfffffffffffffffe)

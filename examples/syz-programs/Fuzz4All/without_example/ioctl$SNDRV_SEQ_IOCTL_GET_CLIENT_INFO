@@ -1,0 +1,3 @@
+syz_open_dev(dev);
+syz_ioctl$SNDRV_SEQ_IOCTL_GET_CLIENT_INFO(dev, SNDRV_SEQ_IOCTL_GET_CLIENT_INFO, client_info);
+syz_close_dev(dev);

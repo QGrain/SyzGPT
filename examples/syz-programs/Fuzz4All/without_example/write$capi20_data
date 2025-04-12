@@ -1,0 +1,1 @@
+r0 = write$capi20_data(fd, buf, sizeof(buf))

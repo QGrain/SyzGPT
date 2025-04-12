@@ -1,0 +1,7 @@
+syz_emit_signal(SIGTERM) # Send SIGTERM signal to the current process
+syz_open_dev(syz_dev_pts(0)) # Open /dev/pts/0 device
+fd = syz_open_dev(syz_dev_null()) # Open /dev/null device and store the file descriptor in 'fd' variable
+syz_enable_fault_injection(fd, FAULT_INJECT_TIMEOUT) # Enable fault injection on 'fd' with timeout
+syz_emit_signal(SIGINT) # Send SIGINT signal to the current process
+syz_signalfd(fd, syz_sigset(SIGTERM, SIGINT), 2)
+syz_close(fd) # Close the file descriptor 'fd'

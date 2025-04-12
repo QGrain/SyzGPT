@@ -1,0 +1,1 @@
+result = sched_getparam(pid, &param)

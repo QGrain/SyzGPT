@@ -1,0 +1,3 @@
+r0 = open('/dev/dri/renderD128', 0x2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_CREATE(r0, &(0x7f0000000000))
+r1 = ioctl$DRM_IOCTL_SYNCOBJ_RESET(r0, &(0x7f0000000000))

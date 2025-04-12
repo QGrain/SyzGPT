@@ -1,0 +1,6 @@
+uname(&result);
+printf("System name: %s\n", result.sysname);
+printf("Node name: %s\n", result.nodename);
+printf("Release: %s\n", result.release);
+printf("Version: %s\n", result.version);
+printf("Machine: %s\n", result.machine);

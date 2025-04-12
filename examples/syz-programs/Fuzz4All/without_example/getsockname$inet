@@ -1,0 +1,5 @@
+socket1 = socket$inet(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+bind1 = bind$inet(socket1, 0x7f000001, 12345)
+getsockname1 = getsockname$inet(socket1, 0xc0000000, 0xc0000000)
+print("Local address: ", getsockname1.addr)
+close(socket1)

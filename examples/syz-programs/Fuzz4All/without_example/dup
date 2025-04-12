@@ -1,0 +1,2 @@
+dup0 = dup(fd)
+fd1 = dup(dup0)

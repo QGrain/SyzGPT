@@ -1,0 +1,1 @@
+r0 = bind$can_j1939(0x1234, &rx_buf[0], CAN_J1939_TP_RX_BUFSIZE, &tx_buf[0], CAN_J1939_TP_TX_BUFSIZE)

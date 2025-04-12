@@ -1,0 +1,5 @@
+r0 = openat$fanotify(0xffffffffffffff9c, &AUTO='/dev/fanotify\x00', 0x2, 0x0)
+ioctl$FANOTIFY_INIT(r0, 0x10, 0x800)
+close(r0)
+ptrace$PTRACE_TRACEME()
+arch_prctl$ARCH_ENABLE_TAGGED_ADDR(0x1002, 0x0)

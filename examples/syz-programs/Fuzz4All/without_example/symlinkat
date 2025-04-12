@@ -1,0 +1,5 @@
+syz_openat(AT_FDCWD, target_path, O_RDWR|O_CREAT, 0)
+syz_symlinkat(link_path, AT_FDCWD, target_path)
+syz_openat(AT_FDCWD, link_path, O_RDWR, 0)
+syz_unlinkat(AT_FDCWD, link_path, 0)
+syz_unlinkat(AT_FDCWD, target_path, 0)

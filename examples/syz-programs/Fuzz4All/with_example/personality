@@ -1,0 +1,1 @@
+r0 = syz_open_dev$personality(&(0x7f00000011c0), 0x2, 0x0)

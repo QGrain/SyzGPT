@@ -1,0 +1,4 @@
+r0 = openat$dirfd_path(0xffffffffffffff9c, &(0x7f0000000000)='/dev/null\x00', 0x0, 0x0)
+r1 = openat$dirfd_path(0xffffffffffffff9c, &(0x7f0000000040)='/dev/null\x00', 0x0, 0x0)
+r2 = openat$dirfd_path(0xffffffffffffff9c, &(0x7f0000000080)='/dev/null\x00', 0x0, 0x0)
+setresuid(0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff)

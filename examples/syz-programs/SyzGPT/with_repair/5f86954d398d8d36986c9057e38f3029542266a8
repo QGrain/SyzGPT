@@ -1,0 +1,6 @@
+r0 = openat$binderfs_ctrl(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+tee(r0, r1, 0x1000, 0x0)
+ioctl(r1, &(0x7f0000000080))
+close(r0)
+close(r1)

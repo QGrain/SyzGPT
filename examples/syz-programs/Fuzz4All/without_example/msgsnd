@@ -1,0 +1,1 @@
+r0 = msgsnd(mqid, &msgbuf, sizeof(msgbuf), 0)

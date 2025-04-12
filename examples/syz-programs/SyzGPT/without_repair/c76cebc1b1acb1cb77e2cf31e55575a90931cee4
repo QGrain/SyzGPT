@@ -1,0 +1,5 @@
+r0 = open(&(0x7f0000000000)='./file\x00', 0x2, 0x0)
+r1 = fcntl$F_DUPFD(r0, 0x0)
+r2 = fcntl$F_GETFL(r1)
+fcntl$F_SETFL(r1, r2|0x1)
+ftruncate(r1, 0x100)

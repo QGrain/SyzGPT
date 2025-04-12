@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, "/tmp", 0x2, 0x0)
+mkdirat(r0, "test_dir", 0x1ff)

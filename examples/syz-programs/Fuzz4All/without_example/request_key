@@ -1,0 +1,1 @@
+keyring = request_key(key_type, KEY_SPEC_THREAD_KEYRING, buffer);

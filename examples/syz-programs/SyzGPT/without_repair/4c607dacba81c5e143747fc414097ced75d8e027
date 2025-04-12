@@ -1,0 +1,7 @@
+r0 = socket$inet_tcp(0x2, 0x0)
+bind(r0, &(0x7f0000000100))
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000500), &(0x7f0000000504))
+ioctl$USBDEVFS_CONNECT(r1, 0x0)
+ioctl$USBDEVFS_CLAIMINTERFACE(r1, 0x0, 0x0)
+syz_usbip_server_init(r1)

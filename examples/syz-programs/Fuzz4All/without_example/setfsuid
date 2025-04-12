@@ -1,0 +1,3 @@
+setfsuid(100)
+res = setfsuid(200)
+openat(AT_FDCWD, "/path/to/file", O_RDONLY, 0, res)

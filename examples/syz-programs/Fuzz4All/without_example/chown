@@ -1,0 +1,2 @@
+chown(0, 0, 0)
+ret = chown(0, 0, 0)

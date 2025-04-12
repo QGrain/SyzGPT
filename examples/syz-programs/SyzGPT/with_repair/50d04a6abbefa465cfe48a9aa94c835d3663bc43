@@ -1,0 +1,2 @@
+ptrace$PTRACE_TRACEME
+mq_unlink(&(0x7f0000000040)='&7*\x00')

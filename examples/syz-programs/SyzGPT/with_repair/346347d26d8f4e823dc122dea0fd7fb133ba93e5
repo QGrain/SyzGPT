@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000080)='./dev/sda\x00', 0x40000, 0x0)
+syncfs(r0)

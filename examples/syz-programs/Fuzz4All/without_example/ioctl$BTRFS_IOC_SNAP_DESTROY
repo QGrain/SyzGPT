@@ -1,0 +1,1 @@
+ioctl$BTRFS_IOC_SNAP_DESTROY(fd fd[0], ptr[in, string] name)

@@ -1,0 +1,2 @@
+ptrace$PTRACE_TRACEME()
+mount$pvfs2(""/dev/sda1, ""/mnt", 0x0, 0x0, 0x0)

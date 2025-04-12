@@ -1,0 +1,5 @@
+fd = openat(AT_FDCWD, "/path/to/file", O_RDONLY|O_CLOEXEC, 0)
+old_owner = fstat(fd, NULL)
+fchown(fd, uid, gid)
+new_owner = fstat(fd, NULL)
+close(fd)

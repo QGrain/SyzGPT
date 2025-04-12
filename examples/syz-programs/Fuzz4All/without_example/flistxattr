@@ -1,0 +1,1 @@
+r0 = flistxattr(0x0, buf[0], MAX_XATTR_SIZE)

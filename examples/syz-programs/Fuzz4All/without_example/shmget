@@ -1,0 +1,4 @@
+syz_open_dev$shmget(key: 1234, size: 4096, flag: IPC_CREAT | IPC_EXCL)
+syz_save_resource$shmid(id: shmid)
+syz_open_dev$shmat(shmid: shmid, addr: AUTO, flag: 0)
+syz_save_resource$addr(id: addr)

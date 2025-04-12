@@ -1,0 +1,6 @@
+var file_path[256] = AUTO()
+memset(file_path, 0x41, sizeof(file_path))
+open(file_path, O_RDWR|O_CREAT, 0644)
+write(3, "Hello, World!", 13)
+sync()
+close(3)

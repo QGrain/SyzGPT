@@ -1,0 +1,3 @@
+mqueue = mq_open("/test_queue", O_CREAT | O_RDWR, 0666, NULL)
+attr = mq_attr()
+mq_getsetattr(mqueue, MQ_GETSETATTR, &attr)

@@ -1,0 +1,2 @@
+fadvise64(fd, advice)
+print(result)

@@ -1,0 +1,1 @@
+open_tree(AT_FDCWD, "/path/to/directory", AT_SYMLINK_FOLLOW, 0);

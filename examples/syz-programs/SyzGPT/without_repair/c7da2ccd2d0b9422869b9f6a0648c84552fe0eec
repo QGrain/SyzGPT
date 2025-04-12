@@ -1,0 +1,1 @@
+r0 = inotify_init1(0x0)

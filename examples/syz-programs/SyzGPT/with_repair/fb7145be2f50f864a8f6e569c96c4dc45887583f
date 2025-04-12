@@ -1,0 +1,1 @@
+syz_btf_id_by_name$bpf_lsm('kprobe/tracepoint_raw_syscalls/sys_enter', 0x0)

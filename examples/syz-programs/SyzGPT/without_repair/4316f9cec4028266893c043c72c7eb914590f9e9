@@ -1,0 +1,5 @@
+r0 = openat$fanotify_init(0xffffffffffffff9c, &AUTO='/dev/fanotify\x00', 0x2, 0x0)
+ioctl$FANOTIFY_INIT(r0, 0x20000, 0x40001)
+set_mempolicy_home_node(0xffffffffffffffff, 0x0, 0x0)
+ioctl$FANOTIFY_MARK(r0, 0x400001, 0x40001, 0x0, 0x0)
+close(r0)

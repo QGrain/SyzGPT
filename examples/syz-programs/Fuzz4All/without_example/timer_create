@@ -1,0 +1,1 @@
+timer_create(CLOCK_REALTIME, SIGEV_SIGNAL, 0, 0)

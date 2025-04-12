@@ -1,0 +1,2 @@
+openat$dirfd(0xffffffffffffff9c, &(0x7f0000000400), 0x0)
+futimesat(0xffffffffffffff9c, &(0x7f0000000440), &(0x7f0000000480))

@@ -1,0 +1,3 @@
+mknodat(0xffffffffffffff9c, &(0x7f0000000400)='./dev/loop0\x00', 0x6000, 0x0)
+r0 = openat$loop(0xffffffffffffff9c, &(0x7f0000000400)='./dev/loop0\x00', 0x2, 0x0)
+ustat(0x3d, &(0x7f0000000080)='./dev/loop0\x00', &(0x7f00000000c0))

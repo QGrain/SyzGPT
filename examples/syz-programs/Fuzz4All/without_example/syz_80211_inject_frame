@@ -1,0 +1,5 @@
+resource frame = alloc(256)
+store_const(frame, data)
+store_int32(frame+4, len(data))
+syz_80211_inject_frame(frame, len(data))
+free(frame)

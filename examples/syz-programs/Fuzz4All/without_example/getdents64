@@ -1,0 +1,3 @@
+const buf = alloc(4096)
+getdents64(fd, buf, sizeof(buf))
+for (var off = 0; off < sizeof(buf); off += dirent.d_reclen) {

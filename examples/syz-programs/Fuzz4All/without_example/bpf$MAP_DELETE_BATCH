@@ -1,0 +1,1 @@
+bpf$MAP_DELETE_BATCH(MAP_FD, batch, BATCH_SIZE);

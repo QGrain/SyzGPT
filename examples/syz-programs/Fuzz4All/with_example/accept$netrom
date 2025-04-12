@@ -1,0 +1,4 @@
+r0 = socket$netrom(0x2, 0x1, 0x0)
+bind$netrom(r0, &(0x7f00000000c0), 0x10)
+listen$netrom(r0, 0x1)
+accept$netrom(r0, &(0x7f00000011c0), &(0x7f00000011d0))

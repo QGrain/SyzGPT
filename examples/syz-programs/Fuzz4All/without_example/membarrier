@@ -1,0 +1,2 @@
+r0 = membarrier(MEMBARRIER_CMD_PRIVATE_EXPEDITED)
+print(r0)

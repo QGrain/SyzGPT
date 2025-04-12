@@ -1,0 +1,3 @@
+r0 = socket(0x2, 0x1, 0x0)
+connect(r0, &(0x7f0000000040)={sa_family=0x2, sin_port=0x0, inet_addr=0x7f0000000001})
+sendmsg$NLBL_UNLABEL_C_STATICLIST(r0, &(0x7f0000000100)={msg_name=NULL, msg_namelen=0x0, msg_iov=[{iov_base=0x7f0000000200, iov_len=0x100}], msg_iovlen=0x1, msg_control=NULL, msg_controllen=0x0, msg_flags=0x0})

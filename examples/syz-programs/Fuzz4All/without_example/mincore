@@ -1,0 +1,1 @@
+mincore(FD, 4096, &mincore_result.vec)

@@ -1,0 +1,5 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r1 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+r2 = io_setup(0x10, &(0x7f00000011c8))
+r3 = io_submit(r2, 0x1, &(0x7f00000011d8), 0x1)
+r4 = io_cancel(r2, &(0x7f00000011d8), &(0x7f00000011e8))

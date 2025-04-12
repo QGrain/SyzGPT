@@ -1,0 +1,4 @@
+syz_symbolize_string(path, "/path/to/file")
+syz_symbolize_string(attrNamePtr, attrName)
+lremovexattr(path, attrNamePtr, len(attrName))
+syz_log_result()

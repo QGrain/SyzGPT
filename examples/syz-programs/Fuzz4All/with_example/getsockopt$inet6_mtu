@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+bind$inet6(r0, &(0x7f00000000c0), 0x20)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f00000000c1), &(0x7f00000000c2))
+r2 = getsockopt$inet6_mtu(r1, 0x29, 0x1, &(0x7f00000000c3), &(0x7f00000000c4))

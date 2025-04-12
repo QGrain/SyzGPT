@@ -1,0 +1,9 @@
+clock_id = const(CLOCK_REALTIME)
+adj = resource(0)
+adj.tai_offset = const(1)
+adj.negative = const(0)
+res = clock_adjtime(clock_id, adj)
+if res == const(0):
+print("Time adjustment successful")
+print("Adjusted TAI offset:", adj.tai_offset)
+print("Adjusted time is:", res.adjusted_time)

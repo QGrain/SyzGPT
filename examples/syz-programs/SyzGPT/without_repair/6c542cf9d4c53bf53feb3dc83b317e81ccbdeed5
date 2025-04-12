@@ -1,0 +1,6 @@
+r0 = openat$uinput(0xffffffffffffff9c, &(0x7f0000000140)='/dev/uinput\x00', 0x0, 0x0)
+ioctl$UI_GET_SYSNAME(r0, &(0x7f00000000c0)={{}, 'syz1\x00', 0x42})
+ioctl$UI_GET_SYSNAME(r0, &(0x7f00000000c0)={{}, 'syz2\x00', 0x42})
+ioctl$UI_GET_SYSNAME(r0, &(0x7f00000000c0)={{}, 'syz3\x00', 0x42})
+ioctl$UI_GET_SYSNAME(r0, &(0x7f00000000c0)={{}, 'syz4\x00', 0x42})
+ioctl$UI_GET_SYSNAME(r0, &(0x7f00000000c0)={{}, 'syz5\x00', 0x42})

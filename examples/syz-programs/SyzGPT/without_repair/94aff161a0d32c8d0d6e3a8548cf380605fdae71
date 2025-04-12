@@ -1,0 +1,3 @@
+r0 = openat$ufs_image(0xffffffffffffff9c, &AUTO='/path/to/image', 0x0, 0x0)
+syz_mount_image$ufs(r0, &AUTO='/mnt/ufs', 0x0, 0x0, 0x0, 0x0)
+close(r0)

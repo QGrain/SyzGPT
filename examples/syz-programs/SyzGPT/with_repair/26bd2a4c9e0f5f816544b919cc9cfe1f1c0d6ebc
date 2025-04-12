@@ -1,0 +1,3 @@
+r0 = getpid()
+sched_getparam(r0, &(0x7f0000000200))
+sched_setparam(r0, &(0x7f0000000200))

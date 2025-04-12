@@ -1,0 +1,2 @@
+socket$netlink(NETLINK_ROUTE, SOCK_RAW|SOCK_CLOEXEC);
+getsockopt$netlink(0, NETLINK_LISTEN_ALL_NSID, NETLINK_EXT_ACK);

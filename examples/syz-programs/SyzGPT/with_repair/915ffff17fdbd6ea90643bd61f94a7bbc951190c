@@ -1,0 +1,4 @@
+mkdir(&(0x7f0000000200)='./dir0\x00', 0x0)
+symlinkat(&(0x7f0000000080)='./dir0\x00', 0xffffffffffffff9c, &(0x7f0000000100)='./link0\x00')
+openat(0xffffffffffffff9c, &(0x7f0000000100)='./link0\x00', 0x800, 0x0)
+llistxattr(&(0x7f0000000000)='./link0\x00', &(0x7f0000000040), 0x0)

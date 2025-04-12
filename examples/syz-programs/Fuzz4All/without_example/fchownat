@@ -1,0 +1,1 @@
+fchownat(dirfd, path, owner, group, AT_SYMLINK_NOFOLLOW)

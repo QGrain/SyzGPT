@@ -1,0 +1,2 @@
+r0 = add_key$keyring(&(0x7f0000000040), &(0x7f0000000080)={'syz', 0x2}, 0x0, 0x0, 0xffffffffffffffff)
+request_key(&(0x7f00000001c0)='user\x00', &(0x7f0000000200)='key\x00', &(0x7f0000000240)='syz-key', 0x0, r0)

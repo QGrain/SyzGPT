@@ -1,0 +1,1 @@
+syz_genetlink_get_family_id$netlbl_unlabel(AF_NETLINK, unlabel)

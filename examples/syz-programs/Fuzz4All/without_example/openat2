@@ -1,0 +1,2 @@
+openat2$fd = openat(fd, pathname, flags, mode)
+ret = openat2(openat2$fd, pathname, flags, mode, resolve, resolve_flags)

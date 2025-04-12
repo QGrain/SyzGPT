@@ -1,0 +1,4 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000280)='.\x00', 0x0, 0x0)
+r1 = fcntl$F_DUPFD_CLOEXEC(r0, 0x0)
+r2 = fcntl$F_SETFD(r1, 0x1)
+setxattr$security_evm(&(0x7f0000000240)="file.txt", &(0x7f00000002c0)="security.evm", &(0x7f0000000300)=AUTO, 0x8, 0x0)

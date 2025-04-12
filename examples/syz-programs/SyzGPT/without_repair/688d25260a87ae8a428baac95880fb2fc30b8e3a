@@ -1,0 +1,2 @@
+mkdirat(0xffffffffffffff9c, &(0x7f0000000000)='./dir\x00', 0x0)
+symlinkat(&(0x7f0000000000)='./dir\x00', 0xffffffffffffff9c, &(0x7f0000000080)='./link\x00')

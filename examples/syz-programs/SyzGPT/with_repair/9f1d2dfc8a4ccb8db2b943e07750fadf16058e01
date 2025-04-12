@@ -1,0 +1,1 @@
+r0 = getpriority(0x0, 0x0)

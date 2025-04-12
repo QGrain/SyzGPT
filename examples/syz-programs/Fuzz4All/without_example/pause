@@ -1,0 +1,2 @@
+pause(arg1)
+print("pause result:", res)

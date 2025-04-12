@@ -1,0 +1,1 @@
+mknodat$null(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x8000, 0x202)

@@ -1,0 +1,3 @@
+memset(path, 0, MAX_PATH)
+strcpy(path, "/dev/mqueue")
+r0 = mq_open(path, MQ_O_RDONLY)

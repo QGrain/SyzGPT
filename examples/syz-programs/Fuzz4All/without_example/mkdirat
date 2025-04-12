@@ -1,0 +1,4 @@
+mkdirat(AT_FDCWD, "test", 0777);
+var dirfd = mkdirat(AT_FDCWD, "test", 0777);
+if (dirfd != -1) {
+printf("Directory created successfully");

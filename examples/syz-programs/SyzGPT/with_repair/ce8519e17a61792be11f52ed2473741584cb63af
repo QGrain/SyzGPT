@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000180)='./source\x00', 0x0, 0x0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000140)='./destination\x00', 0x0, 0x0)
+copy_file_range(r0, 0x0, r1, 0x0, 0x800, 0x0)
+close(r0)
+close(r1)

@@ -1,0 +1,2 @@
+r0 = pkey_alloc(0x0, 0x0)
+r1 = pkey_free(r0)

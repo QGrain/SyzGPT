@@ -1,0 +1,1 @@
+setpriority(PRIO_PROCESS, 0, -10)

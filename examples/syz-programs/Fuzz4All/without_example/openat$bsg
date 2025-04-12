@@ -1,0 +1,3 @@
+fd_path := alloc(len(path))
+copy(fd_path, path)
+fd = openat$bsg(AT_FDCWD, fd_path, O_RDONLY)

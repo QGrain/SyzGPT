@@ -1,0 +1,1 @@
+fd = setns(0, NS_TYPE_NET);

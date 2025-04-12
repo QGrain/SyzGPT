@@ -1,0 +1,1 @@
+r0 = syz_open_dev$media(0, 0)

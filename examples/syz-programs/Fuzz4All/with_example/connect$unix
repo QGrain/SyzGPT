@@ -1,0 +1,7 @@
+r0 = socket$unix$(0x1, 0x1, 0x0) // Create a Unix domain socket
+r1 = bind$unix(r0, &(0x7f00000000c0), 0x6e) // Bind the socket to a specific address
+r2 = socketpair$unix$(0x1, 0x1, 0x0, &(0x7f00000000c8)) // Create a pair of connected Unix domain sockets
+r3 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0) // Open a device file
+r4 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000d0), 0x2, 0x0) // Open a file using openat
+ioctl$LOOP_SET_FD(r3, 0x4c00, r4) // Perform an ioctl operation on the device file
+r5 = connect$unix(r2, &(0x7f00000000c8), 0x6e) // Connect one end of the socketpair to the other end

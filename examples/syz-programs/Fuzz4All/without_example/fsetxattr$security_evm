@@ -1,0 +1,1 @@
+fsetxattr$security_evm(fd0, AUTO, ptr[0], len[0], AUTO)

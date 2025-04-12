@@ -1,0 +1,1 @@
+result = sched_getaffinity(0, sizeof(mask), &mask)

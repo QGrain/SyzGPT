@@ -1,0 +1,7 @@
+fd0 = memfd_create("syz_test", MFD_CLOEXEC|MFD_ALLOW_SEALING)
+write(fd0, "Hello, Syzkaller!", 17)
+lseek(fd0, 0, SEEK_SET)
+buf = alloc(17)
+read(fd0, buf, 17)
+print(buf)
+close(fd0)

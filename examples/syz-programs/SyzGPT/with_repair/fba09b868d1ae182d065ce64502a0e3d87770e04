@@ -1,0 +1,2 @@
+r0 = keyctl$restrict_keyring('syz', 0x0)
+keyctl$get_keyring_id(0x0, 0x0)

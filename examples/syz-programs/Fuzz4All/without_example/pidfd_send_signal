@@ -1,0 +1,4 @@
+pid1 = proc_create(0)
+pidfd_send_signal(pid1, SIGTERM)
+pid2 = proc_create(0)
+pidfd_send_signal(pid2, SIGKILL) {

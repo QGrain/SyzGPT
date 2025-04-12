@@ -1,0 +1,3 @@
+r0 = sysfs$1(nil)
+r1 = sysfs$2(nil, r0)
+sysfs$3(r1, r0, 0x0)

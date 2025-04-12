@@ -1,0 +1,6 @@
+unshare(CLONE_NEWNS, &ns)
+unshare(CLONE_NEWUTS, &uts)
+unshare(CLONE_NEWIPC, &ipc)
+log(ns)
+log(uts)
+log(ipc)

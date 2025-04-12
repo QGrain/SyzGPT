@@ -1,0 +1,2 @@
+openat$damon_init_regions(0xffffffffffffff9c, &(0x7f0000000400), 0x0, 0x0)
+get_thread_area(0x1003, &(0x7f0000000040))

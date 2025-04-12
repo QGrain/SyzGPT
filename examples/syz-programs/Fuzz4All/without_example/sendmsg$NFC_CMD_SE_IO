@@ -1,0 +1,1 @@
+r0 = sendmsg$NFC_CMD_SE_IO(0, &buf, sizeof(buf), 0)

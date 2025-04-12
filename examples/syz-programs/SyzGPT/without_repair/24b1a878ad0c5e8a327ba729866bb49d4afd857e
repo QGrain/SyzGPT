@@ -1,0 +1,2 @@
+r0 = getpid()
+r1 = tgkill(r0, r0, 0x9)

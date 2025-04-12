@@ -1,0 +1,8 @@
+r0 = mmap(0, size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0)
+t0 = *(uint64*)(r0)
+r1 = mmap(0, size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0)
+t1 = *(uint64*)(r1)
+mmap$binder(t0, size)
+another_syscall(t1)
+munmap(r0, size)
+munmap(r1, size)

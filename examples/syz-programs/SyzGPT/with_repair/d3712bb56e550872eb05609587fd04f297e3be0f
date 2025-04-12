@@ -1,0 +1,5 @@
+mkdirat(0xffffffffffffff9c, &(0x7f0000000000)='./dir\x00', 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./dir\x00', 0x0, 0x0)
+chdir(r0)
+mknod(&(0x7f00000003c0)='./file\x00', 0x1a4, 0x0)
+fsetxattr$security_evm(r0, &(0x7f0000000400)='./file\x00', &(0x7f0000000440)='security.evm\x00', &(0x7f0000000480)='0x0100000000000000000000000000000000000000000000000000000000000000\x00', 0x40)

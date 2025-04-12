@@ -1,0 +1,3 @@
+r0 = open(&(0x7f00000002c0)='./file.txt\x00', 0x1, 0x0)
+read$P9_RLERROR(r0, &(0x7f0000000000), 0x100)
+write(r0, &(0x7f0000000000), r1)

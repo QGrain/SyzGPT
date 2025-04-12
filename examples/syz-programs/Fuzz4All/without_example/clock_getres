@@ -1,0 +1,2 @@
+clock_getres(clock_id=CLOCK_REALTIME, res=&res)
+print("clock_getres result: sec=%v, nsec=%v", res.sec, res.nsec)

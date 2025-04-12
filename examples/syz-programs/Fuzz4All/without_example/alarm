@@ -1,0 +1,4 @@
+alarm(5)
+sleep(10)
+if alarm_triggered() {
+printf("Alarm triggered!")

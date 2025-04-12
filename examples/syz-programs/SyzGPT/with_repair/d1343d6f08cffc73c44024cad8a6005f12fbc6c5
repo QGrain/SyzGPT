@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, '/etc/passwd\x00', 0x0, 0x0)
+readlinkat(r0, 0x0, &(0x7f0000000140), 0x0)

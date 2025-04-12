@@ -1,0 +1,3 @@
+filename_ptr = alloc(len(filename))
+memcpy(filename_ptr, filename, len(filename))
+fd = openat$smackfs_relabel_self(AT_FDCWD, filename_ptr, O_RDONLY)

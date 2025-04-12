@@ -1,0 +1,5 @@
+r0 = mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0)
+print(r0)
+r1 = mremap(r0, 4096, 8192, MREMAP_MAYMOVE)
+print(r1)
+munmap(r1, 8192)

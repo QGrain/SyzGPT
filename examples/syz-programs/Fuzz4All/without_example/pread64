@@ -1,0 +1,2 @@
+buf = alloc(1024)
+res = pread64(fd, buf, 512, 0)

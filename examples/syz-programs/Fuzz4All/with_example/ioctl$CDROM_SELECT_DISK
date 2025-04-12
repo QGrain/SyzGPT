@@ -1,0 +1,3 @@
+r0 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+r1 = ioctl$CDROM_SELECT_DISK(r0, 0x2)
+ioctl$LOOP_SET_FD(r0, 0x4c00, r1)

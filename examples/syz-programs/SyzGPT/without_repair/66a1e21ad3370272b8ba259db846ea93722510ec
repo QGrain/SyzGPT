@@ -1,0 +1,7 @@
+r0 = openat$usbmon(0xffffffffffffff9c, &AUTO='/dev/usbmon0\x00', 0x2, 0x0)
+ioctl$USBDEVFS_CONTROL(r0, 0x4044540b, &AUTO={0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0})
+ioctl$USBDEVFS_SETINTERFACE(r0, 0x4044540b, &AUTO={0x0, 0x0})
+ioctl$USBDEVFS_SETCONFIGURATION(r0, 0x4044540b, &AUTO={0x0})
+ioctl$USBDEVFS_CLAIMINTERFACE(r0, 0x4044540b, &AUTO={0x0})
+ioctl$USBDEVFS_RELEASEINTERFACE(r0, 0x4044540b, &AUTO={0x0})
+close(r0)

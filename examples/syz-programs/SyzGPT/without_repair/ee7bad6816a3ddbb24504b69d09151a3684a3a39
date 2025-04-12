@@ -1,0 +1,5 @@
+r0 = openat(0xffffff9c, "/dir1/file1", 0x0, 0x0)
+r1 = openat(0xffffff9c, "/dir2/file2", 0x0, 0x0)
+linkat(r0, "", r1, "", 0x0)
+close(r0)
+close(r1)

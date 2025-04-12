@@ -1,0 +1,4 @@
+acct("/var/log/acct", 0x0)
+openat$fs("/var/log/acct", 0x2, 0x0)
+write(r0, &(0x7f00000000c0), 0x2)
+close(r0)

@@ -1,0 +1,4 @@
+ptr0 = alloc_memory(32)
+store_string(ptr0, "/dev/tty1")
+r0 = syz_open_dev$tty1(ptr0, 0x0, 0x0)
+print_text(r0)

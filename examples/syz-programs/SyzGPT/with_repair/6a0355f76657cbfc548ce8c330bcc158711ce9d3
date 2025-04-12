@@ -1,0 +1,5 @@
+r0 = epoll_create1(0x1)
+fcntl$F_GET_RW_HINT(r0, 0x1)
+dup3(r0, r0, 0x0)
+fcntl$F_GET_RW_HINT(r0, 0x2)
+close(r0)

@@ -1,0 +1,4 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./image.bin\x00', 0x0, 0x0)
+openat(0xffffffffffffff9c, &AUTO='./', 0x0, 0x0)
+syz_mount_image$fuse(r0, &AUTO='./', 0x0)
+close(r0)

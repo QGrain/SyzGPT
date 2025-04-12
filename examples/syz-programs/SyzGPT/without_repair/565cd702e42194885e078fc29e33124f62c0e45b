@@ -1,0 +1,4 @@
+mkdir(&(0x7f0000000080)='./dir\x00', 0x0)
+r0 = open(&(0x7f0000000100)='./dir/file\x00', 0x0, 0x0)
+name_to_handle_at(r0, &(0x7f0000000140)='./dir/file\x00', 0x0, 0x0, 0x0)
+open_by_handle_at(0xffffffffffffff9c, &(0x7f0000000180), 0x0)

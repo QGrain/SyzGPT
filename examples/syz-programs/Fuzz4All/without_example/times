@@ -1,0 +1,7 @@
+mem = alloc(4096)
+times(mem)
+print(mem)
+fault(1)
+async times(mem)
+wait()
+print(mem)

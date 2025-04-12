@@ -1,0 +1,3 @@
+cachestat(&cache_hits, &cache_misses)
+print(cache_hits)
+print(cache_misses)

@@ -1,0 +1,3 @@
+syz_open_devs()
+syz_emit_fault_injection(1)
+pid = syz_clone(CLONE_NEWPID|CLONE_NEWNS|CLONE_NEWUTS|CLONE_NEWIPC|CLONE_NEWNET, 0)

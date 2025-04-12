@@ -1,0 +1,5 @@
+var2 = bpf$OBJ_GET_PROG(fd[var1])
+bpf$OBJ_PIN(fd[var2], path("/path/to/file"))
+var3 = bpf$OBJ_GET_PROG(ptr[var2])
+bpf$OBJ_GET_INFO(fd[var3], ptr(0), ptr(0))
+log("Program executed successfully!")

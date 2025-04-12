@@ -1,0 +1,7 @@
+buffer = buffer(len=256)
+fd = socket$bt_hidp(proto=6)
+bind(fd, sa_family=AF_BLUETOOTH, addr=(0, 0, 0, 0, 0, 0))
+connect(fd, sa_family=AF_BLUETOOTH, addr=(0, 0, 0, 0, 0, 0))
+send(fd, buf=buffer, len=256)
+recv(fd, buf=buffer, len=256)
+close(fd)

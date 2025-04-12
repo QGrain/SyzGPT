@@ -1,0 +1,3 @@
+r0 = inotify_init1(0x0)
+r1 = inotify_add_watch(r0, &(0x7f0000000000)='./file0\x00', 0x2000440)
+inotify_rm_watch(r0, r1)

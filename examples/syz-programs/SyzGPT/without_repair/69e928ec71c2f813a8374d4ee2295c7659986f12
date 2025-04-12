@@ -1,0 +1,2 @@
+ptrace$PTRACE_TRACEME()
+unshare(0x20000000)

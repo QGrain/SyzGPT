@@ -1,0 +1,2 @@
+r0 = timerfd_create(0x0, 0x0)
+timerfd_gettime(r0, &(0x7f0000000180))

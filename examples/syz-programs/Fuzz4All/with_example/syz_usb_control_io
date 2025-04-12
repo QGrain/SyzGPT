@@ -1,0 +1,5 @@
+r0 = syz_usb_open(&(0x7f00000011c0), 0x0, 0x0)
+r1 = syz_usb_claim_interface(r0, 0x1)
+r2 = syz_usb_control_io(r0, 0x82, 0x6, 0x200, &(0x7f00000000c0), 0x40)
+syz_usb_release_interface(r0, 0x1)
+syz_usb_close(r0)

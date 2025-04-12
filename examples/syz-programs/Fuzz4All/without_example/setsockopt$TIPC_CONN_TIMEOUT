@@ -1,0 +1,1 @@
+setsockopt$TIPC_CONN_TIMEOUT(sockfd, TIPC_CONN_TIMEOUT, &timeout, sizeof(timeout))

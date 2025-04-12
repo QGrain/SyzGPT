@@ -1,0 +1,1 @@
+statx(AT_FDCWD, path, AT_SYMLINK_NOFOLLOW, STATX_ALL, &stat);

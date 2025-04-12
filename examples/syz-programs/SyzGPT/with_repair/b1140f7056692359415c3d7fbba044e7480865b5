@@ -1,0 +1,2 @@
+r0 = rt_sigqueueinfo(0xffffffffffffff9c, 0x2, &(0x7f0000000740))
+ioctl$RTC_PLL_GET(r0, 0x7b9, 0x0)

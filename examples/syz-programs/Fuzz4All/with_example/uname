@@ -1,0 +1,2 @@
+r0 = uname(&(0x7f00000011c0))
+r1 = strcmp(r0.release, "5.14.0")

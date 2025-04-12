@@ -1,0 +1,2 @@
+syz_btf_id_by_name$bpf_lsm(name, len(name), result)
+syz_print_resource(result)

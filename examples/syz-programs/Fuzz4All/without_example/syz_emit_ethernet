@@ -1,0 +1,4 @@
+resource payload_buf[1] = memalign(4096, PAYLOAD_SIZE)
+syz_random(payload_buf[0], PAYLOAD_SIZE)
+syz_emit_ethernet(payload_buf[0], PAYLOAD_SIZE)
+free(payload_buf[0])

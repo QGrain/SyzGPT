@@ -1,0 +1,4 @@
+syz_open_pts$fd1 = syz_open_pts(0, 0)
+syz_open_pts$fd2 = syz_open_pts(0, 0)
+syz_close(syz_open_pts$fd1)
+syz_close(syz_open_pts$fd2)

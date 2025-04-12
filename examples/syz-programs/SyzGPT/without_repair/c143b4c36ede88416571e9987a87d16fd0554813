@@ -1,0 +1,1 @@
+rmdir("/tmp/test_directory")

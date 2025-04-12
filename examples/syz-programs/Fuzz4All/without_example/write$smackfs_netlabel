@@ -1,0 +1,4 @@
+label_ptr = alloc(len(label) + 1)
+copyin(label_ptr, label, len(label) + 1)
+write$smackfs_netlabel(fd, label_ptr, size, flags)
+free(label_ptr)

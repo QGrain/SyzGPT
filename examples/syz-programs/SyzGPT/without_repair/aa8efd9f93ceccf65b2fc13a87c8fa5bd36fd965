@@ -1,0 +1,2 @@
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f00000001c0)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+write$smackfs_netlabel(r1, &(0x7f0000000280)="LABEL=smack_label", 0x12)

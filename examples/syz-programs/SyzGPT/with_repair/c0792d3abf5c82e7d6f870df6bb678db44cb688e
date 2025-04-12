@@ -1,0 +1,2 @@
+r0 = syz_io_uring_setup(0x1000, &(0x7f0000000140), &(0x7f00000001c0), &(0x7f0000000000))
+syz_io_uring_complete(r0, r2)

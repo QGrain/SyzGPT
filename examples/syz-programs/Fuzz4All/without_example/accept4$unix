@@ -1,0 +1,7 @@
+socketfd = socket$unix(AF_UNIX, SOCK_STREAM, 0)
+bind$unix(socketfd, &(struct sockaddr_un){AF_UNIX, "/tmp/mysocket"})
+listen(socketfd, SOMAXCONN)
+connfd = accept4$unix(socketfd, NULL, NULL, 0)
+write(connfd, "Hello, World!", 13)
+close(connfd)
+close(socketfd)

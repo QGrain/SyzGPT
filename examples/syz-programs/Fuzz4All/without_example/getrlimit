@@ -1,0 +1,3 @@
+resource rlimit_struct = memalign(8, sizeof(struct rlimit))
+getrlimit(RLIMIT_TYPE, rlimit_struct)
+print("Current resource limit: ", rlimit_struct.rlim_cur)

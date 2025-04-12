@@ -1,0 +1,2 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000100), 0x2, 0x0)
+r1 = write$P9_RREMOVE(r0, &(0x7f0000000140)=''/4096, 0x1000)

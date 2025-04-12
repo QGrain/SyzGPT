@@ -1,0 +1,2 @@
+groups_ptr = alloc(MAX_GROUPS * sizeof(uint64))
+getgroups(MAX_GROUPS, groups_ptr)

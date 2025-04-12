@@ -1,0 +1,6 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0) // Open a device
+r1 = socket$inet_sock(Domain: AF_INET, Type: SOCK_STREAM) // Create a socket
+bind$inet_sock(r1, &(0x7f00000000c0), 0x10) // Bind the socket to an address
+listen(r1, 0x5) // Listen for incoming connections
+r2 = accept(r1, &(0x7f00000000d0), &(0x7f00000000d1)) // Accept a connection
+r3 = getsockopt$netlink(r2, 0x1, 0x4, &(0x7f00000000e0), &(0x7f00000000e1)) // Get netlink socket options

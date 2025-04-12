@@ -1,0 +1,12 @@
+syz_80211_join_ibss(SYZC_IN, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) {
+SSID = syz_gen_string(32)
+SSID_LEN = syz_strlen(SSID)
+BSSID = syz_gen_data(6)
+CHANNEL = syz_gen_int_range(1, 14)
+BEACON_INTERVAL = syz_gen_int_range(10, 1000)
+CAPABILITY_INFO = syz_gen_int_range(0, 65535)
+BASIC_RATES = syz_gen_array(syz_gen_int_range(1, 100), syz_gen_int_range(1, 100))
+BASIC_RATES_COUNT = syz_array_count(BASIC_RATES)
+SUPPORTED_RATES = syz_gen_array(syz_gen_int_range(1, 100), syz_gen_int_range(1, 100))
+SUPPORTED_RATES_COUNT = syz_array_count(SUPPORTED_RATES)
+syz_80211_join_ibss(SYZC_IN, SSID, SSID_LEN, BSSID, CHANNEL, BEACON_INTERVAL, CAPABILITY_INFO, BASIC_RATES, BASIC_RATES_COUNT, SUPPORTED_RATES, SUPPORTED_RATES_COUNT, 0, 0, 0, 0, 0, 0, 0)

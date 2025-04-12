@@ -1,0 +1,2 @@
+result = getitimer(ITIMER_REAL)
+print(result)

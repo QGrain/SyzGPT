@@ -1,0 +1,2 @@
+r1 = setregid(0, 0)
+r2 = setregid(100, 200)

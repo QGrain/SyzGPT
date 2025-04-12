@@ -1,0 +1,5 @@
+pid_ptr = pointer(pid_t)
+result_mem = sharedmem(sizeof(int))
+tkill(pid_ptr, SIGKILL, FAULT_INJECTION)
+save_result(result_mem)
+print_result(result_mem)

@@ -1,0 +1,1 @@
+syz_pkey_set(0, AUTO, 0, 0, 0);

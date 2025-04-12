@@ -1,0 +1,4 @@
+fd = open("/dev/sda", O_RDONLY|O_NONBLOCK)
+quotactl$Q_GETINFO(fd, _QIF_INFO, &info)
+print(info)
+close(fd)

@@ -1,0 +1,1 @@
+shmctl$SHM_LOCK(0xffffffffffffffff, 0x0, &(0x7f0000000000)={'shmid', 0x0})

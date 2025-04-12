@@ -1,0 +1,2 @@
+r0 = open("/dev/input/event0", 0x0, 0x0)
+ioctl$EVIOCGLED(r0, 0x0, &(0x7f0000000080))

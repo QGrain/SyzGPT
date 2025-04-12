@@ -1,0 +1,5 @@
+r0 = openat$proc_capi20('/proc', 0x0, 0x0)
+r1 = openat$proc_capi20(r0, 'sys', 0x0)
+r2 = openat$proc_capi20(r1, 'sys/kernel', 0x0)
+r3 = openat$proc_capi20(r2, 'sys/kernel/close_range', 0x0)
+close_range(r3, 0x0, 0x0)

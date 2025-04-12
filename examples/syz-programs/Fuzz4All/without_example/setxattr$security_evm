@@ -1,0 +1,5 @@
+fd0 = open("/path/to/file", O_RDWR)
+value = alloc(32)
+rand(value)
+setxattr$security_evm(fd0, attrName, value, 32)
+close(fd0)

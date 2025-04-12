@@ -1,0 +1,3 @@
+timer_create(CLOCK_MONOTONIC, TIMER_ABSTIME, AUTO);
+timer_settime(0, TIMER_ABSTIME, &(struct itimerspec){{1, 0}, {2, 0}}, AUTO);
+timer_gettime(0, &(struct itimerspec){{3, 0}, {4, 0}});

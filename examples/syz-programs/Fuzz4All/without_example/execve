@@ -1,0 +1,2 @@
+execve(&exec_args_tmp)
+print("Executed the ls command")

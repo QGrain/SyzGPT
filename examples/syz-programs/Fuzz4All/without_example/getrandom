@@ -1,0 +1,1 @@
+r0 = getrandom(0x10000, 0x0)

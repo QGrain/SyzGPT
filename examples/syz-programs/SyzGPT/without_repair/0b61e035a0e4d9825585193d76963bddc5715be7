@@ -1,0 +1,7 @@
+r0 = open(&(0x7f0000000080)='./bus\x00', 0x105042, 0x0)
+setrlimit(0x1, &(0x7f0000000100)={0xffffffff, 0xffffffffffffffff})
+fallocate(r0, 0x0, 0x0, 0x7fffffff)
+utime(&(0x7f00000003c0)='./bus\x00', 0x0)
+pipe2$9p(&(0x7f0000000180)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x0)
+write$P9_RSETATTR(r1, &(0x7f0000000000)={0x7}, 0x69ff9a93bfc25838)
+rt_sigreturn()

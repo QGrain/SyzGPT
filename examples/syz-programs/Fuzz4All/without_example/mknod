@@ -1,0 +1,7 @@
+r0 = mknod(0, 0x123, 0x456, 0x100)
+r1 = mknod(0, 0x789, 0xabc, 0x200)
+r2 = mknod(0, 0, 0, 0x100, S_IFIFO)
+r3 = symlink("target", "link")
+r4 = open("file", O_CREAT|O_WRONLY)
+close(r4)
+unlink("file")

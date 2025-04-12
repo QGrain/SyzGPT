@@ -1,0 +1,2 @@
+set_mempolicy(arg1 = MPOL_PREFERRED, arg2 = &nodemask, arg3 = maxnode)
+print_result()

@@ -1,0 +1,7 @@
+r0 = alloc_memory(8)
+r1 = alloc_memory(8)
+*(uint64*)r0 = 0x12345678
+*(uint64*)r1 = 0xdeadbeef
+io_uring_register$IORING_UNREGISTER_IOWQ_AFF(r0, r1)
+free_memory(r0)
+free_memory(r1)

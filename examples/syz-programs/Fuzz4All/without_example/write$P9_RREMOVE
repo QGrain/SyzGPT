@@ -1,0 +1,3 @@
+buf = alloc(count)
+memcpy(buf, "Hello, world!", count)
+res = write$P9_RREMOVE(fd, buf, count)

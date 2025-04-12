@@ -1,0 +1,1 @@
+r0 = fanotify_init$fanotify_init(0x200000, 0x40000, 0x100000)

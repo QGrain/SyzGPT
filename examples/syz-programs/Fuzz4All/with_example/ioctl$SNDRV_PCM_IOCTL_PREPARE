@@ -1,0 +1,2 @@
+r0 = syz_open_dev$pcm(0x0, 0x0, 0x0)
+r1 = syz_ioctl$SNDRV_PCM_IOCTL_PREPARE(r0, &(0x7f00000000c0))

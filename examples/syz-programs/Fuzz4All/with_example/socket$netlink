@@ -1,0 +1,1 @@
+r0 = socket$netlink(AF_NETLINK, SOCK_DGRAM, NETLINK_ROUTE)

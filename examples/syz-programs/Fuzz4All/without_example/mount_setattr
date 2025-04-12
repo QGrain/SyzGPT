@@ -1,0 +1,2 @@
+mount_setattr(MOUNT_POINT, attr);
+print_result();

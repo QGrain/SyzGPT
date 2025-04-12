@@ -1,0 +1,1 @@
+ret = msgget$private(key=0x1234, msgflg=IPC_CREAT|IPC_EXCL|0644)

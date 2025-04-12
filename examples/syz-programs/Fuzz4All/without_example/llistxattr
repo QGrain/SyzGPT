@@ -1,0 +1,1 @@
+ret = llistxattr(fd, buf, MAX_BUF_SIZE)

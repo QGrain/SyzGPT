@@ -1,0 +1,1 @@
+fd = inotify_init1(IN_NONBLOCK)

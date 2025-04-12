@@ -1,0 +1,3 @@
+buf_ptr = alloc(buf_size)
+fstatfs(fd, buf_ptr) {
+fault("errno", "EFAULT")

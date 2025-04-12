@@ -1,0 +1,5 @@
+r0 = open("/dev/null", 0x0, 0x0)
+r1 = fcntl$F_DUPFD(r0, 0x0, 0x0)
+lgetxattr("/dev/null", &(0x7f0000000040)=@known='security.selinux\x00', &(0x7f0000000080), 0x100)
+fcntl$F_SETFD(r1, 0x1, 0x0)
+close(r1)

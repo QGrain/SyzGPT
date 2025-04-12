@@ -1,0 +1,4 @@
+mem := alloc(MEM_REGION, 4096)
+addr := resmem(mem)
+ldt_info := const(0x1234)
+r0 := modify_ldt$write2(ldt_info, addr, 4096)

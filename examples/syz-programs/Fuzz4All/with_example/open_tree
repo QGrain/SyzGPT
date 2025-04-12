@@ -1,0 +1,2 @@
+r0 = open_tree(0xffffffffffffff9c, &path, flags, &attr)
+syz_emit(r0)

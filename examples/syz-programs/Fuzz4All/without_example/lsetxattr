@@ -1,0 +1,2 @@
+openat(-100, "/path/to/file", O_RDWR|O_CREAT, 0644)
+lsetxattr(-100, "user.myattr", AUTO, 10, XATTR_CREATE)

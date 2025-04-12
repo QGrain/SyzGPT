@@ -1,0 +1,7 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r1 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+r2 = ioctl$LOOP_SET_FD(r0, 0x4c00, r1)
+r3 = syz_alloc_buffer(0x100)
+r4 = syz_get_random(&(r3[0]), 0x100)
+r5 = fsetxattr$security_evm(r2, &(r3[0]), r4, 0x2)
+syz_free_buffer(&(r3[0]), 0x100)

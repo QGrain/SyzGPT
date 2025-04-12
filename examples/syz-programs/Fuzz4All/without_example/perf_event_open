@@ -1,0 +1,1 @@
+fd = perf_event_open(&attr, 0, -1, -1, 0)

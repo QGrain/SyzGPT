@@ -1,0 +1,2 @@
+setgid(gid)
+ret = setgid(gid)

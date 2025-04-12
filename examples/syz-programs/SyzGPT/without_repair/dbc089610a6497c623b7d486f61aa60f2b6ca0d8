@@ -1,0 +1,3 @@
+ptrace$traceme()
+open$null("/dev/snd/controlC0", 0x0, 0x0)
+ioctl$SNDRV_CTL_IOCTL_ELEM_ADD(0x3, &(0x7f0000000080)={0x0, 0x0, 0x0, 0x0, 'syz1\x00'})

@@ -1,0 +1,5 @@
+{
+    "backup_target": "",
+    "backup_dir": "",
+    "backup_cycle": "30m"
+}

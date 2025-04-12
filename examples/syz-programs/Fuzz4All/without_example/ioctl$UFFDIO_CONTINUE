@@ -1,0 +1,8 @@
+ioctl$UFFDIO_CONTINUE(&(0x7f0000000000) =>
+res0);
+ioctl$UFFDIO_CONTINUE(&(0x7f0000000000) =>
+res1);
+ioctl$UFFDIO_CONTINUE(&(0x7f0000000000) =>
+res2);
+ioctl$UFFDIO_CONTINUE(&(0x7f0000000000) =>
+res3);

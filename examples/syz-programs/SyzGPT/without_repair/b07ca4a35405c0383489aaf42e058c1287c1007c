@@ -1,0 +1,6 @@
+r0 = syz_genetlink_get_family_id$netlbl_unlabel(&(0x7f0000000080), 0x0)
+r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$ieee802154(&(0x7f0000000080), r1)
+r3 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGIFINDEX_802154(r3, 0x8933, &(0x7f0000000340)={'wpan1\x00', <r4=>0x0})
+sendmsg$IEEE802154_LLSEC_ADD_DEV(r0, &(0x7f0000000000)={0x0, 0x0, &(0x7f0000000200)={&(0x7f0000000140)={0x30, r2, 0x852dd6c070cd7e4d, 0x0, 0x0, {}, [@IEEE802154_ATTR_LLSEC_FRAME_COUNTER={0x8}, @IEEE802154_ATTR_HW_ADDR={0xc}, @IEEE802154_ATTR_DEV_INDEX={0x8, 0x2, r4}]}, 0x30}, 0x4, 0x700000000000000}, 0x0)

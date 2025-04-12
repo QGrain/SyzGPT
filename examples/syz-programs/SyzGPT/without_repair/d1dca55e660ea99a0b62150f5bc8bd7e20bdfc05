@@ -1,0 +1,2 @@
+r0 = openat$ufs(0xffffffffffffff9c, &(0x7f00000003c0)='file0\x00', 0x800, 0x0)
+fcntl$addseals(r0, 0x2, 0x1)

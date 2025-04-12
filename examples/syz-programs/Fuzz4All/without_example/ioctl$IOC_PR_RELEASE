@@ -1,0 +1,1 @@
+ioctl$IOC_PR_RELEASE(fd fd[0], ptr[in, AUTO, ANY], len[scalar_inout, AUTO])

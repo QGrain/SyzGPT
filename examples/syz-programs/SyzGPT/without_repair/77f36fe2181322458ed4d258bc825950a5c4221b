@@ -1,0 +1,2 @@
+r0 = openat(-0x64, "/dev/urandom", 0x0)
+r1 = read(r0, &(0x7f0000000000), 0x200)

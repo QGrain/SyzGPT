@@ -1,0 +1,4 @@
+socket$inet(0x2, 0x3, 0x2)
+r0 = getpid()
+ptrace$PTRACE_GETSIGMASK()
+ptrace$ARCH_SHSTK_STATUS(r0, 0x0, 0x0)

@@ -1,0 +1,2055 @@
+diff --git a/Makefile b/Makefile
+index 69e63e4..9270c9d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -119,7 +119,7 @@ endif
+ 	presubmit_arch_executor presubmit_dashboard presubmit_race presubmit_old
+ 
+ all: host target
+-host: manager runtest repro mutate prog2c db upgrade
++host: manager runtest repro mutate prog2c db upgrade validator syz-repair
+ target: fuzzer execprog stress executor
+ 
+ executor: descriptions
+@@ -198,6 +198,12 @@ stress: descriptions
+ db: descriptions
+ 	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-db github.com/google/syzkaller/tools/syz-db
+ 
++validator: descriptions
++	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-validator github.com/google/syzkaller/tools/syz-validator
++
++syz-repair: descriptions
++	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-repair github.com/google/syzkaller/tools/syz-repair
++
+ upgrade: descriptions
+ 	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-upgrade github.com/google/syzkaller/tools/syz-upgrade
+ 
+diff --git a/pkg/rpctype/rpctype.go b/pkg/rpctype/rpctype.go
+index fc582e5..0cf37a1 100644
+--- a/pkg/rpctype/rpctype.go
++++ b/pkg/rpctype/rpctype.go
+@@ -14,12 +14,13 @@ import (
+ )
+ 
+ type Input struct {
+-	Call     string
+-	Prog     []byte
+-	Signal   signal.Serial
+-	Cover    []uint32
+-	CallID   int // seq number of call in the prog to which the item is related (-1 for extra)
+-	RawCover []uint32
++	Call       string
++	Prog       []byte
++	Signal     signal.Serial
++	Cover      []uint32
++	CallID     int // seq number of call in the prog to which the item is related (-1 for extra)
++	RawCover   []uint32
++	CoverCalls map[string]struct{} // covered calls in the prog
+ }
+ 
+ type Candidate struct {
+diff --git a/syz-fuzzer/proc.go b/syz-fuzzer/proc.go
+index 2ca7210..7eaf266 100644
+--- a/syz-fuzzer/proc.go
++++ b/syz-fuzzer/proc.go
+@@ -166,14 +166,22 @@ func (proc *Proc) triageInput(item *WorkTriage) {
+ 	data := item.p.Serialize()
+ 	sig := hash.Hash(data)
+ 
++	coverCalls := make(map[string]struct{})
++
++	for _, call := range item.p.Calls {
++		name := call.Meta.Name
++		coverCalls[name] = struct{}{}
++	}
++
+ 	log.Logf(2, "added new input for %v to corpus:\n%s", logCallName, data)
+ 	proc.fuzzer.sendInputToManager(rpctype.Input{
+-		Call:     callName,
+-		CallID:   item.call,
+-		Prog:     data,
+-		Signal:   inputSignal.Serialize(),
+-		Cover:    inputCover.Serialize(),
+-		RawCover: rawCover,
++		Call:       callName,
++		CallID:     item.call,
++		Prog:       data,
++		Signal:     inputSignal.Serialize(),
++		Cover:      inputCover.Serialize(),
++		RawCover:   rawCover,
++		CoverCalls: coverCalls,
+ 	})
+ 
+ 	proc.fuzzer.addInputToCorpus(item.p, inputSignal, sig)
+diff --git a/syz-manager/manager.go b/syz-manager/manager.go
+index 4bb0dfa..ba6b2c0 100644
+--- a/syz-manager/manager.go
++++ b/syz-manager/manager.go
+@@ -41,11 +41,29 @@ import (
+ )
+ 
+ var (
+-	flagConfig = flag.String("config", "", "configuration file")
+-	flagDebug  = flag.Bool("debug", false, "dump all VM output to console")
+-	flagBench  = flag.String("bench", "", "write execution statistics into this file periodically")
++	flagConfig    = flag.String("config", "", "configuration file")
++	flagDebug     = flag.Bool("debug", false, "dump all VM output to console")
++	flagDump      = flag.String("dump", "", "dump inputCover to dir for programs added to corpus")
++	flagBench     = flag.String("bench", "", "write execution statistics into this file periodically")
++	flagEnrich    = flag.String("enrich", "", "directory of the external progs to enrich corpus periodically")
++	flagPeriod    = flag.String("period", "", "period of enriching the corpus with external progs")
++	flagStatCall  = flag.Bool("statcall", false, "stat covered syscalls and store at workdir/CoverCalls")
++	flagBackup    = flag.String("backup", "", "period of backuping the corpus, CoveredCalls and rawcover")
++	flagRepair    = flag.Bool("repair", false, "specify to enable repairing programs in generated_corpus")
++	loadedSeeds   = make(map[string]struct{})
++	loadedSeedsMu sync.Mutex
++	enrichCnt     int
++	gCoverCalls   = make(map[string]struct{})
++	costT         time.Duration
++	costTMu       sync.Mutex
+ )
+ 
++// TODOs:
++// get the cover for test cases in initial corpus and default seeds
++// add option for periodically back up corpus.db and CoveredCalls
++// add number of repro into bench log
++// add number of reachable test cases into bench log
++
+ type Manager struct {
+ 	cfg            *mgrconfig.Config
+ 	vmPool         *vm.Pool
+@@ -145,6 +163,7 @@ type Crash struct {
+ }
+ 
+ func main() {
++	printLogo()
+ 	if prog.GitRevision == "" {
+ 		log.Fatalf("bad syz-manager build: build with make, run bin/syz-manager")
+ 	}
+@@ -161,6 +180,21 @@ func main() {
+ 	RunManager(cfg)
+ }
+ 
++func printLogo() {
++	// print logo for SyzGPT-fuzzer
++	logo := `
++  ____             ____ ____ _____      __                        
++ / ___| _   _ ____/ ___|  _ \_   _|    / _|_   _ ___________ _ __ 
++ \___ \| | | |_  / |  _| |_) || |_____| |_| | | |_  /_  / _ \ '__|
++  ___) | |_| |/ /| |_| |  __/ | |_____|  _| |_| |/ / / /  __/ |   
++ |____/ \__, /___|\____|_|    |_|     |_|  \__,_/___/___\___|_|   
++        |___/                                                     
++		
++ SyzGPT-fuzzer v1.0.0
++`
++	fmt.Println(logo)
++}
++
+ func RunManager(cfg *mgrconfig.Config) {
+ 	var vmPool *vm.Pool
+ 	// Type "none" is a special case for debugging/development when manager
+@@ -205,6 +239,7 @@ func RunManager(cfg *mgrconfig.Config) {
+ 		saturatedCalls:   make(map[string]bool),
+ 	}
+ 
++	mgr.recordCmd()
+ 	mgr.preloadCorpus()
+ 	mgr.initStats() // Initializes prometheus variables.
+ 	mgr.initHTTP()  // Creates HTTP server.
+@@ -257,10 +292,55 @@ func RunManager(cfg *mgrconfig.Config) {
+ 		}
+ 	}()
+ 
++	go func() {
++		if *flagEnrich != "" && *flagPeriod != "" {
++			// Parse the duration string
++			duration, err := time.ParseDuration(*flagPeriod)
++			if err != nil {
++				log.Logf(0, "error parsing duration: %v. Exit go func.", err)
++				return
++			}
++			seeEndFlag := 0
++			for {
++				log.Logf(0, "[+] enrichCorpus sleep with period: %v to go", duration)
++				time.Sleep(duration)
++				// check the EndFlag: GENERATION_END
++				if _, err := os.Stat(filepath.Join(mgr.cfg.Workdir, "GENERATION_END")); err == nil {
++					seeEndFlag++
++					log.Logf(0, "[+] GENERATION_END flag detected. seeEndFlag: %d", seeEndFlag)
++				}
++				if seeEndFlag == 2 {
++					log.Logf(0, "[+] seeEndFlag reached 2. Exit enrichCorpus loop")
++					break
++				}
++				if *flagRepair {
++					mgr.repairCorpus()
++				}
++				mgr.enrichCorpus()
++			}
++		}
++	}()
++
++	go func() {
++		if *flagStatCall {
++			for {
++				time.Sleep(time.Minute)
++				if len(mgr.targetEnabledSyscalls) != 0 {
++					mgr.dumpEnabledSyscalls()
++					break
++				}
++			}
++		}
++	}()
++
+ 	if *flagBench != "" {
+ 		mgr.initBench()
+ 	}
+ 
++	if *flagBackup != "" {
++		mgr.initBackup()
++	}
++
+ 	if mgr.dash != nil {
+ 		go mgr.dashboardReporter()
+ 	}
+@@ -276,6 +356,78 @@ func RunManager(cfg *mgrconfig.Config) {
+ 	mgr.vmLoop()
+ }
+ 
++func (mgr *Manager) recordCmd() {
++	cmdPath := filepath.Join(mgr.cfg.Workdir, "cmdline")
++	var cmd string
++	for _, arg := range os.Args {
++		cmd += fmt.Sprintf("%s ", arg)
++	}
++	timeStr := time.Now().Format("2006/01/02 15:04:05")
++	cmdRecord := fmt.Sprintf("%s [cmdline] %s\n", timeStr, cmd)
++	os.WriteFile(cmdPath, []byte(cmdRecord), 0644)
++}
++
++func (mgr *Manager) initBackup() {
++	// check and create dump dir
++	backupDir := filepath.Join(mgr.cfg.Workdir, "backups")
++	_, err := os.Stat(backupDir)
++	if os.IsNotExist(err) {
++		// directory does not exist, create it
++		err = os.MkdirAll(backupDir, os.ModePerm)
++		if err != nil {
++			log.Logf(0, "[DEBUG] create dir %s error.", backupDir)
++			return
++		}
++	}
++	// Parse the backup cycle duration string
++	duration, err := time.ParseDuration(*flagBackup)
++	if err != nil {
++		log.Logf(0, "error parsing duration: %v.", err)
++		return
++	}
++	backCnt := 0
++	maxBackDuration := 7 * 24 * time.Hour // 7 days
++	startBackTime := time.Now()
++	go func() {
++		for {
++			time.Sleep(duration)
++			backCnt += 1
++			log.Logf(0, "[+] start the %v-th backup after sleep of duration: %v", backCnt, duration)
++			// add mutex lock for these backup files?
++			// backup CoveredCalls
++			srcCoveredCalls := filepath.Join(mgr.cfg.Workdir, "CoveredCalls")
++			dstCoveredCalls := filepath.Join(backupDir, fmt.Sprintf("CoveredCalls_%d_%s", backCnt, *flagBackup))
++			osutil.CopyFile(srcCoveredCalls, dstCoveredCalls)
++
++			// backup rawcover
++			dstRawcover := filepath.Join(backupDir, fmt.Sprintf("rawcover_%d_%s", backCnt, *flagBackup))
++			// if _, err := osutil.RunCmd(5*time.Minute, "", "curl", "-X", "GET", fmt.Sprintf("%s/rawcover", mgr.cfg.HTTP), ">", dstRawcover); err != nil {
++			if outBytes, err := osutil.RunCmd(5*time.Minute, "", "curl", "-X", "GET", fmt.Sprintf("http://%s/rawcover", mgr.cfg.HTTP)); err != nil {
++				log.Logf(0, "[x] fail to curl rawcover: %v", err)
++			} else {
++				log.Logf(0, "[+] rawcover curl success")
++				osutil.WriteFile(dstRawcover, outBytes)
++			}
++
++			if time.Since(startBackTime) > maxBackDuration {
++				log.Logf(0, "[+] backup duration exceed maxBackDuration, skip backup corpus and crashes in the %v-th backup", backCnt)
++				continue
++			}
++			// backup corpus
++			srcCorpus := filepath.Join(mgr.cfg.Workdir, "corpus.db")
++			dstCorpus := filepath.Join(backupDir, fmt.Sprintf("corpus.db_%d_%s", backCnt, *flagBackup))
++			osutil.CopyFile(srcCorpus, dstCorpus)
++
++			// backup crashes
++			srcCrashDir := filepath.Join(mgr.cfg.Workdir, "crashes")
++			dstCrashDir := filepath.Join(backupDir, fmt.Sprintf("crashes_%d_%s", backCnt, *flagBackup))
++			osutil.CopyDirRecursively(srcCrashDir, dstCrashDir)
++
++			log.Logf(0, "[+] the %v-th backup finish", backCnt)
++		}
++	}()
++}
++
+ func (mgr *Manager) initBench() {
+ 	f, err := os.OpenFile(*flagBench, os.O_WRONLY|os.O_CREATE|os.O_EXCL, osutil.DefaultFilePerm)
+ 	if err != nil {
+@@ -295,6 +447,10 @@ func (mgr *Manager) initBench() {
+ 			vals["uptime"] = uint64(time.Since(mgr.firstConnect)) / 1e9
+ 			vals["fuzzing"] = uint64(mgr.fuzzingTime) / 1e9
+ 			vals["candidates"] = uint64(len(mgr.candidates))
++			vals["EnabledSyscalls"] = uint64(len(mgr.targetEnabledSyscalls))
++			vals["syscalls"] = uint64(len(gCoverCalls))
++			vals["EnrichCnt"] = uint64(enrichCnt)
++			vals["costT"] = uint64(costT) / 1e9
+ 			mgr.mu.Unlock()
+ 
+ 			data, err := json.MarshalIndent(vals, "", "  ")
+@@ -587,6 +743,66 @@ func (pool *ResourcePool) TakeOne() *int {
+ 	return &ret[0]
+ }
+ 
++func (mgr *Manager) repairCorpus() {
++	enrichDir := *flagEnrich
++	log.Logf(0, "[+] Start to repair corpus %v", enrichDir)
++	repairBin := filepath.Join(mgr.cfg.Syzkaller, "bin", "syz-repair")
++	if _, err := osutil.RunCmd(2*time.Minute, "", repairBin, enrichDir, enrichDir); err != nil {
++		log.Logf(0, "[x] fail to syz-repair %v: %v", enrichDir, err)
++	}
++	log.Logf(0, "[+] Success to repair corpus %v", enrichDir)
++}
++
++func (mgr *Manager) enrichCorpus() {
++	mgr.mu.Lock()
++	defer mgr.mu.Unlock()
++	enrichDir := *flagEnrich
++	log.Logf(0, "[+] Start to enrich corpus, try to load progs from %v", enrichDir)
++	if osutil.IsExist(enrichDir) {
++		seeds, err := os.ReadDir(enrichDir)
++		if err != nil {
++			log.Fatalf("failed to read enrich dir: %v", err)
++		}
++		canShuffle := false
++		if len(mgr.candidates) == 0 {
++			canShuffle = true
++		}
++		for _, seed := range seeds {
++			loadedSeedsMu.Lock()
++			_, loaded := loadedSeeds[seed.Name()]
++			loadedSeedsMu.Unlock()
++
++			if loaded {
++				continue
++			}
++
++			data, err := os.ReadFile(filepath.Join(enrichDir, seed.Name()))
++			if err != nil {
++				log.Fatalf("failed to read enriched seed %v: %v", seed.Name(), err)
++			}
++
++			loadedSeedsMu.Lock()
++			loadedSeeds[seed.Name()] = struct{}{}
++			loadedSeedsMu.Unlock()
++
++			if mgr.loadProg(data, true, false) {
++				enrichCnt += 1
++			}
++		}
++		log.Logf(0, "%-24v: %v/%v", "enriched seeds", enrichCnt, len(seeds))
++
++		// shuffle or not?
++		if canShuffle {
++			log.Logf(0, "[+] Can shuffle")
++			mgr.candidates = append(mgr.candidates, mgr.candidates...)
++			shuffle := mgr.candidates[len(mgr.candidates)/2:]
++			rand.Shuffle(len(shuffle), func(i, j int) {
++				shuffle[i], shuffle[j] = shuffle[j], shuffle[i]
++			})
++		}
++	}
++}
++
+ func (mgr *Manager) preloadCorpus() {
+ 	log.Logf(0, "loading corpus...")
+ 	corpusDB, err := db.Open(filepath.Join(mgr.cfg.Workdir, "corpus.db"), true)
+@@ -642,6 +858,8 @@ func (mgr *Manager) loadCorpus() {
+ 		if !mgr.loadProg(rec.Val, minimized, smashed) {
+ 			mgr.corpusDB.Delete(key)
+ 			broken++
++		} else if *flagStatCall {
++			mgr.statCallFromByte(rec.Val)
+ 		}
+ 	}
+ 	mgr.fresh = len(mgr.corpusDB.Records) == 0
+@@ -649,7 +867,9 @@ func (mgr *Manager) loadCorpus() {
+ 	log.Logf(0, "%-24v: %v (deleted %v broken)", "corpus", corpusSize, broken)
+ 
+ 	for _, seed := range mgr.seeds {
+-		mgr.loadProg(seed, true, false)
++		if mgr.loadProg(seed, true, false) && *flagStatCall {
++			mgr.statCallFromByte(seed)
++		}
+ 	}
+ 	log.Logf(0, "%-24v: %v/%v", "seeds", len(mgr.candidates)-corpusSize, len(mgr.seeds))
+ 	mgr.seeds = nil
+@@ -1357,6 +1577,97 @@ func (mgr *Manager) machineChecked(a *rpctype.CheckArgs, enabledSyscalls map[*pr
+ 	mgr.firstConnect = time.Now()
+ }
+ 
++func (mgr *Manager) dumpCover(cov []uint32, dumpPath string) {
++	t0 := time.Now()
++	// create dump log
++	fDbg, err := os.OpenFile(filepath.Join(*flagDump, "dumpCover.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
++	if err != nil {
++		return
++	}
++	defer fDbg.Close()
++
++	// dump pcs of rawcover
++	fDump, err := os.Create(dumpPath)
++	if err != nil {
++		fmt.Fprintf(fDbg, "[DEBUG] create cover dump file %s error.\n", dumpPath)
++		return
++	}
++	defer fDump.Close()
++
++	// use a loop to write each uint64 to the file
++	for _, pc := range cov {
++		// npc := uint64(0xffffffff)<<32 + uint64(pc)
++		_, err := fmt.Fprintf(fDump, "0x%x\n", cover.RestorePC(pc, 0xffffffff))
++		if err != nil {
++			return
++		}
++	}
++
++	fmt.Fprintf(fDbg, "[SUCCESS] RawCover data has been written to %s\n", dumpPath)
++	costTMu.Lock()
++	costT += time.Since(t0)
++	costTMu.Unlock()
++}
++
++func (mgr *Manager) dumpEnabledSyscalls() {
++	t0 := time.Now()
++	enabledCallPath := filepath.Join(mgr.cfg.Workdir, "EnabledCalls")
++	// storeCallName(mgr.cfg.Sandbox, enabledCallPath)
++	for syscall := range mgr.targetEnabledSyscalls {
++		storeCallName(syscall.Name, enabledCallPath)
++	}
++	costTMu.Lock()
++	costT += time.Since(t0)
++	costTMu.Unlock()
++}
++
++func (mgr *Manager) statCallFromByte(progBytes []byte) {
++	t0 := time.Now()
++	p, _ := mgr.target.Deserialize(progBytes, prog.NonStrict)
++	coveredCallPath := filepath.Join(mgr.cfg.Workdir, "CoveredCalls")
++	for _, call := range p.Calls {
++		name := call.Meta.Name
++		if _, exist := gCoverCalls[name]; !exist {
++			gCoverCalls[name] = struct{}{}
++			// append to the local CoverCalls file, one name per line
++			storeCallName(name, coveredCallPath)
++		}
++	}
++	costTMu.Lock()
++	costT += time.Since(t0)
++	costTMu.Unlock()
++}
++
++func (mgr *Manager) statCallFromMap(coverCalls map[string]struct{}) {
++	t0 := time.Now()
++	coveredCallPath := filepath.Join(mgr.cfg.Workdir, "CoveredCalls")
++	for name := range coverCalls {
++		if _, exist := gCoverCalls[name]; !exist {
++			gCoverCalls[name] = struct{}{}
++			// append to the local CoverCalls file, one name per line
++			storeCallName(name, coveredCallPath)
++		}
++	}
++	costTMu.Lock()
++	costT += time.Since(t0)
++	costTMu.Unlock()
++}
++
++func storeCallName(name, filename string) {
++	file, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
++	if err != nil {
++		log.Logf(0, "[statCall] failed to create file: %v", err)
++		return
++	}
++	defer file.Close()
++
++	_, err = fmt.Fprintf(file, "%s\n", name)
++	if err != nil {
++		log.Logf(0, "[statCall] failed to write to file: %v", err)
++		return
++	}
++}
++
+ func (mgr *Manager) newInput(inp rpctype.Input, sign signal.Signal) bool {
+ 	mgr.mu.Lock()
+ 	defer mgr.mu.Unlock()
+@@ -1395,6 +1706,33 @@ func (mgr *Manager) newInput(inp rpctype.Input, sign signal.Signal) bool {
+ 			log.Errorf("failed to save corpus database: %v", err)
+ 		}
+ 	}
++
++	if *flagDump != "" {
++		dumpCoverDir := filepath.Join(*flagDump, "coverages")
++		dumpProgDir := filepath.Join(*flagDump, "programs")
++		// check and create dump dir
++		_, err := os.Stat(*flagDump)
++		if os.IsNotExist(err) {
++			// directory does not exist, create it
++			if err := os.MkdirAll(*flagDump, 0755); err != nil {
++				log.Fatalf("failed to creat dump dir at %v: %v", *flagDump, err)
++			}
++			os.MkdirAll(dumpCoverDir, 0755) // ignore error
++			os.MkdirAll(dumpProgDir, 0755)  // ignore error
++		}
++
++		// dump for coverage
++		dumpCoverPath := filepath.Join(dumpCoverDir, sig)
++		mgr.dumpCover(inp.Cover, dumpCoverPath)
++		// dump for prog, as corpus will be periodically minimized, which may loose some progs
++		dumpProgPath := filepath.Join(dumpProgDir, sig)
++		osutil.WriteFile(dumpProgPath, inp.Prog)
++	}
++
++	if *flagStatCall {
++		mgr.statCallFromMap(inp.CoverCalls)
++	}
++
+ 	return true
+ }
+ 
+diff --git a/tools/syz-db/syz-db.go b/tools/syz-db/syz-db.go
+index 8d26130..0e832ba 100644
+--- a/tools/syz-db/syz-db.go
++++ b/tools/syz-db/syz-db.go
+@@ -4,6 +4,7 @@
+ package main
+ 
+ import (
++	"encoding/json"
+ 	"flag"
+ 	"fmt"
+ 	"os"
+@@ -62,6 +63,11 @@ func main() {
+ 			usage()
+ 		}
+ 		unpack(args[1], args[2])
++	case "parse":
++		if len(args) != 3 {
++			usage()
++		}
++		parse(args[1], args[2])
+ 	case "merge":
+ 		if len(args) < 3 {
+ 			usage()
+@@ -76,6 +82,7 @@ func usage() {
+ 	fmt.Fprintf(os.Stderr, "usage:\n")
+ 	fmt.Fprintf(os.Stderr, "  syz-db pack dir corpus.db\n")
+ 	fmt.Fprintf(os.Stderr, "  syz-db unpack corpus.db dir\n")
++	fmt.Fprintf(os.Stderr, "  syz-db parse corpus.db dir\n")
+ 	fmt.Fprintf(os.Stderr, "  syz-db merge dst-corpus.db add-corpus.db* add-prog*\n")
+ 	fmt.Fprintf(os.Stderr, "  syz-db bench corpus.db\n")
+ 	os.Exit(1)
+@@ -139,6 +146,105 @@ func unpack(file, dir string) {
+ 	}
+ }
+ 
++func parse(file, dir string) {
++	// workDir := filepath.Dir(file)
++	workDir := filepath.Dir(dir)
++	var target *prog.Target
++	target, err := prog.GetTarget("linux", "amd64")
++	if err != nil {
++		tool.Failf("[syz-db] failed to find target: %v", err)
++	}
++	progLenThreshold := 1000
++
++	// preload the stuffs
++	db, err := db.Open(file, false)
++	if err != nil {
++		tool.Failf("[syz-db] failed to open database: %v", err)
++	}
++
++	if !osutil.IsExist(dir) {
++		osutil.MkdirAll(dir)
++	} else {
++		fmt.Fprintf(os.Stderr, "[syz-db] dir already exist: %v\n", dir)
++	}
++	seeds, err := os.ReadDir(dir)
++	if err != nil {
++		tool.Failf("[syz-db] failed to read unpack corpus dir: %v", err)
++	}
++	existSeedNames := make(map[string]struct{})
++	for _, seed := range seeds {
++		existSeedNames[seed.Name()] = struct{}{}
++	}
++
++	// load reverseIndex, if not exist then returen map[string][]string
++	reverseIndexPath := filepath.Join(workDir, "reverse_index.json")
++	reverseIndex := loadReverseIndex(reverseIndexPath)
++
++	for key, rec := range db.Records {
++		fname := filepath.Join(dir, key)
++		if rec.Seq != 0 {
++			fname += fmt.Sprintf("-%v", rec.Seq)
++			key += fmt.Sprintf("-%v", rec.Seq)
++		}
++		// new seed unpack from corpus, do something for it
++		if _, exist := existSeedNames[key]; !exist {
++			// fmt.Fprintf(os.Stderr, "new seed unpack from corpus: %v\n", key)
++			if err := osutil.WriteFile(fname, rec.Val); err != nil {
++				tool.Failf("[syz-db] failed to output file: %v", err)
++			}
++			// skip the progs with len larger than threshold
++			if len(rec.Val) >= progLenThreshold {
++				continue
++			}
++			// complete reverseIndex
++			p, err := target.Deserialize(rec.Val, prog.NonStrict)
++			if err != nil {
++				fmt.Fprintf(os.Stderr, "[syz-db] failed to deserialize %v for building reverseIndex: %v. continue.\n", fname, err)
++				continue
++			}
++			for _, call := range p.Calls {
++				name := call.Meta.Name
++				_, exist := reverseIndex[name]
++				if !exist {
++					var blank []string
++					reverseIndex[name] = append(blank, fname)
++				} else {
++					reverseIndex[name] = append(reverseIndex[name], fname)
++				}
++			}
++		}
++	}
++	// save the reverseIndex
++	if err := saveReverseIndex(reverseIndex, reverseIndexPath); err != nil {
++		tool.Failf("[syz-db] failed to save reverseIndex: %v", err)
++	} else {
++		fmt.Fprintf(os.Stderr, "[syz-db] success to save reverseIndex: %v\n", reverseIndexPath)
++	}
++}
++
++// loadReverseIndex loads the reverse index from a file.
++func loadReverseIndex(file string) map[string][]string {
++	reverseIndex := make(map[string][]string)
++	if osutil.IsExist(file) {
++		fp, _ := os.OpenFile(file, os.O_CREATE|os.O_RDWR, 0644)
++		defer fp.Close()
++		decoder := json.NewDecoder(fp)
++		if err := decoder.Decode(&reverseIndex); err != nil {
++			return reverseIndex
++		}
++	}
++	return reverseIndex
++}
++
++// saveReverseIndex saves the reverse index to a file.
++func saveReverseIndex(reverseIndex map[string][]string, file string) error {
++	fp, _ := os.OpenFile(file, os.O_CREATE|os.O_RDWR|os.O_TRUNC, 0644)
++	defer fp.Close()
++	encoder := json.NewEncoder(fp)
++	err := encoder.Encode(reverseIndex)
++	return err
++}
++
+ func merge(file string, adds []string, target *prog.Target) {
+ 	dstDB, err := db.Open(file, false)
+ 	if err != nil {
+diff --git a/tools/syz-execprog/execprog.go b/tools/syz-execprog/execprog.go
+index 70d0eee..7edb2b8 100644
+--- a/tools/syz-execprog/execprog.go
++++ b/tools/syz-execprog/execprog.go
+@@ -10,7 +10,10 @@ import (
+ 	"flag"
+ 	"fmt"
+ 	"os"
++	"path/filepath"
+ 	"runtime"
++	"strconv"
++	"strings"
+ 	"sync"
+ 	"time"
+ 
+@@ -37,6 +40,14 @@ var (
+ 	flagHints     = flag.Bool("hints", false, "do a hints-generation run")
+ 	flagEnable    = flag.String("enable", "none", "enable only listed additional features")
+ 	flagDisable   = flag.String("disable", "none", "enable all additional features except listed")
++
++	// added by SyzGPT
++	flagSemantic   = flag.Bool("semantic", false, "semantic mode: compare the coverage of prog and prog.rev")
++	flagProgDir    = flag.String("progdir", "", "specify a dir that includes progs to be calc")
++	flagNoDumpCall = flag.Bool("nodumpcall", false, "do not dump call level coverage to save space")
++	flagMaxRetry   = flag.Int("retry", 10, "max retry for execution failure (default 10, use 2 for semantic mode)")
++	// end
++
+ 	// The following flag is only kept to let syzkaller remain compatible with older execprog versions.
+ 	// In order to test incoming patches or perform bug bisection, syz-ci must use the exact syzkaller
+ 	// version that detected the bug (as descriptions and syntax could've already been changed), and
+@@ -52,17 +63,32 @@ var (
+ 	flagCollide = flag.Bool("collide", false, "(DEPRECATED) collide syscalls to provoke data races")
+ )
+ 
++// added by SyzGPT
++// Global Map, storing coverage of [origin_prog, reverse_prog]
++var CoverRecord map[string][3]int //cov0_of_origin, cov1_of_reverse, prog_line_num
++var CoverRecordMutex sync.Mutex
++var ExecFailCnt int
++
++// end
++
+ func main() {
++	CoverRecord = make(map[string][3]int)
+ 	flag.Usage = func() {
+ 		fmt.Fprintf(os.Stderr, "usage: execprog [flags] file-with-programs-or-corpus.db+\n")
+ 		flag.PrintDefaults()
+ 		csource.PrintAvailableFeaturesFlags()
+ 	}
+ 	defer tool.Init()()
+-	if len(flag.Args()) == 0 {
++	if *flagProgDir == "" && len(flag.Args()) == 0 {
+ 		flag.Usage()
+ 		os.Exit(1)
+ 	}
++	if *flagCoverFile != "" {
++		covDir, _ := filepath.Split(*flagCoverFile)
++		if covDir != "" {
++			os.MkdirAll(covDir, 0644)
++		}
++	}
+ 	featuresFlags, err := csource.ParseFeaturesFlags(*flagEnable, *flagDisable, true)
+ 	if err != nil {
+ 		log.Fatalf("%v", err)
+@@ -72,10 +98,59 @@ func main() {
+ 	if err != nil {
+ 		log.Fatalf("%v", err)
+ 	}
+-	progs := loadPrograms(target, flag.Args())
+-	if len(progs) == 0 {
++	// added by SyzGPT
++	var progs []*prog.Prog
++	var reverseProgs []*prog.Prog
++	var filePathList []string
++	var reverseFilePathList []string
++	var fileNameList []string
++	var reverseFileNameList []string
++	if *flagProgDir != "" {
++		// 从文件夹load文件
++		files, errdir := os.ReadDir(*flagProgDir)
++		if errdir != nil {
++			log.Fatalf("%v", err)
++		}
++		for _, file := range files {
++			if file.IsDir() {
++				continue
++			}
++			if *flagSemantic {
++				if strings.HasSuffix(file.Name(), ".rev") {
++					reverseFilePathList = append(reverseFilePathList, filepath.Join(*flagProgDir, file.Name()))
++					reverseFileNameList = append(reverseFileNameList, file.Name())
++					index := strings.LastIndex(file.Name(), ".rev")
++					stripName := file.Name()[:index]
++					fileNameList = append(fileNameList, stripName)
++					filePathList = append(filePathList, filepath.Join(*flagProgDir, stripName))
++				}
++			} else {
++				fileNameList = append(fileNameList, file.Name())
++				filePathList = append(filePathList, filepath.Join(*flagProgDir, file.Name()))
++			}
++		}
++	} else {
++		// 从命令行参数读取文件
++		for _, filePath := range flag.Args() {
++			fileName := filepath.Base(filePath)
++			fileNameList = append(fileNameList, fileName)
++			filePathList = append(filePathList, filePath)
++			if *flagSemantic {
++				reverseFilePath := filePath + ".rev"
++				reverseFilePathList = append(reverseFilePathList, reverseFilePath)
++				reverseFileNameList = append(reverseFileNameList, filepath.Base(reverseFilePath))
++			}
++		}
++	}
++	progs = loadPrograms(target, filePathList)
++	reverseProgs = loadPrograms(target, reverseFilePathList)
++	// end
++	if len(progs) == 0 && len(reverseProgs) == 0 {
+ 		return
++	} else {
++		log.Logf(0, "[success] load %d progs and %d rev_progs", len(progs), len(reverseProgs))
+ 	}
++
+ 	features, err := host.Check(target)
+ 	if err != nil {
+ 		log.Fatalf("%v", err)
+@@ -104,6 +179,7 @@ func main() {
+ 	}
+ 	ctx := &Context{
+ 		progs:    progs,
++		progFns:  fileNameList,
+ 		config:   config,
+ 		execOpts: execOpts,
+ 		gate:     ipc.NewGate(2**flagProcs, gateCallback),
+@@ -116,15 +192,152 @@ func main() {
+ 		pid := p
+ 		go func() {
+ 			defer wg.Done()
+-			ctx.run(pid)
++			ctx.run(pid, 0)
+ 		}()
+ 	}
+ 	osutil.HandleInterrupts(ctx.shutdown)
+ 	wg.Wait()
++
++	// added by SyzGPT
++	if *flagSemantic {
++		// added by SyzGPT
++		revCtx := &Context{
++			progs:    reverseProgs,
++			progFns:  reverseFileNameList,
++			config:   config,
++			execOpts: execOpts,
++			gate:     ipc.NewGate(2**flagProcs, gateCallback),
++			shutdown: make(chan struct{}),
++			repeat:   *flagRepeat,
++		}
++		// end
++		var revWg sync.WaitGroup
++		revWg.Add(*flagProcs)
++		for p := 0; p < *flagProcs; p++ {
++			pid := p
++			go func() {
++				defer revWg.Done()
++				revCtx.run(pid, 1)
++			}()
++		}
++		osutil.HandleInterrupts(revCtx.shutdown)
++		revWg.Wait()
++	}
++	// end
++
++	// added by SyzGPT
++	if *flagSemantic && *flagCoverFile != "" {
++		CoverRecord_OutputFile := fmt.Sprintf("%s_Total_CoverRecord", *flagCoverFile)
++		err := saveToFile(CoverRecord_OutputFile)
++		if err != nil {
++			log.Logf(0, "Failed to save CoverRecord.")
++			log.Fatal(err)
++			return
++		}
++
++		log.Logf(0, "CoverRecord saved successfully.")
++	}
++	// end
++}
++
++// added by SyzGPT
++// Save CoverRecord to file
++func saveToFile(fileName string) error {
++	file, err := os.Create(fileName)
++	if err != nil {
++		return err
++	}
++	defer file.Close()
++
++	// general cover info
++	total_cover := 0
++	win_cover := 0
++	equal_cover := 0
++	lose_cover := 0
++
++	//make cover info more specific
++	OneLineProg_total := 0
++	OneLineProg_win := 0
++	OneLineProg_equal := 0
++	OneLineProg_lose := 0
++
++	for key, value := range CoverRecord {
++		cov0 := value[0]
++		cov1 := value[1]
++		lineNum := value[2]
++
++		total_cover += 1
++		if lineNum == 1 {
++			OneLineProg_total += 1
++		}
++		if cov0 > cov1 {
++			win_cover += 1
++			if lineNum == 1 {
++				OneLineProg_win += 1
++			}
++		} else if cov0 == cov1 {
++			equal_cover += 1
++			if lineNum == 1 {
++				OneLineProg_equal += 1
++			}
++		} else {
++			lose_cover += 1
++			if lineNum == 1 {
++				OneLineProg_lose += 1
++			}
++		}
++
++		line := key + "," + strconv.Itoa(cov0) + "," + strconv.Itoa(cov1) + "," + strconv.Itoa(lineNum) + "\n"
++		_, err := file.WriteString(line)
++		if err != nil {
++			return err
++		}
++	}
++	// win_rate := float64(win_cover) / float64(total_cover)
++	// percentage := win_rate * 100
++	// format_percent := fmt.Sprintf("%.2f%%", percentage)
++	// line := "Win Rate:" + strconv.Itoa(win_cover) + "/" + strconv.Itoa(total_cover) + "=" + format_percent
++	line := "Result info:\n" +
++		"Total Progs: " + strconv.Itoa(total_cover) + "\n" +
++		"Total win: " + strconv.Itoa(win_cover) + "\n" +
++		"Total equal: " + strconv.Itoa(equal_cover) + "\n" +
++		"Total lose: " + strconv.Itoa(lose_cover) + "\n\n" +
++		"One-line Progs:" + strconv.Itoa(OneLineProg_total) + "\n" +
++		"One-line win:" + strconv.Itoa(OneLineProg_win) + "\n" +
++		"One-line equal:" + strconv.Itoa(OneLineProg_equal) + "\n" +
++		"One-line lose:" + strconv.Itoa(OneLineProg_lose) + "\n" +
++		"Execution Fails:" + strconv.Itoa(ExecFailCnt) + "\n"
++	_, err_last := file.WriteString(line)
++	if err_last != nil {
++		return err_last
++	}
++	return nil
+ }
+ 
++func setCoverRecord(fileName string, value1, value2, lineNum int) {
++	CoverRecordMutex.Lock()
++	defer CoverRecordMutex.Unlock()
++
++	CoverRecord[fileName] = [3]int{value1, value2, lineNum}
++}
++
++func getCoverRecord(fileName string) (bool, int, int) {
++	CoverRecordMutex.Lock()
++	defer CoverRecordMutex.Unlock()
++
++	values, ok := CoverRecord[fileName]
++	if ok {
++		return ok, values[0], values[1]
++	}
++
++	return ok, 0, 0
++}
++
++// end
++
+ type Context struct {
+ 	progs     []*prog.Prog
++	progFns   []string
+ 	config    *ipc.Config
+ 	execOpts  *ipc.ExecOpts
+ 	gate      *ipc.Gate
+@@ -136,7 +349,7 @@ type Context struct {
+ 	lastPrint time.Time
+ }
+ 
+-func (ctx *Context) run(pid int) {
++func (ctx *Context) run(pid int, covType int) {
+ 	env, err := ipc.MakeEnv(ctx.config, pid)
+ 	if err != nil {
+ 		log.Fatalf("failed to create ipc env: %v", err)
+@@ -153,11 +366,11 @@ func (ctx *Context) run(pid int) {
+ 			return
+ 		}
+ 		entry := ctx.progs[idx%len(ctx.progs)]
+-		ctx.execute(pid, env, entry, idx)
++		ctx.execute(pid, env, entry, idx, covType)
+ 	}
+ }
+ 
+-func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int) {
++func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int, covType int) {
+ 	// Limit concurrency window.
+ 	ticket := ctx.gate.Enter()
+ 	defer ctx.gate.Leave(ticket)
+@@ -170,8 +383,15 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
+ 	for try := 0; ; try++ {
+ 		output, info, hanged, err := env.Exec(callOpts, p)
+ 		if err != nil && err != prog.ErrExecBufferTooSmall {
+-			if try > 10 {
+-				log.Fatalf("executor failed %v times: %v\n%s", try, err, output)
++			if try > *flagMaxRetry {
++				if *flagProgDir != "" {
++					log.Logf(0, "executor failed %v times: %v\n%s", try, err, output)
++					log.Logf(0, "[semantic dump mode] the %d prog failed, skip it", progIndex)
++					ExecFailCnt += 1
++					break
++				} else {
++					log.Fatalf("executor failed %v times: %v\n%s", try, err, output)
++				}
+ 			}
+ 			// Don't print err/output in this case as it may contain "SYZFAIL" and we want to fail yet.
+ 			log.Logf(1, "executor failed, retrying")
+@@ -187,8 +407,14 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
+ 				ctx.printHints(p, info)
+ 			}
+ 			if *flagCoverFile != "" {
+-				covFile := fmt.Sprintf("%s_prog%d", *flagCoverFile, progIndex)
+-				ctx.dumpCoverage(covFile, info)
++				var covFile string
++				if *flagProgDir != "" {
++					covFile = fmt.Sprintf("%s_%s", *flagCoverFile, ctx.progFns[progIndex%len(ctx.progFns)])
++				} else {
++					covFile = fmt.Sprintf("%s_prog%d", *flagCoverFile, progIndex)
++				}
++				// log.Logf(0, "[debug] dumpCoverage for %s", covFile)
++				ctx.dumpCoverage(covFile, info, covType)
+ 			}
+ 		} else {
+ 			log.Logf(1, "RESULT: no calls executed")
+@@ -265,11 +491,62 @@ func (ctx *Context) dumpCallCoverage(coverFile string, info *ipc.CallInfo) {
+ 	}
+ }
+ 
+-func (ctx *Context) dumpCoverage(coverFile string, info *ipc.ProgInfo) {
++func (ctx *Context) dumpCoverage(coverFile string, info *ipc.ProgInfo, covType int) {
+ 	for i, inf := range info.Calls {
+ 		log.Logf(0, "call #%v: signal %v, coverage %v", i, len(inf.Signal), len(inf.Cover))
+-		ctx.dumpCallCoverage(fmt.Sprintf("%v.%v", coverFile, i), &inf)
++		if !*flagNoDumpCall && !*flagSemantic {
++			ctx.dumpCallCoverage(fmt.Sprintf("%v.%v", coverFile, i), &inf)
++		}
++	}
++
++	// added by SyzGPT
++	totalMap := make(map[string]int)
++	covNum := 0
++	lineNum := 0
++	for _, inf := range info.Calls {
++		lineNum += 1
++		for _, pc := range inf.Cover {
++			newPC := fmt.Sprintf("0x%x", cover.RestorePC(pc, 0xffffffff))
++			if _, ok := totalMap[newPC]; !ok {
++				totalMap[newPC] = 1
++				covNum += 1
++			}
++		}
++	}
++
++	// record pc coverage to global map
++	recordKey := strings.TrimSuffix(coverFile, ".rev")
++	ok, cov0, cov1 := getCoverRecord(recordKey)
++	if covType == 0 {
++		if ok {
++			log.Logf(0, "Cover map error! Repeated prog. %s", recordKey)
++		} else {
++			cov0 = covNum
++			setCoverRecord(recordKey, cov0, cov1, lineNum)
++		}
++	} else {
++		if ok {
++			cov1 = covNum
++			setCoverRecord(recordKey, cov0, cov1, lineNum)
++		} else {
++			log.Logf(0, "Cover map error! Non-existed origin prog. %s", recordKey)
++		}
++	}
++
++	// make a buffer to output
++	buf := new(bytes.Buffer)
++	for pc := range totalMap {
++		fmt.Fprintf(buf, "%s\n", pc)
+ 	}
++
++	// write cover pcs to file
++	err := osutil.WriteFile(coverFile+".total", buf.Bytes())
++	if err != nil {
++		log.Fatalf("SyzGPT failed to write total coverage file: %v", err)
++	}
++	log.Logf(0, "[debug] total coverage done for the %d prog %s", ctx.pos, coverFile)
++	// end
++
+ 	log.Logf(0, "extra: signal %v, coverage %v", len(info.Extra.Signal), len(info.Extra.Cover))
+ 	ctx.dumpCallCoverage(fmt.Sprintf("%v.extra", coverFile), &info.Extra)
+ }
+diff --git a/tools/syz-repair/repair.go b/tools/syz-repair/repair.go
+new file mode 100644
+index 0000000..8660a8f
+--- /dev/null
++++ b/tools/syz-repair/repair.go
+@@ -0,0 +1,534 @@
++// Build:
++// Just make
++
++package main
++
++import (
++	"encoding/json"
++	"errors"
++	"flag"
++	"fmt"
++	"io"
++	"log"
++	"os"
++	"path/filepath"
++	"regexp"
++	"strconv"
++	"strings"
++	"time"
++
++	"github.com/google/syzkaller/prog"
++	_ "github.com/google/syzkaller/sys"
++)
++
++type repairer struct {
++	target        *prog.Target
++	callMap       map[string][]string
++	genHistoryRev map[string]string
++	curTargetCall string
++	curFilename   string
++	startT        time.Time
++	dirMode       bool
++}
++
++func main() {
++	start := time.Now()
++	var (
++		flagOS     = flag.String("os", "linux", "target OS")
++		flagArch   = flag.String("arch", "amd64", "target arch")
++		flagLog    = flag.String("log", "", "log file")
++		flagGenHis = flag.String("history", "", "path to generation_history.json")
++	)
++	flag.Parse()
++	args := flag.Args()
++	if len(args) != 2 {
++		usage()
++	}
++	inputPath := args[0]
++	outputPath := args[1]
++
++	if *flagLog == "" {
++		log.SetOutput(os.Stdout)
++	} else {
++		logFile, err := os.OpenFile(*flagLog, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
++		if err != nil {
++			log.Fatal(err)
++		}
++		defer logFile.Close()
++		multiOut := io.MultiWriter(logFile, os.Stdout)
++		log.SetOutput(multiOut)
++	}
++
++	if *flagGenHis != "" {
++		// load generation_history.json
++	}
++
++	fmt.Printf("[%v] preprocess done\n", time.Since(start))
++
++	var target *prog.Target
++	// var rpr *repairer
++	rpr := &repairer{
++		target:        target,
++		callMap:       make(map[string][]string),
++		genHistoryRev: make(map[string]string),
++		dirMode:       false,
++	}
++	rpr.init(*flagOS, *flagArch, inputPath, outputPath)
++
++	dirMode := rpr.dirMode
++
++	if dirMode {
++		// check and repair a directory of programs
++		// errTypes := rpr.analyzeErrorDir(inputPath)
++		// for errType, num := range errTypes {
++		// 	fmt.Printf("%s: %d\n", errType, num)
++		// }
++		validCnt, totalCnt := rpr.checkProgDir(inputPath)
++		fmt.Printf("\n%d/%d are valid program, rate = %.2f%%\n\n", validCnt, totalCnt, float64(validCnt)/float64(totalCnt)*100)
++
++		// start to repair
++		rpr.repairProgDir(inputPath, outputPath)
++		// errTypes = rpr.analyzeErrorDir(outputPath)
++		// for errType, num := range errTypes {
++		// 	fmt.Printf("%s: %d\n", errType, num)
++		// }
++		validCnt, totalCnt = rpr.checkProgDir(outputPath)
++		fmt.Printf("\n%d/%d are valid program, rate = %.2f%%\n\n", validCnt, totalCnt, float64(validCnt)/float64(totalCnt)*100)
++	} else {
++		// check and repair one program
++		rpr.repairProgFile(inputPath, outputPath)
++	}
++
++	fmt.Printf("[%v] Execution done\n", rpr.timeElapse())
++}
++
++func usage() {
++	fmt.Fprintf(os.Stderr, "usage: syz-repair -os <OS> -arch <ARCH> -log <log_path> INPUT OUTPUT\n")
++	fmt.Fprintf(os.Stderr, "       syz-repair /path/invalid.prog /path/repaired.prog\n")
++	fmt.Fprintf(os.Stderr, "       syz-repair /dir/to/invalid_progs/ /dir/to/repaired_progs/  (Recommended)\n")
++	os.Exit(1)
++}
++
++func (rpr *repairer) init(OS, Arch, inputPath, outputPath string) {
++	rpr.startT = time.Now()
++	var err error
++	// init target
++	rpr.target, err = prog.GetTarget(OS, Arch)
++	if err != nil {
++		log.Fatalf("failed to find target: %v", err)
++	}
++	// init callMap
++	for _, c := range rpr.target.Syscalls {
++		rpr.callMap[c.CallName] = append(rpr.callMap[c.CallName], c.Name)
++	}
++
++	// check input
++	inputInfo, err := os.Stat(inputPath)
++	if os.IsNotExist(err) {
++		log.Fatalf("input %v does not exist: %v", inputPath, err)
++	}
++	rpr.dirMode = inputInfo.IsDir()
++
++	// check output
++	outputInfo, err := os.Stat(outputPath)
++	if os.IsNotExist(err) && rpr.dirMode {
++		if err := os.MkdirAll(outputPath, 0755); err != nil {
++			log.Fatalf("failed to create dir %v: %v", outputPath, err)
++		}
++	}
++	outputInfo, _ = os.Stat(outputPath)
++	if rpr.dirMode && !outputInfo.IsDir() {
++		log.Fatalf("output should also be a dir when input is dir")
++	}
++
++	// init genHistoryRev
++	if rpr.dirMode {
++		tmpInputPath := inputPath
++		if strings.HasSuffix(inputPath, "/") {
++			tmpInputPath = inputPath[:len(inputPath)-1]
++		}
++		inputParentDir := filepath.Dir(tmpInputPath)
++		jsonFilePath := filepath.Join(inputParentDir, "generation_history.json")
++		jsonData, err := os.ReadFile(jsonFilePath)
++		if err != nil {
++			fmt.Printf("[%v] failed to read JSON file: %v\n", rpr.timeElapse(), err)
++		} else {
++			var historyMap map[string][]string
++			if err := json.Unmarshal(jsonData, &historyMap); err != nil {
++				log.Fatalf("failed to decode JSON data: %v", err)
++			}
++			for syscall, filenameList := range historyMap {
++				for _, filename := range filenameList {
++					rpr.genHistoryRev[filename] = syscall
++				}
++			}
++		}
++	}
++
++	fmt.Printf("[%v] rpr.init done\n", rpr.timeElapse())
++}
++
++func (rpr *repairer) timeElapse() time.Duration {
++	return time.Since(rpr.startT)
++}
++
++func (rpr *repairer) getCurTargetCall(filename string) string {
++	return rpr.genHistoryRev[filename]
++}
++
++func (rpr *repairer) repairProgFile(inFile, outFile string) {
++	repaLines := rpr.repairProgram(inFile)
++	repaData := lines2Data(repaLines)
++	err := rpr.checkProgramData(repaData)
++	if err == nil {
++		fmt.Printf("[%v] Repair success!\n", rpr.timeElapse())
++	} else {
++		fmt.Printf("[%v] Repair fail with err: %v\n", rpr.timeElapse(), err)
++	}
++	writeProg(repaLines, outFile)
++	fmt.Printf("[%v] rpr.repairProgFile done\n", rpr.timeElapse())
++}
++
++func (rpr *repairer) repairProgDir(inDir, outDir string) {
++	inFiles, err := os.ReadDir(inDir)
++	if err != nil {
++		log.Fatalf("failed to read dir: %v", err)
++	}
++
++	validCnt := 0
++	for _, file := range inFiles {
++		rpr.curFilename = file.Name()
++		rpr.curTargetCall = rpr.getCurTargetCall(rpr.curFilename)
++		repaLines := rpr.repairProgram(filepath.Join(inDir, file.Name()))
++		repaData := lines2Data(repaLines)
++		err := rpr.checkProgramData(repaData)
++		if err == nil {
++			validCnt += 1
++		}
++		writeProg(repaLines, filepath.Join(outDir, file.Name()))
++	}
++	fmt.Printf("[%v] rpr.repairProgDir done\n", rpr.timeElapse())
++}
++
++func (rpr *repairer) repairProgram(inFile string) (repairedLines []string) {
++	failRepairMax := 2
++	repairMax := 25
++	lines := readLines(inFile)
++	for _, line := range lines {
++		// repalce " to '
++		modifiedLine := strings.ReplaceAll(line, "\"", "'")
++		repairedLines = append(repairedLines, modifiedLine)
++	}
++
++	repairCnt := 0
++	failRepairCnt := 0
++	for {
++		repairCnt += 1
++		data := lines2Data(repairedLines)
++		err := rpr.checkProgramData(data)
++		if err == nil {
++			return repairedLines
++		}
++		errType, errName, errDetail := classifyErrorType(err)
++		switch {
++		case errType == "unknown syscall SYSCALL":
++			repairedLines = rpr.repairSyscall(repairedLines, errName)
++		case errType == "want A got B":
++			repairedLines = rpr.repairWant(repairedLines, errName, errDetail)
++		case errType == "call SYSCALL: escaping filename FILENAME":
++			repairedLines = rpr.repairFilename(repairedLines, errName)
++		case errType == "unexpected eof":
++			repairedLines = rpr.repairEOF(repairedLines, errName, errDetail)
++		case errType == "Out of MaxCalls":
++			repairedLines = rpr.repairOutMax(repairedLines, errName)
++		default:
++			failRepairCnt += 1
++		}
++		if failRepairCnt >= failRepairMax || repairCnt >= repairMax {
++			// fmt.Printf("[%v] rpr.repairProgram reaches repair maximum %d for %s\n", rpr.timeElapse(), repairMax, inFile)
++			break
++		}
++	}
++	// if repairCnt >= repairMax {
++	// 	fmt.Printf("[%v] rpr.repairProgram repairCnt %d for %s\n", rpr.timeElapse(), repairCnt, inFile)
++	// }
++	return repairedLines
++}
++
++func (rpr *repairer) repairFilename(lines []string, errName string) (repairedLines []string) {
++	escapFilename := strings.Split(errName, "escaping filename ")[1]
++	escapFilename = escapFilename[1 : len(escapFilename)-1]
++	var replaceFilename string
++	if escapFilename[0:1] == "/" {
++		replaceFilename = "." + escapFilename
++	} else if escapFilename[0:2] == ".." {
++		replaceFilename = escapFilename[1:]
++	}
++	for _, line := range lines {
++		modifiedLine := strings.ReplaceAll(line, escapFilename, replaceFilename)
++		repairedLines = append(repairedLines, modifiedLine)
++	}
++	return repairedLines
++}
++
++func (rpr *repairer) repairOutMax(lines []string, errName string) (repairedLines []string) {
++	for i, line := range lines {
++		if i >= prog.MaxCalls {
++			break
++		}
++		repairedLines = append(repairedLines, line)
++	}
++	return repairedLines
++}
++
++func (rpr *repairer) repairEOF(lines []string, errName, errDetail string) (repairedLines []string) {
++	var lineNumber int
++	var err error
++
++	re := regexp.MustCompile(`#(\d+):(\d+)`)
++	matches := re.FindStringSubmatch(errDetail)
++	if len(matches) == 3 {
++		lineNumber, err = strconv.Atoi(matches[1])
++		// lineOffset, err = strconv.Atoi(matches[2])
++		if err != nil {
++			fmt.Printf("[%v] rpr.repairEOF failed to atoi line #N:M in %s\n", rpr.timeElapse(), errDetail)
++			return lines
++		}
++	} else {
++		fmt.Printf("[%v] rpr.repairEOF failed to match line #N:M in %s\n", rpr.timeElapse(), errDetail)
++		return lines
++	}
++
++	// alway true, do not care about deleting target syscall
++	containTarget := true
++	for i, line := range lines {
++		if i+1 == lineNumber {
++			var modifiedLine string
++			modifiedLine = fixUnbalancedParentheses(line)
++			repairedLines = append(repairedLines, modifiedLine)
++			continue
++		} else if strings.Contains(line, rpr.curTargetCall) {
++			containTarget = true
++		}
++		repairedLines = append(repairedLines, line)
++	}
++	repairedData := lines2Data(repairedLines)
++	err = rpr.checkProgramData(repairedData)
++	if err != nil {
++		if lineNumber >= 50 && containTarget == true {
++			repairedLines = repairedLines[:prog.MaxCalls]
++		}
++		// repairedLines = make([]string, 0)
++		// for i, line := range lines {
++		// 	if i+1 == lineNumber {
++		// 		if lineNumber >= 50 && containTarget == true {
++		// 			// fmt.Printf("[%v] rpr.repairEOF skip line %d: %s\n", rpr.timeElapse(), lineNumber, line)
++		// 			continue
++		// 		}
++		// 	}
++		// 	repairedLines = append(repairedLines, line)
++		// }
++	}
++	return repairedLines
++}
++
++func (rpr *repairer) repairWant(lines []string, errName, errDetail string) (repairedLines []string) {
++	var wantChar string
++	var lineNumber, lineOffset int
++	var err error
++
++	re1 := regexp.MustCompile(`want ('[^']'|[^']{1})`)
++	matches1 := re1.FindStringSubmatch(errName)
++	if len(matches1) == 2 {
++		wantChar = matches1[1]
++		if len(wantChar) == 3 {
++			wantChar = wantChar[1:2]
++		}
++	} else {
++		fmt.Printf("[%v] rpr.repairWant failed to match want A in %s\n", rpr.timeElapse(), errName)
++		return lines
++	}
++
++	re2 := regexp.MustCompile(`#(\d+):(\d+)`)
++	matches2 := re2.FindStringSubmatch(errDetail)
++	if len(matches2) == 3 {
++		lineNumber, err = strconv.Atoi(matches2[1])
++		lineOffset, err = strconv.Atoi(matches2[2])
++		if err != nil {
++			fmt.Printf("[%v] rpr.repairWant failed to atoi line #N:M in %s\n", rpr.timeElapse(), errDetail)
++			return lines
++		}
++	} else {
++		fmt.Printf("[%v] rpr.repairWant failed to match line #N:M in %s\n", rpr.timeElapse(), errDetail)
++		return lines
++	}
++
++	// fmt.Printf("[%v] rpr.repairWant match want %s at line #%d:%d for %s\n", rpr.timeElapse(), wantChar, lineNumber, lineOffset, rpr.curFilename)
++
++	for i, line := range lines {
++		if i+1 == lineNumber {
++			if wantChar == "=" && lineOffset >= 4 && line[lineOffset-4:lineOffset] == "=ANY" {
++				modifiedLine := strings.ReplaceAll(line, "=ANY", "=ANY=[]")
++				repairedLines = append(repairedLines, modifiedLine)
++				fmt.Printf("[%v] rpr.repairWant repalce =ANY to =ANY=: %s\n", rpr.timeElapse(), modifiedLine)
++				continue
++			}
++			modifiedLine := replaceCharAtIndex(line, lineOffset, wantChar)
++			repairedLines = append(repairedLines, modifiedLine)
++			// fmt.Printf("[%v] rpr.repairWant repalce line #%d:%d to %s: %s\n", rpr.timeElapse(), lineNumber, lineOffset, wantChar, modifiedLine)
++			continue
++		}
++		repairedLines = append(repairedLines, line)
++	}
++	return repairedLines
++}
++
++func (rpr *repairer) repairSyscall(lines []string, errName string) (repairedLines []string) {
++	re := regexp.MustCompile(`unknown syscall (\S+)`)
++	match := re.FindStringSubmatch(errName)
++	var syscallName string
++	if len(match) > 1 {
++		syscallName = match[1]
++		// fmt.Printf("[DEBUG] match unknown syscall: %s\n", syscallName)
++	} else {
++		fmt.Printf("[%v] rpr.repairSyscall failed to match unknown syscall in %s\n", rpr.timeElapse(), errName)
++		return lines
++	}
++	var syscallCandidates []string
++	syscallBase := extractBaseCall(syscallName)
++	// fmt.Printf("[DEBUG] %s is the base of %s\n", syscallBase, syscallName)
++	syscallCandidates, ok := rpr.callMap[syscallBase]
++	if !ok {
++		// fmt.Printf("[%v] rpr.repairSyscall base syscall %s is not a valid syscall\n", rpr.timeElapse(), syscallBase)
++		if rpr.curTargetCall != "" && syscallName != rpr.curTargetCall {
++			for _, line := range lines {
++				if strings.Contains(line, syscallName) {
++					// fmt.Printf("[%v] rpr.repairSyscall choose to remove the line: %s\n", rpr.timeElapse(), line)
++					continue
++				}
++				repairedLines = append(repairedLines, line)
++			}
++			return repairedLines
++		}
++		return lines
++	}
++	k := 5
++	kSims := maxKSim(syscallName, syscallCandidates, k)
++	for _, simCall := range kSims {
++		repairedLines = make([]string, 0)
++		for _, line := range lines {
++			modifiedLine := strings.ReplaceAll(line, syscallName, simCall)
++			repairedLines = append(repairedLines, modifiedLine)
++		}
++		repairedData := lines2Data(repairedLines)
++		err := rpr.checkProgramData(repairedData)
++		if err == nil {
++			return repairedLines
++		} else {
++			_, newErrName, _ := classifyErrorType(err)
++			if newErrName != errName {
++				// fmt.Printf("[%v] rpr.repairSyscall fixes the unknown syscall %s but raises another err: %s\n", rpr.timeElapse(), syscallName, newErrName)
++				return repairedLines
++			}
++		}
++	}
++	// replace to syscallBase
++	repairedLines = make([]string, 0)
++	for _, line := range lines {
++		modifiedLine := strings.ReplaceAll(line, syscallName, syscallBase)
++		repairedLines = append(repairedLines, modifiedLine)
++	}
++	return repairedLines
++	// return lines
++}
++
++func (rpr *repairer) checkProgram(file string) (err error) {
++	data, err := os.ReadFile(file)
++	if err != nil {
++		log.Fatalf("failed to read file %v: %v", file, err)
++	}
++
++	return rpr.checkProgramData(data)
++}
++
++func (rpr *repairer) checkProgramData(data []byte) (err error) {
++	if len(data) == 0 {
++		return errors.New("Program is blank")
++	}
++	p, err := rpr.target.Deserialize(data, prog.NonStrict)
++	if err != nil {
++		return err
++	}
++	if len(p.Calls) > prog.MaxCalls {
++		return errors.New("Out of MaxCalls")
++	}
++	return nil
++}
++
++func (rpr *repairer) checkProgDir(dir string) (validCnt, totalCnt int) {
++	validCnt = 0
++	files, err := os.ReadDir(dir)
++	if err != nil {
++		log.Fatalf("failed to read dir: %v", err)
++	}
++
++	for _, file := range files {
++		err := rpr.checkProgram(filepath.Join(dir, file.Name()))
++		if err == nil {
++			validCnt += 1
++		}
++	}
++	return validCnt, len(files)
++}
++
++func (rpr *repairer) analyzeErrorDir(dir string) (errTypes map[string]int) {
++	errTypes = make(map[string]int)
++	files, err := os.ReadDir(dir)
++	if err != nil {
++		log.Fatalf("failed to read dir: %v", err)
++	}
++
++	for _, file := range files {
++		err := rpr.checkProgram(filepath.Join(dir, file.Name()))
++		if err == nil {
++			continue
++		}
++		errType, _, _ := classifyErrorType(err)
++		// if errDetail != "" {
++		// 	fmt.Printf("errType: %s\nerrDetail: %s\n", errType, errDetail)
++		// }
++		if count, found := errTypes[errType]; !found {
++			errTypes[errType] = 1
++		} else {
++			errTypes[errType] = count + 1
++		}
++	}
++	return errTypes
++}
++
++func classifyErrorType(err error) (errType, errName, errDetail string) {
++	errSplt := strings.Split(err.Error(), "\n")
++	errType = errSplt[0]
++	errName = errSplt[0]
++	if len(errSplt) == 2 {
++		errDetail = errSplt[1]
++	}
++
++	switch {
++	case strings.Contains(errType, "unknown syscall"):
++		errType = "unknown syscall SYSCALL"
++	case strings.Contains(errType, "want") && strings.Contains(errType, "got"):
++		errType = "want A got B"
++	case strings.Contains(errType, "failed to parse identifier at pos"):
++		errType = "failed to parse identifier at pos POS"
++	case strings.Contains(errType, "failed to parse argument at"):
++		errType = "failed to parse argument at"
++	case strings.HasPrefix(errType, "call") && strings.Contains(errType, "has bad type") && strings.Contains(errType, "result arg"):
++		errType = "call SYSCALL: result arg ARG has bad type TYPE"
++	case strings.Contains(errType, "use of a disabled call"):
++		errType = "call SYSCALL: use of a disabled call"
++	case strings.Contains(errType, "escaping filename"):
++		errType = "call SYSCALL: escaping filename FILENAME"
++	}
++	return errType, errName, errDetail
++}
+diff --git a/tools/syz-repair/utils.go b/tools/syz-repair/utils.go
+new file mode 100644
+index 0000000..e79fe5f
+--- /dev/null
++++ b/tools/syz-repair/utils.go
+@@ -0,0 +1,211 @@
++package main
++
++import (
++	"bufio"
++	"fmt"
++	"log"
++	"math"
++	"os"
++	"sort"
++	"strings"
++)
++
++func readLines(file string) (lines []string) {
++	f, err := os.Open(file)
++	if err != nil {
++		log.Fatalf("Error opening input file: %v", err)
++	}
++	defer f.Close()
++
++	scanner := bufio.NewScanner(f)
++	for scanner.Scan() {
++		line := scanner.Text()
++		lines = append(lines, line)
++	}
++
++	// check if scanner raises any error
++	if err := scanner.Err(); err != nil {
++		fmt.Println("Error reading input file:", err)
++	}
++	return lines
++}
++
++func lines2Data(lines []string) (data []byte) {
++	for _, line := range lines {
++		data = append(data, []byte(line)...)
++		data = append(data, '\n')
++	}
++	return data
++}
++
++func extractBaseCall(input string) string {
++	parts := strings.Split(input, "$")
++	if len(parts) > 0 {
++		return parts[0]
++	}
++	return input
++}
++
++func writeProg(lines []string, outFile string) {
++	// create output fd
++	out, err := os.Create(outFile)
++	if err != nil {
++		log.Fatalf("Error creating output file: %v", err)
++	}
++	defer out.Close()
++
++	for _, line := range lines {
++		// write to output fd
++		_, err := fmt.Fprintln(out, line)
++		if err != nil {
++			log.Fatalf("Error writing to output file: %v", err)
++		}
++	}
++}
++
++// Function to split the string into words and calculate term frequency
++func stringToTermFrequency(str string) map[string]float64 {
++	termFreq := make(map[string]float64)
++	words := strings.Fields(str)
++	for _, word := range words {
++		termFreq[word]++
++	}
++	return termFreq
++}
++
++// Function to calculate the dot product of two term frequencies
++func dotProduct(tf1, tf2 map[string]float64) float64 {
++	var dot float64
++	for word, freq := range tf1 {
++		if freq2, exists := tf2[word]; exists {
++			dot += freq * freq2
++		}
++	}
++	return dot
++}
++
++// Function to calculate the magnitude of a term frequency vector
++func magnitude(tf map[string]float64) float64 {
++	var mag float64
++	for _, freq := range tf {
++		mag += freq * freq
++	}
++	return math.Sqrt(mag)
++}
++
++// Function to calculate cosine similarity. The more similar, the more close to 1
++// Use lower case
++func cosineSimilarity(str1, str2 string) float64 {
++	str1 = strings.ToLower(str1)
++	str2 = strings.ToLower(str2)
++	s1 := strings.ReplaceAll(str1, "$", " ")
++	s1 = strings.ReplaceAll(s1, "_", " ")
++	s2 := strings.ReplaceAll(str2, "$", " ")
++	s2 = strings.ReplaceAll(s2, "_", " ")
++	tf1 := stringToTermFrequency(s1)
++	tf2 := stringToTermFrequency(s2)
++	dot := dotProduct(tf1, tf2)
++	mag1 := magnitude(tf1)
++	mag2 := magnitude(tf2)
++	if mag1 == 0 || mag2 == 0 {
++		return 0
++	}
++	return dot / (mag1 * mag2)
++}
++
++// Function to get max k similar
++func maxKSim(src string, dsts []string, k int) (kSims []string) {
++	similarities := make(map[string]float64)
++
++	for _, dst := range dsts {
++		similarity := cosineSimilarity(src, dst)
++		similarities[dst] = similarity
++	}
++
++	// Custom sorting function to sort by similarity in descending order
++	var sortedDsts []string
++	for dst := range similarities {
++		sortedDsts = append(sortedDsts, dst)
++	}
++
++	sort.Slice(sortedDsts, func(i, j int) bool {
++		return similarities[sortedDsts[i]] > similarities[sortedDsts[j]]
++	})
++
++	if k <= len(sortedDsts) {
++		return sortedDsts[:k]
++	}
++	return sortedDsts
++}
++
++func replaceCharAtIndex(input string, j int, wantChar string) string {
++	if j < 0 || j > len(input) {
++		return input // Invalid index, return the original string
++	}
++
++	if j == len(input) {
++		return input + wantChar
++	}
++
++	// Convert string to rune slice
++	runes := []rune(input)
++
++	// Update the desired index
++	runes[j] = []rune(wantChar)[0]
++
++	// Convert back to string
++	modifiedString := string(runes)
++
++	return modifiedString
++}
++
++func fixUnbalancedParentheses(input string) string {
++	var stack []rune
++	var result strings.Builder
++
++	for _, char := range input {
++		if char == '(' || char == '{' {
++			stack = append(stack, char)
++		} else if char == ')' || char == '}' {
++			if len(stack) > 0 && isMatchingPair(stack[len(stack)-1], char) {
++				stack = stack[:len(stack)-1]
++			} else {
++				// Unbalanced right parenthesis, add a corresponding left parenthesis
++				left := getMatchingLeft(char)
++				result.WriteRune(left)
++				stack = append(stack, left)
++			}
++		}
++
++		result.WriteRune(char)
++	}
++
++	// Add the corresponding right parentheses for unbalanced left parentheses
++	for i := len(stack) - 1; i >= 0; i-- {
++		result.WriteRune(getMatchingRight(stack[i]))
++	}
++
++	return result.String()
++}
++
++func isMatchingPair(left, right rune) bool {
++	return (left == '(' && right == ')') || (left == '{' && right == '}')
++}
++
++func getMatchingLeft(right rune) rune {
++	if right == ')' {
++		return '('
++	} else if right == '}' {
++		return '{'
++	}
++	return 0
++}
++
++func getMatchingRight(left rune) rune {
++	if left == '(' {
++		return ')'
++	} else if left == '{' {
++		return '}'
++	}
++	return 0
++}
+diff --git a/tools/syz-validator/syz-validator.go b/tools/syz-validator/syz-validator.go
+new file mode 100644
+index 0000000..0161601
+--- /dev/null
++++ b/tools/syz-validator/syz-validator.go
+@@ -0,0 +1,220 @@
++// Build:
++// Just make
++
++// TODO
++// Add invalid types for each invalid prog
++
++package main
++
++import (
++	"flag"
++	"fmt"
++	"io"
++	"log"
++	"os"
++	"path/filepath"
++	"time"
++
++	"github.com/google/syzkaller/pkg/osutil"
++	"github.com/google/syzkaller/prog"
++	_ "github.com/google/syzkaller/sys"
++)
++
++func main() {
++	start := time.Now()
++	var (
++		flagOS   = flag.String("os", "linux", "target OS")
++		flagArch = flag.String("arch", "amd64", "target arch")
++		flagLog  = flag.String("log", "", "log file")
++	)
++	flag.Parse()
++	args := flag.Args()
++	if len(args) == 0 {
++		usage()
++	}
++
++	if *flagLog == "" {
++		log.SetOutput(os.Stdout)
++	} else {
++		logFile, err := os.OpenFile(*flagLog, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
++		if err != nil {
++			log.Fatal(err)
++		}
++		defer logFile.Close()
++		multiOut := io.MultiWriter(logFile, os.Stdout)
++		log.SetOutput(multiOut)
++	}
++
++	var target *prog.Target
++	target, err := prog.GetTarget(*flagOS, *flagArch)
++	if err != nil {
++		log.Fatalf("failed to find target: %v", err)
++	}
++
++	switch args[0] {
++	case "file":
++		if len(args) != 2 {
++			usage()
++		}
++		log.Printf("Start to verify the file: %v", args[1])
++		data, err := os.ReadFile(args[1])
++		if err != nil {
++			log.Fatalf("failed to read file %v: %v", args[1], err)
++		} else {
++			bad := checkProgram(target, data)
++			if bad {
++				log.Printf("Program is invalid!")
++			} else {
++				log.Printf("Program is valid!")
++			}
++		}
++
++	case "dir":
++		if len(args) != 2 && len(args) != 3 {
++			usage()
++		}
++		log.Printf("Start to verify the files in dir: %v", args[1])
++		var outDir string
++		if len(args) == 3 {
++			outDir = args[2]
++		} else {
++			outDir = ""
++		}
++		checkPrograms(target, args[1], outDir)
++	case "debug":
++		var outDir string
++		if len(args) == 1 {
++			outDir = "."
++		} else if len(args) == 2 {
++			outDir = args[1]
++		} else {
++			usage()
++		}
++		debug(target, outDir)
++	default:
++		usage()
++	}
++	elapsed := time.Since(start)
++	fmt.Println("Execution cost: ", elapsed)
++}
++
++func usage() {
++	fmt.Fprintf(os.Stderr, "usage: syz-validator -os <OS> -arch <ARCH> -log <log_path> [args...]\n")
++	fmt.Fprintf(os.Stderr, "       syz-validator file syzprog\n")
++	fmt.Fprintf(os.Stderr, "       syz-validator dir /dir/to/syzprogs [out_dir]\n")
++	fmt.Fprintf(os.Stderr, "       syz-validator debug [out_dir]\n")
++	os.Exit(1)
++}
++
++func checkProgram(target *prog.Target, data []byte) (bad bool) {
++	if len(data) == 0 {
++		log.Printf("Program is blank")
++		return true
++	}
++	p, err := target.Deserialize(data, prog.NonStrict)
++	if err != nil {
++		log.Printf("Deserialize error: %v", err)
++		return true
++	}
++	if len(p.Calls) > prog.MaxCalls {
++		log.Printf("Out of MaxCalls")
++		return true
++	}
++	return false
++}
++
++func checkPrograms(target *prog.Target, dir, outDir string) (badCnt int32) {
++	files, err := os.ReadDir(dir)
++	if err != nil {
++		log.Fatalf("failed to read dir: %v", err)
++		return -1
++	}
++
++	if outDir != "" {
++		_, err = os.Stat(outDir)
++		if os.IsNotExist(err) {
++			// directory does not exist, create it
++			err = os.MkdirAll(outDir, 0755)
++			if err != nil {
++				log.Printf("[DEBUG] create dir %s error: %v", outDir, err)
++				return
++			}
++		}
++	}
++
++	badCnt = 0
++
++	for _, file := range files {
++		data, err := os.ReadFile(filepath.Join(dir, file.Name()))
++		if err != nil {
++			log.Fatalf("failed to read file %v: %v", file.Name(), err)
++		} else {
++			bad := checkProgram(target, data)
++			if bad {
++				badCnt += 1
++				log.Printf("%v is invalid!", file.Name())
++			} else if outDir != "" {
++				outFile := filepath.Join(outDir, file.Name())
++				// log.Printf("%v is valid!", file.Name())
++				osutil.WriteFile(outFile, data)
++			}
++		}
++	}
++	log.Printf("Invalid programs %v / %v, Syntax Valid Rate: %.2f%%", badCnt, len(files), (float64(len(files)-int(badCnt)) / float64(len(files)) * 100))
++	return badCnt
++}
++
++func debug(target *prog.Target, outDir string) {
++	if outDir != "" {
++		_, err := os.Stat(outDir)
++		if os.IsNotExist(err) {
++			// directory does not exist, create it
++			err = os.MkdirAll(outDir, 0755)
++			if err != nil {
++				log.Printf("[DEBUG] create dir %s error: %v", outDir, err)
++				return
++			}
++		}
++	}
++	debugLogName := "debug.log"
++	debugLogPath := filepath.Join(outDir, debugLogName)
++	f, err := os.OpenFile(debugLogPath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
++	if err != nil {
++		log.Fatal(err)
++	}
++	defer f.Close()
++	multiOut := io.MultiWriter(f, os.Stdout)
++	log.SetOutput(multiOut)
++
++	f2, err := os.OpenFile(filepath.Join(outDir, "builtin_syscalls.txt"), os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
++	if err != nil {
++		log.Fatal(err)
++	}
++	defer f2.Close()
++
++	// var call_map map[string]int32
++	call_map := make(map[string]int32)
++	for i, c := range target.Syscalls {
++		c.ID = i
++		r := ""
++		if c.Ret != nil {
++			r = c.Ret.Name()
++		} else {
++			r = "<nil>"
++		}
++
++		if _, ok := call_map[c.CallName]; ok {
++			call_map[c.CallName] += 1
++		} else {
++			call_map[c.CallName] = 1
++			f2.WriteString(c.CallName + "\n")
++		}
++
++		log.Printf("ID=%v, NR=%v, Name=%v, CallName=%v, MissingArgs=%v, Ret.Name()=%v", c.ID, c.NR, c.Name, c.CallName, c.MissingArgs, r)
++		for _, arg := range c.Args {
++			log.Printf("\targ.Name=%v, arg.Type=%v, arg.HasDirection=%v, arg.Direction=%v", arg.Name, arg.Type, arg.HasDirection, arg.Direction)
++		}
++	}
++	log.Printf("Summary: Call Amount = %v, Variant Amount = %v", len(call_map), len(target.Syscalls))
++	fmt.Printf("Write results to %v\n", outDir)
++}

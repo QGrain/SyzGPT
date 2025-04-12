@@ -1,0 +1,6 @@
+syz_emit(user_desc[0])
+syz_emit(user_desc[1])
+syz_fault_inject(get_thread_area, "fault")
+syz_async(get_thread_area)
+get_thread_area(0, user_desc[0])
+syz_emit(user_desc[0])

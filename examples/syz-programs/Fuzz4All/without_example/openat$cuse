@@ -1,0 +1,8 @@
+openat$cuse(0, "/dev/cuse", O_RDWR|O_NONBLOCK)
+openat$cuse(0, "/dev/cuse", O_RDWR|O_NONBLOCK)
+fd0 = openat$cuse(0, "/dev/cuse", O_RDWR|O_NONBLOCK)
+fd1 = openat$cuse(fd0, "/dev/cuse", O_RDWR|O_NONBLOCK)
+ioctl(fd1, CUSE_INIT, 0)
+ioctl(fd1, CUSE_INIT, 0)
+ioctl(fd1, CUSE_INIT, 0)
+ioctl(fd1, CUSE_INIT, 0)

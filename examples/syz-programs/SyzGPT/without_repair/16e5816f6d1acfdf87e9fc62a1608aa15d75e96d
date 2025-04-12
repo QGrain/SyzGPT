@@ -1,0 +1,2 @@
+syz_open_dev("/dev/sched", 0x0, 0x2)
+syz_ioctl$SCHED_GETATTR(0xffffffffffffff9c, 0x7f0000002000)

@@ -1,0 +1,1 @@
+r0 = sched_getscheduler(0x0)

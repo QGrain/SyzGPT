@@ -1,0 +1,5 @@
+resource sigset = alloc(SIGSET_SIZE)
+store(sigset, 0, 1)
+store(sigset, 4, 2)
+rt_sigreturn(sigset)
+print_result()

@@ -1,0 +1,1 @@
+semget$private(0, 0, 0)

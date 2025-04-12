@@ -1,0 +1,10 @@
+r0 = alloc(4)
+r1 = alloc(8)
+r2 = alloc(16)
+*(int32*)r0 = 0x12345678
+*(int64*)r1 = 0xdeadbeef
+*(int8*)r2 = 0x01
+syz_usb_connect$uac1(r0, r1, r2, 0, 0)
+free(r0)
+free(r1)
+free(r2)

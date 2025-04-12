@@ -1,0 +1,2 @@
+mem = alloc(addr, 0x1000)
+ret = mlock(mem, 0x1000)

@@ -1,0 +1,7 @@
+r0 = socket$inet_tcp(0x2, 0x0)
+bind$inet(r0, &(0x7f0000000100), 0x10)
+listen(r0, 0x5)
+accept(r0, &(0x7f0000000500), &(0x7f0000000504))
+getsockopt$inet_tcp_int(r0, 0x6, 0x1, &(0x7f0000000600), &(0x7f0000000604))
+close(r0)
+bpf$MAP_DELETE_BATCH(0x0, &(0x7f0000000800), 0x1)

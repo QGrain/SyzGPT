@@ -1,0 +1,3 @@
+addrbuf = alloc(addrlen)
+memcpy(addrbuf, data, addrlen)
+connect$802154_dgram(fd1, addrbuf, addrlen)

@@ -1,0 +1,1 @@
+ret = fallocate(fd, FALLOC_FL_KEEP_SIZE|FALLOC_FL_PUNCH_HOLE, 0, 0x1000)

@@ -1,0 +1,1 @@
+openat$khugepaged_scan(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)

@@ -1,0 +1,2 @@
+syz_open_dev(0);
+set_thread_area(&thread_area);

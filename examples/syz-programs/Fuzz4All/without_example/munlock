@@ -1,0 +1,4 @@
+addr = alloc(SIZE)
+memset(addr, 0xAA, SIZE)
+munlock(addr, SIZE)
+print("Memory region unlocked successfully")

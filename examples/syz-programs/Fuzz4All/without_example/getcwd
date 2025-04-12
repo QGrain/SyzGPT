@@ -1,0 +1,3 @@
+getcwd(&cwd)
+print_string("Current working directory: ")
+print_string(cwd[:])

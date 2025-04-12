@@ -1,0 +1,1 @@
+timerfd = timerfd_create(CLOCK_MONOTONIC)

@@ -1,0 +1,5 @@
+pipe(fd)
+fcntl(fd[0], F_SETFL, O_NONBLOCK)
+read(fd[0], 0, 0)
+close(fd[1])
+write(fd[1], 0, 0)

@@ -1,0 +1,2 @@
+setrlimit(RLIMIT_NOFILE, &(struct rlimit){100, 100});
+getrlimit(RLIMIT_NOFILE, &(struct rlimit){0, 0});

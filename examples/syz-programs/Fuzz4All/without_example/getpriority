@@ -1,0 +1,3 @@
+ptr(pid, "int32")
+getpriority(PRIO_PROCESS, pid) = prio_result
+print("The priority of the process is:", prio_result)

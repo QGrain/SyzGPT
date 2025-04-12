@@ -1,0 +1,7 @@
+r0 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r1 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+r2 = read(r0, &(0x7f0000002000), 0x100)
+r3 = syz_open_dev$loop(&(0x7f00000011c0), 0x0, 0x0)
+r4 = openat$6lowpan_control(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+r5 = read(r3, &(0x7f0000003000), 0x100)
+r6 = rseq(&(0x7f0000002000), r2, &(0x7f0000003000), r5)

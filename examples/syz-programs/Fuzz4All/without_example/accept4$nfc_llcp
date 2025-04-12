@@ -1,0 +1,4 @@
+accept4$nfc_llcp(fd0, addr0, addrlen0, flags0)
+fd0 = open("/dev/nfc", O_RDWR|O_NONBLOCK)
+addr0 = alloc(16)
+addrlen0 = alloc(sizeof(int))

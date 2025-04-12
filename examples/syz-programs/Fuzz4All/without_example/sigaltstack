@@ -1,0 +1,1 @@
+sigaltstack(&syz_arg1, NULL);

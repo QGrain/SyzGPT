@@ -1,0 +1,2 @@
+fill(key_value, 16)
+r0 = add_key$user(key_name, key_value, 16, 0)

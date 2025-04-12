@@ -1,0 +1,3 @@
+r0 = timer_create(CLOCK_REALTIME, &(0x7f00000011c0), &(0x7f00000011c0))
+r1 = timer_settime(r0, TIMER_ABSTIME, &(0x7f00000000c0), &(0x7f00000000c0))
+r2 = timer_gettime(r0, &(0x7f00000000c0))

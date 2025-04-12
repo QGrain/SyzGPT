@@ -1,0 +1,1 @@
+faccessat2(dirfd, pathname_ptr, F_OK|R_OK, 0)

@@ -1,0 +1,1 @@
+fd = creat(file_path, file_permissions);

@@ -1,0 +1,4 @@
+fremovexattr$var1 = xattr_key();
+fremovexattr$var2 = xattr_value();
+fsetxattr(fd, fremovexattr$var1, fremovexattr$var2, 10);
+fremovexattr(fd, fremovexattr$var1);

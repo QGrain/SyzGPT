@@ -1,0 +1,4 @@
+r0 = syz_io_uring_setup(0x1000, &(0x7f0000000140), &(0x7f00000001c0), &(0x7f0000000000))
+r1 = syz_io_uring_register(r0, 0x1, 0x0, 0x0)
+r2 = syz_io_uring_enter(r0, 0x1, 0x0, 0x0, &(0x7f0000000000), 0x0)
+syz_io_uring_complete(r0, r2)

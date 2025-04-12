@@ -1,0 +1,1 @@
+set_mempolicy_home_node(0, 0, 0)

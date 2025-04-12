@@ -1,0 +1,4 @@
+buffer := alloc(4096)
+fd := open("/dev/snd", O_RDWR)
+ioctl(fd, SNDCTL_DSP_NONBLOCK, 1)
+ret := read$snddsp(fd, buffer, len(buffer))

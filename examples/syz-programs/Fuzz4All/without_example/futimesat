@@ -1,0 +1,2 @@
+futimesat(fd, path, &times)
+print("futimesat syscall executed successfully!")

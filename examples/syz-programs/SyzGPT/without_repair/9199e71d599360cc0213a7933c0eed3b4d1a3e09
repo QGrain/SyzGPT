@@ -1,0 +1,1 @@
+r0 = membarrier(0x1, 0x0)

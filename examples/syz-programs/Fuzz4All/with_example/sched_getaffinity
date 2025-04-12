@@ -1,0 +1,1 @@
+r0 = sched_getaffinity(pid, sizeof(mask), &mask);

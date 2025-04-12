@@ -1,0 +1,5 @@
+r0 = socket$inet(0x2, 0x2, 0x0)
+connect(r0, &(0x7f0000000100)={0x2, 0x0, @loopback}, 0x10)
+write(r0, &AUTO='SYZ_EXECUTOR_MAGIC', 0x10)
+close(r0)
+syz_open_dev$tty1()

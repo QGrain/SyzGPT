@@ -1,0 +1,2 @@
+r0 = openat$9("/dev/sda", 0x0, 0x0)
+lsetxattr(r0, "user.attr", "value", 0x5, 0x0)

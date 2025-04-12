@@ -1,0 +1,1 @@
+ioctl$vim2m_VIDIOC_QUERYCAP(0x1, &(struct v4l2_capability){ .driver = &(char[16])"syzkaller", .card = &(char[32])"syzcard", .bus_info = &(char[32])"syzbus", .version = 0x1, .capabilities = 0x10, .device_caps = 0x20 });

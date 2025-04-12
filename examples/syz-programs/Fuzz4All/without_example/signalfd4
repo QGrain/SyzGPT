@@ -1,0 +1,6 @@
+resource signalset = sigset()
+sigaddset(signalset, SIGINT)
+sigaddset(signalset, SIGTERM)
+rt_sigprocmask(SIG_BLOCK, signalset, 0x0, sizeof(signalset))
+resource signalfd = signalfd4(-1, signalset, SFD_NONBLOCK | SFD_CLOEXEC)
+close(signalfd)

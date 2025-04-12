@@ -1,0 +1,1 @@
+ioctl$SNDRV_PCM_IOCTL_PREPARE(fd[0], AUTO, 0x100, ptr[in, AUTO], ptr[out, AUTO])

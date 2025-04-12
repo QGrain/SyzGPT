@@ -1,0 +1,1 @@
+r0 = syz_open_dev$tty1(0, 0, 0)

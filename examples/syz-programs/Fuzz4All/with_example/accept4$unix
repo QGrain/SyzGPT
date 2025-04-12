@@ -1,0 +1,5 @@
+r0 = socket$inet_tcp(0x2, 0x0)
+bind$inet(r0, &(0x7f00000000c0), 0x10)
+listen(r0, 0x5)
+r1 = accept4$unix(r0, &(0x7f00000011c0), &(0x7f00000000c0), 0x2)
+close(r1)

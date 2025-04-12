@@ -1,0 +1,1 @@
+sock = accept$netrom(sock, &addr, sizeof(addr));
