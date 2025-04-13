@@ -1,5 +1,7 @@
 # SyzGPT: Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15206336.svg)](https://doi.org/10.5281/zenodo.15206336)
+
 > We are still updating this project and formatting the documentations for Artifact Evaluation.
 
 The implementation of the paper titled "Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG". For more details about SyzGPT, please refer to [our paper]() from ISSTA'25. We also provide a [README_for_review](./README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
@@ -238,11 +240,7 @@ Simple as migrating to Syzkaller-like, as long as you are familiar with RUST.
 
 We also prepare a instruction for migrating to MOCK, please refer to the implementation instruction in [experiments/MOCK/README.md](experiments/MOCK/README.md).
 
-## 5 For Paper Review
-
-To better understand our work, you can refer to [README_for_review.md](./README_for_review.md).
-
-## 6 Citation
+## 5 Citation
 
 ```bash
 # TBD
