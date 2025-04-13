@@ -1,6 +1,6 @@
 # Fine-tune and Serve CodeLlama-syz
 
-We will also release our fine-tuned model "CodeLlama-syz-7b" on Huggingface later.
+We have repleased a toy version of CodeLlama-syz at Huggingface, named [CodeLlama-syz-toy](https://huggingface.co/zzra1n/CodeLlama-syz-toy). And we plan to build a comprehensive and high-quality dataset of Syz-program generation in Q&A format and release the formal version of CodeLlama-syz in the future.
 
 ## 1 Instruct Fine-Tune
 

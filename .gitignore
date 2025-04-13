@@ -9,7 +9,6 @@ corpus/*
 plot/tmp/
 plot/**/*.png
 **/*.eps
-**/*.png
 **/*.prog
 
 **/private_config.py
