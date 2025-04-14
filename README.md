@@ -240,7 +240,11 @@ Simple as migrating to Syzkaller-like, as long as you are familiar with RUST.
 
 We also prepare a instruction for migrating to MOCK, please refer to the implementation instruction in [experiments/MOCK/README.md](experiments/MOCK/README.md).
 
-## 5 Citation
+## 5 Credit
+
+Thanks to Zhiyu Zhang ([@QGrain](https://github.com/QGrain)) and Longxing Li ([@x0v0l](https://github.com/x0v0l)) for their valuable contributions to this project.
+
+## 6 Citation
 
 ```bash
 # TBD
