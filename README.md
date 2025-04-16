@@ -4,9 +4,9 @@
 
 > We are still updating this project and formatting the documentations for Artifact Evaluation.
 
-The implementation of the paper titled "Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG". For more details about SyzGPT, please refer to [our paper]() from ISSTA'25. We also provide a [README_for_review](./README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
+This is the implementation of paper titled "**Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG**". For more details about SyzGPT, please refer to [our paper]() from ISSTA'25. We also provide a [README_for_review](./docs/README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
 
-SyzGPT is an LLM-assisted kernel fuzzing framework for automatically generating effective seeds for low frequency syscalls (LFS). Linux kernel provides over 360 system calls and Syzkaller defines more than 4400 specialized calls encapsulated for specific purposes of system calls. However, many of these syscalls (called LFS) are hard to be consistently covered due to the complex dependencies and mutation uncertainty, leaving the testing space. SyzGPT can automatically extract and augment syscall dependencies for these LFS and generate effective seeds with dependency-based RAG (DRAG).
+**Quick Glance**: SyzGPT is an LLM-assisted kernel fuzzing framework for automatically generating effective seeds for low frequency syscalls (LFS). Linux kernel provides over [360 system calls](./data/builtin_syscalls.txt) and Syzkaller defines more than [4400 specialized calls](./data/builtin_variants.txt) encapsulated for specific purposes of system calls. However, many of these syscalls (called [LFS](./docs/LFS.md)) are hard to be consistently covered due to the complex dependencies and mutation uncertainty, leaving the testing space. SyzGPT can automatically extract and augment syscall dependencies for these LFS and generate effective seeds with dependency-based RAG (DRAG). Our evaluation shows that SyzGPT can improve overall code coverage and syscall coverage, and find LFS-induced vulnerabilities. We also release a toy model [🤗CodeLlama-syz-toy](https://huggingface.co/zzra1n/CodeLlama-syz-toy) specialized for Syz-program.
 
 **Project Structure**
 
@@ -30,7 +30,7 @@ SyzGPT is an LLM-assisted kernel fuzzing framework for automatically generating 
 ├── scripts/            # Some useful scripts
 ...
 ├── config.py           # Configs, need to be copied as private_config.py
-├── syzgpt_generator.py # Main entry of SyzGPT-generator
+└── syzgpt_generator.py # Main entry of SyzGPT-generator
 ```
 
 ## 1 Setup
@@ -84,9 +84,11 @@ git clone https://github.com/QGrain/SyzGPT.git
 
 ## 2 Usage
 
-We have open-souced the augmented syscall depencies at [data/dependencies](data/dependencies/). So you can directly run SyzGPT without extracting syscall dependency.
+SyzGPT can serve as a standalone seed generator through SyzGPT-generator (**Section 2.1**). It can also cooperate with SyzGPT-fuzzer for kernel fuzzing (**Section 2.2**).
 
-You can also extract the syscall dependencies on your own, refer to **2.3 Extract and augment syscall dependency**.
+We have open-souced the augmented syscall depencies at [data/dependencies](data/dependencies/). So you can directly run SyzGPT without extracting syscall dependency. You can also extract the syscall dependencies on your own (**Section 2.3**).
+
+For any questions in using SyzGPT, you may refer to [Troubleshooting](./docs/Troubleshooting.md) or feel free to raise an issue.
 
 ### 2.1 Run SyzGPT for seed generation [⏰~30min]
 
@@ -245,6 +247,8 @@ We also prepare a instruction for migrating to MOCK, please refer to the impleme
 Thanks to Zhiyu Zhang ([@QGrain](https://github.com/QGrain)) and Longxing Li ([@x0v0l](https://github.com/x0v0l)) for their valuable contributions to this project.
 
 ## 6 Citation
+
+In case you would like to cite SyzGPT, you may use the following BibTex entry:
 
 ```bash
 # TBD

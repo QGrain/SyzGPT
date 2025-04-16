@@ -118,7 +118,7 @@ python ./analyzer/corpus_analyzer.py analyze -d ./examples/syz-programs/SyzGPT/w
 
 Finally, SyzGPT can cover 96.89% more LFSC than SOTAs on average. We also exhibit the word cloud of the **covered LFSC through SyzGPT**:
 
-![word_cloud_of_covered_LFSC_by_SyzGPT](./data/wordcloud_covered_LFSC.png)
+![word_cloud_of_covered_LFSC_by_SyzGPT](../data/wordcloud_covered_LFSC.png)
 
 
 
