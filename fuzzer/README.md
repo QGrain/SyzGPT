@@ -54,6 +54,7 @@ We have introduced the following useful options in SyzGPT-fuzzer:
 - `-repair`: Repair the enriched seeds with our heuristic rules before loading.
 - `-dump`: Dump every executed program and its coverage during fuzzing at `WORKDIR/dump/`.
 
+And we provide two example fuzzing configs at [Syzkaller.cfg](./Syzkaller.cfg) and [SyzGPT.cfg](./SyzGPT.cfg).
 
 Recommend to run fuzzing inside a screen or tmux:
 
@@ -68,14 +69,15 @@ tmux new -s v6-1-SyzGPT-fuzzer
 
 ```bash
 # you can specify the CPUs if you like
-taskset -c 0-7 ./bin/syz-manager -config /root/SyzGPT/fuzzer/cfgdir/syzkaller.cfg -bench benchdir/syzkaller.log -statcall -backup 24h
+cd /root/fuzzers/SyzGPT-fuzzer
+taskset -c 0-7 ./bin/syz-manager -config cfgdir/Syzkaller.cfg -bench benchdir/Syzkaller.log -statcall -backup 24h
 ```
 
 **Run SyzGPT-fuzzer with enriched seeds**:
 
 ```bash
 # suppose the WORKDIR in SyzGPT.cfg is /root/fuzzers/SyzGPT-fuzzer/workdir/v6-1/SyzGPT
-taskset -c 8-15 ./bin/syz-manager -config /root/SyzGPT/fuzzer/cfgdir/SyzGPT.cfg -bench benchdir/SyzGPT.log -statcall -backup 24h -enrich WORKDIR/generated_corpus -period 1h -repair
+taskset -c 8-15 ./bin/syz-manager -config cfgdir/SyzGPT.cfg -bench benchdir/SyzGPT.log -statcall -backup 24h -enrich WORKDIR/generated_corpus -period 1h -repair
 ```
 
 ## 3 Check Results

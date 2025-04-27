@@ -147,8 +147,9 @@ We provide a simplest running instruction here. For detailed usage, please refer
 1. Run SyzGPT-fuzzer:
 
 ```bash
-# cd the location where you setup SyzGPT-fuzzer
-taskset -c 8-15 ./bin/syz-manager -config /root/SyzGPT/fuzzer/cfgdir/SyzGPT.cfg -bench benchdir/SyzGPT.log -statcall -backup 24h -enrich WORKDIR/generated_corpus -period 1h -repair
+# cd /root/fuzzers/SyzGPT-fuzzer
+# e.g., WORKDIR=workdir/v6-1/SyzGPT
+taskset -c 8-15 ./bin/syz-manager -config cfgdir/SyzGPT.cfg -bench benchdir/SyzGPT.log -statcall -backup 24h -enrich WORKDIR/generated_corpus -period 1h -repair
 ```
 
 Explanation of Parameters (refer to [fuzzer/README.md](fuzzer/README.md) for more details):

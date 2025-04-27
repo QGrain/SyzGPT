@@ -213,13 +213,20 @@ def prob(thres, m):
 
 def get_case_insensitive_path(base_path: str, filename: str) -> str:
     # compatible with the uppercase and non-uppercase of the filename (e.g., enabledCalls and EnabledCalls)
+    if ord(filename[0]) >= 65 and ord(filename[0]) <= 90:
+        second_filename = filename[0].lower() + filename[1:]
+    elif ord(filename[0]) >= 97 and ord(filename[0]) <= 122:
+        second_filename = filename[0].upper() + filename[1:]
+    else:
+        raise ValueError("Invalid filename: %s" % filename)
+
     candidates = [
         os.path.join(base_path, filename),
-        os.path.join(base_path, filename.capitalize())
+        os.path.join(base_path, second_filename)
     ]
-    for path in candidates:
-        if os.path.isfile(path):
-            return path
+    for fpath in candidates:
+        if os.path.isfile(fpath):
+            return fpath
     return candidates[0]  # return specified base_path+filename  by default
 
 
