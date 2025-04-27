@@ -7,7 +7,7 @@ from time import time
 def get_args():
     parser = argparse.ArgumentParser(description='Merge syscall dependencies')
     parser.add_argument('-d', '--gen_dir', type=str, nargs='+', help='directories to dependencies gen1 and gen2')
-    parser.add_argument('-o', '--out_dir', type=str, help='write merge result to out_dir, default ./call_dependencies/')
+    parser.add_argument('-o', '--out_dir', type=str, help='write merge result to out_dir, default ../data/dependencies/call_level/')
 
     args = parser.parse_args()
     return args
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     # comb = './call_dependencies_combine'
     assert(len(args.gen_dir) == 2)
     gen1, gen2 = args.gen_dir[0], args.gen_dir[1]
-    comb = args.out_dir or './call_dependencies'
+    comb = args.out_dir or '../data/dependencies/call_level/'
     check_dir(comb)
 
     for fn in os.listdir(gen1):

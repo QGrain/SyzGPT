@@ -128,7 +128,7 @@ def read_prog(prog_path):
     with open(prog_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
-            if line[0] == '#':
+            if line and line[0] == '#':
                 continue
             prog_str += line
     return prog_str.strip()
@@ -163,3 +163,48 @@ def init_logger(log_file='default_{time:YYYY-MM-DD_HH-mm-ss}.log', level='DEBUG'
     )
 
 
+def replace_unprintables(s):
+    new_s = ''
+    for c in s:
+        if not c.isprintable() and c != chr(0x0a):
+            new_s += '\\x{:02x}'.format(ord(c))
+        else:
+            new_s += c
+    return new_s
+
+
+def extract_program_content(response_text):
+    '''For the generation results of local LLMs'''
+    prog_content = ''
+    prog_start = 0
+    for line in response_text.split('\n'):
+        line = line.strip()
+        if line == '' or line[0] == '#':
+            continue
+        if '(' in line or ')' in line:
+                if prog_start == 0:
+                    prog_start = 1
+                prog_content += '%s\n'%line
+        elif prog_start == 1:
+            break
+        if line[:5] == 'User:':
+            break
+    return prog_content
+
+
+def extract_programs(response_text, syscall, out_dir, suffix, force_fn=None, filter_for_local=False):
+    check_dir(out_dir)
+    if filter_for_local == True:
+        response_text = extract_program_content(response_text)
+    response_text = response_text.strip()
+    if force_fn:
+        with open(os.path.join(out_dir, force_fn), 'w', encoding='utf-8') as f:
+            f.write('%s'%response_text)
+        return
+    if suffix != '.json':
+        new_fn = syscall.replace('$', '_')
+        with open(os.path.join(out_dir, '%s%s'%(new_fn, suffix)), 'w', encoding='utf-8') as f:
+            f.write('%s'%response_text)
+    else:
+        with open(os.path.join(out_dir, '%s%s'%(syscall, suffix)), 'w', encoding='utf-8') as f:
+            json.dump(response_text, f, indent=4)

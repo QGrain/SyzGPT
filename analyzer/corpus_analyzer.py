@@ -1,4 +1,7 @@
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from generator.utils import read_prog
 import re
 import json
 import argparse
@@ -83,23 +86,6 @@ def analyze_all(dir, build_reverse=False):
         with open(reverse_index_fn, 'w') as f:
             json.dump(reverse_index, f, indent=4)
     return syscalls, seq_lens, variant_cnts
-
-
-def read_prog(prog_path):
-    prog_str = ''
-    with open(prog_path, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-        for line in lines:
-            if line[0] == '#':
-                continue
-            prog_str += line
-    return prog_str.strip()
-
-
-def count_tokens_for_model(string, model_name):
-    '''Return the number of tokens in a text string, passing GPT model name'''
-    enc = tiktoken.encoding_for_model(model_name)
-    return len(enc.encode(string))
 
 
 def stat_dict(d, to_file=None):

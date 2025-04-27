@@ -1,6 +1,6 @@
-from generator.program_generator import *
+from generator.utils import *
+from generator.gpt_wrapper import *
 from generator.prompts import *
-from generator.program_repair import *
 from analyzer.corpus_analyzer import *
 import subprocess
 import time
@@ -338,14 +338,14 @@ if __name__ == '__main__':
     
     # load call dependencies
     call_depend = {}
-    with open(os.path.join(data_dir, 'call_dependencies/call_dependencies_all.json'), 'r') as f:
+    with open(os.path.join(data_dir, 'dependencies/call_level/call_dependencies_all.json'), 'r') as f:
         call_depend = json.load(f)
         
     # load syz dependencies
     syz_depend = {}
-    syz_depend_path = 'syz_dependencies/syz_depend_inout.json'
+    syz_depend_path = 'dependencies/syz_level/Syzkaller_deps/syz_depend_inout.json'
     if args.KGPT:
-        syz_depend_path = 'KernelGPT_syz_dependencies/syz_depend_inout.json'
+        syz_depend_path = 'dependencies/syz_level/KernelGPT_deps/syz_depend_inout.json'
     with open(os.path.join(data_dir, syz_depend_path), 'r') as f:
         syz_depend = json.load(f)
     

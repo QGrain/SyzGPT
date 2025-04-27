@@ -202,7 +202,7 @@ def extract_dependencies(builtin_syscalls_path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Extract syz-level dependencies by resource-based analysis")
     parser.add_argument("-b", "--builtin_syscalls", type=str, default="../data/builtin_syscalls.json", help="path to builtin_syscalls.json")
-    parser.add_argument("-o", "--out_dir", type=str, default="../data/syz_dependencies", help="directory to output results")
+    parser.add_argument("-o", "--out_dir", type=str, default="../data/dependencies/syz_level/Syzkaller_deps/", help="directory to output results")
     args = parser.parse_args()
 
     d_depend_inout, d_depend_inout_inin = extract_dependencies(args.builtin_syscalls)

@@ -1,5 +1,6 @@
 import random
 import os
+from .utils import read_prog
 from math import ceil
 
 
@@ -238,17 +239,6 @@ def random_choose_prog(multi_depend, builtin_syscalls, reverse_index, depend_typ
         if len(l2_progs) == each_num:
             break
     return l1_progs, l2_progs
-
-
-def read_prog(prog_path):
-    prog_str = ''
-    with open(prog_path, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-        for line in lines:
-            if line and line[0] == '#':
-                continue
-            prog_str += line
-    return prog_str.strip()
 
 
 def search_programs(variant, reverse_index):

@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from generator.program_generator import *
+from generator.utils import *
 # from analyzer.corpus_analyzer import *
 import time
 import hashlib

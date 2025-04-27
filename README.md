@@ -193,7 +193,7 @@ python parse_builtin_syscalls.py -s ~/fuzzers/SyzGPT-fuzzer -o ../data/
 
 ```bash
 # it will generate syz-level dependencies at -o
-python extract_syz_dependencies.py -b ../data/builtin_syscalls.json -o ../data/syz_dependencies
+python extract_syz_dependencies.py -b ../data/builtin_syscalls.json -o ../data/dependencies/syz_level/Syzkaller_deps/
 ```
 
 **Extract system call level dependency [⏰~1h]**:

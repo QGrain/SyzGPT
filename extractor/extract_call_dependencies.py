@@ -15,7 +15,7 @@ except ImportError:
     from config import *
 
 
-def extract_programs(response_text, syscall, out_dir, tag, method):
+def extract_outputs(response_text, syscall, out_dir, tag, method):
     response_text = response_text.strip()
     if method == 1:
         dir_path = os.path.join(out_dir, tag)
@@ -174,7 +174,7 @@ def generate_step_by_step(syscall, append_tag='', dumb=False):
                 gen1_result = gen1_result + line
                 key, value = line.split(':', 1)
                 info_dict1[key.strip()] = value.strip()
-            extract_programs(info_dict1, syscall, OUT_DIR, tag+'_gen1', 2)
+            extract_outputs(info_dict1, syscall, OUT_DIR, tag+'_gen1', 2)
             
             # gen result 2. this result is more creative than 1. use gpt's kmowledge to gen and revise
             # If all items are "null", then gen again. max try: 2
@@ -202,14 +202,14 @@ def generate_step_by_step(syscall, append_tag='', dumb=False):
                 key, value = line.split(':', 1)
                 info_dict2[key.strip()] = value.strip()
 
-            extract_programs(info_dict2, syscall, OUT_DIR, tag+'_gen2', 2)
+            extract_outputs(info_dict2, syscall, OUT_DIR, tag+'_gen2', 2)
     
     except Exception as e:
         logger.exception('Exception occured: %s'%e)
 
     # save gpt responses
     try:
-        extract_programs(gen_results, syscall, OUT_DIR, tag, 1)
+        extract_outputs(gen_results, syscall, OUT_DIR, tag, 1)
     except Exception as e:
         logger.exception('Exception occured: %s'%e)
 
