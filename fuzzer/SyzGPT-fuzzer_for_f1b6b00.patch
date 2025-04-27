@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 69e63e4..9270c9d 100644
+index 69e63e4..95deec9 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -119,7 +119,7 @@ endif
@@ -7,7 +7,7 @@ index 69e63e4..9270c9d 100644
  
  all: host target
 -host: manager runtest repro mutate prog2c db upgrade
-+host: manager runtest repro mutate prog2c db upgrade validator syz-repair
++host: manager runtest repro mutate prog2c db upgrade validator repair
  target: fuzzer execprog stress executor
  
  executor: descriptions
@@ -18,7 +18,7 @@ index 69e63e4..9270c9d 100644
 +validator: descriptions
 +	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-validator github.com/google/syzkaller/tools/syz-validator
 +
-+syz-repair: descriptions
++repair: descriptions
 +	GOOS=$(HOSTOS) GOARCH=$(HOSTARCH) $(HOSTGO) build $(GOHOSTFLAGS) -o ./bin/syz-repair github.com/google/syzkaller/tools/syz-repair
 +
  upgrade: descriptions
@@ -82,7 +82,7 @@ index 2ca7210..7eaf266 100644
  
  	proc.fuzzer.addInputToCorpus(item.p, inputSignal, sig)
 diff --git a/syz-manager/manager.go b/syz-manager/manager.go
-index 4bb0dfa..ba6b2c0 100644
+index 4bb0dfa..93187a0 100644
 --- a/syz-manager/manager.go
 +++ b/syz-manager/manager.go
 @@ -41,11 +41,29 @@ import (
@@ -660,7 +660,7 @@ index 8d26130..0e832ba 100644
  	dstDB, err := db.Open(file, false)
  	if err != nil {
 diff --git a/tools/syz-execprog/execprog.go b/tools/syz-execprog/execprog.go
-index 70d0eee..7edb2b8 100644
+index 70d0eee..af09591 100644
 --- a/tools/syz-execprog/execprog.go
 +++ b/tools/syz-execprog/execprog.go
 @@ -10,7 +10,10 @@ import (
@@ -695,14 +695,14 @@ index 70d0eee..7edb2b8 100644
  
 +// added by SyzGPT
 +// Global Map, storing coverage of [origin_prog, reverse_prog]
-+var CoverRecord map[string][3]int //cov0_of_origin, cov1_of_reverse, prog_line_num
-+var CoverRecordMutex sync.Mutex
-+var ExecFailCnt int
++var coverRecord map[string][3]int // cov0_of_origin, cov1_of_reverse, prog_line_num
++var coverRecordMu sync.Mutex
++var execFailCnt int
 +
 +// end
 +
  func main() {
-+	CoverRecord = make(map[string][3]int)
++	coverRecord = make(map[string][3]int)
  	flag.Usage = func() {
  		fmt.Fprintf(os.Stderr, "usage: execprog [flags] file-with-programs-or-corpus.db+\n")
  		flag.PrintDefaults()
@@ -723,13 +723,14 @@ index 70d0eee..7edb2b8 100644
  	featuresFlags, err := csource.ParseFeaturesFlags(*flagEnable, *flagDisable, true)
  	if err != nil {
  		log.Fatalf("%v", err)
-@@ -72,10 +98,59 @@ func main() {
+@@ -72,10 +98,60 @@ func main() {
  	if err != nil {
  		log.Fatalf("%v", err)
  	}
 -	progs := loadPrograms(target, flag.Args())
 -	if len(progs) == 0 {
 +	// added by SyzGPT
++	// we consider executing a prog in reverse order as executing each syscall separately
 +	var progs []*prog.Prog
 +	var reverseProgs []*prog.Prog
 +	var filePathList []string
@@ -737,7 +738,7 @@ index 70d0eee..7edb2b8 100644
 +	var fileNameList []string
 +	var reverseFileNameList []string
 +	if *flagProgDir != "" {
-+		// 从文件夹load文件
++		// load progs from directory
 +		files, errdir := os.ReadDir(*flagProgDir)
 +		if errdir != nil {
 +			log.Fatalf("%v", err)
@@ -751,9 +752,9 @@ index 70d0eee..7edb2b8 100644
 +					reverseFilePathList = append(reverseFilePathList, filepath.Join(*flagProgDir, file.Name()))
 +					reverseFileNameList = append(reverseFileNameList, file.Name())
 +					index := strings.LastIndex(file.Name(), ".rev")
-+					stripName := file.Name()[:index]
-+					fileNameList = append(fileNameList, stripName)
-+					filePathList = append(filePathList, filepath.Join(*flagProgDir, stripName))
++					origName := file.Name()[:index]
++					fileNameList = append(fileNameList, origName)
++					filePathList = append(filePathList, filepath.Join(*flagProgDir, origName))
 +				}
 +			} else {
 +				fileNameList = append(fileNameList, file.Name())
@@ -761,7 +762,7 @@ index 70d0eee..7edb2b8 100644
 +			}
 +		}
 +	} else {
-+		// 从命令行参数读取文件
++		// load progs from command line
 +		for _, filePath := range flag.Args() {
 +			fileName := filepath.Base(filePath)
 +			fileNameList = append(fileNameList, fileName)
@@ -775,17 +776,17 @@ index 70d0eee..7edb2b8 100644
 +	}
 +	progs = loadPrograms(target, filePathList)
 +	reverseProgs = loadPrograms(target, reverseFilePathList)
-+	// end
 +	if len(progs) == 0 && len(reverseProgs) == 0 {
  		return
 +	} else {
 +		log.Logf(0, "[success] load %d progs and %d rev_progs", len(progs), len(reverseProgs))
  	}
++	// end
 +
  	features, err := host.Check(target)
  	if err != nil {
  		log.Fatalf("%v", err)
-@@ -104,6 +179,7 @@ func main() {
+@@ -104,6 +180,7 @@ func main() {
  	}
  	ctx := &Context{
  		progs:    progs,
@@ -793,7 +794,7 @@ index 70d0eee..7edb2b8 100644
  		config:   config,
  		execOpts: execOpts,
  		gate:     ipc.NewGate(2**flagProcs, gateCallback),
-@@ -116,15 +192,152 @@ func main() {
+@@ -116,15 +193,162 @@ func main() {
  		pid := p
  		go func() {
  			defer wg.Done()
@@ -833,21 +834,21 @@ index 70d0eee..7edb2b8 100644
 +
 +	// added by SyzGPT
 +	if *flagSemantic && *flagCoverFile != "" {
-+		CoverRecord_OutputFile := fmt.Sprintf("%s_Total_CoverRecord", *flagCoverFile)
-+		err := saveToFile(CoverRecord_OutputFile)
++		coverRecordFile := fmt.Sprintf("%s_Evaluation_Results", *flagCoverFile)
++		err := saveToFile(coverRecordFile)
 +		if err != nil {
-+			log.Logf(0, "Failed to save CoverRecord.")
++			log.Logf(0, "failed to save coverRecord.")
 +			log.Fatal(err)
 +			return
 +		}
 +
-+		log.Logf(0, "CoverRecord saved successfully.")
++		log.Logf(0, "context effectiveness evaluation results saved to %s", coverRecordFile)
 +	}
 +	// end
 +}
 +
 +// added by SyzGPT
-+// Save CoverRecord to file
++// save coverRecord to file
 +func saveToFile(fileName string) error {
 +	file, err := os.Create(fileName)
 +	if err != nil {
@@ -855,83 +856,93 @@ index 70d0eee..7edb2b8 100644
 +	}
 +	defer file.Close()
 +
-+	// general cover info
-+	total_cover := 0
-+	win_cover := 0
-+	equal_cover := 0
-+	lose_cover := 0
++	// define the counters
++	// we regard a prog with cover greater than reverse cover as context effective (win)
++	totalProgCnt := 0
++	totalWinCnt := 0
++	totalEqualCnt := 0
++	totalLoseCnt := 0
 +
-+	//make cover info more specific
-+	OneLineProg_total := 0
-+	OneLineProg_win := 0
-+	OneLineProg_equal := 0
-+	OneLineProg_lose := 0
++	// we do take the prog with length of 1 into account, as they have no context
++	oneLineProgCnt := 0
++	oneLineWinCnt := 0
++	oneLineEqualCnt := 0
++	oneLineLoseCnt := 0
 +
-+	for key, value := range CoverRecord {
++	// write the header
++	line := "Program Name" + "," + "Cover" + "," + "ReverseCover" + "," + "Program Length" + "\n"
++	if _, err := file.WriteString(line); err != nil {
++		return err
++	}
++	for key, value := range coverRecord {
 +		cov0 := value[0]
 +		cov1 := value[1]
-+		lineNum := value[2]
++		progLength := value[2]
 +
-+		total_cover += 1
-+		if lineNum == 1 {
-+			OneLineProg_total += 1
++		totalProgCnt += 1
++		if progLength == 1 {
++			oneLineProgCnt += 1
 +		}
 +		if cov0 > cov1 {
-+			win_cover += 1
-+			if lineNum == 1 {
-+				OneLineProg_win += 1
++			totalWinCnt += 1
++			if progLength == 1 {
++				oneLineWinCnt += 1
 +			}
 +		} else if cov0 == cov1 {
-+			equal_cover += 1
-+			if lineNum == 1 {
-+				OneLineProg_equal += 1
++			totalEqualCnt += 1
++			if progLength == 1 {
++				oneLineEqualCnt += 1
 +			}
 +		} else {
-+			lose_cover += 1
-+			if lineNum == 1 {
-+				OneLineProg_lose += 1
++			totalLoseCnt += 1
++			if progLength == 1 {
++				oneLineLoseCnt += 1
 +			}
 +		}
 +
-+		line := key + "," + strconv.Itoa(cov0) + "," + strconv.Itoa(cov1) + "," + strconv.Itoa(lineNum) + "\n"
-+		_, err := file.WriteString(line)
-+		if err != nil {
++		line := key + "," + strconv.Itoa(cov0) + "," + strconv.Itoa(cov1) + "," + strconv.Itoa(progLength) + "\n"
++		if _, err := file.WriteString(line); err != nil {
 +			return err
 +		}
 +	}
-+	// win_rate := float64(win_cover) / float64(total_cover)
-+	// percentage := win_rate * 100
-+	// format_percent := fmt.Sprintf("%.2f%%", percentage)
-+	// line := "Win Rate:" + strconv.Itoa(win_cover) + "/" + strconv.Itoa(total_cover) + "=" + format_percent
-+	line := "Result info:\n" +
-+		"Total Progs: " + strconv.Itoa(total_cover) + "\n" +
-+		"Total win: " + strconv.Itoa(win_cover) + "\n" +
-+		"Total equal: " + strconv.Itoa(equal_cover) + "\n" +
-+		"Total lose: " + strconv.Itoa(lose_cover) + "\n\n" +
-+		"One-line Progs:" + strconv.Itoa(OneLineProg_total) + "\n" +
-+		"One-line win:" + strconv.Itoa(OneLineProg_win) + "\n" +
-+		"One-line equal:" + strconv.Itoa(OneLineProg_equal) + "\n" +
-+		"One-line lose:" + strconv.Itoa(OneLineProg_lose) + "\n" +
-+		"Execution Fails:" + strconv.Itoa(ExecFailCnt) + "\n"
-+	_, err_last := file.WriteString(line)
-+	if err_last != nil {
-+		return err_last
++
++	// OCER: Overall Context Effectiveness Rate
++	// ECER: Exclusive Context Effectiveness Rate
++	// CER: Context Effectiveness Rate
++	OCER := float64(totalWinCnt) / float64(totalProgCnt) * 100
++	ECER := float64(totalWinCnt-oneLineWinCnt) / float64(totalProgCnt-oneLineWinCnt) * 100
++	CER := float64(totalWinCnt-oneLineWinCnt) / float64(totalProgCnt) * 100
++	line = "\nEvaluation Results of Contextual Effectiveness:\n" +
++		"Execution Fails:" + strconv.Itoa(execFailCnt) + "\n" +
++		"Total Progs: " + strconv.Itoa(totalProgCnt) + "\n" +
++		"Total Win: " + strconv.Itoa(totalWinCnt) + "\n" +
++		"Total Equal: " + strconv.Itoa(totalEqualCnt) + "\n" +
++		"Total Lose: " + strconv.Itoa(totalLoseCnt) + "\n\n" +
++		"One-line Progs:" + strconv.Itoa(oneLineProgCnt) + "\n" +
++		"One-line Win:" + strconv.Itoa(oneLineWinCnt) + "\n" +
++		"One-line Equal:" + strconv.Itoa(oneLineEqualCnt) + "\n" +
++		"One-line Lose:" + strconv.Itoa(oneLineLoseCnt) + "\n\n" +
++		"Overall Context Effective Rate (OCER): " + fmt.Sprintf("%.2f%%", OCER) + "\n" +
++		"Exclusive Context Effective Rate (ECER): " + fmt.Sprintf("%.2f%%", ECER) + "\n" +
++		"Context Effective Rate (CER): " + fmt.Sprintf("%.2f%%", CER) + "\n"
++	if _, err := file.WriteString(line); err != nil {
++		return err
 +	}
 +	return nil
  }
  
-+func setCoverRecord(fileName string, value1, value2, lineNum int) {
-+	CoverRecordMutex.Lock()
-+	defer CoverRecordMutex.Unlock()
++func setCoverRecord(fileName string, value1, value2, progLength int) {
++	coverRecordMu.Lock()
++	defer coverRecordMu.Unlock()
 +
-+	CoverRecord[fileName] = [3]int{value1, value2, lineNum}
++	coverRecord[fileName] = [3]int{value1, value2, progLength}
 +}
 +
 +func getCoverRecord(fileName string) (bool, int, int) {
-+	CoverRecordMutex.Lock()
-+	defer CoverRecordMutex.Unlock()
++	coverRecordMu.Lock()
++	defer coverRecordMu.Unlock()
 +
-+	values, ok := CoverRecord[fileName]
++	values, ok := coverRecord[fileName]
 +	if ok {
 +		return ok, values[0], values[1]
 +	}
@@ -947,7 +958,7 @@ index 70d0eee..7edb2b8 100644
  	config    *ipc.Config
  	execOpts  *ipc.ExecOpts
  	gate      *ipc.Gate
-@@ -136,7 +349,7 @@ type Context struct {
+@@ -136,7 +360,7 @@ type Context struct {
  	lastPrint time.Time
  }
  
@@ -956,7 +967,7 @@ index 70d0eee..7edb2b8 100644
  	env, err := ipc.MakeEnv(ctx.config, pid)
  	if err != nil {
  		log.Fatalf("failed to create ipc env: %v", err)
-@@ -153,11 +366,11 @@ func (ctx *Context) run(pid int) {
+@@ -153,11 +377,11 @@ func (ctx *Context) run(pid int) {
  			return
  		}
  		entry := ctx.progs[idx%len(ctx.progs)]
@@ -970,7 +981,7 @@ index 70d0eee..7edb2b8 100644
  	// Limit concurrency window.
  	ticket := ctx.gate.Enter()
  	defer ctx.gate.Leave(ticket)
-@@ -170,8 +383,15 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
+@@ -170,8 +394,15 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
  	for try := 0; ; try++ {
  		output, info, hanged, err := env.Exec(callOpts, p)
  		if err != nil && err != prog.ErrExecBufferTooSmall {
@@ -980,7 +991,7 @@ index 70d0eee..7edb2b8 100644
 +				if *flagProgDir != "" {
 +					log.Logf(0, "executor failed %v times: %v\n%s", try, err, output)
 +					log.Logf(0, "[semantic dump mode] the %d prog failed, skip it", progIndex)
-+					ExecFailCnt += 1
++					execFailCnt += 1
 +					break
 +				} else {
 +					log.Fatalf("executor failed %v times: %v\n%s", try, err, output)
@@ -988,7 +999,7 @@ index 70d0eee..7edb2b8 100644
  			}
  			// Don't print err/output in this case as it may contain "SYZFAIL" and we want to fail yet.
  			log.Logf(1, "executor failed, retrying")
-@@ -187,8 +407,14 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
+@@ -187,8 +418,14 @@ func (ctx *Context) execute(pid int, env *ipc.Env, p *prog.Prog, progIndex int)
  				ctx.printHints(p, info)
  			}
  			if *flagCoverFile != "" {
@@ -1005,7 +1016,7 @@ index 70d0eee..7edb2b8 100644
  			}
  		} else {
  			log.Logf(1, "RESULT: no calls executed")
-@@ -265,11 +491,62 @@ func (ctx *Context) dumpCallCoverage(coverFile string, info *ipc.CallInfo) {
+@@ -265,11 +502,62 @@ func (ctx *Context) dumpCallCoverage(coverFile string, info *ipc.CallInfo) {
  	}
  }
  
@@ -1022,9 +1033,9 @@ index 70d0eee..7edb2b8 100644
 +	// added by SyzGPT
 +	totalMap := make(map[string]int)
 +	covNum := 0
-+	lineNum := 0
++	progLength := 0
 +	for _, inf := range info.Calls {
-+		lineNum += 1
++		progLength += 1
 +		for _, pc := range inf.Cover {
 +			newPC := fmt.Sprintf("0x%x", cover.RestorePC(pc, 0xffffffff))
 +			if _, ok := totalMap[newPC]; !ok {
@@ -1039,17 +1050,17 @@ index 70d0eee..7edb2b8 100644
 +	ok, cov0, cov1 := getCoverRecord(recordKey)
 +	if covType == 0 {
 +		if ok {
-+			log.Logf(0, "Cover map error! Repeated prog. %s", recordKey)
++			log.Logf(0, "cover map error, repeated prog. %s", recordKey)
 +		} else {
 +			cov0 = covNum
-+			setCoverRecord(recordKey, cov0, cov1, lineNum)
++			setCoverRecord(recordKey, cov0, cov1, progLength)
 +		}
 +	} else {
 +		if ok {
 +			cov1 = covNum
-+			setCoverRecord(recordKey, cov0, cov1, lineNum)
++			setCoverRecord(recordKey, cov0, cov1, progLength)
 +		} else {
-+			log.Logf(0, "Cover map error! Non-existed origin prog. %s", recordKey)
++			log.Logf(0, "cover map error: non-existed origin prog. %s", recordKey)
 +		}
 +	}
 +
@@ -1827,12 +1838,12 @@ index 0000000..e79fe5f
 +	}
 +	return 0
 +}
-diff --git a/tools/syz-validator/syz-validator.go b/tools/syz-validator/syz-validator.go
+diff --git a/tools/syz-validator/validator.go b/tools/syz-validator/validator.go
 new file mode 100644
-index 0000000..0161601
+index 0000000..9c82a8f
 --- /dev/null
-+++ b/tools/syz-validator/syz-validator.go
-@@ -0,0 +1,220 @@
++++ b/tools/syz-validator/validator.go
+@@ -0,0 +1,221 @@
 +// Build:
 +// Just make
 +
@@ -1999,6 +2010,7 @@ index 0000000..0161601
 +	return badCnt
 +}
 +
++// extract built-in syscalls
 +func debug(target *prog.Target, outDir string) {
 +	if outDir != "" {
 +		_, err := os.Stat(outDir)

@@ -1,6 +1,8 @@
 # SyzGPT-fuzzer
 
-Since the compilation of Syzkaller requires .git directory, we need to patch SyzGPT-fuzzer based on a specific commit of Syzkaller.
+**Since the compilation of Syzkaller requires `.git` directory, we need to patch SyzGPT-fuzzer based on a specific commit of Syzkaller.**
+
+Due to a significant refactoring on March 12, 2024, Syzkaller underwent some changes in its behavior patterns (e.g., fuzzer no longer exists in the qemu vm). Therefore, we provide patches for SyzGPT-fuzzer for both pre-refactoring ([f1b6b00](https://github.com/google/syzkaller/commit/f1b6b00)) and post-refactoring (TBD) Syzkaller.
 
 ## 1 Setup
 
@@ -13,18 +15,19 @@ cd /root/fuzzers
 git clone https://github.com/google/syzkaller.git SyzGPT-fuzzer
 ```
 
-2. Checkout to commit `f1b6b00`:
+2. Checkout to a selected commit of `pre-refactoring` or `post-refactoring`:
 
 ```bash
 cd SyzGPT-fuzzer
-git checkout f1b6b00
+git checkout f1b6b00 # or TBD commit
 ```
 
 3. Apply our patch:
 
 ```bash
 # suppose this project is located at /root/SyzGPT
-patch -p1 < /root/SyzGPT/fuzzer/SyzGPT-fuzzer.patch
+patch -p1 < /root/SyzGPT/fuzzer/SyzGPT-fuzzer_for_f1b6b00.patch
+# patch -p1 < /root/SyzGPT/fuzzer/SyzGPT-fuzzer_for_TBD.patch
 ```
 
 4. Compile SyzGPT-fuzzer:

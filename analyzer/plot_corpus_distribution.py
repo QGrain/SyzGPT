@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import argparse
 import os
 
+plt.rcParams['pdf.fonttype'] = 42
+# plt.rcParams['ps.fonttype'] = 42 # for .eps
 
 def plot(corpus_lens_set, legends, out_dir):
     x = np.arange(len(corpus_lens_set[0]))  # the x locations for the groups
@@ -33,7 +35,7 @@ def plot(corpus_lens_set, legends, out_dir):
 
     # Save the figure
     fig.savefig(os.path.join(out_dir, 'distribution_prog_length.png'), bbox_inches='tight')
-    fig.savefig(os.path.join(out_dir, 'distribution_prog_length.eps'), dpi=600, format='eps', bbox_inches='tight')
+    fig.savefig(os.path.join(out_dir, 'distribution_prog_length.pdf'), dpi=600, format='pdf', bbox_inches='tight')
     print('[+] plot done!')
 
 
