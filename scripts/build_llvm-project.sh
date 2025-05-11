@@ -52,7 +52,7 @@ shift "$((OPTIND-1))"  # Shift off the processed options and arguments
 
 
 cwd=`pwd`
-version=$1 # like 13.0.1
+version=$1 # like 13.0.1, 17.0.6
 
 if [[ ! $version ]]; then
     echo -e "version is NULL\n"
@@ -94,13 +94,20 @@ cmake -G Ninja\
 
 echo -e "\ncmake finish\n"
 
-# Use -jN if provided, otherwise default to -j8
+# Use -jN if provided, otherwise default to hafl of $(nproc)
 if [[ ! -z "$thread_count" ]]; then
     ninja -j$thread_count
 else
-    ninja -j8
+    ninja -j$(($(nproc)/2))
 fi
 
 echo -e "\nninja finish, return value: $?"
-echo -e "\nplease: cd $SRC_DIR/build && ninja install"
-# sudo ninja install
+cd $cwd/$SRC_DIR/build && ninja install
+echo -e "\nninja install finish, return value: $?"
+echo "export PATH=$cwd/$INSTALL_DIR/bin:\$PATH" >> ~/.bashrc
+echo -e "\nadd $cwd/$INSTALL_DIR/bin to PATH in ~/.bashrc"
+
+# Clean up unused files
+cd $cwd
+rm -rf $SRC_DIR && rm $SRC_DIR.tar.xz
+echo -e "\nclean up $SRC_DIR and $SRC_DIR.tar.xz, everything is done!"

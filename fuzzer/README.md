@@ -36,10 +36,33 @@ patch -p1 < /root/SyzGPT/fuzzer/SyzGPT-fuzzer_for_f1b6b00.patch
 make -j32
 ```
 
-5. Prepare the directories for fuzzing:
+5. Prepare the images for fuzzing:
 
 ```bash
-mkdir benchdir workdir
+# pip install syzqemuctl (it should be included in the Setup stage)
+syzqemuctl init --images-home /root/images # it will take several minutes
+
+# after the `syzqemuctl-template-creation` disappear from `screen -ls` outputs
+syzqemuctl create image-1
+syzqemuctl create image-2
+```
+
+6. Prepare the directories for fuzzing:
+
+```bash
+mkdir -p cfgdir benchdir workdir/v6-1
+cp /root/SyzGPT/fuzzer/*.cfg /root/fuzzers/SyzGPT-fuzzer/cfgdir/
+# you may need to adapt the paths in the *.cfg
+```
+
+7. Prepare the kernel for fuzzing:
+
+```bash
+curl https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.12.tar.xz | tar -C /root/kernels -xJ
+cd /root/kernels/linux-6.6.12
+cp /root/SyzGPT/syzbot-6.6.config .config
+make CC=gcc olddefconfig
+make CC=gcc -j32
 ```
 
 ## 2 Usage

@@ -10,4 +10,4 @@ Requests==2.32.3
 rich==13.7.1
 seaborn==0.13.2
 tiktoken==0.5.1
-syzqemuctl==0.2.4
+syzqemuctl==0.2.5

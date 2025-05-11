@@ -1,0 +1,44 @@
+# The image of kernel-fuzz:2004_base
+# This Dockerfile builds the image for kernel fuzzing based on ubuntu 20.04
+
+FROM ubuntu:20.04
+
+# Set http_proxy (test only, would be removed in release)
+# ENV http_proxy http://192.168.129.67:7890
+# ENV https_proxy http://192.168.129.67:7890
+# ENV no_proxy "localhost,127.0.0.1"
+
+# Install dependencies
+RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y \
+    unzip sudo vim bc screen htop net-tools openssh-server curl wget git tmux ca-certificates \
+    python3-dev python3-pip python-is-python3 binutils build-essential flex bison texinfo cmake ninja-build \
+    libssl-dev libelf-dev libc6-dev libc6-dev-i386 linux-libc-dev libgmp3-dev libmpfr-dev libmpc-dev libdw-dev libbluetooth-dev \
+    gcc-multilib g++-multilib debootstrap qemu qemu-kvm debian-archive-keyring \
+    && \
+    apt-get -y autoremove && \
+	apt-get clean autoclean
+
+# Create directories and install software (go, compilers, etc.)
+RUN mkdir -p /root/fuzzers /root/kernels /root/software/gopath && \
+    curl https://dl.google.com/go/go1.22.7.linux-amd64.tar.gz | tar -C /root/software -xz && \
+    echo "export GOROOT=/root/software/go" >> /root/.bashrc && \
+    echo "export GOPATH=/root/software/gopath" >> /root/.bashrc && \
+    echo "export PATH=\$GOROOT/bin:\$PATH" >> /root/.bashrc && \
+    echo "export LC_CTYPE=C.UTF-8" >> /root/.bashrc
+
+# Install compilers (clang 15.0.6 and gcc 12.2.0)
+COPY scripts/build_llvm-project.sh /root/software/
+RUN chmod +x /root/software/build_llvm-project.sh && \
+    cd /root/software && \
+    ./build_llvm-project.sh 15.0.6 && \
+    curl https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.xz | tar -C /root/software -xJ && \
+    cd /root/software/gcc-12.2.0 && \
+    ./contrib/download_prerequisites && \
+    mkdir build && cd build && \
+    ../configure --prefix=/usr/local/gcc-12.2.0 --enable-languages=c,c++ --disable-multilib && \
+    make -j$(($(nproc)/2)) && make install && \
+    echo "export PATH=/usr/local/gcc-12.2.0/bin:\$PATH" >> /root/.bashrc && \
+    rm -r /root/software/gcc-12.2.0
+
+WORKDIR /root
