@@ -1,0 +1,3 @@
+meta arches["amd64"]
+
+syz_open_dev$KGPT_evdev(dev ptr[in, string["/dev/input/event#"]], id proc[0, 1], flags flags[open_flags]) fd_evdev

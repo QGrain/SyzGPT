@@ -63,7 +63,7 @@ We also generate a [wiki page](https://deepwiki.com/QGrain/SyzGPT) for SyzGPT th
 
 ### 1.2 Setup with Docker (Recommend) [⏰~10min]
 
-We have released `qgrain/syzgpt:pretest`, which is ready for fuzzing. And we will release `qgrain/syzgpt:full` with full functionality and evaluation benchmark soon.
+We have released `qgrain/syzgpt:pretest`, which is ready for fuzzing. And we will release `qgrain/syzgpt:full` with full functionality and evaluation benchmark soon. **To understand how we build these docker images, please refer to this repo**: [QGrain/kernel-fuzz-docker-images](https://github.com/QGrain/kernel-fuzz-docker-images).
 
 <details>
 <summary>Setup with qgrain/syzgpt:pretest</summary>

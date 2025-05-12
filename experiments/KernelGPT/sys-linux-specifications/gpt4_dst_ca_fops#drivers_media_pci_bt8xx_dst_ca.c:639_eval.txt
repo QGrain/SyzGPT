@@ -1,0 +1,75 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/dvb/ca.h>
+
+resource fd_dst_ca[fd]
+
+syz_open_dev$KGPT_dvb_ca(dev ptr[in, string["/dev/dvb/adapter#/ca#"]], id proc[0, 1], flags flags[open_flags]) fd_dst_ca
+
+ioctl$KGPT_CA_RESET(fd fd_dst_ca, cmd const[CA_RESET], arg ptr[in, array[int8]])
+ioctl$KGPT_CA_SEND_MSG(fd fd_dst_ca, cmd const[CA_SEND_MSG], arg ptr[in, ca_msg])
+ioctl$KGPT_CA_GET_MSG(fd fd_dst_ca, cmd const[CA_GET_MSG], arg ptr[inout, ca_msg])
+ioctl$KGPT_CA_GET_SLOT_INFO(fd fd_dst_ca, cmd const[CA_GET_SLOT_INFO], arg ptr[out, ca_slot_info])
+ioctl$KGPT_CA_GET_CAP(fd fd_dst_ca, cmd const[CA_GET_CAP], arg ptr[out, ca_caps])
+ioctl$KGPT_CA_GET_DESCR_INFO(fd fd_dst_ca, cmd const[CA_GET_DESCR_INFO], arg ptr[in, ca_msg])
+
+ca_msg {
+	index	int32
+	type	int32
+	length	int32
+	msg	array[int8, 256]
+}
+
+ca_caps {
+	slot_num	int32
+	slot_type	int32
+	descr_num	int32
+	descr_type	int32
+}
+
+ca_slot_info {
+	num	int32
+	type	flags[ca_slot_info_type, int32]
+	flags	flags[ca_slot_info_flags, int32]
+}
+
+ca_slot_info_type = CA_CI, CA_CI_LINK, CA_CI_PHYS, CA_DESCR, CA_SC
+ca_slot_info_flags = CA_CI_MODULE_PRESENT, CA_CI_MODULE_READY
+define CA_CI	1
+define CA_CI_LINK	2
+define CA_CI_PHYS	4
+define CA_DESCR	8
+define CA_SC	128
+define CA_CI_MODULE_PRESENT	1
+define CA_CI_MODULE_READY	2

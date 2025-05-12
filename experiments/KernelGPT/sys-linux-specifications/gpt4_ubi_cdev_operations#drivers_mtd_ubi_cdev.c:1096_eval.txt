@@ -1,0 +1,70 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/mtd/ubi-user.h>
+
+resource fd_ubi[fd]
+
+syz_open_dev$KGPT_ubi(dev ptr[in, string["/dev/ubi#_#"]], id proc[0, 1], volid proc[0, 1], flags flags[open_flags]) fd_ubi
+
+ioctl$KGPT_UBI_IOCMKVOL(fd fd_ubi, cmd const[UBI_IOCMKVOL], arg ptr[in, ubi_mkvol_req])
+ioctl$KGPT_UBI_IOCRMVOL(fd fd_ubi, cmd const[UBI_IOCRMVOL], arg intptr)
+ioctl$KGPT_UBI_IOCRSVOL(fd fd_ubi, cmd const[UBI_IOCRSVOL], arg ptr[in, ubi_rsvol_req])
+ioctl$KGPT_UBI_IOCRNVOL(fd fd_ubi, cmd const[UBI_IOCRNVOL], arg ptr[in, ubi_rnvol_req])
+ioctl$KGPT_UBI_IOCRPEB(fd fd_ubi, cmd const[UBI_IOCRPEB], arg ptr[in, int32])
+ioctl$KGPT_UBI_IOCSPEB(fd fd_ubi, cmd const[UBI_IOCSPEB], arg ptr[in, int32])
+
+ubi_rsvol_req {
+	bytes	int64
+	vol_id	int32
+}
+
+ubi_rnvol_req {
+	count		int32
+	padding1	array[int8, 12]
+	ents		array[ubi_rnvol_req_entry, UBI_MAX_RNVOL]
+}
+
+ubi_mkvol_req {
+	vol_id		int32
+	alignment	int32
+	bytes		int64
+	vol_type	int8
+	flags		int8
+	name_len	int16
+	padding2	array[int8, 4]
+	name		array[int8, UBI_MAX_VOLUME_NAME_ADD_ONE]
+}
+
+type ubi_rnvol_req_entry ptr[in, array[int8]]
+define UBI_MAX_VOLUME_NAME_ADD_ONE	128

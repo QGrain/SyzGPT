@@ -1,0 +1,57 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/dvb/net.h>
+
+resource fd_dvb_net[fd]
+
+syz_open_dev$KGPT_dvb_net(dev ptr[in, string["/dev/dvb/adapter#/net#"]], id proc[0, 1], flags flags[open_flags]) fd_dvb_net
+
+ioctl$KGPT_NET_ADD_IF(fd fd_dvb_net, cmd const[NET_ADD_IF], arg ptr[in, dvb_net_if])
+ioctl$KGPT_NET_GET_IF(fd fd_dvb_net, cmd const[NET_GET_IF], arg ptr[in, dvb_net_if])
+ioctl$KGPT_NET_REMOVE_IF(fd fd_dvb_net, cmd const[NET_REMOVE_IF], arg intptr)
+ioctl$KGPT___NET_ADD_IF_OLD(fd fd_dvb_net, cmd const[__NET_ADD_IF_OLD], arg ptr[in, __dvb_net_if_old])
+ioctl$KGPT___NET_GET_IF_OLD(fd fd_dvb_net, cmd const[__NET_GET_IF_OLD], arg ptr[in, __dvb_net_if_old])
+
+dvb_net_if {
+	pid		int16
+	if_num		int16
+	feedtype	dvb_net_feedtype
+}
+
+__dvb_net_if_old {
+	pid	int16
+	if_num	int16
+}
+
+type dvb_net_feedtype ptr[in, array[int8]]

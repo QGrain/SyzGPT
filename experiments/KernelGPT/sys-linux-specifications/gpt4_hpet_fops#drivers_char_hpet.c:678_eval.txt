@@ -1,0 +1,54 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/asm-generic/fcntl.h>
+include <uapi/linux/hpet.h>
+
+resource fd_hpet[fd]
+
+openat$KGPT_hpets(fd const[AT_FDCWD], file ptr[in, string["/dev/hpet"]], flags const[O_RDWR], mode const[0]) fd_hpet
+
+ioctl$KGPT_HPET_IE_OFF(fd fd_hpet, cmd const[HPET_IE_OFF], arg ptr[in, array[int8]])
+ioctl$KGPT_HPET_EPI(fd fd_hpet, cmd const[HPET_EPI], arg ptr[in, array[int8]])
+ioctl$KGPT_HPET_DPI(fd fd_hpet, cmd const[HPET_DPI], arg ptr[in, array[int8]])
+ioctl$KGPT_HPET_IE_ON(fd fd_hpet, cmd const[HPET_IE_ON], arg ptr[in, array[int8]])
+ioctl$KGPT_HPET_INFO(fd fd_hpet, cmd const[HPET_INFO], arg ptr[out, hpet_info])
+ioctl$KGPT_HPET_IRQFREQ(fd fd_hpet, cmd const[HPET_IRQFREQ], arg intptr)
+
+hpet_info {
+	hi_ireqfreq	int64
+	hi_flags	int64
+	hi_hpet		int16
+	hi_timer	int16
+}

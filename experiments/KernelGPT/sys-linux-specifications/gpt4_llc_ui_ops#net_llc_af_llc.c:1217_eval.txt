@@ -1,0 +1,60 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/llc.h>
+
+socket$KGPT_llc(domain const[PF_LLC], type const[SOCK_DGRAM], proto const[0]) sock_llc
+
+bind$KGPT_llc_ui_ops(fd sock_llc, addr ptr[in, sockaddr_llc], addrlen len[addr])
+connect$KGPT_llc_ui_ops(fd sock_llc, addr ptr[in, sockaddr_llc], addrlen len[addr])
+accept4$KGPT_llc_ui_ops(fd sock_llc, peer ptr[out, sockaddr_llc, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_llc
+sendto$KGPT_llc_ui_ops(fd sock_llc, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_llc, opt], addrlen len[addr])
+recvfrom$KGPT_llc_ui_ops(fd sock_llc, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_llc, opt], addrlen len[addr])
+getsockopt$KGPT_LLC_OPT_RETRY(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_RETRY], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_SIZE(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_SIZE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_ACK_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_ACK_TMR_EXP], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_P_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_P_TMR_EXP], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_REJ_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_REJ_TMR_EXP], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_BUSY_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_BUSY_TMR_EXP], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_TX_WIN(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_TX_WIN], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_RX_WIN(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_RX_WIN], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_LLC_OPT_PKTINFO(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_PKTINFO], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_LLC_OPT_RETRY(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_RETRY], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_SIZE(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_SIZE], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_ACK_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_ACK_TMR_EXP], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_P_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_P_TMR_EXP], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_REJ_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_REJ_TMR_EXP], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_BUSY_TMR_EXP(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_BUSY_TMR_EXP], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_TX_WIN(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_TX_WIN], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_RX_WIN(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_RX_WIN], val int32, len bytesize[val])
+setsockopt$KGPT_LLC_OPT_PKTINFO(fd sock_llc, level const[SOL_LLC], opt const[LLC_OPT_PKTINFO], val int32, len bytesize[val])

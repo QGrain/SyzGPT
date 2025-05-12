@@ -1,0 +1,118 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/gpio.h>
+
+resource fd_gpio[fd]
+
+syz_open_dev$KGPT_gpiochip(dev ptr[in, string["/dev/gpiochip#"]], id proc[0, 1], flags flags[open_flags]) fd_gpio
+
+ioctl$KGPT_GPIO_GET_CHIPINFO_IOCTL(fd fd_gpio, cmd const[GPIO_GET_CHIPINFO_IOCTL], arg ptr[out, gpiochip_info])
+ioctl$KGPT_GPIO_GET_LINEHANDLE_IOCTL(fd fd_gpio, cmd const[GPIO_GET_LINEHANDLE_IOCTL], arg ptr[in, gpiohandle_request])
+ioctl$KGPT_GPIO_GET_LINEEVENT_IOCTL(fd fd_gpio, cmd const[GPIO_GET_LINEEVENT_IOCTL], arg ptr[in, gpioevent_request])
+ioctl$KGPT_GPIO_GET_LINEINFO_IOCTL(fd fd_gpio, cmd const[GPIO_GET_LINEINFO_IOCTL], arg ptr[inout, gpioline_info])
+ioctl$KGPT_GPIO_GET_LINEINFO_WATCH_IOCTL(fd fd_gpio, cmd const[GPIO_GET_LINEINFO_WATCH_IOCTL], arg ptr[inout, gpioline_info])
+ioctl$KGPT_GPIO_V2_GET_LINEINFO_IOCTL(fd fd_gpio, cmd const[GPIO_V2_GET_LINEINFO_IOCTL], arg ptr[inout, gpio_v2_line_info])
+ioctl$KGPT_GPIO_V2_GET_LINEINFO_WATCH_IOCTL(fd fd_gpio, cmd const[GPIO_V2_GET_LINEINFO_WATCH_IOCTL], arg ptr[inout, gpio_v2_line_info])
+ioctl$KGPT_GPIO_V2_GET_LINE_IOCTL(fd fd_gpio, cmd const[GPIO_V2_GET_LINE_IOCTL], arg ptr[in, gpio_v2_line_request])
+ioctl$KGPT_GPIO_GET_LINEINFO_UNWATCH_IOCTL(fd fd_gpio, cmd const[GPIO_GET_LINEINFO_UNWATCH_IOCTL], arg ptr[in, int32])
+
+gpiochip_info {
+	name	array[int8, GPIO_MAX_NAME_SIZE]
+	label	array[int8, GPIO_MAX_NAME_SIZE]
+	lines	int32
+}
+
+gpiohandle_request {
+	lineoffsets	array[int32, GPIOHANDLES_MAX]
+	flags		int32
+	default_values	array[int8, GPIOHANDLES_MAX]
+	consumer_label	array[int8, GPIO_MAX_NAME_SIZE]
+	lines		int32
+	fd		int32
+}
+
+gpioevent_request {
+	lineoffset	int32
+	handleflags	int32
+	eventflags	int32
+	consumer_label	array[int8, GPIO_MAX_NAME_SIZE]
+	fd		int32
+}
+
+gpioline_info {
+	line_offset	int32
+	flags		int32
+	name		array[int8, GPIO_MAX_NAME_SIZE]
+	consumer	array[int8, GPIO_MAX_NAME_SIZE]
+}
+
+gpio_v2_line_info {
+	name		array[int8, GPIO_MAX_NAME_SIZE]
+	consumer	array[int8, GPIO_MAX_NAME_SIZE]
+	offset		int32
+	num_attrs	int32
+	flags		int64
+	attrs		array[gpio_v2_line_attribute, GPIO_V2_LINE_NUM_ATTRS_MAX]
+	padding		array[int32, 4]
+}
+
+gpio_v2_line_request {
+	offsets			array[int32, GPIO_V2_LINES_MAX]
+	consumer		array[int8, GPIO_MAX_NAME_SIZE]
+	config			gpio_v2_line_config
+	num_lines		int32
+	event_buffer_size	int32
+	padding			array[int32, 5]
+	fd			int32
+}
+
+gpio_v2_line_attribute {
+	id			int32
+	padding			int32
+	flags			int64
+	values			int64
+	debounce_period_us	int32
+}
+
+gpio_v2_line_config {
+	flags		int64
+	num_attrs	int32
+	padding		array[int32, 5]
+	attrs		array[gpio_v2_line_config_attribute, GPIO_V2_LINE_NUM_ATTRS_MAX]
+}
+
+gpio_v2_line_config_attribute {
+	attr	gpio_v2_line_attribute
+	mask	int64
+}

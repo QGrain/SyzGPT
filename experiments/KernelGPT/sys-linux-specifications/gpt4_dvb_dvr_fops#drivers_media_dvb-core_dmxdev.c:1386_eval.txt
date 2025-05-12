@@ -1,0 +1,45 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/dvb/dmx.h>
+
+resource fd_dvb_dvr[fd]
+
+syz_open_dev$KGPT_dvb_dvr(dev ptr[in, string["/dev/dvb/adapter#/dvr#"]], id proc[0, 1], flags flags[open_flags]) fd_dvb_dvr
+
+ioctl$KGPT_DMX_SET_BUFFER_SIZE_0(fd fd_dvb_dvr, cmd const[DMX_SET_BUFFER_SIZE], arg intptr)
+ioctl$KGPT_DMX_REQBUFS_0(fd fd_dvb_dvr, cmd const[DMX_REQBUFS], arg ptr[in, dmx_requestbuffers])
+ioctl$KGPT_DMX_QUERYBUF_0(fd fd_dvb_dvr, cmd const[DMX_QUERYBUF], arg ptr[inout, dmx_buffer])
+ioctl$KGPT_DMX_EXPBUF_0(fd fd_dvb_dvr, cmd const[DMX_EXPBUF], arg ptr[in, dmx_exportbuffer])
+ioctl$KGPT_DMX_QBUF_0(fd fd_dvb_dvr, cmd const[DMX_QBUF], arg ptr[in, dmx_buffer])
+ioctl$KGPT_DMX_DQBUF_0(fd fd_dvb_dvr, cmd const[DMX_DQBUF], arg ptr[inout, dmx_buffer])

@@ -1,0 +1,59 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <linux/kcov.h>
+include <uapi/linux/kcov.h>
+
+resource fd_kcov[fd]
+
+openat$KGPT_kcov(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/debug/kcov"]], flags flags[open_flags], mode const[0]) fd_kcov
+
+ioctl$KGPT_KCOV_DISABLE(fd fd_kcov, cmd const[KCOV_DISABLE], arg ptr[in, array[int8]])
+ioctl$KGPT_KCOV_INIT_TRACE(fd fd_kcov, cmd const[KCOV_INIT_TRACE], arg intptr)
+ioctl$KGPT_KCOV_REMOTE_ENABLE(fd fd_kcov, cmd const[KCOV_REMOTE_ENABLE], arg ptr[in, kcov_remote_arg])
+ioctl$KGPT_KCOV_ENABLE(fd fd_kcov, cmd const[KCOV_ENABLE], arg flags[kcov_mode])
+
+kcov_remote_arg {
+	trace_mode	int32
+	area_size	int32
+	num_handles	int32
+	common_handle	int64
+	handles		array[int64]
+}
+
+kcov_mode = KCOV_MODE_DISABLED, KCOV_MODE_INIT, KCOV_MODE_TRACE_PC, KCOV_MODE_TRACE_CMP
+define KCOV_MODE_DISABLED	0
+define KCOV_MODE_INIT	1
+define KCOV_MODE_TRACE_PC	2
+define KCOV_MODE_TRACE_CMP	3

@@ -1,0 +1,110 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/ipmi.h>
+
+resource fd_ipmi[fd]
+
+openat$KGPT_ipmi(fd const[AT_FDCWD], file ptr[in, string["/dev/ipmi0"]], flags flags[open_flags], mode const[0]) fd_ipmi
+
+ioctl$KGPT_IPMICTL_SEND_COMMAND(fd fd_ipmi, cmd const[IPMICTL_SEND_COMMAND], arg ptr[in, ipmi_req])
+ioctl$KGPT_IPMICTL_SEND_COMMAND_SETTIME(fd fd_ipmi, cmd const[IPMICTL_SEND_COMMAND_SETTIME], arg ptr[in, ipmi_req_settime])
+ioctl$KGPT_IPMICTL_RECEIVE_MSG(fd fd_ipmi, cmd const[IPMICTL_RECEIVE_MSG], arg ptr[in, ipmi_recv])
+ioctl$KGPT_IPMICTL_RECEIVE_MSG_TRUNC(fd fd_ipmi, cmd const[IPMICTL_RECEIVE_MSG_TRUNC], arg ptr[in, ipmi_recv])
+ioctl$KGPT_IPMICTL_REGISTER_FOR_CMD(fd fd_ipmi, cmd const[IPMICTL_REGISTER_FOR_CMD], arg ptr[in, ipmi_cmdspec])
+ioctl$KGPT_IPMICTL_UNREGISTER_FOR_CMD(fd fd_ipmi, cmd const[IPMICTL_UNREGISTER_FOR_CMD], arg ptr[in, ipmi_cmdspec])
+ioctl$KGPT_IPMICTL_REGISTER_FOR_CMD_CHANS(fd fd_ipmi, cmd const[IPMICTL_REGISTER_FOR_CMD_CHANS], arg ptr[in, ipmi_cmdspec_chans])
+ioctl$KGPT_IPMICTL_UNREGISTER_FOR_CMD_CHANS(fd fd_ipmi, cmd const[IPMICTL_UNREGISTER_FOR_CMD_CHANS], arg ptr[in, ipmi_cmdspec_chans])
+ioctl$KGPT_IPMICTL_SET_GETS_EVENTS_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_GETS_EVENTS_CMD], arg ptr[in, int32])
+ioctl$KGPT_IPMICTL_SET_MY_ADDRESS_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_MY_ADDRESS_CMD], arg intptr)
+ioctl$KGPT_IPMICTL_GET_MY_ADDRESS_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_MY_ADDRESS_CMD], arg ptr[in, array[int8]])
+ioctl$KGPT_IPMICTL_SET_MY_LUN_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_MY_LUN_CMD], arg intptr)
+ioctl$KGPT_IPMICTL_GET_MY_LUN_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_MY_LUN_CMD], arg ptr[out, int32])
+ioctl$KGPT_IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD], arg ptr[in, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD], arg ptr[inout, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_SET_MY_CHANNEL_LUN_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_MY_CHANNEL_LUN_CMD], arg ptr[in, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_GET_MY_CHANNEL_LUN_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_MY_CHANNEL_LUN_CMD], arg ptr[out, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_SET_TIMING_PARMS_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_TIMING_PARMS_CMD], arg ptr[in, ipmi_timing_parms])
+ioctl$KGPT_IPMICTL_GET_TIMING_PARMS_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_TIMING_PARMS_CMD], arg ptr[out, ipmi_timing_parms])
+ioctl$KGPT_IPMICTL_GET_MAINTENANCE_MODE_CMD(fd fd_ipmi, cmd const[IPMICTL_GET_MAINTENANCE_MODE_CMD], arg ptr[in, array[int8]])
+ioctl$KGPT_IPMICTL_SET_MAINTENANCE_MODE_CMD(fd fd_ipmi, cmd const[IPMICTL_SET_MAINTENANCE_MODE_CMD], arg intptr)
+
+ipmi_req {
+	addr		ptr[in, ipmi_msg]
+	addr_len	int32
+	msgid		int64
+	msg		ipmi_msg
+}
+
+ipmi_cmdspec {
+	netfn	int8
+	cmd	int8
+}
+
+ipmi_cmdspec_chans {
+	netfn	int32
+	cmd	int32
+	chans	int32
+}
+
+ipmi_channel_lun_address_set {
+	channel	int16
+	value	int8
+}
+
+ipmi_timing_parms {
+	retries		int32
+	retry_time_ms	int32
+}
+
+ipmi_recv {
+	recv_type	int32
+	addr		ptr[inout, array[int8]]
+	addr_len	len[addr, int32]
+	msgid		int64
+	msg		ipmi_msg
+}
+
+ipmi_req_settime {
+	req		ptr[in, ipmi_req]
+	retries		int32
+	retry_time_ms	int32
+}
+
+ipmi_msg {
+	netfn		int8
+	cmd		int8
+	data_len	int16
+	data		array[int8]
+}

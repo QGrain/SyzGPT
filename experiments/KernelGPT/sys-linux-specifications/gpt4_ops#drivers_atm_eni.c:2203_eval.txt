@@ -1,0 +1,53 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/atmdev.h>
+include <uapi/linux/atm_eni.h>
+
+resource fd_eni[fd]
+
+syz_open_dev$KGPT_eni(dev ptr[in, string["/dev/atm/eni#"]], id proc[0, 1], flags flags[open_flags]) fd_eni
+
+ioctl$KGPT_ENI_MEMDUMP(fd fd_eni, cmd const[ENI_MEMDUMP], arg ptr[in, array[int8]])
+ioctl$KGPT_ENI_SETMULT(fd fd_eni, cmd const[ENI_SETMULT], arg ptr[in, eni_multipliers])
+ioctl$KGPT_ATM_SETCIRANGE(fd fd_eni, cmd const[ATM_SETCIRANGE], arg ptr[in, atm_cirange])
+
+eni_multipliers {
+	tx	int32
+	rx	int32
+}
+
+atm_cirange {
+	vpi_bits	int8
+	vci_bits	int8
+}

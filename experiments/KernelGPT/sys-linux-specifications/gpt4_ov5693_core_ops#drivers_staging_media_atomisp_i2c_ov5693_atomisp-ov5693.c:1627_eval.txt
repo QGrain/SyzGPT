@@ -1,0 +1,40 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <drivers/staging/media/atomisp/include/linux/atomisp.h>
+
+resource fd_ov5693[fd]
+
+syz_open_dev$KGPT_v4l_subdev_dup_dup_dup_dup_dup_dup_dup_dup(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_ov5693
+
+ioctl$KGPT_ATOMISP_IOC_S_EXPOSURE_2(fd fd_ov5693, cmd const[ATOMISP_IOC_S_EXPOSURE], arg ptr[in, atomisp_exposure])

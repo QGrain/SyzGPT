@@ -1,0 +1,62 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <drivers/scsi/st_options.h>
+include <uapi/linux/mtio.h>
+
+resource fd_st[fd]
+
+syz_open_dev$KGPT_st(dev ptr[in, string["/dev/st#"]], id proc[0, 1], flags flags[open_flags]) fd_st
+
+ioctl$KGPT_MTIOCTOP(fd fd_st, cmd const[MTIOCTOP], arg ptr[in, mtop])
+ioctl$KGPT_MTIOCGET(fd fd_st, cmd const[MTIOCGET], arg ptr[out, mtget])
+ioctl$KGPT_MTIOCPOS(fd fd_st, cmd const[MTIOCPOS], arg ptr[out, mtpos])
+
+mtop {
+	mt_op		int16
+	mt_count	int32
+}
+
+mtget {
+	mt_type		int64
+	mt_resid	int64
+	mt_dsreg	int64
+	mt_gstat	int64
+	mt_erreg	int64
+	mt_fileno	int64
+	mt_blkno	int64
+}
+
+mtpos {
+	mt_blkno	int64
+}

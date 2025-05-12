@@ -1,0 +1,50 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/vfio.h>
+
+resource fd_vfio_group[fd]
+
+syz_open_dev$KGPT_vfio_group(dev ptr[in, string["/dev/vfio/vfio#"]], id proc[0, 1], flags flags[open_flags]) fd_vfio_group
+
+ioctl$KGPT_VFIO_GROUP_UNSET_CONTAINER(fd fd_vfio_group, cmd const[VFIO_GROUP_UNSET_CONTAINER], arg ptr[in, array[int8]])
+ioctl$KGPT_VFIO_GROUP_GET_DEVICE_FD(fd fd_vfio_group, cmd const[VFIO_GROUP_GET_DEVICE_FD], arg ptr[in, string])
+ioctl$KGPT_VFIO_GROUP_GET_STATUS(fd fd_vfio_group, cmd const[VFIO_GROUP_GET_STATUS], arg ptr[inout, vfio_group_status])
+ioctl$KGPT_VFIO_GROUP_SET_CONTAINER(fd fd_vfio_group, cmd const[VFIO_GROUP_SET_CONTAINER], arg intptr)
+
+vfio_group_status {
+	argsz	int32
+	flags	flags[vfio_group_status_flags, int32]
+}
+
+vfio_group_status_flags = VFIO_GROUP_FLAGS_VIABLE, VFIO_GROUP_FLAGS_CONTAINER_SET

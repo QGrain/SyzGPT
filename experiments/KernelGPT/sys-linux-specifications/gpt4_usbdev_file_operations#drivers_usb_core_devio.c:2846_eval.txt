@@ -1,0 +1,41 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/usbdevice_fs.h>
+
+resource fd_usbdev[fd]
+
+syz_open_dev$KGPT_usbdev(dev ptr[in, string["/dev/bus/usb/###/###"]], id proc[0, 1], flags flags[open_flags]) fd_usbdev
+
+ioctl$KGPT_USBDEVFS_REAPURB32(fd fd_usbdev, cmd const[USBDEVFS_REAPURB32], arg ptr[out, intptr])
+ioctl$KGPT_USBDEVFS_REAPURBNDELAY32(fd fd_usbdev, cmd const[USBDEVFS_REAPURBNDELAY32], arg ptr[out, intptr])

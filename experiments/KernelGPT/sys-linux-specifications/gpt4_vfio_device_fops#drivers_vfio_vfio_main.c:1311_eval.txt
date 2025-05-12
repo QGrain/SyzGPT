@@ -1,0 +1,71 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/vfio.h>
+
+syz_open_dev$KGPT_vfio_dup_dup_dup(dev ptr[in, string["/dev/vfio/#"]], id proc[0, 1], flags flags[open_flags]) fd_vfio
+
+ioctl$KGPT_VFIO_DEVICE_BIND_IOMMUFD(fd fd_vfio, cmd const[VFIO_DEVICE_BIND_IOMMUFD], arg ptr[in, vfio_device_bind_iommufd])
+ioctl$KGPT_VFIO_DEVICE_ATTACH_IOMMUFD_PT(fd fd_vfio, cmd const[VFIO_DEVICE_ATTACH_IOMMUFD_PT], arg ptr[in, vfio_device_attach_iommufd_pt])
+ioctl$KGPT_VFIO_DEVICE_DETACH_IOMMUFD_PT(fd fd_vfio, cmd const[VFIO_DEVICE_DETACH_IOMMUFD_PT], arg ptr[in, vfio_device_detach_iommufd_pt])
+ioctl$KGPT_VFIO_DEVICE_FEATURE(fd fd_vfio, cmd const[VFIO_DEVICE_FEATURE], arg ptr[in, vfio_device_feature])
+
+vfio_device_bind_iommufd {
+	argsz		int32
+	flags		int32
+	iommufd		int32
+	out_devid	int32
+}
+
+vfio_device_attach_iommufd_pt {
+	argsz	int32
+	flags	int32
+	pt_id	int32
+}
+
+vfio_device_detach_iommufd_pt {
+	argsz	int32
+	flags	int32
+}
+
+vfio_device_feature {
+	argsz	int32
+	flags	flags[vfio_device_feature_flags, int32]
+	data	array[int8]
+}
+
+vfio_device_feature_flags = VFIO_DEVICE_FEATURE_MASK, VFIO_DEVICE_FEATURE_GET, VFIO_DEVICE_FEATURE_SET, VFIO_DEVICE_FEATURE_PROBE
+define VFIO_DEVICE_FEATURE_MASK	0xffff
+define VFIO_DEVICE_FEATURE_GET	(1 << 16)
+define VFIO_DEVICE_FEATURE_SET	(1 << 17)
+define VFIO_DEVICE_FEATURE_PROBE	(1 << 18)

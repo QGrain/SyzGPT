@@ -1,0 +1,61 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/tipc.h>
+
+resource sock_tipc_stream[sock]
+
+socket$KGPT_tipc_dup_dup(domain const[AF_TIPC], type const[SOCK_STREAM], proto const[0]) sock_tipc_stream
+
+bind$KGPT_stream_ops(fd sock_tipc_stream, addr ptr[in, tipc_uaddr], addrlen len[addr])
+connect$KGPT_stream_ops(fd sock_tipc_stream, addr ptr[in, tipc_uaddr], addrlen len[addr])
+accept4$KGPT_stream_ops(fd sock_tipc_stream, peer ptr[out, tipc_uaddr, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_tipc_stream
+sendto$KGPT_stream_ops(fd sock_tipc_stream, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, tipc_uaddr, opt], addrlen len[addr])
+recvfrom$KGPT_stream_ops(fd sock_tipc_stream, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, tipc_uaddr, opt], addrlen len[addr])
+getsockopt$KGPT_TIPC_IMPORTANCE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_IMPORTANCE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_SRC_DROPPABLE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_SRC_DROPPABLE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_DEST_DROPPABLE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_DEST_DROPPABLE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_CONN_TIMEOUT_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_CONN_TIMEOUT], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_NODE_RECVQ_DEPTH_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_NODE_RECVQ_DEPTH], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_SOCK_RECVQ_DEPTH_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_SOCK_RECVQ_DEPTH], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_SOCK_RECVQ_USED_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_SOCK_RECVQ_USED], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_TIPC_GROUP_JOIN_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_GROUP_JOIN], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_TIPC_IMPORTANCE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_IMPORTANCE], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_SRC_DROPPABLE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_SRC_DROPPABLE], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_DEST_DROPPABLE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_DEST_DROPPABLE], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_CONN_TIMEOUT_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_CONN_TIMEOUT], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_NODELAY_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_NODELAY], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_GROUP_JOIN_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_GROUP_JOIN], val ptr[in, tipc_group_req], len bytesize[val])
+setsockopt$KGPT_TIPC_MCAST_BROADCAST_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_MCAST_BROADCAST], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_MCAST_REPLICAST_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_MCAST_REPLICAST], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_TIPC_GROUP_LEAVE_1(fd sock_tipc_stream, level const[SOL_TIPC], opt const[TIPC_GROUP_LEAVE], val ptr[in, int32], len bytesize[val])

@@ -1,0 +1,72 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <net/bluetooth/bluetooth.h>
+
+resource sock_sco[sock]
+
+socket$KGPT_bluetooth(domain const[AF_BLUETOOTH], type const[SOCK_SEQPACKET], proto const[0]) sock_sco
+
+bind$KGPT_sco_sock_ops(fd sock_sco, addr ptr[in, sockaddr_sco], addrlen len[addr])
+connect$KGPT_sco_sock_ops(fd sock_sco, addr ptr[in, sockaddr_sco], addrlen len[addr])
+accept4$KGPT_sco_sock_ops(fd sock_sco, peer ptr[out, sockaddr_sco, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_sco
+sendto$KGPT_sco_sock_ops(fd sock_sco, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_sco, opt], addrlen len[addr])
+recvfrom$KGPT_sco_sock_ops(fd sock_sco, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_sco, opt], addrlen len[addr])
+getsockopt$KGPT_BT_DEFER_SETUP_0(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_DEFER_SETUP], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_VOICE(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_VOICE], val ptr[out, bt_voice], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_PHY(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_PHY], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_PKT_STATUS(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_PKT_STATUS], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_SNDMTU(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_SNDMTU], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_RCVMTU(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_RCVMTU], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_BT_CODEC(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_CODEC], val ptr[in, bt_codec], len bytesize[val])
+setsockopt$KGPT_BT_DEFER_SETUP_0(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_DEFER_SETUP], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_BT_VOICE(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_VOICE], val ptr[in, bt_voice], len bytesize[val])
+setsockopt$KGPT_BT_PKT_STATUS(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_PKT_STATUS], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_BT_CODEC(fd sock_sco, level const[SOL_BLUETOOTH], opt const[BT_CODEC], val ptr[in, bt_codecs], len bytesize[val])
+
+bt_voice {
+	setting	int16
+}
+
+bt_codecs {
+	num_codecs	int8
+	codecs		array[bt_codec]
+}
+
+bt_codec {
+	id		int8
+	cid		int16
+	vid		int16
+	data_path	int8
+	num_caps	int8
+}

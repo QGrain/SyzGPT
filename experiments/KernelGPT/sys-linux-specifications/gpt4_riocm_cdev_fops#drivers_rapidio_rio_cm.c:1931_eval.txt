@@ -1,0 +1,75 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/rio_cm_cdev.h>
+
+resource fd_rio_cm[fd]
+
+openat$KGPT_rio_cm(fd const[AT_FDCWD], file ptr[in, string["/dev/rio_cm"]], flags flags[open_flags], mode const[0]) fd_rio_cm
+
+ioctl$KGPT_RIO_CM_EP_GET_LIST_SIZE(fd fd_rio_cm, cmd const[RIO_CM_EP_GET_LIST_SIZE], arg ptr[out, int32])
+ioctl$KGPT_RIO_CM_EP_GET_LIST(fd fd_rio_cm, cmd const[RIO_CM_EP_GET_LIST], arg ptr[inout, rio_cm_ep_list])
+ioctl$KGPT_RIO_CM_CHAN_CREATE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CREATE], arg ptr[inout, rio_cm_channel])
+ioctl$KGPT_RIO_CM_CHAN_CLOSE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CLOSE], arg ptr[in, int16])
+ioctl$KGPT_RIO_CM_CHAN_BIND(fd fd_rio_cm, cmd const[RIO_CM_CHAN_BIND], arg ptr[in, rio_cm_channel])
+ioctl$KGPT_RIO_CM_CHAN_LISTEN(fd fd_rio_cm, cmd const[RIO_CM_CHAN_LISTEN], arg ptr[in, int16])
+ioctl$KGPT_RIO_CM_CHAN_ACCEPT(fd fd_rio_cm, cmd const[RIO_CM_CHAN_ACCEPT], arg ptr[inout, rio_cm_accept])
+ioctl$KGPT_RIO_CM_CHAN_CONNECT(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CONNECT], arg ptr[in, rio_cm_channel])
+ioctl$KGPT_RIO_CM_CHAN_SEND(fd fd_rio_cm, cmd const[RIO_CM_CHAN_SEND], arg ptr[in, rio_cm_msg])
+ioctl$KGPT_RIO_CM_CHAN_RECEIVE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_RECEIVE], arg ptr[inout, rio_cm_msg])
+ioctl$KGPT_RIO_CM_MPORT_GET_LIST(fd fd_rio_cm, cmd const[RIO_CM_MPORT_GET_LIST], arg ptr[inout, rio_cm_mport_get_list])
+
+type rio_cm_ep_list ptr[in, array[int8]]
+
+rio_cm_channel {
+	id		int16
+	remote_channel	int16
+	remote_destid	int16
+	mport_id	int8
+}
+
+rio_cm_accept {
+	ch_num	int16
+	pad0	const[0, int16]
+	wait_to	int32
+}
+
+rio_cm_msg {
+	ch_num	int16
+	size	int16
+	rxto	int32
+	msg	int64
+}
+
+type rio_cm_mport_get_list ptr[in, array[int8]]

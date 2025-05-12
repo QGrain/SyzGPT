@@ -1,0 +1,75 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/sound/asound.h>
+
+resource fd_snd_midi[fd]
+
+syz_open_dev$KGPT_snd_midi(dev ptr[in, string["/dev/snd/midiC#D#"]], id proc[0, 1], flags flags[open_flags]) fd_snd_midi
+
+ioctl$KGPT_SNDRV_UMP_IOCTL_ENDPOINT_INFO(fd fd_snd_midi, cmd const[SNDRV_UMP_IOCTL_ENDPOINT_INFO], arg ptr[out, snd_ump_endpoint_info])
+ioctl$KGPT_SNDRV_UMP_IOCTL_BLOCK_INFO(fd fd_snd_midi, cmd const[SNDRV_UMP_IOCTL_BLOCK_INFO], arg ptr[inout, snd_ump_block_info])
+
+snd_ump_endpoint_info {
+	card		int32
+	device		int32
+	flags		int32
+	protocol_caps	int32
+	protocol	int32
+	num_blocks	int32
+	version		int16
+	family_id	int16
+	model_id	int16
+	manufacturer_id	int32
+	sw_revision	array[int8, 4]
+	padding		int16
+	name		array[int8, 128]
+	product_id	array[int8, 128]
+	reserved	array[int8, 32]
+}
+
+snd_ump_block_info {
+	card		int32
+	device		int32
+	block_id	int8
+	direction	int8
+	active		int8
+	first_group	int8
+	num_groups	int8
+	midi_ci_version	int8
+	sysex8_streams	int8
+	ui_hint		int8
+	flags		int32
+	name		array[int8, 128]
+	reserved	array[int8, 32]
+}

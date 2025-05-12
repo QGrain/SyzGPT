@@ -1,0 +1,102 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/usb/raw_gadget.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_raw_gadget[fd]
+
+openat$KGPT_raw_gadget(fd const[AT_FDCWD], file ptr[in, string["/dev/raw-gadget"]], flags const[O_RDWR], mode const[0]) fd_raw_gadget
+
+ioctl$KGPT_USB_RAW_IOCTL_INIT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_INIT], arg ptr[in, usb_raw_init])
+ioctl$KGPT_USB_RAW_IOCTL_RUN(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_RUN], arg ptr[in, array[int8]])
+ioctl$KGPT_USB_RAW_IOCTL_EVENT_FETCH(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EVENT_FETCH], arg ptr[inout, usb_raw_event])
+ioctl$KGPT_USB_RAW_IOCTL_EP0_WRITE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_WRITE], arg ptr[in, usb_raw_ep_io])
+ioctl$KGPT_USB_RAW_IOCTL_EP0_READ(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_READ], arg ptr[inout, usb_raw_ep_io])
+ioctl$KGPT_USB_RAW_IOCTL_EP_ENABLE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_ENABLE], arg ptr[in, usb_endpoint_descriptor])
+ioctl$KGPT_USB_RAW_IOCTL_EP_DISABLE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_DISABLE], arg intptr)
+ioctl$KGPT_USB_RAW_IOCTL_EP_WRITE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_WRITE], arg ptr[in, usb_raw_ep_io])
+ioctl$KGPT_USB_RAW_IOCTL_EP_READ(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_READ], arg ptr[inout, usb_raw_ep_io])
+ioctl$KGPT_USB_RAW_IOCTL_CONFIGURE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_CONFIGURE], arg intptr)
+ioctl$KGPT_USB_RAW_IOCTL_VBUS_DRAW(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_VBUS_DRAW], arg intptr)
+ioctl$KGPT_USB_RAW_IOCTL_EPS_INFO(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EPS_INFO], arg ptr[out, usb_raw_eps_info])
+ioctl$KGPT_USB_RAW_IOCTL_EP0_STALL(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_STALL], arg ptr[in, array[int8]])
+ioctl$KGPT_USB_RAW_IOCTL_EP_SET_HALT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_SET_HALT], arg intptr)
+ioctl$KGPT_USB_RAW_IOCTL_EP_CLEAR_HALT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_CLEAR_HALT], arg intptr)
+ioctl$KGPT_USB_RAW_IOCTL_EP_SET_WEDGE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_SET_WEDGE], arg intptr)
+
+usb_raw_init {
+	driver_name	array[int8, UDC_NAME_LENGTH_MAX]
+	device_name	array[int8, UDC_NAME_LENGTH_MAX]
+	speed		int8
+}
+
+usb_raw_event {
+	type	int32
+	length	int32
+	data	array[int8]
+}
+
+usb_raw_ep_io {
+	ep	int16
+	flags	int16
+	length	int32
+	data	array[int8]
+}
+
+usb_raw_eps_info {
+	eps	array[usb_raw_ep_info, USB_RAW_EPS_NUM_MAX]
+}
+
+usb_raw_ep_info {
+	name	array[int8, USB_RAW_EP_NAME_MAX]
+	addr	int32
+	caps	usb_raw_ep_caps
+	limits	usb_raw_ep_limits
+}
+
+usb_raw_ep_caps {
+	type_control	int32:1
+	type_iso	int32:1
+	type_bulk	int32:1
+	type_int	int32:1
+	dir_in		int32:1
+	dir_out		int32:1
+}
+
+usb_raw_ep_limits {
+	maxpacket_limit	int16
+	max_streams	int16
+	reserved	int32
+}

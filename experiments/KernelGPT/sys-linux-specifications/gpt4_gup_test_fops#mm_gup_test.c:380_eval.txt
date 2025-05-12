@@ -1,0 +1,63 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <mm/gup_test.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_gup_test[fd]
+
+openat$KGPT_gup_test(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/debug/gup_test"]], flags const[O_RDWR], mode const[0]) fd_gup_test
+
+ioctl$KGPT_GUP_FAST_BENCHMARK(fd fd_gup_test, cmd const[GUP_FAST_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$KGPT_PIN_FAST_BENCHMARK(fd fd_gup_test, cmd const[PIN_FAST_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$KGPT_PIN_LONGTERM_BENCHMARK(fd fd_gup_test, cmd const[PIN_LONGTERM_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$KGPT_GUP_BASIC_TEST(fd fd_gup_test, cmd const[GUP_BASIC_TEST], arg ptr[inout, gup_test])
+ioctl$KGPT_PIN_BASIC_TEST(fd fd_gup_test, cmd const[PIN_BASIC_TEST], arg ptr[inout, gup_test])
+ioctl$KGPT_DUMP_USER_PAGES_TEST(fd fd_gup_test, cmd const[DUMP_USER_PAGES_TEST], arg ptr[inout, gup_test])
+ioctl$KGPT_PIN_LONGTERM_TEST_START(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_START], arg int64)
+ioctl$KGPT_PIN_LONGTERM_TEST_STOP(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_STOP], arg ptr[in, array[int8]])
+ioctl$KGPT_PIN_LONGTERM_TEST_READ(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_READ], arg ptr[in, pin_longterm_test_args])
+
+gup_test {
+	get_delta_usec		int64
+	put_delta_usec		int64
+	addr			int64
+	size			int64
+	nr_pages_per_call	int32
+	gup_flags		int32
+	test_flags		int32
+	which_pages		array[int32, GUP_TEST_MAX_PAGES_TO_DUMP]
+}
+
+type pin_longterm_test_args ptr[in, array[int8]]

@@ -1,0 +1,217 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/atmsvc.h>
+include <uapi/linux/atmmpc.h>
+include <uapi/linux/atm.h>
+include <uapi/linux/atmarp.h>
+include <uapi/linux/atmdev.h>
+include <uapi/linux/atmsap.h>
+include <uapi/linux/atmlec.h>
+include <uapi/linux/sonet.h>
+
+resource sock_atmsvc[sock]
+
+socket$KGPT_atmsvc(domain const[AF_ATMSVC], type const[SOCK_DGRAM], proto const[0]) sock_atmsvc
+
+bind$KGPT_svc_proto_ops(fd sock_atmsvc, addr ptr[in, sockaddr_atmsvc], addrlen len[addr])
+connect$KGPT_svc_proto_ops(fd sock_atmsvc, addr ptr[in, sockaddr_atmsvc], addrlen len[addr])
+accept4$KGPT_svc_proto_ops(fd sock_atmsvc, peer ptr[out, sockaddr_atmsvc, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_atmsvc
+sendto$KGPT_svc_proto_ops(fd sock_atmsvc, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_atmsvc, opt], addrlen len[addr])
+recvfrom$KGPT_svc_proto_ops(fd sock_atmsvc, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_atmsvc, opt], addrlen len[addr])
+ioctl$KGPT_ATM_SETSC(fd sock_atmsvc, cmd const[ATM_SETSC], arg ptr[in, array[int8]])
+ioctl$KGPT_ATMSIGD_CTRL(fd sock_atmsvc, cmd const[ATMSIGD_CTRL], arg ptr[in, array[int8]])
+ioctl$KGPT_ATMMPC_CTRL(fd sock_atmsvc, cmd const[ATMMPC_CTRL], arg ptr[in, array[int8]])
+ioctl$KGPT_ATMMPC_DATA(fd sock_atmsvc, cmd const[ATMMPC_DATA], arg ptr[in, array[int8]])
+ioctl$KGPT_ATMARPD_CTRL(fd sock_atmsvc, cmd const[ATMARPD_CTRL], arg ptr[in, array[int8]])
+ioctl$KGPT_ATMLEC_CTRL(fd sock_atmsvc, cmd const[ATMLEC_CTRL], arg ptr[in, array[int8]])
+ioctl$KGPT_ATM_RSTADDR(fd sock_atmsvc, cmd const[ATM_RSTADDR], arg ptr[in, array[int8]])
+ioctl$KGPT_SONET_GETSTATZ(fd sock_atmsvc, cmd const[SONET_GETSTATZ], arg ptr[in, array[int8]])
+ioctl$KGPT_SONET_SETDIAG(fd sock_atmsvc, cmd const[SONET_SETDIAG], arg ptr[in, array[int8]])
+ioctl$KGPT_SONET_CLRDIAG(fd sock_atmsvc, cmd const[SONET_CLRDIAG], arg ptr[in, array[int8]])
+ioctl$KGPT_SONET_SETFRAMING(fd sock_atmsvc, cmd const[SONET_SETFRAMING], arg ptr[in, array[int8]])
+ioctl$KGPT_ATM_ADDPARTY(fd sock_atmsvc, cmd const[ATM_ADDPARTY], arg ptr[in, sockaddr_atmsvc])
+ioctl$KGPT_ATM_DROPPARTY(fd sock_atmsvc, cmd const[ATM_DROPPARTY], arg intptr)
+ioctl$KGPT_ATM_SETBACKEND(fd sock_atmsvc, cmd const[ATM_SETBACKEND], arg intptr)
+ioctl$KGPT_ATM_NEWBACKENDIF(fd sock_atmsvc, cmd const[ATM_NEWBACKENDIF], arg ptr[in, atm_backend_t])
+ioctl$KGPT_ATM_GETNAMES(fd sock_atmsvc, cmd const[ATM_GETNAMES], arg ptr[inout, atm_iobuf])
+ioctl$KGPT_ATM_GETTYPE(fd sock_atmsvc, cmd const[ATM_GETTYPE], arg ptr[out, array[int8]])
+ioctl$KGPT_ATM_GETESI(fd sock_atmsvc, cmd const[ATM_GETESI], arg ptr[out, array[int8]])
+ioctl$KGPT_ATM_SETESI(fd sock_atmsvc, cmd const[ATM_SETESI], arg ptr[in, array[int8, ESI_LEN]])
+ioctl$KGPT_ATM_SETESIF(fd sock_atmsvc, cmd const[ATM_SETESIF], arg ptr[in, array[int8]])
+ioctl$KGPT_ATM_GETSTATZ(fd sock_atmsvc, cmd const[ATM_GETSTATZ], arg ptr[out, atm_dev_stats])
+ioctl$KGPT_ATM_GETSTAT(fd sock_atmsvc, cmd const[ATM_GETSTAT], arg ptr[out, atm_dev_stats])
+ioctl$KGPT_ATM_GETCIRANGE(fd sock_atmsvc, cmd const[ATM_GETCIRANGE], arg ptr[out, atm_ci_range])
+ioctl$KGPT_ATM_GETLINKRATE(fd sock_atmsvc, cmd const[ATM_GETLINKRATE], arg ptr[out, atm_link_rate])
+ioctl$KGPT_ATM_ADDADDR(fd sock_atmsvc, cmd const[ATM_ADDADDR], arg ptr[in, sockaddr_atmsvc])
+ioctl$KGPT_ATM_DELADDR(fd sock_atmsvc, cmd const[ATM_DELADDR], arg ptr[in, sockaddr_atmsvc])
+ioctl$KGPT_ATM_ADDLECSADDR(fd sock_atmsvc, cmd const[ATM_ADDLECSADDR], arg ptr[in, sockaddr_atmsvc])
+ioctl$KGPT_ATM_DELLECSADDR(fd sock_atmsvc, cmd const[ATM_DELLECSADDR], arg ptr[in, sockaddr_atmsvc])
+ioctl$KGPT_ATM_GETADDR(fd sock_atmsvc, cmd const[ATM_GETADDR], arg ptr[out, array[sockaddr_atmsvc]])
+ioctl$KGPT_ATM_GETLECSADDR(fd sock_atmsvc, cmd const[ATM_GETLECSADDR], arg ptr[out, array[sockaddr_atmsvc]])
+ioctl$KGPT_ATM_SETLOOP(fd sock_atmsvc, cmd const[ATM_SETLOOP], arg ptr[in, array[int8]])
+getsockopt$KGPT_SO_ATMSAP(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_ATMSAP], val ptr[out, atm_sap], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_ATMQOS(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_ATMQOS], val ptr[out, atm_qos], len ptr[in, bytesize[val, int32]])
+getsockopt$KGPT_SO_SETCLP(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_SETCLP], val ptr[out, int32], len ptr[in, bytesize[val, int32]])
+getsockopt$KGPT_SO_ATMPVC(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_ATMPVC], val ptr[out, sockaddr_atmpvc], len ptr[in, bytesize[val, int32]])
+setsockopt$KGPT_SO_ATMSAP(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_ATMSAP], val ptr[in, atm_sap], len bytesize[val])
+setsockopt$KGPT_SO_MULTIPOINT(fd sock_atmsvc, level const[SOL_ATM], opt const[SO_MULTIPOINT], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_SO_ATMQOS(fd sock_atmsvc, level const[SOL_SOCKET], opt const[SO_ATMQOS], val ptr[in, atm_qos], len bytesize[val])
+
+type atm_backend_t ptr[in, array[int8]]
+
+atm_dev_stats {
+	aal0	atm_aal_stats
+	aal34	atm_aal_stats
+	aal5	atm_aal_stats
+}
+
+type atm_ci_range ptr[in, array[int8]]
+type atm_link_rate ptr[in, array[int8]]
+
+atm_sap {
+	bhli	atm_bhli
+	blli	array[atm_blli, ATM_MAX_BLLI]
+}
+
+atm_qos {
+	txtp	atm_trafprm
+	rxtp	atm_trafprm
+	aal	int8
+}
+
+sockaddr_atmpvc {
+	sap_family	const[AF_ATMPVC, int16]
+	sap_addr	atmpvc_addr
+}
+
+define SOL_SOCKET	1
+define SO_ATMQOS	28674
+
+sockaddr_atmsvc {
+	sas_family	const[AF_ATMSVC, int16]
+	sas_addr	sockaddr_atmsvc_addr
+}
+
+atm_iobuf {
+	length	int32
+	buffer	ptr[inout, array[int8]]
+}
+
+type atm_aal_stats ptr[in, array[int8]]
+
+atm_bhli {
+	hl_type		int8
+	hl_length	int8
+	hl_info		array[int8, ATM_MAX_HLI]
+}
+
+atm_blli {
+	l2_proto	int8
+	l2		atm_blli_l2_union
+	l3_proto	int8
+	l3		atm_blli_l3_union
+}
+
+atm_blli_l2_union [
+	itu	atm_blli_l2_itu
+	user	int8
+]
+
+atm_blli_l2_itu {
+	mode	int8
+	window	int8
+}
+
+atm_blli_l3_union [
+	itu	atm_blli_l3_itu
+	user	int8
+	h310	atm_blli_l3_h310
+	tr9577	atm_blli_l3_tr9577
+]
+
+atm_blli_l3_itu {
+	mode		int8
+	def_size	int8
+	window		int8
+}
+
+atm_blli_l3_h310 {
+	term_type	int8
+	fw_mpx_cap	int8
+	bw_mpx_cap	int8
+}
+
+atm_blli_l3_tr9577 {
+	ipi	int8
+	snap	array[int8, 5]
+}
+
+atmpvc_addr {
+	itf	int16
+	vpi	int16
+	vci	int32
+}
+
+atm_trafprm {
+	traffic_class	int8
+	max_pcr		int32
+	pcr		int32
+	min_pcr		int32
+	max_cdv		int32
+	max_sdu		int32
+	icr		int32
+	tbe		int32
+	frtt		int32:24
+	rif		int32:4
+	rdf		int32:4
+	nrm_pres	int32:1
+	trm_pres	int32:1
+	adtf_pres	int32:1
+	cdf_pres	int32:1
+	nrm		int32:3
+	trm		int32:3
+	adtf		int32:10
+	cdf		int32:3
+	spare		int32:9
+}
+
+sockaddr_atmsvc_addr {
+	prv		array[int8, ATM_ESA_LEN]
+	pub		array[int8, ATM_E164_LEN_ADD_ONE]
+	lij_type	int8
+	lij_id		int32
+}
+
+define ATM_E164_LEN_ADD_ONE	16
+define ATM_ESA_LEN	20

@@ -1,0 +1,79 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/gsmmux.h>
+include <arch/powerpc/include/uapi/asm/ioctls.h>
+
+openat$KGPT_ptmx_dup(fd const[AT_FDCWD], file ptr[in, string["/dev/ptmx"]], flags flags[open_flags], mode const[0]) fd_tty
+
+ioctl$KGPT_GSMIOC_GETCONF(fd fd_tty, cmd const[GSMIOC_GETCONF], arg ptr[out, gsm_config])
+ioctl$KGPT_GSMIOC_SETCONF(fd fd_tty, cmd const[GSMIOC_SETCONF], arg ptr[in, gsm_config])
+ioctl$KGPT_GSMIOC_GETFIRST(fd fd_tty, cmd const[GSMIOC_GETFIRST], arg ptr[out, int32])
+ioctl$KGPT_GSMIOC_GETCONF_EXT(fd fd_tty, cmd const[GSMIOC_GETCONF_EXT], arg ptr[out, gsm_config_ext])
+ioctl$KGPT_GSMIOC_SETCONF_EXT(fd fd_tty, cmd const[GSMIOC_SETCONF_EXT], arg ptr[in, gsm_config_ext])
+ioctl$KGPT_GSMIOC_GETCONF_DLCI(fd fd_tty, cmd const[GSMIOC_GETCONF_DLCI], arg ptr[inout, gsm_dlci_config])
+ioctl$KGPT_GSMIOC_SETCONF_DLCI(fd fd_tty, cmd const[GSMIOC_SETCONF_DLCI], arg ptr[in, gsm_dlci_config])
+
+gsm_config {
+	adaption	int32
+	encapsulation	int32
+	initiator	int32
+	t1		int32
+	t2		int32
+	t3		int32
+	n2		int32
+	mru		int32
+	mtu		int32
+	k		int32
+	i		int32
+	unused		array[int32, 8]
+}
+
+gsm_config_ext {
+	keep_alive	int32
+	wait_config	int32
+	flags		int32
+	reserved	array[int32, 5]
+}
+
+gsm_dlci_config {
+	channel		int32
+	adaption	int32
+	mtu		int32
+	priority	int32
+	i		int32
+	k		int32
+	flags		int32
+	reserved	array[int32, 7]
+}

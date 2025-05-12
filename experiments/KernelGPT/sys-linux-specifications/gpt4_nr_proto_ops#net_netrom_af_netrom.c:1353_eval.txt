@@ -1,0 +1,60 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/sockios.h>
+include <uapi/linux/netrom.h>
+
+syz_init_net_socket$KGPT_netrom(domain const[AF_NETROM], type const[SOCK_SEQPACKET], proto const[0]) sock_netrom
+
+bind$KGPT_nr_proto_ops(fd sock_netrom, addr ptr[in, sockaddr_ax25_any], addrlen len[addr])
+connect$KGPT_nr_proto_ops(fd sock_netrom, addr ptr[in, sockaddr_ax25_any], addrlen len[addr])
+accept4$KGPT_nr_proto_ops(fd sock_netrom, peer ptr[out, sockaddr_ax25_any, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_netrom
+sendto$KGPT_nr_proto_ops(fd sock_netrom, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_ax25_any, opt], addrlen len[addr])
+recvfrom$KGPT_nr_proto_ops(fd sock_netrom, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_ax25_any, opt], addrlen len[addr])
+ioctl$KGPT_SIOCGIFMETRIC(fd sock_netrom, cmd const[SIOCGIFMETRIC], arg ptr[in, array[int8]])
+ioctl$KGPT_SIOCSIFMETRIC(fd sock_netrom, cmd const[SIOCSIFMETRIC], arg ptr[in, array[int8]])
+getsockopt$KGPT_NETROM_T1(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T1], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_NETROM_T2(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T2], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_NETROM_N2(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_N2], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_NETROM_T4(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T4], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_NETROM_IDLE(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_IDLE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_NETROM_T1(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T1], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_NETROM_T2(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T2], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_NETROM_N2(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_N2], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_NETROM_T4(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_T4], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_NETROM_IDLE(fd sock_netrom, level const[SOL_NETROM], opt const[NETROM_IDLE], val ptr[in, int32], len bytesize[val])
+
+sockaddr_ax25_any [
+	short	sockaddr_ax25
+	full	full_sockaddr_ax25
+] [varlen]

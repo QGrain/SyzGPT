@@ -1,0 +1,129 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/mtd/mtd-abi.h>
+
+resource fd_mtd[fd]
+
+syz_open_dev$KGPT_mtd(dev ptr[in, string["/dev/mtd#"]], id proc[0, 1], flags flags[open_flags]) fd_mtd
+
+ioctl$KGPT_MEMGETREGIONCOUNT(fd fd_mtd, cmd const[MEMGETREGIONCOUNT], arg ptr[in, array[int8]])
+ioctl$KGPT_MEMGETINFO(fd fd_mtd, cmd const[MEMGETINFO], arg ptr[in, array[int8]])
+ioctl$KGPT_MEMGETOOBSEL(fd fd_mtd, cmd const[MEMGETOOBSEL], arg ptr[in, array[int8]])
+ioctl$KGPT_OTPGETREGIONCOUNT(fd fd_mtd, cmd const[OTPGETREGIONCOUNT], arg ptr[in, array[int8]])
+ioctl$KGPT_ECCGETLAYOUT(fd fd_mtd, cmd const[ECCGETLAYOUT], arg ptr[in, array[int8]])
+ioctl$KGPT_ECCGETSTATS(fd fd_mtd, cmd const[ECCGETSTATS], arg ptr[in, array[int8]])
+ioctl$KGPT_MEMGETREGIONINFO(fd fd_mtd, cmd const[MEMGETREGIONINFO], arg ptr[inout, region_info_user])
+ioctl$KGPT_MEMREADOOB(fd fd_mtd, cmd const[MEMREADOOB], arg ptr[in, mtd_oob_buf])
+ioctl$KGPT_MEMREADOOB64(fd fd_mtd, cmd const[MEMREADOOB64], arg ptr[in, mtd_oob_buf64])
+ioctl$KGPT_MEMREAD(fd fd_mtd, cmd const[MEMREAD], arg ptr[in, mtd_read_req])
+ioctl$KGPT_MEMERASE(fd fd_mtd, cmd const[MEMERASE], arg ptr[in, erase_info_user])
+ioctl$KGPT_MEMERASE64(fd fd_mtd, cmd const[MEMERASE64], arg ptr[in, erase_info_user64])
+ioctl$KGPT_MEMWRITEOOB(fd fd_mtd, cmd const[MEMWRITEOOB], arg ptr[in, mtd_oob_buf])
+ioctl$KGPT_MEMWRITEOOB64(fd fd_mtd, cmd const[MEMWRITEOOB64], arg ptr[in, mtd_oob_buf64])
+ioctl$KGPT_MEMWRITE(fd fd_mtd, cmd const[MEMWRITE], arg ptr[in, mtd_write_req])
+ioctl$KGPT_MEMLOCK(fd fd_mtd, cmd const[MEMLOCK], arg ptr[in, erase_info_user])
+ioctl$KGPT_MEMUNLOCK(fd fd_mtd, cmd const[MEMUNLOCK], arg ptr[in, erase_info_user])
+ioctl$KGPT_MEMISLOCKED(fd fd_mtd, cmd const[MEMISLOCKED], arg ptr[in, erase_info_user])
+ioctl$KGPT_MEMGETBADBLOCK(fd fd_mtd, cmd const[MEMGETBADBLOCK], arg ptr[in, int64])
+ioctl$KGPT_MEMSETBADBLOCK(fd fd_mtd, cmd const[MEMSETBADBLOCK], arg ptr[in, int64])
+ioctl$KGPT_OTPSELECT(fd fd_mtd, cmd const[OTPSELECT], arg intptr)
+ioctl$KGPT_OTPGETREGIONINFO(fd fd_mtd, cmd const[OTPGETREGIONINFO], arg ptr[out, array[otp_info]])
+ioctl$KGPT_OTPLOCK(fd fd_mtd, cmd const[OTPLOCK], arg ptr[in, otp_info])
+ioctl$KGPT_OTPERASE(fd fd_mtd, cmd const[OTPERASE], arg ptr[in, otp_info])
+ioctl$KGPT_MTDFILEMODE(fd fd_mtd, cmd const[MTDFILEMODE], arg flags[mtd_file_modes])
+
+region_info_user {
+	offset		int32
+	erasesize	int32
+	numblocks	int32
+	regionindex	int32
+}
+
+mtd_oob_buf {
+	start	int32
+	length	int32
+	ptr	ptr[in, array[int8]]
+}
+
+mtd_oob_buf64 {
+	start	int64
+	pad	int32
+	length	int32
+	usr_ptr	int64
+}
+
+mtd_read_req {
+	start		int64
+	len		int64
+	ooblen		int64
+	usr_data	int64
+	usr_oob		int64
+	mode		int8
+	padding		array[int8, 7]
+	ecc_stats	mtd_read_req_ecc_stats
+}
+
+erase_info_user {
+	start	int32
+	length	int32
+}
+
+erase_info_user64 {
+	start	int64
+	length	int64
+}
+
+mtd_write_req {
+	start		int64
+	len		int64
+	ooblen		int64
+	usr_data	int64
+	usr_oob		int64
+	mode		int8
+	padding		array[int8, 7]
+}
+
+otp_info {
+	start	int32
+	length	int32
+	locked	int32
+}
+
+mtd_file_modes = MTD_FILE_MODE_NORMAL, MTD_FILE_MODE_OTP_FACTORY, MTD_FILE_MODE_OTP_USER, MTD_FILE_MODE_RAW
+
+mtd_read_req_ecc_stats {
+	uncorrectable_errors	int32
+	corrected_bitflips	int32
+	max_bitflips		int32
+}

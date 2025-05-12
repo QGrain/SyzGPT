@@ -1,0 +1,48 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/gpio.h>
+
+resource fd_gpiochip[fd]
+
+syz_open_dev$KGPT_gpiochip_dup(dev ptr[in, string["/dev/gpiochip#"]], id proc[0, 1], flags flags[open_flags]) fd_gpiochip
+
+ioctl$KGPT_GPIOHANDLE_GET_LINE_VALUES_IOCTL_0(fd fd_gpiochip, cmd const[GPIOHANDLE_GET_LINE_VALUES_IOCTL], arg ptr[inout, gpiohandle_data])
+ioctl$KGPT_GPIOHANDLE_SET_LINE_VALUES_IOCTL(fd fd_gpiochip, cmd const[GPIOHANDLE_SET_LINE_VALUES_IOCTL], arg ptr[in, gpiohandle_data])
+ioctl$KGPT_GPIOHANDLE_SET_CONFIG_IOCTL(fd fd_gpiochip, cmd const[GPIOHANDLE_SET_CONFIG_IOCTL], arg ptr[in, gpiohandle_config])
+
+gpiohandle_config {
+	flags		int32
+	default_values	array[int8, GPIOHANDLES_MAX]
+	padding		array[int32, 4]
+}

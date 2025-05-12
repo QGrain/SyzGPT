@@ -1,0 +1,130 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/omap3isp.h>
+
+resource fd_isppreview[fd]
+
+syz_open_dev$KGPT_v4l_subdev_dup_dup_dup_dup_dup_dup_dup_dup_dup(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_isppreview
+
+ioctl$KGPT_VIDIOC_OMAP3ISP_PRV_CFG(fd fd_isppreview, cmd const[VIDIOC_OMAP3ISP_PRV_CFG], arg ptr[in, omap3isp_prev_update_config])
+
+omap3isp_prev_update_config {
+	update		int32
+	flag		int32
+	shading_shift	int32
+	luma		ptr[in, omap3isp_prev_luma]
+	hmed		ptr[in, omap3isp_prev_hmed]
+	cfa		ptr[in, omap3isp_prev_cfa]
+	csup		ptr[in, omap3isp_prev_csup]
+	wbal		ptr[in, omap3isp_prev_wbal]
+	blkadj		ptr[in, omap3isp_prev_blkadj]
+	rgb2rgb		ptr[in, omap3isp_prev_rgbtorgb]
+	csc		ptr[in, omap3isp_prev_csc]
+	yclimit		ptr[in, omap3isp_prev_yclimit]
+	dcor		ptr[in, omap3isp_prev_dcor]
+	nf		ptr[in, omap3isp_prev_nf]
+	gamma		ptr[in, omap3isp_prev_gtables]
+}
+
+omap3isp_prev_luma {
+	table	array[int32, OMAP3ISP_PREV_YENH_TBL_SIZE]
+}
+
+omap3isp_prev_hmed {
+	odddist		int8
+	evendist	int8
+	thres		int8
+}
+
+omap3isp_prev_csup {
+	gain	int8
+	thres	int8
+	hypf_en	int8
+}
+
+omap3isp_prev_wbal {
+	dgain	int16
+	coef3	int8
+	coef2	int8
+	coef1	int8
+	coef0	int8
+}
+
+omap3isp_prev_blkadj {
+	red	int8
+	green	int8
+	blue	int8
+}
+
+omap3isp_prev_rgbtorgb {
+	matrix	array[array[int16, OMAP3ISP_RGB_MAX], OMAP3ISP_RGB_MAX]
+	offset	array[int16, OMAP3ISP_RGB_MAX]
+}
+
+omap3isp_prev_csc {
+	matrix	array[array[int16, OMAP3ISP_RGB_MAX], OMAP3ISP_RGB_MAX]
+	offset	array[int16, OMAP3ISP_RGB_MAX]
+}
+
+omap3isp_prev_yclimit {
+	minC	int8
+	maxC	int8
+	minY	int8
+	maxY	int8
+}
+
+omap3isp_prev_dcor {
+	couplet_mode_en	int8
+	detect_correct	array[int32, OMAP3ISP_PREV_DETECT_CORRECT_CHANNELS]
+}
+
+omap3isp_prev_nf {
+	spread	int8
+	table	array[int32, OMAP3ISP_PREV_NF_TBL_SIZE]
+}
+
+omap3isp_prev_gtables {
+	red	array[int32, OMAP3ISP_PREV_GAMMA_TBL_SIZE]
+	green	array[int32, OMAP3ISP_PREV_GAMMA_TBL_SIZE]
+	blue	array[int32, OMAP3ISP_PREV_GAMMA_TBL_SIZE]
+}
+
+omap3isp_prev_cfa {
+	format		int32
+	gradthrs_vert	int8
+	gradthrs_horz	int8
+	table		array[array[int32, OMAP3ISP_PREV_CFA_BLK_SIZE_CONST], 4]
+}
+
+define OMAP3ISP_PREV_CFA_BLK_SIZE_CONST	4

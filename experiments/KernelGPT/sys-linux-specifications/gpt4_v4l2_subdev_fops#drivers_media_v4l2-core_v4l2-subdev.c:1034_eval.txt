@@ -1,0 +1,65 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/v4l2-subdev.h>
+
+resource fd_v4l_subdev[fd]
+
+syz_open_dev$KGPT_v4l_subdev_dup_dup_dup_dup_dup_dup_dup_dup_dup_dup(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_v4l_subdev
+
+ioctl$KGPT_VIDIOC_SUBDEV_QUERYCAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_QUERYCAP], arg ptr[in, v4l2_subdev_capability])
+ioctl$KGPT_VIDIOC_SUBDEV_G_STD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_STD], arg ptr[out, v4l2_std_id])
+ioctl$KGPT_VIDIOC_SUBDEV_S_STD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_STD], arg ptr[in, v4l2_std_id])
+ioctl$KGPT_VIDIOC_SUBDEV_ENUMSTD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_ENUMSTD], arg ptr[inout, v4l2_standard])
+ioctl$KGPT_VIDIOC_SUBDEV_QUERYSTD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_QUERYSTD], arg ptr[out, v4l2_std_id])
+ioctl$KGPT_VIDIOC_SUBDEV_G_ROUTING(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_ROUTING], arg ptr[in, v4l2_subdev_routing])
+ioctl$KGPT_VIDIOC_SUBDEV_S_ROUTING(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_ROUTING], arg ptr[in, v4l2_subdev_routing])
+ioctl$KGPT_VIDIOC_SUBDEV_G_CLIENT_CAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_CLIENT_CAP], arg ptr[in, v4l2_subdev_client_capability])
+ioctl$KGPT_VIDIOC_SUBDEV_S_CLIENT_CAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_CLIENT_CAP], arg ptr[in, v4l2_subdev_client_capability])
+
+v4l2_subdev_capability {
+	version		int32
+	capabilities	int32
+	reserved	array[int32, 14]
+}
+
+v4l2_subdev_routing {
+	which		int32
+	num_routes	int32
+	routes		intptr
+	reserved	array[int32, 6]
+}
+
+v4l2_subdev_client_capability {
+	capabilities	int64
+}

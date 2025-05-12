@@ -1,0 +1,208 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/sound/compress_offload.h>
+include <uapi/sound/compress_params.h>
+
+resource fd_snd_compr[fd]
+
+syz_open_dev$KGPT_snd_compr(dev ptr[in, string["/dev/snd/comprC#D#"]], id proc[0, 1], flags flags[open_flags]) fd_snd_compr
+
+ioctl$KGPT_SNDRV_COMPRESS_IOCTL_VERSION(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_IOCTL_VERSION], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_PAUSE(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_PAUSE], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_RESUME(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_RESUME], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_START(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_START], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_STOP(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_STOP], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_DRAIN(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_DRAIN], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_PARTIAL_DRAIN(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_PARTIAL_DRAIN], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_NEXT_TRACK(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_NEXT_TRACK], arg ptr[in, array[int8]])
+ioctl$KGPT_SNDRV_COMPRESS_GET_CAPS(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_GET_CAPS], arg ptr[out, snd_compr_caps])
+ioctl$KGPT_SNDRV_COMPRESS_GET_CODEC_CAPS(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_GET_CODEC_CAPS], arg ptr[out, snd_compr_codec_caps])
+ioctl$KGPT_SNDRV_COMPRESS_SET_PARAMS(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_SET_PARAMS], arg ptr[in, snd_compr_params])
+ioctl$KGPT_SNDRV_COMPRESS_GET_PARAMS(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_GET_PARAMS], arg ptr[out, snd_codec])
+ioctl$KGPT_SNDRV_COMPRESS_SET_METADATA(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_SET_METADATA], arg ptr[in, snd_compr_metadata])
+ioctl$KGPT_SNDRV_COMPRESS_GET_METADATA(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_GET_METADATA], arg ptr[inout, snd_compr_metadata])
+ioctl$KGPT_SNDRV_COMPRESS_TSTAMP(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_TSTAMP], arg ptr[out, snd_compr_tstamp])
+ioctl$KGPT_SNDRV_COMPRESS_AVAIL(fd fd_snd_compr, cmd const[SNDRV_COMPRESS_AVAIL], arg ptr[out, snd_compr_avail])
+
+snd_compr_caps {
+	num_codecs		int32
+	direction		int32
+	min_fragment_size	int32
+	max_fragment_size	int32
+	min_fragments		int32
+	max_fragments		int32
+	codecs			array[int32, MAX_NUM_CODECS]
+	reserved		array[int32, 11]
+}
+
+snd_compr_codec_caps {
+	codec		int32
+	num_descriptors	int32
+	descriptor	array[snd_codec_desc, MAX_NUM_CODEC_DESCRIPTORS]
+}
+
+snd_compr_params {
+	buffer		snd_compressed_buffer
+	codec		snd_codec
+	no_wake_mode	int8
+}
+
+snd_codec {
+	id		int32
+	ch_in		int32
+	ch_out		int32
+	sample_rate	int32
+	bit_rate	int32
+	rate_control	int32
+	profile		int32
+	level		int32
+	ch_mode		int32
+	format		int32
+	align		int32
+	options		snd_codec_options
+	reserved	array[int32, 3]
+}
+
+snd_compr_metadata {
+	key	int32
+	value	array[int32, 8]
+}
+
+snd_compr_tstamp {
+	byte_offset	int32
+	copied_total	int32
+	pcm_frames	int32
+	pcm_io_frames	int32
+	sampling_rate	int32
+}
+
+snd_compr_avail {
+	avail	int64
+	tstamp	snd_compr_tstamp
+}
+
+snd_codec_desc {
+	max_ch			int32
+	sample_rates		array[int32, MAX_NUM_SAMPLE_RATES]
+	num_sample_rates	int32
+	bit_rate		array[int32, MAX_NUM_BITRATES]
+	num_bitrates		int32
+	rate_control		int32
+	profiles		int32
+	modes			int32
+	formats			int32
+	min_buffer		int32
+	reserved		array[int32, 15]
+}
+
+snd_compressed_buffer {
+	fragment_size	int32
+	fragments	int32
+}
+
+snd_codec_options [
+	wma	snd_enc_wma
+	vorbis	snd_enc_vorbis
+	real	snd_enc_real
+	flac	snd_enc_flac
+	generic	snd_enc_generic
+	flac_d	snd_dec_flac
+	wma_d	snd_dec_wma
+	alac_d	snd_dec_alac
+	ape_d	snd_dec_ape
+]
+
+snd_enc_wma {
+	super_block_align	int32
+}
+
+snd_enc_vorbis {
+	quality		int32
+	managed		int32
+	max_bit_rate	int32
+	min_bit_rate	int32
+	downmix		int32
+}
+
+snd_enc_real {
+	quant_bits	int32
+	start_region	int32
+	num_regions	int32
+}
+
+snd_enc_flac {
+	num	int32
+	gain	int32
+}
+
+snd_enc_generic {
+	bw		int32
+	reserved	array[int32, 15]
+}
+
+snd_dec_flac {
+	sample_size	int16
+	min_blk_size	int16
+	max_blk_size	int16
+	min_frame_size	int16
+	max_frame_size	int16
+	reserved	int16
+}
+
+snd_dec_wma {
+	encoder_option		int32
+	adv_encoder_option	int32
+	adv_encoder_option2	int32
+	reserved		int32
+}
+
+snd_dec_alac {
+	frame_length		int32
+	compatible_version	int8
+	pb			int8
+	mb			int8
+	kb			int8
+	max_run			int32
+	max_frame_bytes		int32
+}
+
+snd_dec_ape {
+	compatible_version	int16
+	compression_level	int16
+	format_flags		int32
+	blocks_per_frame	int32
+	final_frame_blocks	int32
+	total_frames		int32
+	seek_table_present	int32
+}

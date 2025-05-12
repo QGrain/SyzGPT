@@ -1,0 +1,56 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/if_pppox.h>
+include <uapi/linux/if_pppol2tp.h>
+
+resource sock_pppol2tp[sock]
+
+socket$KGPT_pppol2tp(domain const[AF_PPPOX], type const[SOCK_STREAM], proto const[PX_PROTO_OL2TP]) sock_pppol2tp
+
+bind$KGPT_pppol2tp_ops(fd sock_pppol2tp, addr ptr[in, sockaddr], addrlen len[addr])
+connect$KGPT_pppol2tp_ops(fd sock_pppol2tp, addr ptr[in, sockaddr], addrlen len[addr])
+accept4$KGPT_pppol2tp_ops(fd sock_pppol2tp, peer ptr[out, sockaddr, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_pppol2tp
+sendto$KGPT_pppol2tp_ops(fd sock_pppol2tp, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr, opt], addrlen len[addr])
+recvfrom$KGPT_pppol2tp_ops(fd sock_pppol2tp, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr, opt], addrlen len[addr])
+getsockopt$KGPT_PPPOL2TP_SO_RECVSEQ(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_RECVSEQ], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_PPPOL2TP_SO_SENDSEQ(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_SENDSEQ], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_PPPOL2TP_SO_LNSMODE(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_LNSMODE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_PPPOL2TP_SO_REORDERTO(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_REORDERTO], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_PPPOL2TP_SO_DEBUG(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_DEBUG], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_PPPOL2TP_SO_RECVSEQ(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_RECVSEQ], val int32, len bytesize[val])
+setsockopt$KGPT_PPPOL2TP_SO_SENDSEQ(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_SENDSEQ], val int32, len bytesize[val])
+setsockopt$KGPT_PPPOL2TP_SO_LNSMODE(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_LNSMODE], val int32, len bytesize[val])
+setsockopt$KGPT_PPPOL2TP_SO_REORDERTO(fd sock_pppol2tp, level const[SOL_PPPOL2TP], opt const[PPPOL2TP_SO_REORDERTO], val int32, len bytesize[val])
+
+define PX_PROTO_OL2TP	1

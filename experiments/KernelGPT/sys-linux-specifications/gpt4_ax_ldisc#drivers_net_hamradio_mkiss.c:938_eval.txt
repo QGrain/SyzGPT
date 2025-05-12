@@ -1,0 +1,43 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/sockios.h>
+
+resource fd_mkiss[fd]
+
+openat$KGPT_mkiss(fd const[AT_FDCWD], file ptr[in, string["/dev/ptmx"]], flags flags[open_flags], mode const[0]) fd_mkiss
+
+ioctl$KGPT_SIOCGIFNAME(fd fd_mkiss, cmd const[SIOCGIFNAME], arg ptr[out, string])
+ioctl$KGPT_SIOCGIFENCAP(fd fd_mkiss, cmd const[SIOCGIFENCAP], arg ptr[out, int32])
+ioctl$KGPT_SIOCSIFENCAP(fd fd_mkiss, cmd const[SIOCSIFENCAP], arg intptr)

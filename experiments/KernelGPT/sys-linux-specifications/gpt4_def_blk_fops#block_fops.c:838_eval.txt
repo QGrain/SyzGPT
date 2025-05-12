@@ -1,0 +1,49 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/blkzoned.h>
+
+resource fd_blk[fd]
+
+syz_open_dev$KGPT_blk(dev ptr[in, string["/dev/#"]], id proc[0, 1], flags flags[open_flags]) fd_blk
+
+ioctl$KGPT_BLKDISCARDZEROES(fd fd_blk, cmd const[BLKDISCARDZEROES], arg ptr[in, array[int8]])
+ioctl$KGPT_BLKFRAGET(fd fd_blk, cmd const[BLKFRAGET], arg ptr[out, int64])
+ioctl$KGPT_BLKGETDISKSEQ(fd fd_blk, cmd const[BLKGETDISKSEQ], arg ptr[out, int64])
+ioctl$KGPT_BLKOPENZONE(fd fd_blk, cmd const[BLKOPENZONE], arg ptr[in, blk_zone_range])
+ioctl$KGPT_BLKCLOSEZONE(fd fd_blk, cmd const[BLKCLOSEZONE], arg ptr[in, blk_zone_range])
+ioctl$KGPT_BLKFINISHZONE(fd fd_blk, cmd const[BLKFINISHZONE], arg ptr[in, blk_zone_range])
+ioctl$KGPT_BLKGETZONESZ(fd fd_blk, cmd const[BLKGETZONESZ], arg ptr[out, int32])
+ioctl$KGPT_BLKGETNRZONES(fd fd_blk, cmd const[BLKGETNRZONES], arg ptr[out, int32])
+ioctl$KGPT_BLKSSZGET(fd fd_blk, cmd const[BLKSSZGET], arg ptr[out, int32])
+ioctl$KGPT_BLKRASET(fd fd_blk, cmd const[BLKRASET], arg int64)

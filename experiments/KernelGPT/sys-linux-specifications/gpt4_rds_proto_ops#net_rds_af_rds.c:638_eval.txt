@@ -1,0 +1,67 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/rds.h>
+include <uapi/asm-generic/socket.h>
+
+socket$KGPT_RDS(domain const[AF_RDS], type const[SOCK_SEQPACKET], proto const[0]) sock_rds
+
+bind$KGPT_rds_proto_ops(fd sock_rds, addr ptr[in, sockaddr_rds], addrlen len[addr])
+connect$KGPT_rds_proto_ops(fd sock_rds, addr ptr[in, sockaddr_rds], addrlen len[addr])
+accept4$KGPT_rds_proto_ops(fd sock_rds, peer ptr[out, sockaddr_rds, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_rds
+sendto$KGPT_rds_proto_ops(fd sock_rds, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_rds, opt], addrlen len[addr])
+recvfrom$KGPT_rds_proto_ops(fd sock_rds, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_rds, opt], addrlen len[addr])
+ioctl$KGPT_SIOCRDSSETTOS(fd sock_rds, cmd const[SIOCRDSSETTOS], arg ptr[inout, rds_tos_t])
+ioctl$KGPT_SIOCRDSGETTOS(fd sock_rds, cmd const[SIOCRDSGETTOS], arg ptr[out, rds_tos_t])
+getsockopt$KGPT_RDS_RECVERR(fd sock_rds, level const[SOL_RDS], opt const[RDS_RECVERR], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_RDS_TRANSPORT(fd sock_rds, level const[SOL_RDS], opt const[SO_RDS_TRANSPORT], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_RDS_CANCEL_SENT_TO(fd sock_rds, level const[SOL_RDS], opt const[RDS_CANCEL_SENT_TO], val ptr[in, sockaddr_in6], len len[val])
+setsockopt$KGPT_RDS_GET_MR(fd sock_rds, level const[SOL_RDS], opt const[RDS_GET_MR], val ptr[in, rds_get_mr_args], len len[val])
+setsockopt$KGPT_RDS_GET_MR_FOR_DEST(fd sock_rds, level const[SOL_RDS], opt const[RDS_GET_MR_FOR_DEST], val ptr[in, rds_get_mr_for_dest_args], len len[val])
+setsockopt$KGPT_RDS_FREE_MR(fd sock_rds, level const[SOL_RDS], opt const[RDS_FREE_MR], val ptr[in, rds_free_mr_args], len len[val])
+setsockopt$KGPT_RDS_RECVERR(fd sock_rds, level const[SOL_RDS], opt const[RDS_RECVERR], val ptr[in, int32], len len[val])
+setsockopt$KGPT_RDS_CONG_MONITOR(fd sock_rds, level const[SOL_RDS], opt const[RDS_CONG_MONITOR], val ptr[in, bool32], len len[val])
+setsockopt$KGPT_SO_RDS_TRANSPORT(fd sock_rds, level const[SOL_RDS], opt const[SO_RDS_TRANSPORT], val ptr[in, int32], len len[val])
+setsockopt$KGPT_SO_TIMESTAMP_OLD(fd sock_rds, level const[SOL_SOCKET], opt const[SO_TIMESTAMP_OLD], val ptr[in, int32], len len[val])
+setsockopt$KGPT_SO_TIMESTAMP_NEW(fd sock_rds, level const[SOL_SOCKET], opt const[SO_TIMESTAMP_NEW], val ptr[in, int32], len len[val])
+setsockopt$KGPT_SO_RDS_MSG_RXPATH_LATENCY(fd sock_rds, level const[SOL_RDS], opt const[SO_RDS_MSG_RXPATH_LATENCY], val ptr[in, rds_rx_trace_so], len len[val])
+
+sockaddr_rds {
+	sa_family	int16
+	sin_port	int16
+	sin_addr	array[int8, 4]
+	sin6_addr	array[int8, 16]
+	sin6_scope_id	int32
+} [align[4]]
+
+type rds_tos_t ptr[in, array[int8]]

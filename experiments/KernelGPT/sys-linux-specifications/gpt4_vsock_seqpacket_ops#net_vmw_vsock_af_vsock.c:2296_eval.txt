@@ -1,0 +1,64 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/asm-generic/socket.h>
+include <uapi/linux/vm_sockets.h>
+
+socket$KGPT_vsock_seqpacket_ops(domain const[AF_VSOCK], type const[SOCK_SEQPACKET], proto const[0]) sock_vsock
+
+bind$KGPT_vsock_seqpacket_ops(fd sock_vsock, addr ptr[in, sockaddr_vm], addrlen len[addr])
+connect$KGPT_vsock_seqpacket_ops(fd sock_vsock, addr ptr[in, sockaddr_vm], addrlen len[addr])
+accept4$KGPT_vsock_seqpacket_ops(fd sock_vsock, peer ptr[out, sockaddr_vm, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_vsock
+sendto$KGPT_vsock_seqpacket_ops(fd sock_vsock, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_vm, opt], addrlen len[addr])
+recvfrom$KGPT_vsock_seqpacket_ops(fd sock_vsock, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_vm, opt], addrlen len[addr])
+getsockopt$KGPT_SO_VM_SOCKETS_BUFFER_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_SIZE], val ptr[out, int64], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_VM_SOCKETS_BUFFER_MAX_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_MAX_SIZE], val ptr[out, int64], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_VM_SOCKETS_BUFFER_MIN_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_MIN_SIZE], val ptr[out, int64], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW], val ptr[out, __kernel_sock_timeval], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD], val ptr[out, __kernel_old_timeval], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_SO_VM_SOCKETS_BUFFER_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_SIZE], val ptr[in, int64], len bytesize[val])
+setsockopt$KGPT_SO_VM_SOCKETS_BUFFER_MAX_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_MAX_SIZE], val ptr[in, int64], len bytesize[val])
+setsockopt$KGPT_SO_VM_SOCKETS_BUFFER_MIN_SIZE(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_BUFFER_MIN_SIZE], val ptr[in, int64], len bytesize[val])
+setsockopt$KGPT_SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW], val ptr[in, __kernel_sock_timeval], len bytesize[val])
+setsockopt$KGPT_SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD(fd sock_vsock, level const[AF_VSOCK], opt const[SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD], val ptr[in, __kernel_sock_timeval], len bytesize[val])
+setsockopt$KGPT_SO_ZEROCOPY(fd sock_vsock, level const[SOL_SOCKET], opt const[SO_ZEROCOPY], val ptr[in, int32], len bytesize[val])
+
+__kernel_sock_timeval {
+	tv_sec	int64
+	tv_usec	int64
+}
+
+__kernel_old_timeval {
+	tv_sec	int64
+	tv_usec	int64
+}

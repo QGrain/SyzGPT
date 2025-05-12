@@ -1,0 +1,43 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/un.h>
+
+socket$KGPT_unix_dup(domain const[AF_UNIX], type const[SOCK_SEQPACKET], proto const[0]) sock_unix
+
+bind$KGPT_unix_seqpacket_ops(fd sock_unix, addr ptr[in, sockaddr_un], addrlen len[addr])
+connect$KGPT_unix_seqpacket_ops(fd sock_unix, addr ptr[in, sockaddr_un], addrlen len[addr])
+accept4$KGPT_unix_seqpacket_ops(fd sock_unix, peer ptr[out, sockaddr_un, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_unix
+sendto$KGPT_unix_seqpacket_ops(fd sock_unix, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_un, opt], addrlen len[addr])
+recvfrom$KGPT_unix_seqpacket_ops(fd sock_unix, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_un, opt], addrlen len[addr])
+ioctl$KGPT_SIOCUNIXFILE_0(fd sock_unix, cmd const[SIOCUNIXFILE], arg ptr[in, array[int8]])

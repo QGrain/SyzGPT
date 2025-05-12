@@ -1,0 +1,133 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/vfio.h>
+
+resource fd_hisi_acc_vfio_pci[fd]
+
+syz_open_dev$KGPT_vfio(dev ptr[in, string["/dev/vfio/#"]], id proc[0, 1], flags flags[open_flags]) fd_hisi_acc_vfio_pci
+
+ioctl$KGPT_VFIO_DEVICE_GET_REGION_INFO(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_GET_REGION_INFO], arg ptr[inout, vfio_region_info])
+ioctl$KGPT_VFIO_DEVICE_GET_INFO(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_GET_INFO], arg ptr[out, vfio_device_info])
+ioctl$KGPT_VFIO_DEVICE_GET_IRQ_INFO(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_GET_IRQ_INFO], arg ptr[inout, vfio_irq_info])
+ioctl$KGPT_VFIO_DEVICE_GET_PCI_HOT_RESET_INFO(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_GET_PCI_HOT_RESET_INFO], arg ptr[inout, vfio_pci_hot_reset_info])
+ioctl$KGPT_VFIO_DEVICE_IOEVENTFD(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_IOEVENTFD], arg ptr[in, vfio_device_ioeventfd])
+ioctl$KGPT_VFIO_DEVICE_PCI_HOT_RESET(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_PCI_HOT_RESET], arg ptr[in, vfio_pci_hot_reset])
+ioctl$KGPT_VFIO_DEVICE_RESET(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_RESET], arg ptr[in, array[int8]])
+ioctl$KGPT_VFIO_DEVICE_SET_IRQS(fd fd_hisi_acc_vfio_pci, cmd const[VFIO_DEVICE_SET_IRQS], arg ptr[in, vfio_irq_set])
+
+vfio_device_info {
+	argsz		int32
+	flags		flags[vfio_device_flags, int32]
+	num_regions	int32
+	num_irqs	int32
+	cap_offset	int32
+	pad		int32
+}
+
+vfio_device_ioeventfd {
+	argsz		int32
+	flags		flags[vfio_device_ioeventfd_flags, int32]
+	offset		int64
+	data		int64
+	fd		int32
+	reserved	int32
+}
+
+vfio_region_info {
+	argsz		int32
+	flags		flags[vfio_region_info_flags, int32]
+	index		int32
+	cap_offset	int32
+	size		int64
+	offset		int64
+}
+
+vfio_pci_hot_reset_info {
+	argsz	int32
+	flags	flags[vfio_pci_hot_reset_flags, int32]
+	count	len[devices, int32]
+	devices	ptr[inout, array[vfio_pci_dependent_device]]
+}
+
+vfio_pci_hot_reset {
+	argsz		int32
+	flags		int32
+	count		len[group_fds, int32]
+	group_fds	ptr[in, array[int32]]
+}
+
+vfio_irq_set {
+	argsz	int32
+	flags	flags[vfio_irq_set_flags, int32]
+	index	int32
+	start	int32
+	count	len[data, int32]
+	data	ptr[in, array[int8]]
+}
+
+vfio_irq_info {
+	argsz	int32
+	flags	flags[vfio_irq_info_flags, int32]
+	index	int32
+	count	int32
+}
+
+vfio_region_info_flags = VFIO_REGION_INFO_FLAG_READ, VFIO_REGION_INFO_FLAG_WRITE, VFIO_REGION_INFO_FLAG_MMAP, VFIO_REGION_INFO_FLAG_CAPS
+vfio_device_flags = VFIO_DEVICE_FLAGS_RESET, VFIO_DEVICE_FLAGS_PCI, VFIO_DEVICE_FLAGS_PLATFORM, VFIO_DEVICE_FLAGS_AMBA, VFIO_DEVICE_FLAGS_CCW, VFIO_DEVICE_FLAGS_AP, VFIO_DEVICE_FLAGS_FSL_MC, VFIO_DEVICE_FLAGS_CAPS, VFIO_DEVICE_FLAGS_CDX
+vfio_irq_info_flags = VFIO_IRQ_INFO_EVENTFD, VFIO_IRQ_INFO_MASKABLE, VFIO_IRQ_INFO_AUTOMASKED, VFIO_IRQ_INFO_NORESIZE
+vfio_pci_hot_reset_flags = VFIO_PCI_HOT_RESET_FLAG_DEV_ID, VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED
+vfio_device_ioeventfd_flags = VFIO_DEVICE_IOEVENTFD_8, VFIO_DEVICE_IOEVENTFD_16, VFIO_DEVICE_IOEVENTFD_32, VFIO_DEVICE_IOEVENTFD_64
+vfio_irq_set_flags = VFIO_IRQ_SET_DATA_NONE, VFIO_IRQ_SET_DATA_BOOL, VFIO_IRQ_SET_DATA_EVENTFD, VFIO_IRQ_SET_ACTION_MASK, VFIO_IRQ_SET_ACTION_UNMASK, VFIO_IRQ_SET_ACTION_TRIGGER
+
+vfio_pci_dependent_device {
+	group_id	int32
+	segment		int16
+	bus		int8
+	devfn		int8
+}
+
+define VFIO_REGION_INFO_FLAG_READ	0x1
+define VFIO_REGION_INFO_FLAG_WRITE	0x2
+define VFIO_REGION_INFO_FLAG_MMAP	0x4
+define VFIO_REGION_INFO_FLAG_CAPS	0x8
+define VFIO_IRQ_INFO_EVENTFD	1
+define VFIO_IRQ_INFO_MASKABLE	2
+define VFIO_IRQ_INFO_AUTOMASKED	4
+define VFIO_IRQ_INFO_NORESIZE	8
+define VFIO_IRQ_SET_DATA_NONE	1
+define VFIO_IRQ_SET_DATA_BOOL	2
+define VFIO_IRQ_SET_DATA_EVENTFD	4
+define VFIO_IRQ_SET_ACTION_MASK	8
+define VFIO_IRQ_SET_ACTION_UNMASK	16
+define VFIO_IRQ_SET_ACTION_TRIGGER	32

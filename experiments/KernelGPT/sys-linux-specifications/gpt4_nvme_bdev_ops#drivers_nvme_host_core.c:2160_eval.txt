@@ -1,0 +1,237 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/sed-opal.h>
+include <uapi/linux/nvme_ioctl.h>
+
+resource fd_nvme[fd]
+
+syz_open_dev$KGPT_nvme(dev ptr[in, string["/dev/nvme#n#"]], id proc[0, 1], flags flags[open_flags]) fd_nvme
+
+ioctl$KGPT_NVME_IOCTL_ID(fd fd_nvme, cmd const[NVME_IOCTL_ID], arg ptr[in, array[int8]])
+ioctl$KGPT_NVME_IOCTL_ADMIN_CMD(fd fd_nvme, cmd const[NVME_IOCTL_ADMIN_CMD], arg ptr[inout, nvme_passthru_cmd])
+ioctl$KGPT_NVME_IOCTL_ADMIN64_CMD(fd fd_nvme, cmd const[NVME_IOCTL_ADMIN64_CMD], arg ptr[in, nvme_passthru_cmd64])
+ioctl$KGPT_NVME_IOCTL_IO_CMD(fd fd_nvme, cmd const[NVME_IOCTL_IO_CMD], arg ptr[in, nvme_passthru_cmd])
+ioctl$KGPT_NVME_IOCTL_SUBMIT_IO(fd fd_nvme, cmd const[NVME_IOCTL_SUBMIT_IO], arg ptr[in, nvme_user_io])
+ioctl$KGPT_NVME_IOCTL_IO64_CMD_VEC(fd fd_nvme, cmd const[NVME_IOCTL_IO64_CMD_VEC], arg ptr[in, nvme_passthru_cmd64])
+ioctl$KGPT_NVME_IOCTL_IO64_CMD(fd fd_nvme, cmd const[NVME_IOCTL_IO64_CMD], arg ptr[in, nvme_passthru_cmd64])
+ioctl$KGPT_IOC_OPAL_SAVE(fd fd_nvme, cmd const[IOC_OPAL_SAVE], arg ptr[in, opal_lock_unlock])
+ioctl$KGPT_IOC_OPAL_LOCK_UNLOCK(fd fd_nvme, cmd const[IOC_OPAL_LOCK_UNLOCK], arg ptr[in, opal_lock_unlock])
+ioctl$KGPT_IOC_OPAL_TAKE_OWNERSHIP(fd fd_nvme, cmd const[IOC_OPAL_TAKE_OWNERSHIP], arg ptr[in, opal_key])
+ioctl$KGPT_IOC_OPAL_ACTIVATE_LSP(fd fd_nvme, cmd const[IOC_OPAL_ACTIVATE_LSP], arg ptr[in, opal_lr_act])
+ioctl$KGPT_IOC_OPAL_SET_PW(fd fd_nvme, cmd const[IOC_OPAL_SET_PW], arg ptr[in, opal_new_pw])
+ioctl$KGPT_IOC_OPAL_ACTIVATE_USR(fd fd_nvme, cmd const[IOC_OPAL_ACTIVATE_USR], arg ptr[in, opal_session_info])
+ioctl$KGPT_IOC_OPAL_REVERT_TPR(fd fd_nvme, cmd const[IOC_OPAL_REVERT_TPR], arg ptr[in, opal_key])
+ioctl$KGPT_IOC_OPAL_LR_SETUP(fd fd_nvme, cmd const[IOC_OPAL_LR_SETUP], arg ptr[in, opal_user_lr_setup])
+ioctl$KGPT_IOC_OPAL_ADD_USR_TO_LR(fd fd_nvme, cmd const[IOC_OPAL_ADD_USR_TO_LR], arg ptr[in, opal_lock_unlock])
+ioctl$KGPT_IOC_OPAL_ENABLE_DISABLE_MBR(fd fd_nvme, cmd const[IOC_OPAL_ENABLE_DISABLE_MBR], arg ptr[in, opal_mbr_data])
+ioctl$KGPT_IOC_OPAL_MBR_DONE(fd fd_nvme, cmd const[IOC_OPAL_MBR_DONE], arg ptr[in, opal_mbr_done])
+ioctl$KGPT_IOC_OPAL_WRITE_SHADOW_MBR(fd fd_nvme, cmd const[IOC_OPAL_WRITE_SHADOW_MBR], arg ptr[in, opal_shadow_mbr])
+ioctl$KGPT_IOC_OPAL_ERASE_LR(fd fd_nvme, cmd const[IOC_OPAL_ERASE_LR], arg ptr[in, opal_session_info])
+ioctl$KGPT_IOC_OPAL_SECURE_ERASE_LR(fd fd_nvme, cmd const[IOC_OPAL_SECURE_ERASE_LR], arg ptr[in, opal_session_info])
+ioctl$KGPT_IOC_OPAL_PSID_REVERT_TPR(fd fd_nvme, cmd const[IOC_OPAL_PSID_REVERT_TPR], arg ptr[in, opal_key])
+ioctl$KGPT_IOC_OPAL_GENERIC_TABLE_RW(fd fd_nvme, cmd const[IOC_OPAL_GENERIC_TABLE_RW], arg ptr[in, opal_read_write_table])
+ioctl$KGPT_IOC_OPAL_GET_STATUS(fd fd_nvme, cmd const[IOC_OPAL_GET_STATUS], arg ptr[out, opal_status])
+ioctl$KGPT_IOC_OPAL_GET_LR_STATUS(fd fd_nvme, cmd const[IOC_OPAL_GET_LR_STATUS], arg ptr[inout, opal_lr_status])
+ioctl$KGPT_IOC_OPAL_GET_GEOMETRY(fd fd_nvme, cmd const[IOC_OPAL_GET_GEOMETRY], arg ptr[out, opal_geometry])
+ioctl$KGPT_IOC_OPAL_REVERT_LSP(fd fd_nvme, cmd const[IOC_OPAL_REVERT_LSP], arg ptr[in, opal_revert_lsp])
+ioctl$KGPT_IOC_OPAL_DISCOVERY(fd fd_nvme, cmd const[IOC_OPAL_DISCOVERY], arg ptr[out, opal_discovery])
+
+nvme_passthru_cmd {
+	opcode		int8
+	flags		int8
+	rsvd1		int16
+	nsid		int32
+	cdw2		int32
+	cdw3		int32
+	metadata	int64
+	addr		int64
+	metadata_len	int32
+	data_len	int32
+	cdw10		int32
+	cdw11		int32
+	cdw12		int32
+	cdw13		int32
+	cdw14		int32
+	cdw15		int32
+	timeout_ms	int32
+	result		int32
+}
+
+nvme_passthru_cmd64 {
+	opcode		int8
+	flags		int8
+	rsvd1		int16
+	nsid		int32
+	cdw2		int32
+	cdw3		int32
+	metadata	int64
+	addr		int64
+	metadata_len	int32
+	data_len	int32
+	vec_cnt		int32
+	cdw10		int32
+	cdw11		int32
+	cdw12		int32
+	cdw13		int32
+	cdw14		int32
+	cdw15		int32
+	timeout_ms	int32
+	rsvd2		int32
+	result		int64
+}
+
+nvme_user_io {
+	opcode		int8
+	flags		int8
+	control		int16
+	nblocks		int16
+	rsvd		int16
+	metadata	int64
+	addr		int64
+	slba		int64
+	dsmgmt		int32
+	reftag		int32
+	apptag		int16
+	appmask		int16
+}
+
+opal_lock_unlock {
+	session	opal_session_info
+	l_state	int32
+	flags	int16
+	__align	array[int8, 2]
+}
+
+opal_session_info {
+	sum		int32
+	who		int32
+	opal_key	opal_key
+}
+
+opal_key {
+	lr		int8
+	key_len		int8
+	key_type	int8
+	__align		array[int8, 5]
+	key		array[int8, OPAL_KEY_MAX]
+}
+
+opal_lr_act {
+	key	opal_key
+	sum	int32
+	num_lrs	int8
+	lr	array[int8, OPAL_MAX_LRS]
+	align	array[int8, 2]
+}
+
+opal_new_pw {
+	session		opal_session_info
+	new_user_pw	opal_session_info
+}
+
+opal_user_lr_setup {
+	range_start	int64
+	range_length	int64
+	RLE		int32
+	WLE		int32
+	session		opal_session_info
+}
+
+opal_mbr_data {
+	key		opal_key
+	enable_disable	int8
+	__align		array[int8, 7]
+}
+
+opal_mbr_done {
+	key		opal_key
+	done_flag	int8
+	__align		array[int8, 7]
+}
+
+opal_status {
+	flags		int32
+	reserved	int32
+}
+
+opal_lr_status {
+	session		opal_session_info
+	range_start	int64
+	range_length	int64
+	RLE		int32
+	WLE		int32
+	l_state		int32
+	align		array[int8, 4]
+}
+
+opal_geometry {
+	align			int8
+	logical_block_size	int32
+	alignment_granularity	int64
+	lowest_aligned_lba	int64
+	__align			array[int8, 3]
+}
+
+opal_revert_lsp {
+	key	opal_key
+	options	int32
+	__pad	int32
+}
+
+opal_discovery {
+	data	int64
+	size	int64
+}
+
+opal_shadow_mbr {
+	key	opal_key
+	data	const[0, int64]
+	offset	int64
+	size	int64
+}
+
+opal_read_write_table {
+	key		opal_key
+	data		int64
+	table_uid	array[const[0, int8], OPAL_UID_LENGTH]
+	offset		int64
+	size		int64
+	flags		flags[opal_table_flags, int64]
+	priv		int64
+}
+
+opal_table_flags = OPAL_TABLE_READ, OPAL_TABLE_WRITE
+define OPAL_TABLE_READ	1
+define OPAL_TABLE_WRITE	2
+define OPAL_UID_LENGTH	8

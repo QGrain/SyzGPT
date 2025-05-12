@@ -1,0 +1,48 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/sockios.h>
+include <uapi/linux/x25.h>
+include <net/x25.h>
+
+socket$KGPT_X25(domain const[AF_X25], type const[SOCK_SEQPACKET], proto const[0]) sock_x25
+
+bind$KGPT_x25_proto_ops(fd sock_x25, addr ptr[in, sockaddr_x25], addrlen len[addr])
+connect$KGPT_x25_proto_ops(fd sock_x25, addr ptr[in, sockaddr_x25], addrlen len[addr])
+accept4$KGPT_x25_proto_ops(fd sock_x25, peer ptr[out, sockaddr_x25, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_x25
+sendto$KGPT_x25_proto_ops(fd sock_x25, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_x25, opt], addrlen len[addr])
+recvfrom$KGPT_x25_proto_ops(fd sock_x25, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_x25, opt], addrlen len[addr])
+ioctl$KGPT_SIOCGIFMETRIC_1(fd sock_x25, cmd const[SIOCGIFMETRIC], arg ptr[in, array[int8]])
+ioctl$KGPT_SIOCSIFMETRIC_1(fd sock_x25, cmd const[SIOCSIFMETRIC], arg ptr[in, array[int8]])
+getsockopt$KGPT_X25_QBITINCL(fd sock_x25, level const[SOL_X25], opt const[X25_QBITINCL], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_X25_QBITINCL(fd sock_x25, level const[SOL_X25], opt const[X25_QBITINCL], val ptr[in, int32], len bytesize[val])

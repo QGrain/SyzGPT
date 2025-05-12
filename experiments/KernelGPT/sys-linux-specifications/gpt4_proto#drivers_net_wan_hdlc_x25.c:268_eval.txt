@@ -1,0 +1,51 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/if.h>
+
+resource fd_hdlc_x25[fd]
+
+openat$KGPT_net_tun_dup_dup_dup(fd const[AT_FDCWD], file ptr[in, string["/dev/net/tun"]], flags flags[open_flags], mode const[0]) fd_hdlc_x25
+
+ioctl$KGPT_IF_GET_PROTO_3(fd fd_hdlc_x25, cmd const[IF_GET_PROTO], arg ptr[out, x25_hdlc_proto])
+ioctl$KGPT_IF_PROTO_X25(fd fd_hdlc_x25, cmd const[IF_PROTO_X25], arg ptr[in, x25_hdlc_proto])
+
+x25_hdlc_proto {
+	dce	int16
+	modulo	int32
+	window	int32
+	t1	int32
+	t2	int32
+	n2	int32
+}

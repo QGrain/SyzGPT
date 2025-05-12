@@ -1,0 +1,70 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/mctp.h>
+
+resource sock_mctp[sock]
+
+socket$KGPT_MCTP(domain const[AF_MCTP], type const[SOCK_DGRAM], proto const[0]) sock_mctp
+
+bind$KGPT_mctp_dgram_ops(fd sock_mctp, addr ptr[in, sockaddr_mctp], addrlen len[addr])
+connect$KGPT_mctp_dgram_ops(fd sock_mctp, addr ptr[in, sockaddr_mctp], addrlen len[addr])
+accept4$KGPT_mctp_dgram_ops(fd sock_mctp, peer ptr[out, sockaddr_mctp, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_mctp
+sendto$KGPT_mctp_dgram_ops(fd sock_mctp, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_mctp, opt], addrlen len[addr])
+recvfrom$KGPT_mctp_dgram_ops(fd sock_mctp, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_mctp, opt], addrlen len[addr])
+ioctl$KGPT_SIOCMCTPALLOCTAG(fd sock_mctp, cmd const[SIOCMCTPALLOCTAG], arg ptr[inout, mctp_ioc_tag_ctl])
+ioctl$KGPT_SIOCMCTPDROPTAG(fd sock_mctp, cmd const[SIOCMCTPDROPTAG], arg ptr[in, mctp_ioc_tag_ctl])
+getsockopt$KGPT_MCTP_OPT_ADDR_EXT(fd sock_mctp, level const[SOL_MCTP], opt const[MCTP_OPT_ADDR_EXT], val ptr[out, int32], len ptr[in, int32])
+setsockopt$KGPT_MCTP_OPT_ADDR_EXT(fd sock_mctp, level const[SOL_MCTP], opt const[MCTP_OPT_ADDR_EXT], val ptr[in, int32], len bytesize[val])
+
+sockaddr_mctp {
+	smctp_family	const[AF_MCTP, int16]
+	__smctp_pad0	const[0, int16]
+	smctp_network	int32
+	smctp_addr	mctp_addr
+	smctp_type	int8
+	smctp_tag	int8
+	__smctp_pad1	const[0, int8]
+}
+
+mctp_ioc_tag_ctl {
+	peer_addr	mctp_eid_t
+	tag		int8
+	flags		int16
+}
+
+mctp_addr {
+	s_addr	mctp_eid_t
+}
+
+type mctp_eid_t ptr[in, array[int8]]

@@ -1,0 +1,78 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/can.h>
+include <uapi/linux/can/isotp.h>
+
+resource sock_can_isotp[sock]
+
+socket$KGPT_can_isotp(domain const[PF_CAN], type const[SOCK_DGRAM], proto const[CAN_ISOTP]) sock_can_isotp
+
+bind$KGPT_isotp_ops(fd sock_can_isotp, addr ptr[in, sockaddr_can], addrlen len[addr])
+connect$KGPT_isotp_ops(fd sock_can_isotp, addr ptr[in, sockaddr_can], addrlen len[addr])
+accept4$KGPT_isotp_ops(fd sock_can_isotp, peer ptr[out, sockaddr_can, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_can_isotp
+sendto$KGPT_isotp_ops(fd sock_can_isotp, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_can, opt], addrlen len[addr])
+recvfrom$KGPT_isotp_ops(fd sock_can_isotp, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_can, opt], addrlen len[addr])
+getsockopt$KGPT_CAN_ISOTP_OPTS(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_OPTS], val ptr[out, can_isotp_options], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_CAN_ISOTP_RECV_FC(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_RECV_FC], val ptr[out, can_isotp_fc_options], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_CAN_ISOTP_TX_STMIN(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_TX_STMIN], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_CAN_ISOTP_RX_STMIN(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_RX_STMIN], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_CAN_ISOTP_LL_OPTS(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_LL_OPTS], val ptr[out, can_isotp_ll_options], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_CAN_ISOTP_OPTS(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_OPTS], val ptr[in, can_isotp_options], len bytesize[val])
+setsockopt$KGPT_CAN_ISOTP_RECV_FC(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_RECV_FC], val ptr[in, can_isotp_fc_options], len bytesize[val])
+setsockopt$KGPT_CAN_ISOTP_TX_STMIN(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_TX_STMIN], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_CAN_ISOTP_RX_STMIN(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_RX_STMIN], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_CAN_ISOTP_LL_OPTS(fd sock_can_isotp, level const[SOL_CAN_ISOTP], opt const[CAN_ISOTP_LL_OPTS], val ptr[in, can_isotp_ll_options], len bytesize[val])
+
+define CAN_ISOTP	6
+
+can_isotp_options {
+	flags		int32
+	frame_txtime	int32
+	ext_address	int8
+	txpad_content	int8
+	rxpad_content	int8
+	rx_ext_address	int8
+}
+
+can_isotp_fc_options {
+	bs	int8
+	stmin	int8
+	wftmax	int8
+}
+
+can_isotp_ll_options {
+	mtu		int8
+	tx_dl		int8
+	tx_flags	int8
+}

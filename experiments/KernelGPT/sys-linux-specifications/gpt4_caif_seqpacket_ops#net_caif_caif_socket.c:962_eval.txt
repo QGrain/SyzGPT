@@ -1,0 +1,44 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/caif/caif_socket.h>
+
+socket$KGPT_caif(domain const[PF_CAIF], type const[SOCK_SEQPACKET], proto const[0]) sock_caif
+
+bind$KGPT_caif_seqpacket_ops(fd sock_caif, addr ptr[in, sockaddr], addrlen len[addr])
+connect$KGPT_caif_seqpacket_ops(fd sock_caif, addr ptr[in, sockaddr], addrlen len[addr])
+accept4$KGPT_caif_seqpacket_ops(fd sock_caif, peer ptr[out, sockaddr, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_caif
+sendto$KGPT_caif_seqpacket_ops(fd sock_caif, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr, opt], addrlen len[addr])
+recvfrom$KGPT_caif_seqpacket_ops(fd sock_caif, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr, opt], addrlen len[addr])
+setsockopt$KGPT_CAIFSO_LINK_SELECT(fd sock_caif, level const[SOL_CAIF], opt const[CAIFSO_LINK_SELECT], val ptr[in, int32], len bytesize[val])
+setsockopt$KGPT_CAIFSO_REQ_PARAM(fd sock_caif, level const[SOL_CAIF], opt const[CAIFSO_REQ_PARAM], val ptr[in, array[int8]], len len[val])

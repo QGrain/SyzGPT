@@ -1,0 +1,47 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <samples/bpf/net_shared.h>
+include <uapi/linux/in.h>
+include <uapi/linux/phonet.h>
+
+socket$KGPT_l2tp(domain const[AF_INET6], type const[SOCK_DGRAM], proto const[IPPROTO_L2TP]) sock_l2tp6
+
+bind$KGPT_l2tp_ip6_ops(fd sock_l2tp6, addr ptr[in, sockaddr_in6], addrlen len[addr])
+connect$KGPT_l2tp_ip6_ops(fd sock_l2tp6, addr ptr[in, sockaddr_in6], addrlen len[addr])
+accept4$KGPT_l2tp_ip6_ops(fd sock_l2tp6, peer ptr[out, sockaddr_in6, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_l2tp6
+sendto$KGPT_l2tp_ip6_ops(fd sock_l2tp6, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_in6, opt], addrlen len[addr])
+recvfrom$KGPT_l2tp_ip6_ops(fd sock_l2tp6, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_in6, opt], addrlen len[addr])
+ioctl$KGPT_SIOCPNADDRESOURCE_11(fd sock_l2tp6, cmd const[SIOCPNADDRESOURCE], arg intptr)
+
+define IPPROTO_L2TP	115

@@ -1,0 +1,118 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/chio.h>
+
+resource fd_ch[fd]
+
+syz_open_dev$KGPT_ch(dev ptr[in, string["/dev/ch#"]], id proc[0, 1], flags flags[open_flags]) fd_ch
+
+ioctl$KGPT_CHIOINITELEM(fd fd_ch, cmd const[CHIOINITELEM], arg ptr[in, array[int8]])
+ioctl$KGPT_CHIOGPARAMS(fd fd_ch, cmd const[CHIOGPARAMS], arg ptr[out, changer_params])
+ioctl$KGPT_CHIOGVPARAMS(fd fd_ch, cmd const[CHIOGVPARAMS], arg ptr[out, changer_vendor_params])
+ioctl$KGPT_CHIOPOSITION(fd fd_ch, cmd const[CHIOPOSITION], arg ptr[in, changer_position])
+ioctl$KGPT_CHIOMOVE(fd fd_ch, cmd const[CHIOMOVE], arg ptr[in, changer_move])
+ioctl$KGPT_CHIOEXCHANGE(fd fd_ch, cmd const[CHIOEXCHANGE], arg ptr[in, changer_exchange])
+ioctl$KGPT_CHIOGSTATUS(fd fd_ch, cmd const[CHIOGSTATUS], arg ptr[in, changer_element_status])
+ioctl$KGPT_CHIOGELEM(fd fd_ch, cmd const[CHIOGELEM], arg ptr[in, changer_get_element])
+ioctl$KGPT_CHIOSVOLTAG(fd fd_ch, cmd const[CHIOSVOLTAG], arg ptr[in, changer_set_voltag])
+
+changer_params {
+	cp_curpicker	int32
+	cp_npickers	int32
+	cp_nslots	int32
+	cp_nportals	int32
+	cp_ndrives	int32
+}
+
+changer_vendor_params {
+	cvp_n1		int32
+	cvp_label1	array[int8, 16]
+	cvp_n2		int32
+	cvp_label2	array[int8, 16]
+	cvp_n3		int32
+	cvp_label3	array[int8, 16]
+	cvp_n4		int32
+	cvp_label4	array[int8, 16]
+	reserved	array[int32, 8]
+}
+
+changer_position {
+	cp_type		int32
+	cp_unit		int32
+	cp_flags	int32
+}
+
+changer_move {
+	cm_fromtype	int32
+	cm_fromunit	int32
+	cm_totype	int32
+	cm_tounit	int32
+	cm_flags	int32
+}
+
+changer_exchange {
+	ce_srctype	int32
+	ce_srcunit	int32
+	ce_fdsttype	int32
+	ce_fdstunit	int32
+	ce_sdsttype	int32
+	ce_sdstunit	int32
+	ce_flags	int32
+}
+
+changer_element_status {
+	ces_type	int32
+	ces_data	ptr[in, array[int8]]
+}
+
+changer_get_element {
+	cge_type	int32
+	cge_unit	int32
+	cge_status	int32
+	cge_errno	int32
+	cge_srctype	int32
+	cge_srcunit	int32
+	cge_id		int32
+	cge_lun		int32
+	cge_pvoltag	array[int8, 36]
+	cge_avoltag	array[int8, 36]
+	cge_flags	int32
+}
+
+changer_set_voltag {
+	csv_type	int32
+	csv_unit	int32
+	csv_voltag	array[int8, 36]
+	csv_flags	int32
+}

@@ -1,0 +1,45 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/vfio.h>
+
+syz_open_dev$KGPT_vfio_dup_dup(dev ptr[in, string["/dev/vfio/#"]], id proc[0, 1], flags flags[open_flags]) fd_vfio
+
+ioctl$KGPT_VFIO_DEVICE_GET_INFO_6(fd fd_vfio, cmd const[VFIO_DEVICE_GET_INFO], arg ptr[out, vfio_device_info])
+ioctl$KGPT_VFIO_DEVICE_GET_IRQ_INFO_6(fd fd_vfio, cmd const[VFIO_DEVICE_GET_IRQ_INFO], arg ptr[inout, vfio_irq_info])
+ioctl$KGPT_VFIO_DEVICE_GET_PCI_HOT_RESET_INFO_2(fd fd_vfio, cmd const[VFIO_DEVICE_GET_PCI_HOT_RESET_INFO], arg ptr[inout, vfio_pci_hot_reset_info])
+ioctl$KGPT_VFIO_DEVICE_GET_REGION_INFO_6(fd fd_vfio, cmd const[VFIO_DEVICE_GET_REGION_INFO], arg ptr[inout, vfio_region_info])
+ioctl$KGPT_VFIO_DEVICE_IOEVENTFD_2(fd fd_vfio, cmd const[VFIO_DEVICE_IOEVENTFD], arg ptr[in, vfio_device_ioeventfd])
+ioctl$KGPT_VFIO_DEVICE_PCI_HOT_RESET_2(fd fd_vfio, cmd const[VFIO_DEVICE_PCI_HOT_RESET], arg ptr[in, vfio_pci_hot_reset])
+ioctl$KGPT_VFIO_DEVICE_RESET_6(fd fd_vfio, cmd const[VFIO_DEVICE_RESET], arg ptr[in, array[int8]])
+ioctl$KGPT_VFIO_DEVICE_SET_IRQS_6(fd fd_vfio, cmd const[VFIO_DEVICE_SET_IRQS], arg ptr[in, vfio_irq_set])

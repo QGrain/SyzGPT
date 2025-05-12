@@ -1,0 +1,64 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/ptp_clock.h>
+
+syz_open_dev$KGPT_ptp(dev ptr[in, string["/dev/ptp#"]], id proc[0, 1], flags flags[open_flags]) fd_ptp
+
+ioctl$KGPT_PTP_MASK_CLEAR_ALL(fd fd_ptp, cmd const[PTP_MASK_CLEAR_ALL], arg ptr[in, array[int8]])
+ioctl$KGPT_PTP_CLOCK_GETCAPS2(fd fd_ptp, cmd const[PTP_CLOCK_GETCAPS2], arg ptr[out, ptp_clock_caps])
+ioctl$KGPT_PTP_ENABLE_PPS2(fd fd_ptp, cmd const[PTP_ENABLE_PPS2], arg intptr)
+ioctl$KGPT_PTP_SYS_OFFSET_PRECISE2(fd fd_ptp, cmd const[PTP_SYS_OFFSET_PRECISE2], arg ptr[out, ptp_sys_offset_precise])
+ioctl$KGPT_PTP_SYS_OFFSET_EXTENDED2(fd fd_ptp, cmd const[PTP_SYS_OFFSET_EXTENDED2], arg ptr[in, ptp_sys_offset_extended])
+ioctl$KGPT_PTP_SYS_OFFSET2(fd fd_ptp, cmd const[PTP_SYS_OFFSET2], arg ptr[in, ptp_sys_offset])
+ioctl$KGPT_PTP_MASK_EN_SINGLE(fd fd_ptp, cmd const[PTP_MASK_EN_SINGLE], arg ptr[in, int32])
+
+ptp_clock_caps {
+	max_adj			int32
+	n_alarm			int32
+	n_ext_ts		int32
+	n_per_out		int32
+	pps			int32
+	n_pins			int32
+	cross_timestamping	int32
+	adjust_phase		int32
+	max_phase_adj		int32
+	rsv			array[int32, 11]
+}
+
+ptp_sys_offset_precise {
+	device		ptp_clock_time
+	sys_realtime	ptp_clock_time
+	sys_monoraw	ptp_clock_time
+	rsv		array[int32, 4]
+}

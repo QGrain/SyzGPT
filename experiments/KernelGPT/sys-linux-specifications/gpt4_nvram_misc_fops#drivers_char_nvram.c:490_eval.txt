@@ -1,0 +1,49 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/nvram.h>
+include <arch/powerpc/include/uapi/asm/nvram.h>
+
+resource fd_nvram[fd]
+
+openat$KGPT_nvram(fd const[AT_FDCWD], file ptr[in, string["/dev/nvram"]], flags flags[open_flags], mode const[0]) fd_nvram
+
+ioctl$KGPT_IOC_NVRAM_SYNC(fd fd_nvram, cmd const[IOC_NVRAM_SYNC], arg ptr[in, array[int8]])
+ioctl$KGPT_NVRAM_INIT(fd fd_nvram, cmd const[NVRAM_INIT], arg ptr[in, array[int8]])
+ioctl$KGPT_NVRAM_SETCKS(fd fd_nvram, cmd const[NVRAM_SETCKS], arg ptr[in, array[int8]])
+ioctl$KGPT_OBSOLETE_PMAC_NVRAM_GET_OFFSET(fd fd_nvram, cmd const[OBSOLETE_PMAC_NVRAM_GET_OFFSET], arg ptr[inout, pmac_nvram_partition])
+ioctl$KGPT_IOC_NVRAM_GET_OFFSET(fd fd_nvram, cmd const[IOC_NVRAM_GET_OFFSET], arg ptr[inout, nvram_partition])
+
+type pmac_nvram_partition ptr[in, array[int8]]
+type nvram_partition ptr[in, array[int8]]

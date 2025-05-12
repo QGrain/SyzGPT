@@ -1,0 +1,101 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/omap3isp.h>
+
+resource fd_ccdc[fd]
+
+syz_open_dev$KGPT_v4l_subdev_dup(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_ccdc
+
+ioctl$KGPT_VIDIOC_OMAP3ISP_CCDC_CFG(fd fd_ccdc, cmd const[VIDIOC_OMAP3ISP_CCDC_CFG], arg ptr[in, omap3isp_ccdc_update_config])
+
+omap3isp_ccdc_update_config {
+	update	int16
+	flag	int16
+	alawip	flags[omap3isp_alaw_ipwidth, int32]
+	bclamp	ptr[in, omap3isp_ccdc_bclamp]
+	blcomp	ptr[in, omap3isp_ccdc_blcomp]
+	fpc	ptr[in, omap3isp_ccdc_fpc]
+	lsc_cfg	ptr[in, omap3isp_ccdc_lsc_config]
+	cull	ptr[in, omap3isp_ccdc_culling]
+	lsc	ptr[in, array[int8]]
+}
+
+omap3isp_alaw_ipwidth = ISPCCDC_ALAW_IP_WIDTH_10BIT, ISPCCDC_ALAW_IP_WIDTH_11BIT, ISPCCDC_ALAW_IP_WIDTH_12BIT, ISPCCDC_ALAW_IP_WIDTH_13BIT, ISPCCDC_ALAW_IP_WIDTH_14BIT, ISPCCDC_ALAW_IP_WIDTH_15BIT
+
+omap3isp_ccdc_bclamp {
+	obgain		int8
+	obstpixel	int8
+	oblines		int8
+	oblen		int8
+	dcsubval	int16
+}
+
+omap3isp_ccdc_blcomp {
+	b_mg	int8
+	gb_g	int8
+	gr_cy	int8
+	r_ye	int8
+}
+
+omap3isp_ccdc_fpc {
+	fpnum	int16
+	fpcaddr	int32
+}
+
+omap3isp_ccdc_lsc_config {
+	offset		int16
+	gain_mode_n	int8
+	gain_mode_m	int8
+	gain_format	int8
+	fmtsph		int16
+	fmtlnh		int16
+	fmtslv		int16
+	fmtlnv		int16
+	initial_x	int8
+	initial_y	int8
+	size		int32
+}
+
+omap3isp_ccdc_culling {
+	v_pattern	int8
+	h_odd		int16
+	h_even		int16
+}
+
+define ISPCCDC_ALAW_IP_WIDTH_10BIT	0
+define ISPCCDC_ALAW_IP_WIDTH_11BIT	1
+define ISPCCDC_ALAW_IP_WIDTH_12BIT	2
+define ISPCCDC_ALAW_IP_WIDTH_13BIT	3
+define ISPCCDC_ALAW_IP_WIDTH_14BIT	4
+define ISPCCDC_ALAW_IP_WIDTH_15BIT	5

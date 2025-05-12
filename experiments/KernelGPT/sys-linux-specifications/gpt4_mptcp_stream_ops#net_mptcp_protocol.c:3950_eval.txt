@@ -1,0 +1,52 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <samples/bpf/net_shared.h>
+include <uapi/linux/phonet.h>
+include <uapi/linux/in.h>
+
+socket$KGPT_mptcp(domain const[AF_INET], type const[SOCK_STREAM], proto const[IPPROTO_MPTCP]) sock_mptcp
+
+bind$KGPT_mptcp_stream_ops(fd sock_mptcp, addr ptr[in, sockaddr_in_any], addrlen len[addr])
+connect$KGPT_mptcp_stream_ops(fd sock_mptcp, addr ptr[in, sockaddr_in_any], addrlen len[addr])
+accept4$KGPT_mptcp_stream_ops(fd sock_mptcp, peer ptr[out, sockaddr_in_any, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_mptcp
+sendto$KGPT_mptcp_stream_ops(fd sock_mptcp, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_in_any, opt], addrlen len[addr])
+recvfrom$KGPT_mptcp_stream_ops(fd sock_mptcp, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_in_any, opt], addrlen len[addr])
+ioctl$KGPT_SIOCPNADDRESOURCE_13(fd sock_mptcp, cmd const[SIOCPNADDRESOURCE], arg intptr)
+
+define IPPROTO_MPTCP	262
+
+sockaddr_in_any [
+	ipv4	sockaddr_in
+	ipv6	sockaddr_in6
+] [varlen]

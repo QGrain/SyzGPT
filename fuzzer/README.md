@@ -101,6 +101,7 @@ taskset -c 0-7 ./bin/syz-manager -config cfgdir/Syzkaller.cfg -bench benchdir/Sy
 ```bash
 # suppose the WORKDIR in SyzGPT.cfg is /root/fuzzers/SyzGPT-fuzzer/workdir/v6-1/SyzGPT
 taskset -c 8-15 ./bin/syz-manager -config cfgdir/SyzGPT.cfg -bench benchdir/SyzGPT.log -statcall -backup 24h -enrich WORKDIR/generated_corpus -period 1h -repair
+# SyzGPT-generator should keep generating seeds at -enrich dir
 ```
 
 ## 3 Check Results

@@ -1,0 +1,76 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <samples/bpf/net_shared.h>
+include <uapi/linux/mroute.h>
+include <uapi/linux/icmp.h>
+include <uapi/linux/in.h>
+
+socket$KGPT_inet_raw_dup(domain const[AF_INET], type const[SOCK_RAW], proto const[IPPROTO_RAW]) sock_inet_raw
+
+bind$KGPT_raw_prot(fd sock_inet_raw, addr ptr[in, sockaddr_in], addrlen len[addr])
+connect$KGPT_raw_prot(fd sock_inet_raw, addr ptr[in, sockaddr_in], addrlen len[addr])
+sendto$KGPT_raw_prot(fd sock_inet_raw, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_in, opt], addrlen len[addr])
+recvfrom$KGPT_raw_prot(fd sock_inet_raw, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_in, opt], addrlen len[addr])
+getsockopt$KGPT_ICMP_FILTER(fd sock_inet_raw, level const[SOL_RAW], opt const[ICMP_FILTER], val ptr[in, icmp_filter], len len[val])
+setsockopt$KGPT_IP_HDRINCL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_HDRINCL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_PKTINFO(fd sock_inet_raw, level const[SOL_IP], opt const[IP_PKTINFO], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVTTL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVTTL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVOPTS(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVOPTS], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVTOS(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVTOS], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RETOPTS(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RETOPTS], val int32, len bytesize[val])
+setsockopt$KGPT_IP_TOS(fd sock_inet_raw, level const[SOL_IP], opt const[IP_TOS], val int32, len bytesize[val])
+setsockopt$KGPT_IP_TTL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_TTL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_MTU_DISCOVER(fd sock_inet_raw, level const[SOL_IP], opt const[IP_MTU_DISCOVER], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVERR(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVERR], val int32, len bytesize[val])
+setsockopt$KGPT_IP_ROUTER_ALERT(fd sock_inet_raw, level const[SOL_IP], opt const[IP_ROUTER_ALERT], val int32, len bytesize[val])
+setsockopt$KGPT_IP_FREEBIND(fd sock_inet_raw, level const[SOL_IP], opt const[IP_FREEBIND], val int32, len bytesize[val])
+setsockopt$KGPT_IP_PASSSEC(fd sock_inet_raw, level const[SOL_IP], opt const[IP_PASSSEC], val int32, len bytesize[val])
+setsockopt$KGPT_IP_TRANSPARENT(fd sock_inet_raw, level const[SOL_IP], opt const[IP_TRANSPARENT], val int32, len bytesize[val])
+setsockopt$KGPT_IP_MINTTL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_MINTTL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_NODEFRAG(fd sock_inet_raw, level const[SOL_IP], opt const[IP_NODEFRAG], val int32, len bytesize[val])
+setsockopt$KGPT_IP_BIND_ADDRESS_NO_PORT(fd sock_inet_raw, level const[SOL_IP], opt const[IP_BIND_ADDRESS_NO_PORT], val int32, len bytesize[val])
+setsockopt$KGPT_IP_UNICAST_IF(fd sock_inet_raw, level const[SOL_IP], opt const[IP_UNICAST_IF], val int32, len bytesize[val])
+setsockopt$KGPT_IP_MULTICAST_TTL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_MULTICAST_TTL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_MULTICAST_ALL(fd sock_inet_raw, level const[SOL_IP], opt const[IP_MULTICAST_ALL], val int32, len bytesize[val])
+setsockopt$KGPT_IP_MULTICAST_LOOP(fd sock_inet_raw, level const[SOL_IP], opt const[IP_MULTICAST_LOOP], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVORIGDSTADDR(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVORIGDSTADDR], val int32, len bytesize[val])
+setsockopt$KGPT_IP_CHECKSUM(fd sock_inet_raw, level const[SOL_IP], opt const[IP_CHECKSUM], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVFRAGSIZE(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVFRAGSIZE], val int32, len bytesize[val])
+setsockopt$KGPT_IP_RECVERR_RFC4884(fd sock_inet_raw, level const[SOL_IP], opt const[IP_RECVERR_RFC4884], val int32, len bytesize[val])
+setsockopt$KGPT_IP_LOCAL_PORT_RANGE(fd sock_inet_raw, level const[SOL_IP], opt const[IP_LOCAL_PORT_RANGE], val int32, len bytesize[val])
+setsockopt$KGPT_ICMP_FILTER(fd sock_inet_raw, level const[SOL_RAW], opt const[ICMP_FILTER], val ptr[in, icmp_filter], len len[val])
+setsockopt$KGPT_MRT_BASE(fd sock_inet_raw, level const[IPPROTO_IP], opt const[MRT_BASE], val ptr[in, int32], len len[val])
+setsockopt$KGPT_MRT_MAX(fd sock_inet_raw, level const[IPPROTO_IP], opt const[MRT_MAX], val ptr[in, int32], len len[val])
+setsockopt$KGPT_IP_IPSEC_POLICY(fd sock_inet_raw, level const[SOL_IP], opt const[IP_IPSEC_POLICY], val ptr[in, array[int8]], len len[val])
+setsockopt$KGPT_IP_XFRM_POLICY(fd sock_inet_raw, level const[SOL_IP], opt const[IP_XFRM_POLICY], val ptr[in, array[int8]], len len[val])

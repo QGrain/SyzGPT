@@ -1,0 +1,59 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/sockios.h>
+include <uapi/linux/rose.h>
+
+syz_init_net_socket$KGPT_rose(domain const[AF_ROSE], type const[SOCK_SEQPACKET], proto const[0]) sock_rose
+
+bind$KGPT_rose_proto_ops(fd sock_rose, addr ptr[in, sockaddr_rose_any], addrlen len[addr])
+connect$KGPT_rose_proto_ops(fd sock_rose, addr ptr[in, sockaddr_rose_any], addrlen len[addr])
+accept4$KGPT_rose_proto_ops(fd sock_rose, peer ptr[out, sockaddr_rose_any, opt], peerlen ptr[inout, len[peer, int32]], flags flags[accept_flags]) sock_rose
+sendto$KGPT_rose_proto_ops(fd sock_rose, buf ptr[in, array[int8]], len len[buf], f flags[send_flags], addr ptr[in, sockaddr_rose_any, opt], addrlen len[addr])
+recvfrom$KGPT_rose_proto_ops(fd sock_rose, buf ptr[out, array[int8]], len len[buf], f flags[recv_flags], addr ptr[in, sockaddr_rose_any, opt], addrlen len[addr])
+ioctl$KGPT_SIOCGIFMETRIC_0(fd sock_rose, cmd const[SIOCGIFMETRIC], arg ptr[in, array[int8]])
+ioctl$KGPT_SIOCSIFMETRIC_0(fd sock_rose, cmd const[SIOCSIFMETRIC], arg ptr[in, array[int8]])
+getsockopt$KGPT_ROSE_DEFER(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_DEFER], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_T1(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T1], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_T2(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T2], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_T3(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T3], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_HOLDBACK(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_HOLDBACK], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_IDLE(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_IDLE], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+getsockopt$KGPT_ROSE_QBITINCL(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_QBITINCL], val ptr[out, int32], len ptr[inout, bytesize[val, int32]])
+setsockopt$KGPT_ROSE_DEFER(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_DEFER], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_T1(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T1], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_T2(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T2], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_T3(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_T3], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_HOLDBACK(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_HOLDBACK], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_IDLE(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_IDLE], val int32, len bytesize[val])
+setsockopt$KGPT_ROSE_QBITINCL(fd sock_rose, level const[SOL_ROSE], opt const[ROSE_QBITINCL], val int32, len bytesize[val])

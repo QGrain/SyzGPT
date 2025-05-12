@@ -1,0 +1,62 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/ipmi.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_ipmi_wdog[fd]
+
+openat$KGPT_ipmi_wdog(fd const[AT_FDCWD], file ptr[in, string["/dev/watchdog"]], flags const[O_RDWR], mode const[0]) fd_ipmi_wdog
+
+ioctl$KGPT_IPMICTL_SEND_COMMAND_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SEND_COMMAND], arg ptr[in, ipmi_req])
+ioctl$KGPT_IPMICTL_SEND_COMMAND_SETTIME_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SEND_COMMAND_SETTIME], arg ptr[in, ipmi_req_settime])
+ioctl$KGPT_IPMICTL_RECEIVE_MSG_0(fd fd_ipmi_wdog, cmd const[IPMICTL_RECEIVE_MSG], arg ptr[in, ipmi_recv])
+ioctl$KGPT_IPMICTL_RECEIVE_MSG_TRUNC_0(fd fd_ipmi_wdog, cmd const[IPMICTL_RECEIVE_MSG_TRUNC], arg ptr[in, ipmi_recv])
+ioctl$KGPT_IPMICTL_REGISTER_FOR_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_REGISTER_FOR_CMD], arg ptr[in, ipmi_cmdspec])
+ioctl$KGPT_IPMICTL_UNREGISTER_FOR_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_UNREGISTER_FOR_CMD], arg ptr[in, ipmi_cmdspec])
+ioctl$KGPT_IPMICTL_REGISTER_FOR_CMD_CHANS_0(fd fd_ipmi_wdog, cmd const[IPMICTL_REGISTER_FOR_CMD_CHANS], arg ptr[in, ipmi_cmdspec_chans])
+ioctl$KGPT_IPMICTL_UNREGISTER_FOR_CMD_CHANS_0(fd fd_ipmi_wdog, cmd const[IPMICTL_UNREGISTER_FOR_CMD_CHANS], arg ptr[in, ipmi_cmdspec_chans])
+ioctl$KGPT_IPMICTL_SET_GETS_EVENTS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_GETS_EVENTS_CMD], arg intptr)
+ioctl$KGPT_IPMICTL_SET_MY_ADDRESS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_MY_ADDRESS_CMD], arg intptr)
+ioctl$KGPT_IPMICTL_GET_MY_ADDRESS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_MY_ADDRESS_CMD], arg ptr[out, int32])
+ioctl$KGPT_IPMICTL_SET_MY_LUN_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_MY_LUN_CMD], arg intptr)
+ioctl$KGPT_IPMICTL_GET_MY_LUN_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_MY_LUN_CMD], arg ptr[out, int32])
+ioctl$KGPT_IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD], arg ptr[in, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD], arg ptr[out, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_SET_MY_CHANNEL_LUN_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_MY_CHANNEL_LUN_CMD], arg ptr[in, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_GET_MY_CHANNEL_LUN_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_MY_CHANNEL_LUN_CMD], arg ptr[out, ipmi_channel_lun_address_set])
+ioctl$KGPT_IPMICTL_SET_TIMING_PARMS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_TIMING_PARMS_CMD], arg ptr[in, ipmi_timing_parms])
+ioctl$KGPT_IPMICTL_GET_TIMING_PARMS_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_TIMING_PARMS_CMD], arg ptr[out, ipmi_timing_parms])
+ioctl$KGPT_IPMICTL_GET_MAINTENANCE_MODE_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_GET_MAINTENANCE_MODE_CMD], arg ptr[out, int32])
+ioctl$KGPT_IPMICTL_SET_MAINTENANCE_MODE_CMD_0(fd fd_ipmi_wdog, cmd const[IPMICTL_SET_MAINTENANCE_MODE_CMD], arg intptr)

@@ -1,0 +1,135 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/dvb/dmx.h>
+
+resource fd_dvb_demux[fd]
+
+syz_open_dev$KGPT_dvb_demux(dev ptr[in, string["/dev/dvb/adapter#/demux#"]], id proc[0, 1], flags flags[open_flags]) fd_dvb_demux
+
+ioctl$KGPT_DMX_START(fd fd_dvb_demux, cmd const[DMX_START], arg ptr[in, array[int8]])
+ioctl$KGPT_DMX_STOP(fd fd_dvb_demux, cmd const[DMX_STOP], arg ptr[in, array[int8]])
+ioctl$KGPT_DMX_SET_FILTER(fd fd_dvb_demux, cmd const[DMX_SET_FILTER], arg ptr[in, dmx_sct_filter_params])
+ioctl$KGPT_DMX_SET_PES_FILTER(fd fd_dvb_demux, cmd const[DMX_SET_PES_FILTER], arg ptr[in, dmx_pes_filter_params])
+ioctl$KGPT_DMX_SET_BUFFER_SIZE(fd fd_dvb_demux, cmd const[DMX_SET_BUFFER_SIZE], arg intptr)
+ioctl$KGPT_DMX_GET_PES_PIDS(fd fd_dvb_demux, cmd const[DMX_GET_PES_PIDS], arg ptr[out, dmx_pes_pid])
+ioctl$KGPT_DMX_GET_STC(fd fd_dvb_demux, cmd const[DMX_GET_STC], arg ptr[inout, dmx_stc])
+ioctl$KGPT_DMX_ADD_PID(fd fd_dvb_demux, cmd const[DMX_ADD_PID], arg intptr)
+ioctl$KGPT_DMX_REMOVE_PID(fd fd_dvb_demux, cmd const[DMX_REMOVE_PID], arg ptr[in, int16])
+ioctl$KGPT_DMX_REQBUFS(fd fd_dvb_demux, cmd const[DMX_REQBUFS], arg ptr[in, dmx_requestbuffers])
+ioctl$KGPT_DMX_QUERYBUF(fd fd_dvb_demux, cmd const[DMX_QUERYBUF], arg ptr[inout, dmx_buffer])
+ioctl$KGPT_DMX_EXPBUF(fd fd_dvb_demux, cmd const[DMX_EXPBUF], arg ptr[in, dmx_exportbuffer])
+ioctl$KGPT_DMX_QBUF(fd fd_dvb_demux, cmd const[DMX_QBUF], arg ptr[in, dmx_buffer])
+ioctl$KGPT_DMX_DQBUF(fd fd_dvb_demux, cmd const[DMX_DQBUF], arg ptr[inout, dmx_buffer])
+
+dmx_sct_filter_params {
+	pid	int16
+	filter	dmx_filter
+	timeout	int32
+	flags	flags[dmx_sct_filter_params_flags, int32]
+}
+
+type dmx_pes_pid ptr[in, array[int8]]
+
+dmx_stc {
+	num	int32
+	base	int32
+	stc	int64
+}
+
+dmx_requestbuffers {
+	count	int32
+	size	int32
+}
+
+dmx_buffer {
+	index		int32
+	bytesused	int32
+	offset		int32
+	length		int32
+	flags		int32
+	count		int32
+}
+
+dmx_exportbuffer {
+	index	int32
+	flags	int32
+	fd	int32
+}
+
+dmx_pes_filter_params {
+	pid		int16
+	input		flags[dmx_input, int32]
+	output		flags[dmx_output, int32]
+	pes_type	flags[dmx_ts_pes, int32]
+	flags		int32
+}
+
+dmx_sct_filter_params_flags = DMX_CHECK_CRC, DMX_ONESHOT, DMX_IMMEDIATE_START
+
+dmx_filter {
+	filter	array[int8, DMX_FILTER_SIZE]
+	mask	array[int8, DMX_FILTER_SIZE]
+	mode	array[int8, DMX_FILTER_SIZE]
+}
+
+dmx_input = DMX_IN_FRONTEND, DMX_IN_DVR
+dmx_output = DMX_OUT_DECODER, DMX_OUT_TAP, DMX_OUT_TS_TAP, DMX_OUT_TSDEMUX_TAP
+dmx_ts_pes = DMX_PES_AUDIO0, DMX_PES_VIDEO0, DMX_PES_TELETEXT0, DMX_PES_SUBTITLE0, DMX_PES_PCR0, DMX_PES_AUDIO1, DMX_PES_VIDEO1, DMX_PES_TELETEXT1, DMX_PES_SUBTITLE1, DMX_PES_PCR1, DMX_PES_AUDIO2, DMX_PES_VIDEO2, DMX_PES_TELETEXT2, DMX_PES_SUBTITLE2, DMX_PES_PCR2, DMX_PES_AUDIO3, DMX_PES_VIDEO3, DMX_PES_TELETEXT3, DMX_PES_SUBTITLE3, DMX_PES_PCR3, DMX_PES_OTHER
+define DMX_IN_FRONTEND	0
+define DMX_IN_DVR	1
+define DMX_OUT_DECODER	0
+define DMX_OUT_TAP	1
+define DMX_OUT_TS_TAP	2
+define DMX_OUT_TSDEMUX_TAP	3
+define DMX_PES_AUDIO0	0
+define DMX_PES_VIDEO0	1
+define DMX_PES_TELETEXT0	2
+define DMX_PES_SUBTITLE0	3
+define DMX_PES_PCR0	4
+define DMX_PES_AUDIO1	5
+define DMX_PES_VIDEO1	6
+define DMX_PES_TELETEXT1	7
+define DMX_PES_SUBTITLE1	8
+define DMX_PES_PCR1	9
+define DMX_PES_AUDIO2	10
+define DMX_PES_VIDEO2	11
+define DMX_PES_TELETEXT2	12
+define DMX_PES_SUBTITLE2	13
+define DMX_PES_PCR2	14
+define DMX_PES_AUDIO3	15
+define DMX_PES_VIDEO3	16
+define DMX_PES_TELETEXT3	17
+define DMX_PES_SUBTITLE3	18
+define DMX_PES_PCR3	19
+define DMX_PES_OTHER	20
