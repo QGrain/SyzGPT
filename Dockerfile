@@ -34,12 +34,17 @@ RUN cd /root/fuzzers && git clone https://github.com/google/syzkaller.git SyzGPT
     mkdir -p cfgdir benchdir workdir/v6-1 && \
     cp /root/SyzGPT/fuzzer/*.cfg /root/fuzzers/SyzGPT-fuzzer/cfgdir/ && \
     cp -r /root/fuzzers/SyzGPT-fuzzer /root/fuzzers/SyzGPT-KernelGPT-fuzzer && \
-    cd /root/fuzzers/SyzGPT-fuzzer && make -j$(($(nproc)/2)) && \
-    cd /root/fuzzers/SyzGPT-KernelGPT-fuzzer && \
+    cd /root/fuzzers/SyzGPT-fuzzer && make -j$(($(nproc)/2))
+
+# Setup SyzGPT-KernelGPT-fuzzer
+RUN cd /root/fuzzers/SyzGPT-KernelGPT-fuzzer && \
     cp /root/SyzGPT/experiments/KernelGPT/sys-linux-specifications/* sys/linux/ && \
-    make -j$(($(nproc)/2)) && \
-    curl https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.12.tar.xz | tar -C /root/kernels -xJ && \
-    cd /root/kernels/linux-6.6.12 && cp /root/SyzGPT/fuzzer/syzbot-6.6.config .config
+    make -j$(($(nproc)/2))
+
+# Download linux-6.6.12 and set syzbot.config
+RUN curl https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.12.tar.xz | tar -C /root/kernels -xJ && \
+    cd /root/kernels/linux-6.6.12 && \
+    cp /root/SyzGPT/fuzzer/syzbot-6.6.config .config
 
 # 1. User should compile the kernel manually with make CC=gcc olddefconfig && make CC=gcc -j$(($(nproc)/2))
 # Check details in Setup step 5 in /root/SyzGPT/fuzzer/README.md

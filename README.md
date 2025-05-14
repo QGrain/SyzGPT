@@ -63,7 +63,7 @@ We also generate a [wiki page](https://deepwiki.com/QGrain/SyzGPT) for SyzGPT th
 
 ### 1.2 Setup with Docker (Recommend) [⏰~10min]
 
-We have released `qgrain/syzgpt:pretest`, which is ready for fuzzing. And we will release `qgrain/syzgpt:full` with full functionality and evaluation benchmark soon. **To understand how we build these docker images, please refer to this repo**: [QGrain/kernel-fuzz-docker-images](https://github.com/QGrain/kernel-fuzz-docker-images).
+We have released two docker images: `qgrain/syzgpt:pretest`(early access version) and `qgrain/syzgpt:full` (with full functionality and evaluation benchmark). **To understand how we build these docker images, please refer to this repo**: [QGrain/kernel-fuzz-docker-images](https://github.com/QGrain/kernel-fuzz-docker-images).
 
 <details>
 <summary>Setup with qgrain/syzgpt:pretest</summary>
@@ -95,14 +95,19 @@ workon syzgpt
 
 </details>
 
-<details>
+<details open>
 <summary>Setup with qgrain/syzgpt:full</summary>
+
+If you only want to directly use SyzGPT for fuzzing, you can choose the smaller one `syzgpt:pretest`.
 
 ```bash
 docker run -itd --name SyzGPT --privileged=true qgrain/syzgpt:full
 # You will find everything is OK as expected, including the functionalities and experiments of SyzGPT.
+
+cd /root/SyzGPT && git pull
+# Please always synchronize SyzGPT repository first.
 ```
-</details>
+</details open>
 
 ### 1.3 Setup from scratch [⏰~15min]
 
@@ -144,8 +149,7 @@ Suppose you have:
 1. Generate Seeds (**NOTE: it will interact with LLM and cost tokens**)
 
 ```bash
-# cd the root of this project, e.g., /root/SyzGPT
-workon syzgpt
+cd /root/SyzGPT && workon syzgpt
 
 # (1) Use official OpenAI api (it will load api_key, llm_model, ... from private_config.py)
 python syzgpt_generator.py -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f sampled_variants.txt
@@ -157,7 +161,9 @@ python syzgpt_generator.py -M gpt-3.5-turbo-16k -u https://api.expansion.chat/v1
 python syzgpt_generator.py -M CodeLlama-syz-toy -u http://IP:PORT/v1/ -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f sampled_variants.txt
 ```
 
-Explanation of Parameters:
+<details>
+<summary>Click to view: Explanation of Parameters</summary>
+
 - `-s`: path to the SyzGPT-fuzzer, must be specified.
 - `-w`: output the generated results and logs to `WORKDIR`, must be specified.
 - `-e`: path to external corpus, only nessary in one-time seed generation.
@@ -166,6 +172,8 @@ Explanation of Parameters:
 - `-M`: model name, used with third party api or local LLM.
 - `-u`: base_url to api address or local hosted LLM.
 - `-k`: api_key for third party api service.
+
+</details>
 
 You will find the outputs in `WORKDIR` look like:
 
@@ -204,6 +212,10 @@ python /root/SyzGPT/analyzer/corpus_analyzer.py analyze -d WORKDIR/generated_cor
 <summary>Run seed-generation-all-in-one script</summary>
 
 Will be released soon.
+
+```bash
+python /root/SyzGPT/experiments/performance/evaluate.py -i /root/images -n image-eval -k /root/kernels/linux-6.6.12 -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR
+```
 
 </details>
 

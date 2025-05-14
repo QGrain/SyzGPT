@@ -2,8 +2,10 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from generator.utils import *
+from generator.gpt_wrapper import *
 # from analyzer.corpus_analyzer import *
 import time
+import argparse
 import hashlib
 import binascii
 
@@ -85,7 +87,7 @@ def batch_generate_program(syscalls, workdir, hash_fn_cnt, debug=False, max_gen=
             break
         if cnt % 20 == 0:
             logger.info('Security 60s sleep every 20 syscalls\' generation.')
-            sleep(60)
+            time.sleep(60)
     # save geneartion_history
     with open(gen_his_path, 'w') as f:
         json.dump(generation_history, f, indent=4)

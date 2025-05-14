@@ -1,20 +1,26 @@
 import os
 import argparse
-from syzqemuctl import ImageManager, VM
+from syzqemuctl import global_conf, ImageManager, VM
 from time import sleep, time
 
 
-def prepare_vm(image_name):
-    manager = ImageManager("/root/images-auto")
+def prepare_vm(images_home: str, image_name: str, kernel_obj: str) -> VM:
+    global_conf.initialize(images_home, force=False)
+    manager = ImageManager(images_home)
+    manager.initialize(force=False)
     manager.create(image_name)
-    vm = VM(os.path.join("/root/images-auto", image_name))
-    vm.start(kernel="/g.linux/deadline/code/objs/linux-stable-6.6.12")
+
+    vm = VM(os.path.join(images_home, image_name))
+    vm.start(kernel=kernel_obj)
     return vm
 
 
+# python evaluate.py -i /root/images-auto -n image-ecg -k /g.linux/deadline/code/objs/linux-stable-6.6.12 -d /path/to/ecg/outs -b /root/fuzzers/SyzGPT-fuzzer/tools/syz-trace2syz/trace2syz
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Evaluate the generation of ECG")
-    parser.add_argument("-i", "--image_name", required=True, type=str, help="image name")
+    parser.add_argument("-i", "--images_home", default="/root/images", type=str, help="path to images home")
+    parser.add_argument("-n", "--image_name", required=True, type=str, help="image name")
+    parser.add_argument("-k", "--kernel_obj", default="/root/kernels/linux-6.6.12", type=str, help="path to kernel object")
     parser.add_argument("-d", "--dir", required=True, type=str, help="directory to the LLM generated results")
     parser.add_argument("-b", "--trace2syz_bin", default="./trace2syz", type=str, help="path to trace2syz binary")
     args = parser.parse_args()
@@ -24,7 +30,7 @@ if __name__ == "__main__":
     start_time = time()
     f_log = open(os.path.join(args.dir, "evaluate_local.log"), "w", encoding="utf-8")
     
-    vm = prepare_vm(args.image_name)
+    vm = prepare_vm(args.images_home, args.image_name, args.kernel_obj)
     if not vm.is_ready():
         print("VM is not ready, sleep 160 seconds")
         sleep(160)

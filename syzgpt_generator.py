@@ -9,6 +9,7 @@ import binascii
 import shutil
 import multiprocessing
 from random import shuffle, randint
+from typing import List
 
 
 class GeneratorConfig:
@@ -30,9 +31,10 @@ class GeneratorResult:
         self.total_gen_cnt = 0
 
 
-def parse_corpus(fuzzer_path, corpus_db_path, corpus_dir):
+def parse_corpus(fuzzer_path: str, corpus_db_path: str, corpus_dir: str) -> bool:
     syz_db_bin = os.path.join(fuzzer_path, 'bin/syz-db')
     parse_cmd = '%s parse %s %s'%(syz_db_bin, corpus_db_path, corpus_dir)
+    check_command_injection(parse_cmd)
     result = subprocess.run(parse_cmd, shell=True, check=True)
     
     if result.returncode != 0: 
@@ -42,10 +44,11 @@ def parse_corpus(fuzzer_path, corpus_db_path, corpus_dir):
     return True
 
 
-def pack_corpus(fuzzer_path, corpus_dir, corpus_db_path):
+def pack_corpus(fuzzer_path: str, corpus_dir: str, corpus_db_path: str) -> bool:
     syz_db_bin = os.path.join(fuzzer_path, 'bin/syz-db')
-    parse_cmd = '%s pack %s %s'%(syz_db_bin, corpus_dir, corpus_db_path)
-    result = subprocess.run(parse_cmd, shell=True, check=True)
+    pack_cmd = '%s pack %s %s'%(syz_db_bin, corpus_dir, corpus_db_path)
+    check_command_injection(pack_cmd)
+    result = subprocess.run(pack_cmd, shell=True, check=True)
     
     if result.returncode != 0: 
         logger.error('returncode = %d'%result.returncode)
@@ -54,9 +57,10 @@ def pack_corpus(fuzzer_path, corpus_dir, corpus_db_path):
     return True
 
 
-def repair_corpus(fuzzer_path, corpus_dir):
+def repair_corpus(fuzzer_path: str, corpus_dir: str) -> bool:
     syz_repair_bin = os.path.join(fuzzer_path, 'bin/syz-repair')
     repair_cmd = '%s %s %s'%(syz_repair_bin, corpus_dir, corpus_dir)
+    check_command_injection(repair_cmd)
     result = subprocess.run(repair_cmd, shell=True, check=True)
     
     if result.returncode != 0:
@@ -66,7 +70,7 @@ def repair_corpus(fuzzer_path, corpus_dir):
     return True
 
 
-def notify_generation_end(workdir):
+def notify_generation_end(workdir: str):
     end_flag = os.path.join(workdir, 'GENERATION_END')
     try:
         with open(end_flag, 'w') as f:
@@ -205,7 +209,7 @@ def time2sec(t):
     return total_seconds
 
 
-def prob(thres, m):
+def prob(thres: int, m: int) -> bool:
     '''return True with probability thres/m, or return False'''
     r = randint(1, m)
     return r <= thres
@@ -230,13 +234,32 @@ def get_case_insensitive_path(base_path: str, filename: str) -> str:
     return candidates[0]  # return specified base_path+filename  by default
 
 
+def initialize(workdir: str) -> List[str]:
+    if workdir[-1] == '/':
+        workdir_name = os.path.basename(os.path.dirname(workdir))
+        pre_name = os.path.basename(os.path.dirname(os.path.dirname(workdir)))
+    else:
+        workdir_name = os.path.basename(workdir)
+        pre_name = os.path.basename(os.path.dirname(workdir))
+    
+    check_dir(LOG_DIR)
+    target_syscalls_dir = os.path.join(workdir, 'target_syscalls')
+    query_prompts_dir = os.path.join(workdir, 'query_prompts')
+    check_dir(target_syscalls_dir)
+    check_dir(query_prompts_dir)
+    log_name = time.strftime('syzgpt_generator_%Y-%m-%d', time.localtime())
+    log_name += '_%s_%s.log'%(pre_name, workdir_name)
+    log_path = os.path.join(LOG_DIR, log_name)
+    init_logger(log_file=log_path)
+    return [target_syscalls_dir, query_prompts_dir]
+
 def get_args():
     parser = argparse.ArgumentParser(description='Program Generator')
     parser.add_argument('-M', '--llm_model', type=str, help='llm model')
     parser.add_argument('-u', '--base_url', type=str, help='api url of llm model')
     parser.add_argument('-k', '--api_key', type=str, help='api key of llm model')
-    parser.add_argument("-s", "--fuzzer", type=str, help="path to SyzGPT-fuzzer")
-    parser.add_argument('-w', '--workdir', type=str, help='workdir of the fuzzing instance')
+    parser.add_argument("-s", "--fuzzer", required=True, type=str, help="path to SyzGPT-fuzzer")
+    parser.add_argument('-w', '--workdir', required=True, type=str, help='workdir of the fuzzing instance')
     parser.add_argument('-e', '--external_corpus', type=str, help='path to external corpus (like enriched-corpus)')
     parser.add_argument('-f', '--call_file', type=str, help='one-time-gen: syscall list file')
     parser.add_argument('-c', '--calls', type=str, nargs='+', help='one-time-gen: manually specified call lists')
@@ -262,7 +285,7 @@ def print_logo():
   ___) | |_| |/ /| |_| |  __/ | |_____| (_| |  __/ | | |  __/ | | (_| | || (_) | |    \n\
  |____/ \__, /___|\____|_|    |_|      \__, |\___|_| |_|\___|_|  \__,_|\__\___/|_|    \n\
         |___/                          |___/                                          \n\n\
- SyzGPT-generator-v1.0.0")
+ SyzGPT-generator-v1.1.0")
 
 
 if __name__ == '__main__':
@@ -283,28 +306,11 @@ if __name__ == '__main__':
     shot = args.N_shot or 3
     regen_prob = args.regen_probability or 0
     assert(regen_prob <= 100)
-    assert(workdir)
     
     packed_configs = GeneratorConfig(model, workdir, max_gen, prompt_type, shot, regen_prob, freq_penalty, local_mode, args.debug)
     check_model(model)
     
-    if workdir[-1] == '/':
-        workdir_name = os.path.basename(os.path.dirname(workdir))
-        pre_name = os.path.basename(os.path.dirname(os.path.dirname(workdir)))
-    else:
-        workdir_name = os.path.basename(workdir)
-        pre_name = os.path.basename(os.path.dirname(workdir))
-    
-   
-    check_dir(LOG_DIR)
-    target_syscalls_dir = os.path.join(workdir, 'target_syscalls')
-    query_prompts_dir = os.path.join(workdir, 'query_prompts')
-    check_dir(target_syscalls_dir)
-    check_dir(query_prompts_dir)
-    log_name = time.strftime('syzgpt_generator_%Y-%m-%d', time.localtime())
-    log_name += '_%s_%s.log'%(pre_name, workdir_name)
-    log_path = os.path.join(LOG_DIR, log_name)
-    init_logger(log_file=log_path)
+    target_syscalls_dir, query_prompts_dir = initialize(workdir)
     
     # print some args info
     prompt_type_meaning = {0: 'default', 1: 'random', 2: 'all syz depend', 3: 'all call depend', 4: 'no sys', 5: 'fixed', 6: 'direct'}

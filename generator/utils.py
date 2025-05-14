@@ -123,7 +123,7 @@ def load_man_doc(syscall, sections):
     return doc_str
 
 
-def read_prog(prog_path):
+def read_prog(prog_path: str) -> str:
     prog_str = ''
     with open(prog_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
@@ -163,7 +163,7 @@ def init_logger(log_file='default_{time:YYYY-MM-DD_HH-mm-ss}.log', level='DEBUG'
     )
 
 
-def replace_unprintables(s):
+def replace_unprintables(s: str) -> str:
     new_s = ''
     for c in s:
         if not c.isprintable() and c != chr(0x0a):
@@ -173,7 +173,7 @@ def replace_unprintables(s):
     return new_s
 
 
-def extract_program_content(response_text):
+def extract_program_content(response_text: str) -> str:
     '''For the generation results of local LLMs'''
     prog_content = ''
     prog_start = 0
@@ -208,3 +208,32 @@ def extract_programs(response_text, syscall, out_dir, suffix, force_fn=None, fil
     else:
         with open(os.path.join(out_dir, '%s%s'%(syscall, suffix)), 'w', encoding='utf-8') as f:
             json.dump(response_text, f, indent=4)
+
+
+def check_command_injection(command_str: str) -> None:
+    """
+    Check if the user controlled string is safe from command injection
+    Args: input_str: string to check  Returns: None
+    """
+    # Define dangerous characters and patterns
+    dangerous_chars = {
+        '&',        # command1 & command2
+        ';',        # command1; command2
+        '|',        # command1 | command2
+        '`',        # `command`
+        '$',        # $(command) or $VAR
+        '(',        # sub command
+        ')',        # sub command
+        # '<',        # redirect
+        # '>',        # redirect
+        '*',        # willcard
+        '?',        # willcard
+        '\\',       # escape
+        '\n',       # break line
+        '\r',       # back line
+    }
+    
+    # Check dangerous characters
+    if any(char in command_str for char in dangerous_chars):
+        print(f"Unsafe characters found in command: {command_str}")
+        sys.exit(1)
