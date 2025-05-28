@@ -1,7 +1,7 @@
 # SyzGPT: Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG
 
 <div align="center">
-<a href="https://doi.org/10.5281/zenodo.15206336"><img alt="Artifact Zenodo" src="https://zenodo.org/badge/DOI/10.5281/zenodo.15206336.svg"/></a>
+<a href="https://doi.org/10.5281/zenodo.15537270"><img alt="Artifact Zenodo" src="https://zenodo.org/badge/DOI/10.5281/zenodo.15537270.svg"/></a>
 <a href="https://huggingface.co/zzra1n/CodeLlama-syz-toy"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-CodeLlama--syz--toy-ffc107?color=ffc107&logoColor=white%22"/></a>
 
 </div>
