@@ -13,6 +13,9 @@ def prepare_vm(images_home: str, image_name: str, kernel_obj: str) -> VM:
 
     vm = VM(os.path.join(images_home, image_name))
     vm.start(kernel=kernel_obj)
+    sleep(60)
+    if vm.wait_until_ready():
+        pass
     return vm
 
 
@@ -93,13 +96,27 @@ def calc_N_L(project_root: str, workdir: str, target: str = "generated_corpus_va
         f.write(f"{res.stdout}\n")
 
 
-def calc_CER(fuzzer_path: str, workdir: str, log_file: str = "evaluate.log") -> None:
-    # based on syzqemuctl
-    # TBD soon
-    pass
+def calc_CER(fuzzer_path: str, workdir: str, vm: VM, log_file: str = "evaluate.log") -> None:
+    # based on syzqemuctl api
+    rev_prog_dir = os.path.join(workdir, 'generated_corpus_repair_valid_rev')
+    os.system(f"cp -r {workdir}/generated_corpus_repair_valid {rev_prog_dir}")
+    reverse_progs_to_dir(rev_prog_dir)
+    with vm:
+        vm.execute(f"mkdir -p /root/evaluate_cer")
+        vm.copy_to_vm(rev_prog_dir, "/root/evaluate_cer/")
+        vm.copy_to_vm(f"{fuzzer_path}/bin/linux_amd64/syz-execprog", "/root/")
+        vm.copy_to_vm(f"{fuzzer_path}/bin/linux_amd64/syz-executor", "/root/")
+        vm.execute(f"/root/syz-execprog -semantic -progdir /root/evaluate_cer/generated_corpus_repair_valid_rev -coverfile /root/evaluate_cer/out/CER")
+        vm.copy_from_vm("/root/evaluate_cer/out/CER_Evaluation_Results", "./")
+    with open('./CER_Evaluation_Results', 'r') as f:
+        cer_results = f.readlines()
+    with open(log_file, 'a') as f:
+        f.write(f"Calculate CER for valid repaired progs:\n")
+        for line in cer_results:
+            f.write(f"{line.strip()}\n")
 
 
-def evaluate_all_stages(fuzzer_path: str, workdir: dir, log_file: str = "evaluate.log") -> None:
+def evaluate_all_stages(fuzzer_path: str, workdir: dir, vm: VM, log_file: str = "evaluate.log") -> None:
     # stage 1: calculate SVR for original progs
     calc_SVR(fuzzer_path, workdir, log_file)
     
@@ -116,6 +133,9 @@ def evaluate_all_stages(fuzzer_path: str, workdir: dir, log_file: str = "evaluat
     calc_N_L("/root/SyzGPT", workdir, "generated_corpus_repair_valid", log_file)
     
     # stage 5: calculate CER for valid repaired progs
+    calc_CER(fuzzer_path, workdir, vm, log_file)
+    
+    print(f"Evaluation completed. Results are stored in {log_file}.")
     
 
 # python /root/SyzGPT/experiments/performance/evaluate.py -i /root/images -n image-eval -k /root/kernels/linux-6.6.12 -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR
@@ -129,6 +149,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     
-    prepare_vm(args.images_home, args.image_name, args.kernel_obj)
-    evaluate_all_stages(args.fuzzer, args.workdir, "evaluate.log")
+    vm = prepare_vm(args.images_home, args.image_name, args.kernel_obj)
+    evaluate_all_stages(args.fuzzer, args.workdir, vm, "evaluate.log")
     stop_vm(args.images_home, args.image_name, args.kernel_obj)

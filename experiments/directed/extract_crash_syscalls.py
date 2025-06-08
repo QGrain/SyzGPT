@@ -3,7 +3,7 @@ import os
 
 def get_args():
     parser = argparse.ArgumentParser(description='Extract crash syscalls from a poc file')
-    parser.add_argument('-i', '--input_poc', type=str, required=True, help='Input file path')
+    parser.add_argument('-i', '--input_poc', type=str, required=True, help='Path of the poc file')
     parser.add_argument('-o', '--output_syscalls', type=str, required=True, help='Output file path')
     args = parser.parse_args()
     return args
@@ -38,8 +38,6 @@ def write_syscalls(output_file, syscalls):
 
 if __name__ == '__main__':
     args = get_args()
-    assert(args.input_poc)
-    assert(args.output_syscalls)
     # Ensure input file exists
     if not os.path.isfile(args.input_poc):
         raise FileNotFoundError(f"Input file {args.input_poc} does not exist.")

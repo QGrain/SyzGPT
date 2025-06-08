@@ -12,7 +12,7 @@ except ImportError:
 from generator.prompts import *
 from time import time, sleep
 
-CAPA_DIR = './capabilities'
+CAPA_DIR = './capability'
 
 
 TEST1_PROMPT = '''\

@@ -13,7 +13,8 @@ plot/**/*.png
 
 **/private_config.py
 generator/corpus/
-generator/capabilities/
+generator/capability/*/
+generator/directed/*/
 generator/*.log
 generator/log/
 generator/chat_*.py

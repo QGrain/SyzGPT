@@ -321,7 +321,7 @@ if __name__ == '__main__':
             
         # Load synopsis from LLM generated
         synop_llm = ''
-        fn_llm = './capabilities/test2/%s.synopsis'%syscall
+        fn_llm = './capability/test2/%s.synopsis'%syscall
         if os.path.isfile(fn_llm):
             synop_llm = load_synopsis_from_llm(fn_llm)
             if synop_llm == '':
