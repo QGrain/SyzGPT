@@ -106,10 +106,14 @@ taskset -c 8-15 ./bin/syz-manager -config cfgdir/SyzGPT.cfg -bench benchdir/SyzG
 
 ## 3 Check Results
 
-- Plot the growth of **coverage**, **syscalls**, **new\ inputs**...
+- Plot the growth of metrics (**coverage**, **syscalls**, **new\ inputs**...)
 
 ```bash
-python /root/SyzGPT/scripts/bench_parser.py -b BENCH1.log BENCH2.log ... -k coverage syscalls new\ inputs -l Syzkaller SyzGPT-fuzzer ... -t 24h -p -o ./
+# Normal Usage of plotting the curves of metrics over time:
+# 1. Plot single logs of each fuzzers to compare:
+python bench_parser.py -b logA logB .. -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
+# 2. Plot average logs of each fuzzers to compare:
+python bench_parser.py -b logA1 logA2 logA3 logB1 logB2 logB3 .. -a 3 -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
 ```
 
 - Visualize the crashes

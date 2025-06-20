@@ -6,6 +6,7 @@ test/
 corpus/*
 !corpus/*.db
 
+plots/
 plot/tmp/
 plot/**/*.png
 **/*.eps

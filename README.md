@@ -9,7 +9,7 @@
 > [!NOTE] 
 > We are still updating this project and formatting the documentations for Artifact Evaluation.
 
-This is the implementation of paper titled "**Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG**". For more details about SyzGPT, please refer to [our paper](https://zhiyu.netlify.app/files/ISSTA25_SyzGPT_Zhiyu_Camera_Ready.pdf) from ISSTA'25. We also provide a [README_for_review](./docs/README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
+This is the implementation of paper titled "**Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG**". For more details about SyzGPT, please refer to [our paper](https://zhiyu.netlify.app/files/issta25main_syzgpt.pdf) from ISSTA'25. We also provide a [README_for_review](./docs/README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
 
 **Quick Glance**: SyzGPT is an LLM-assisted kernel fuzzing framework for automatically generating effective seeds for low frequency syscalls (LFS). Linux kernel provides over [360 system calls](./data/builtin_syscalls.txt) and Syzkaller defines more than [4400 specialized calls](./data/builtin_variants.txt) encapsulated for specific purposes of system calls. However, many of these syscalls (called [LFS](./docs/LFS.md)) are hard to be consistently covered due to the complex dependencies and mutation uncertainty, leaving the testing space. SyzGPT can automatically extract and augment syscall dependencies for these LFS and generate effective seeds with dependency-based RAG (DRAG). Our evaluation shows that SyzGPT can improve overall code coverage and syscall coverage, and find LFS-induced vulnerabilities. We also release a toy model [🤗CodeLlama-syz-toy](https://huggingface.co/zzra1n/CodeLlama-syz-toy) specialized for Syz-program.
 
@@ -287,8 +287,20 @@ python syzgpt_generator.py -s /root/fuzzers/SyzGPT-fuzzer -w /root/fuzzers/SyzGP
 
 #### Step 3: Evaluate the fuzzing
 
+- Plot the growth of metrics (**coverage**, **syscalls**, **new\ inputs**...)
+
 ```bash
-# Usage of plotting script will be updated soon.
+# Normal Usage of plotting the curves of metrics over time:
+# 1. Plot single logs of each fuzzers to compare:
+python bench_parser.py -b logA logB .. -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
+# 2. Plot average logs of each fuzzers to compare:
+python bench_parser.py -b logA1 logA2 logA3 logB1 logB2 logB3 .. -a 3 -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
+```
+
+- Visualize the crashes
+
+```bash
+python /root/SyzGPT/scripts/result_parser.py -D /path/to/WORKDIR1/crashes /path/to/WORKDIR2/crashes ... -c
 ```
 
 ### 2.3 Extract Syscall Dependency

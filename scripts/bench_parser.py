@@ -1,5 +1,6 @@
 import argparse, os, json
 import matplotlib.pyplot as plt
+# import pdb
 
 
 # Default plot style
@@ -172,20 +173,24 @@ def sample_log_by_time(log_list, end_t, interval_t):
     # time range_thres is set to 3600 as the data is sparse
     return sample_log_by_key(log_list, 'uptime', time2sec(end_t), time2sec(interval_t), 3600, 10)
 
-def print_log(log_chunk, key=None):
+def print_log(log_chunk, key=None, msg=''):
     uptime_sec = log_chunk['uptime']
     uptime_time = sec2time(uptime_sec)
-    print('[+] print log_chunk')
+    if msg != '':
+        print('%s'%msg)
     print('    uptime: %d, %s'%(uptime_sec, uptime_time))
-    if key != None and key != []:
-        for k in key:
-            if k in log_chunk:
-                print('    %s: %s'%(k, log_chunk[k]))
-    else:
-        # by default
-        default = ['coverage', 'corpus', 'crashes', 'crash types', 'exec total']
-        for k in default:
+    default = ['coverage', 'signal', 'corpus', 'crashes', 'crash types', 'new inputs', 'exec total']
+    if key == None or key == []:
+        key = default
+    for k in key:
+        try:
             print('    %s: %s'%(k, log_chunk[k]))
+        except:
+            pass
+
+def stat_log(log_list):
+    num_chunk = len(log_list)
+    print_log(log_list[-1], None, '[+] This bench file contains %d log chunks, print the last chunk:'%num_chunk)
             
 def calc_ratio(log_chunk, key=['new inputs' ,'exec total']):
     uptime_sec = log_chunk['uptime']
@@ -200,11 +205,6 @@ def calc_ratio(log_chunk, key=['new inputs' ,'exec total']):
         ratio = 0
     # print(f'    ratio: {ratio:.2f}%')
     return ratio
-
-def stat_log(log_list):
-    num_chunk = len(log_list)
-    print('[-] This bench file contains %d log chunk'%num_chunk)
-    print_log(log_list[-1])
     
 def _save_plot(out_dir, fn):
     plt.tight_layout()
@@ -213,6 +213,7 @@ def _save_plot(out_dir, fn):
     plt.savefig(png_path, dpi=600, format='png', bbox_inches='tight', pad_inches=0)
     plt.savefig(eps_path, dpi=600, format='eps', bbox_inches='tight', pad_inches=0)
     plt.close()
+    print('[+] Plots saved to %s and %s'%(png_path, eps_path))
 
 def plot(title, d, key, legend, time, n_ticks, out_dir):
     plt.figure(figsize=(16, 10))
@@ -227,7 +228,7 @@ def plot(title, d, key, legend, time, n_ticks, out_dir):
 
     for legend_name in legend:
         x_data = [i for i in range(len(d[legend_name]))]
-        y_data = [d[legend_name][j][key] for j in range(len(d[legend_name]))]
+        y_data = [d[legend_name][j].get(key, 0) for j in range(len(d[legend_name]))]
         
         # use default style or custom style
         if legend_name in PLT_STY:
@@ -245,37 +246,8 @@ def plot(title, d, key, legend, time, n_ticks, out_dir):
     x_label = [str(int(len(x_data)/n_ticks)*i) for i in range(n_ticks+1)]
     plt.xticks(x_ticks, x_label, fontsize=28, fontweight='bold')
     plt.yticks(fontsize=28, fontweight='bold')
-    _save_plot(out_dir, '%s-%s-interval-60s'%(key, time))
+    _save_plot(out_dir, '%s-%s-plot'%(key, time))
     print('[+] plot() done for %s-%s'%(key, time))
-
-def plot_ratio_by_cover(title, d, ratio_name, legend, out_dir):
-    plt.figure(figsize=(16, 10))
-    
-    for legend_name in legend:
-        x_data = [chunk['coverage'] for chunk in d[legend_name]]
-        y_data = [chunk[ratio_name] for chunk in d[legend_name]]
-        
-        # use default style or custom style
-        if legend_name in PLT_STY:
-            style = PLT_STY[legend_name]
-            plt.plot(x_data, y_data, label=legend_name, **style)
-        else:
-            plt.plot(x_data, y_data, label=legend_name, marker='.', markersize=14.0, linewidth=3.5)
-    
-    plt.xlabel('Coverage', fontsize=24, fontweight='bold')
-    plt.ylabel(f'VIR (%)', fontsize=24, fontweight='bold')
-    plt.title(title, fontsize=24, fontweight='bold')
-    plt.grid(True)
-    plt.legend(fontsize=28)
-    
-    plt.xlim(left=0, right=200000)
-    plt.ylim(bottom=0)
-    
-    plt.xticks(fontsize=22, fontweight='bold')
-    plt.yticks(fontsize=22, fontweight='bold')
-    
-    _save_plot(out_dir, '%s_ratio_by_coverage'%(title))
-    print('[+] plot() done for %s'%(title))
 
 def plot_ratio_over_key(title, d, ratio_name, key, legend, out_dir):
     plt.figure(figsize=(16, 10))
@@ -310,7 +282,6 @@ def plot_ratio_over_key(title, d, ratio_name, key, legend, out_dir):
     plt.yticks(fontsize=22, fontweight='bold')
     
     _save_plot(out_dir, '%s_ratio_over_%s'%(title, key))
-    print('[+] plot() done for %s'%(title))
 
 def calc_avg(group_data):
     '''
@@ -357,14 +328,14 @@ def calc_avg_over_key(group_data, ratio_name, key, min_interval):
         return [], [], []
     elif len(group_data) == 1:
         return group_data[0], group_data[0], group_data[0]
-    
+
     # Collect all key values to build the full set of x-axis
     key_set = set()
     for data in group_data:
         for chunk in data:
-            key_set.add(chunk[key])
+            key_set.add(chunk.get(key, 0))
     key_list = sorted(list(key_set))
-    
+
     # Filter key_val < min_interval, remove points with small intervals
     filtered_key = [key_list[0]]  # Keep the first point
     for key_val in key_list[1:]:
@@ -377,7 +348,7 @@ def calc_avg_over_key(group_data, ratio_name, key, min_interval):
         if key_val - filtered_key[-1] >= min_interval:
             filtered_key.append(key_val)
     key_list = filtered_key
-    
+
     # Linear interpolation
     interpolated_data = []
     for data in group_data:
@@ -407,21 +378,19 @@ def calc_avg_over_key(group_data, ratio_name, key, min_interval):
                 chunk[key] = key_val
                 chunk[ratio_name] = ratio
                 interpolated.append(chunk)
-                
         interpolated_data.append(interpolated)
-    
+
     # Calculate average
     avg_data, upper_data, lower_data = [], [], []
-    
     for i in range(len(key_list)):
         chunks_at_key = [data[i] for data in interpolated_data if i < len(data)]
         if not chunks_at_key:
             continue
-            
+
         avg_chunk = chunks_at_key[0].copy()
         upper_chunk = chunks_at_key[0].copy()
         lower_chunk = chunks_at_key[0].copy()
-        
+
         for k in avg_chunk.keys():
             values = []
             for c in chunks_at_key:
@@ -432,20 +401,19 @@ def calc_avg_over_key(group_data, ratio_name, key, min_interval):
             avg_chunk[k] = sum(values) / len(values)
             upper_chunk[k] = max(values)
             lower_chunk[k] = min(values)
-            
+
         avg_data.append(avg_chunk)
         upper_data.append(upper_chunk)
         lower_data.append(lower_chunk)
-        
-    return avg_data, upper_data, lower_data
 
+    return avg_data, upper_data, lower_data
 
 def get_args():
     parser = argparse.ArgumentParser(description='Parse fuzzing results from bench files')
     parser.add_argument('-b', '--bench_file', type=str, nargs='*', help='bench file(s) to parse')
     parser.add_argument('-t', '--time', type=str, help='print the results around specified time')
     parser.add_argument('-T', '--title', type=str, default='6.6', help='title of the plot, use with -p')
-    parser.add_argument('-i', '--interval', type=str, default='1h', help='sample interval (e.g. 10m, 30m, 1h), 1h by default')
+    parser.add_argument('-i', '--interval', type=str, default='1h', help='sample interval (e.g. 10m, 30m, 1h), 1h by default. BUG: please use 1h only until the bug is fixed')
     parser.add_argument('-k', '--keys', type=str, nargs='*', help='keys to parse')
     parser.add_argument('-r', '--ratio', type=str, nargs='*', help='calc ratio of 2 keys')
     parser.add_argument('-l', '--legend', type=str, nargs='*', help='legends for multi bench files, work with -p')
@@ -462,7 +430,7 @@ def main():
     ratio_keys = args.ratio or []
     legend = args.legend or []
     os.makedirs(args.out_dir, exist_ok=True)
-    
+
     if args.bench_file:
         bench_list = args.bench_file
         bench_num = len(bench_list)
@@ -470,17 +438,18 @@ def main():
     else:
         print('[x] You have to specify at least one bench file through -b/--bench_file')
         exit(1)
-        
-    if ratio_keys != [] and len(ratio_keys) != 2:
-        print('[x] You have to specify exactly 2 keys through -r/--ratio')
-        exit(1)
-    else:
+
+    ratio_name, ratioXcov_name = '', ''
+    if len(ratio_keys) == 2:
         avg_ratio = 0.0
         ratio_name = f'{ratio_keys[0]}-{ratio_keys[1]}'
         ratioXcov_name = f'{ratio_keys[0]}-{ratio_keys[1]}Xcov'
         keys.append(ratio_name)
         keys.append(ratioXcov_name)
-    
+    elif len(ratio_keys) != 0:
+        print('[x] You have to specify exactly 2 keys through -r/--ratio')
+        exit(1)
+
     if args.plot:
         assert keys != [], 'You have to specify at least one key through -k/--keys'
         assert len(keys) == len(set(keys)), 'The keys must be unique'
@@ -489,8 +458,8 @@ def main():
     if args.time:
         t = args.time
     else:
-        print('[x] You\'d better specify a time through -t, use default: 12h')
-        t = '12h'
+        print('[x] You\'d better specify a time through -t, use default: 24h')
+        t = '24h'
 
     if time2sec(t) % time2sec(args.interval) != 0:
         print('[x] Warning: the end time should be divisible by the interval time')
@@ -501,15 +470,12 @@ def main():
         print('[+] Proccessing %s'%log_path)
         log_list = read_log(log_path)
         
-        max_ratio = 0
-        for chunk in log_list:
-            ratio = calc_ratio(chunk, ratio_keys)
-            max_ratio = max(max_ratio, ratio)
-        print(f'[+] Max ratio of {ratio_name} of {log_path}: {max_ratio:.2f}%')
-        
-        if args.stat == True:
-            stat_log(log_list)
-            continue
+        if ratio_keys != []:
+            max_ratio = 0
+            for chunk in log_list:
+                ratio = calc_ratio(chunk, ratio_keys)
+                max_ratio = max(max_ratio, ratio)
+            print(f'[+] Max ratio of {ratio_name} of {log_path}: {max_ratio:.2f}%')
        
         end_idx, end_chunk = search_log_by_time(log_list, t)
         
@@ -519,43 +485,50 @@ def main():
             end_chunk[ratioXcov_name] = ratio * end_chunk['coverage']
             avg_ratio += ratio / bench_num
         
-        if args.plot == False:
-            print_log(end_chunk, keys)
+        if not args.plot:
+            if args.stat:
+                stat_log(log_list)
+            print_log(end_chunk, keys, '[+] print the chunk matching the specified time %s'%t)
             continue
+        if args.stat:
+            print_log(end_chunk, keys, '[+] print the chunk matching the specified time %s'%t)
+
         sample_chunks = sample_log_evenly(log_list, t, args.interval)
-        for chunk in sample_chunks:
-            ratio = calc_ratio(chunk, ratio_keys)
-            chunk[ratio_name] = ratio
+        if ratio_keys != []:
+            for chunk in sample_chunks:
+                ratio = calc_ratio(chunk, ratio_keys)
+                chunk[ratio_name] = ratio
         group_data.append(sample_chunks)
         if (i+1) % args.average == 0:
             avg_data, upper_data, lower_data = calc_avg(group_data)
             group_data = []
             plot_data[legend[int(i/args.average)]] = avg_data
         
-        sample_chunks_cover = sample_log_by_cover(log_list, end_chunk['coverage'], 7500)
-        for chunk in sample_chunks_cover:
-            ratio = calc_ratio(chunk, ratio_keys)
-            chunk[ratio_name] = ratio
-        group_ratio_data_cover.append(sample_chunks_cover)
-        if (i+1) % args.average == 0:
-            avg_data, upper_data, lower_data = calc_avg_over_key(group_ratio_data_cover, ratio_name, 'coverage', 3000)
-            group_ratio_data_cover = []
-            plot_ratio_data_cover[legend[int(i/args.average)]] = avg_data
-    
-        sample_chunks_time = sample_log_by_time(log_list, end_chunk['uptime'], 600)
-        for chunk in sample_chunks_time:
-            ratio = calc_ratio(chunk, ratio_keys)
-            chunk[ratio_name] = ratio
-            chunk[ratioXcov_name] = ratio * chunk['coverage']
-        group_ratio_data_time.append(sample_chunks_time)
-        group_ratioXcov_data_time.append(sample_chunks_time)
-        if (i+1) % args.average == 0:
-            avg_data, upper_data, lower_data = calc_avg_over_key(group_ratio_data_time, ratio_name, 'uptime', 3600)
-            group_ratio_data_time = []
-            plot_ratio_data_time[legend[int(i/args.average)]] = avg_data
-            avg_data, upper_data, lower_data = calc_avg_over_key(group_ratioXcov_data_time, ratioXcov_name, 'uptime', 3600)
-            group_ratioXcov_data_time = []
-            plot_ratioXcov_data_time[legend[int(i/args.average)]] = avg_data
+        if ratio_keys != []:
+            sample_chunks_cover = sample_log_by_cover(log_list, end_chunk['coverage'], 7500)
+            for chunk in sample_chunks_cover:
+                ratio = calc_ratio(chunk, ratio_keys)
+                chunk[ratio_name] = ratio
+            group_ratio_data_cover.append(sample_chunks_cover)
+            if (i+1) % args.average == 0:
+                avg_data, upper_data, lower_data = calc_avg_over_key(group_ratio_data_cover, ratio_name, 'coverage', 3000)
+                group_ratio_data_cover = []
+                plot_ratio_data_cover[legend[int(i/args.average)]] = avg_data
+        
+            sample_chunks_time = sample_log_by_time(log_list, end_chunk['uptime'], 600)
+            for chunk in sample_chunks_time:
+                ratio = calc_ratio(chunk, ratio_keys)
+                chunk[ratio_name] = ratio
+                chunk[ratioXcov_name] = ratio * chunk['coverage']
+            group_ratio_data_time.append(sample_chunks_time)
+            group_ratioXcov_data_time.append(sample_chunks_time)
+            if (i+1) % args.average == 0:
+                avg_data, upper_data, lower_data = calc_avg_over_key(group_ratio_data_time, ratio_name, 'uptime', 3600)
+                group_ratio_data_time = []
+                plot_ratio_data_time[legend[int(i/args.average)]] = avg_data
+                avg_data, upper_data, lower_data = calc_avg_over_key(group_ratioXcov_data_time, ratioXcov_name, 'uptime', 3600)
+                group_ratioXcov_data_time = []
+                plot_ratioXcov_data_time[legend[int(i/args.average)]] = avg_data
     
 
     if ratio_keys != []:
@@ -576,16 +549,23 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # Plot metrics over time:
-    # python3 bench_parser.py -b ../test/cmp1.log ../test/cmp2.log ... -t 1d12h -k coverage corpus -l cmp1 cmp2 lab1 lab2 -p -o /path/to/save/
-    
-    # Calc VIR at a specific time:
-    # python3 bench_parser.py -b ../test/cmp1.log ../test/cmp2.log ... -t 1d12h -r 'new inputs' 'exec total'
-    
-    # VIR Plot:
-    # 6.6
-    # python3 bench_parser.py -b .\example-logs\v6-1-SyzGPT-loop.log .\example-logs\v6-2-SyzGPT-loop.log .\example-logs\v6-3-SyzGPT-loop.log .\example-logs\v6-1-syzkaller.log .\example-logs\v6-2-syzkaller.log .\example-logs\v6-3-syzkaller.log .\example-logs\v6-1-moonshine.log .\example-logs\v6-2-moonshine.log .\example-logs\v6-2-moonshine.log .\example-logs\v6-1-ecg.log .\example-logs\v6-2-ecg.log .\example-logs\v6-3-ecg.log .\example-logs\v6-1-actor.log .\example-logs\v6-3-actor.log .\example-logs\v6-4-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 6.6 -r 'new inputs' 'exec total' -p
-    # 5.15
-    # python3 .\bench_parser.py -b ..\benchdir\v5-1-SyzGPT-loop.log ..\benchdir\v5-2-SyzGPT-loop.log ..\benchdir\v5-3-SyzGPT-loop.log ..\benchdir\v5-1-syzkaller.log ..\benchdir\v5-2-syzkaller.log ..\benchdir\v5-3-syzkaller.log ..\benchdir\v5-4-moonshine.log ..\benchdir\v5-5-moonshine.log ..\benchdir\v5-6-moonshine.log ..\benchdir\v5-1-ecg.log ..\benchdir\v5-2-ecg.log ..\benchdir\v5-3-ecg.log ..\benchdir\v5-1-actor.log ..\benchdir\v5-2-actor.log ..\benchdir\v5-3-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 5.15 -r 'new inputs' 'exec total' -p
-    # 4.19
-    # python3 .\bench_parser.py -b ..\benchdir\v4-1-SyzGPT-loop.log ..\benchdir\v4-2-SyzGPT-loop.log ..\benchdir\v4-3-SyzGPT-loop.log ..\benchdir\v4-1-syzkaller.log ..\benchdir\v4-2-syzkaller.log ..\benchdir\v4-3-syzkaller.log ..\benchdir\v4-1-moonshine.log ..\benchdir\v4-2-moonshine.log ..\benchdir\v4-3-moonshine.log ..\benchdir\v4-1-ecg.log ..\benchdir\v4-2-ecg.log ..\benchdir\v4-3-ecg.log ..\benchdir\v4-1-actor.log ..\benchdir\v4-2-actor.log ..\benchdir\v4-4-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 4.19 -r 'new inputs' 'exec total' -p
+    # Normal Usage of plotting the curves of metrics over time:
+    # 1. Plot single logs of each fuzzers to compare:
+    # python bench_parser.py -b logA logB .. -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
+    # 2. Plot average logs of each fuzzers to compare:
+    # python bench_parser.py -b logA1 logA2 logA3 logB1 logB2 logB3 .. -a 3 -k coverage syscalls crashes 'crash types' -l fuzzerA fuzzerB ... -t 24h -p -o ../plots/ -T PLOT_TITLE
+
+    # Usage for experiments in major revision:
+    # 1. Plot metrics over time:
+    # python bench_parser.py -b ../test/cmp1.log ../test/cmp2.log ... -t 1d12h -k coverage corpus -l cmp1 cmp2 lab1 lab2 -p -o /path/to/save/
+
+    # 2. Calc VIR at a specific time:
+    # python bench_parser.py -b ../test/cmp1.log ../test/cmp2.log ... -t 1d12h -r 'new inputs' 'exec total'
+
+    # 3. VIR Plot:
+    # kernel 6.6
+    # python bench_parser.py -b .\example-logs\v6-1-SyzGPT-loop.log .\example-logs\v6-2-SyzGPT-loop.log .\example-logs\v6-3-SyzGPT-loop.log .\example-logs\v6-1-syzkaller.log .\example-logs\v6-2-syzkaller.log .\example-logs\v6-3-syzkaller.log .\example-logs\v6-1-moonshine.log .\example-logs\v6-2-moonshine.log .\example-logs\v6-2-moonshine.log .\example-logs\v6-1-ecg.log .\example-logs\v6-2-ecg.log .\example-logs\v6-3-ecg.log .\example-logs\v6-1-actor.log .\example-logs\v6-3-actor.log .\example-logs\v6-4-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 6.6 -r 'new inputs' 'exec total' -p
+    # kernel 5.15
+    # python .\bench_parser.py -b ..\benchdir\v5-1-SyzGPT-loop.log ..\benchdir\v5-2-SyzGPT-loop.log ..\benchdir\v5-3-SyzGPT-loop.log ..\benchdir\v5-1-syzkaller.log ..\benchdir\v5-2-syzkaller.log ..\benchdir\v5-3-syzkaller.log ..\benchdir\v5-4-moonshine.log ..\benchdir\v5-5-moonshine.log ..\benchdir\v5-6-moonshine.log ..\benchdir\v5-1-ecg.log ..\benchdir\v5-2-ecg.log ..\benchdir\v5-3-ecg.log ..\benchdir\v5-1-actor.log ..\benchdir\v5-2-actor.log ..\benchdir\v5-3-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 5.15 -r 'new inputs' 'exec total' -p
+    # kernel 4.19
+    # python .\bench_parser.py -b ..\benchdir\v4-1-SyzGPT-loop.log ..\benchdir\v4-2-SyzGPT-loop.log ..\benchdir\v4-3-SyzGPT-loop.log ..\benchdir\v4-1-syzkaller.log ..\benchdir\v4-2-syzkaller.log ..\benchdir\v4-3-syzkaller.log ..\benchdir\v4-1-moonshine.log ..\benchdir\v4-2-moonshine.log ..\benchdir\v4-3-moonshine.log ..\benchdir\v4-1-ecg.log ..\benchdir\v4-2-ecg.log ..\benchdir\v4-3-ecg.log ..\benchdir\v4-1-actor.log ..\benchdir\v4-2-actor.log ..\benchdir\v4-4-actor.log  -t 24h -i 1h -l SyzGPT Syzkaller MoonShine ECG ACTOR -a 3 -T 4.19 -r 'new inputs' 'exec total' -p
