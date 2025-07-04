@@ -67,6 +67,9 @@ def query_with_history_new(client, messages, query, model=LLM_MODEL, dumb=True, 
             try_cnt += 1
             response, total_tokens = send_messages_new(client, messages, model, dumb, temperature, freq_penalty)
             break
+        except KeyboardInterrupt:
+            print('[DEBUG] KeyboardInterrupt in query_with_history, raise it')
+            raise
         except openai.BadRequestError as e:
             if 'Please reduce the length of the messages or' in str(e):
                 print('[Max Token Exceeded] %s'%e)
@@ -76,8 +79,8 @@ def query_with_history_new(client, messages, query, model=LLM_MODEL, dumb=True, 
                 sleep(RETRY_WAIT)
             else:
                 print('[Other Exception] %s'%e)
-        except (openai.RateLimitError, openai.Timeout, openai.APIConnectionError, openai.APIError) as e:
-        # except Exception as e:
+        # except (openai.RateLimitError, openai.APIError) as e:
+        except Exception as e:
             print('[DEBUG] sleep(%d) and retry in query_with_history'%RETRY_WAIT)
             if logger:
                 logger.debug('[query_with_history] exception occured, sleep(%d) and retry %d: %s'%(RETRY_WAIT, try_cnt, e))
@@ -103,6 +106,9 @@ def query_with_history(messages, query, model=LLM_MODEL, dumb=True, temperature=
             try_cnt += 1
             response, total_tokens = send_messages(messages, model, dumb, temperature)
             break
+        except KeyboardInterrupt:
+            print('[DEBUG] KeyboardInterrupt in query_with_history, raise it')
+            raise
         except openai.BadRequestError as e:
             if 'Please reduce the length of the messages or' in str(e):
                 print('[Max Token Exceeded] %s'%e)
@@ -112,8 +118,8 @@ def query_with_history(messages, query, model=LLM_MODEL, dumb=True, temperature=
                 sleep(RETRY_WAIT)
             else:
                 print('[Other Exception] %s'%e)
-        except (openai.RateLimitError, openai.Timeout, openai.APIConnectionError, openai.APIError) as e:
-        # except Exception as e:
+        # except (openai.RateLimitError, openai.APIError) as e:
+        except Exception as e:
             print('[DEBUG] sleep(%d) and retry in query_with_history'%RETRY_WAIT)
             if logger:
                 logger.debug('[query_with_history] exception occured, sleep(%d) and retry %d: %s'%(RETRY_WAIT, try_cnt, e))

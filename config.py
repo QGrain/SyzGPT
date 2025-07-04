@@ -2,18 +2,24 @@
 # YOU CAN EDIT THE FOLLOWINGS #
 ###############################
 
-# EDIT API_KEY in private_config.py
+# Copy config.py to private_config.py and EDIT API_KEY in private_config.py
 API_KEY = "sk-*** YOUR API KEY ***"
 
-USE_PROXY = True
+USE_PROXY = False
 if USE_PROXY:
     proxies = {
         "http":  "http://localhost:7890",
         "https": "http://localhost:7890",
     }
 else:
-    proxies = None
+    proxies = {
+        "http":  None,
+        "https": None,
+    }
 
+# Change the model you want to use here, which would be overwritten by the command line argument -M/--model.
+# If you specify a new model, please make sure to add it to the MAX_TOKEN dict below.
+# In our experiments, we prefer to use "gpt-3.5-turbo-16k-0613", which is unfortunately deprecated by OpenAI so far.
 LLM_MODEL = "gpt-3.5-turbo-16k-0613"
 
 
@@ -24,16 +30,15 @@ LLM_MODEL = "gpt-3.5-turbo-16k-0613"
 OUT_DIR = './corpus'
 LOG_DIR = './log'
 
-# TIMEOUT_SECONDS = 30
-# MAX_RETRY = 3
+
 RETRY_WAIT = 60
 
-AVAIL_LLM_MODELS = ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-3.5-turbo-16k", "gpt-3.5-turbo-16k-0613", 
-                    "gpt-4", "gpt-4-0613", "gpt-4-32k", "gpt-4-32k-0613",
-                    "claude-3-5-sonnet-20240620"]
+# We recommend to set max_token to 2560 for most models with context window <= 16k, and set 4096 for models with context window >= 32k.
+# Well, this is due the ancient era of LLMs, where most of the models do not have a great context window.
 MAX_TOKEN = {
     "gpt-3.5-turbo": 2048,
     "gpt-3.5-turbo-1106": 2560,
+    "gpt-3.5-turbo-0125": 2560,
     "gpt-3.5-turbo-16k": 2560,
     "gpt-3.5-turbo-16k-0613": 2560,
     "gpt-4": 2560,

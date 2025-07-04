@@ -157,13 +157,13 @@ Prerequisites:
 cd /root/SyzGPT && workon syzgpt
 
 # (1) Use official OpenAI api, which will load api_key, llm_model, ... from private_config.py.
-python syzgpt_generator.py -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f sampled_variants.txt
+python syzgpt_generator.py -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f data/sampled_variants.txt
 
 # (2) Use third party api
-python syzgpt_generator.py -M gpt-3.5-turbo-16k -u https://api.expansion.chat/v1/ -k API_KEY -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f sampled_variants.txt
+python syzgpt_generator.py -M gpt-3.5-turbo-16k -u https://api.expansion.chat/v1/ -k API_KEY -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f data/sampled_variants.txt
 
 # (3) Use local LLMs
-python syzgpt_generator.py -M CodeLlama-syz-toy -u http://IP:PORT/v1/ -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f sampled_variants.txt
+python syzgpt_generator.py -M CodeLlama-syz-toy -u http://IP:PORT/v1/ -s /root/fuzzers/SyzGPT-fuzzer -w WORKDIR -e data/corpus_24h.db -f data/sampled_variants.txt
 ```
 
 <details>
