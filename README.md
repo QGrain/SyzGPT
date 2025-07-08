@@ -6,7 +6,10 @@
 
 </div>
 
-> [!NOTE] 
+> [!TIP]
+> We are advancing the integration of SyzGPT modules into Syzkaller. Please refer to [Discussion](https://groups.google.com/g/syzkaller/c/SEEjp6m7lbA) for progress.
+
+> [!NOTE]
 > We are still updating this project and formatting the documentations for Artifact Evaluation.
 
 This is the implementation of paper titled "**Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG**". For more details about SyzGPT, please refer to [our paper](https://zhiyu.netlify.app/files/issta25main_syzgpt.pdf) from ISSTA'25. We also provide a [README_for_review](./docs/README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
