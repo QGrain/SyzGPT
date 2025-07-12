@@ -361,7 +361,7 @@ def main():
     # Create Table
     table = Table(
         title='[b]Crash Results[/]',
-        caption='Existence: G for Google searched, S for Suspicious in Syzbot\n(keyword: %s)\n(exclude keyword: %s)'%(keyword, exclude_keyword),
+        caption='Existence: G for Google searched, S for Suspicious in Syzbot, SG for Suspicious in Google\n(keyword: %s)\n(exclude keyword: %s)'%(keyword, exclude_keyword),
         caption_style='b i white',
         # expand=True,
         show_edge=True,
