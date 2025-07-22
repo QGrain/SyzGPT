@@ -383,6 +383,15 @@ Thanks to Zhiyu Zhang ([@QGrain](https://github.com/QGrain)) and Longxing Li ([@
 
 In case you would like to cite SyzGPT, you may use the following BibTex entry:
 
-```bash
-# TBD
+```bibtex
+@article{zhang2025unlocking,
+  title={Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG},
+  author={Zhang, Zhiyu and Li, Longxing and Liang, Ruigang and Chen, Kai},
+  journal={Proceedings of the ACM on Software Engineering},
+  volume={2},
+  number={ISSTA},
+  pages={848--870},
+  year={2025},
+  publisher={ACM New York, NY, USA}
+}
 ```
