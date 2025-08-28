@@ -1,0 +1,61 @@
+------------[ cut here ]------------
+proc_dir_entry 'scsi/usb-storage' already registered
+WARNING: CPU: 1 PID: 7148 at fs/proc/generic.c:376 proc_register+0x47a/0x5f0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/proc/generic.c:376
+Modules linked in:
+CPU: 1 PID: 7148 Comm: kworker/1:7 Not tainted 5.15.140 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: usb_hub_wq hub_event
+RIP: 0010:proc_register+0x47a/0x5f0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/proc/generic.c:376
+Code: fa 48 c1 ea 03 80 3c 02 00 0f 85 7b 01 00 00 48 8b 44 24 08 4c 89 fa 48 c7 c7 a0 52 fd 89 48 8b b0 d8 00 00 00 e8 9f ce 59 07 <0f> 0b 48 c7 c7 40 f3 14 8c e8 58 ba a1 07 48 8b 4c 24 20 48 b8 00
+RSP: 0018:ffffc9000386eec0 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: ffff88810826c5c0 RCX: 0000000000000000
+RDX: ffff88810ae7d940 RSI: ffffffff815fc31e RDI: fffff5200070ddc8
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffff888135c27a5b
+R10: 0000000000000000 R11: 7269645f636f7270 R12: 000000000000000b
+R13: dffffc0000000000 R14: ffff88810826c640 R15: ffff88810826c724
+FS:  0000000000000000(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f23302b8468 CR3: 000000001a5f5000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ _proc_mkdir g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/proc/generic.c:498 [inline]
+ proc_mkdir_data g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/proc/generic.c:507 [inline]
+ proc_mkdir+0x10a/0x170 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/proc/generic.c:521
+ scsi_proc_hostdir_add+0xeb/0x150 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/scsi/scsi_proc.c:108
+ scsi_host_alloc+0xd31/0x1000 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/scsi/hosts.c:504
+ usb_stor_probe1+0x46/0x16b2 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/storage/usb.c:952
+ storage_probe+0x79a/0xc50 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/storage/usb.c:1134
+ usb_probe_interface+0x30d/0x7d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/driver.c:396
+ call_driver_probe g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:516 [inline]
+ really_probe+0x232/0xcb0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:595
+ __driver_probe_device+0x2ee/0x450 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:755
+ driver_probe_device+0x4c/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:785
+ __device_attach_driver+0x1d5/0x300 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:907
+ bus_for_each_drv+0x167/0x1e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/bus.c:427
+ __device_attach+0x1e8/0x530 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:979
+ bus_probe_device+0x1e4/0x290 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/bus.c:487
+ device_add+0xc2f/0x20b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/core.c:3394
+ usb_set_configuration+0xec9/0x19d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/message.c:2165
+ usb_generic_driver_probe+0xb4/0xf0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/generic.c:238
+ usb_probe_device+0xdb/0x2c0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/driver.c:293
+ call_driver_probe g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:516 [inline]
+ really_probe+0x232/0xcb0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:595
+ __driver_probe_device+0x2ee/0x450 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:755
+ driver_probe_device+0x4c/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:785
+ __device_attach_driver+0x1d5/0x300 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:907
+ bus_for_each_drv+0x167/0x1e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/bus.c:427
+ __device_attach+0x1e8/0x530 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/dd.c:979
+ bus_probe_device+0x1e4/0x290 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/bus.c:487
+ device_add+0xc2f/0x20b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/base/core.c:3394
+ usb_new_device.cold+0x60e/0x106a g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/hub.c:2576
+ hub_port_connect g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/hub.c:5437 [inline]
+ hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/hub.c:5577 [inline]
+ port_event g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/hub.c:5723 [inline]
+ hub_event+0x2314/0x4790 g.linux/deadline/code/srcs/linux-stable-5.15.140/drivers/usb/core/hub.c:5805
+ process_one_work+0x9db/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2310
+ worker_thread+0x686/0x1180 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2457
+ kthread+0x3d0/0x4c0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/kthread.c:319
+ ret_from_fork+0x1f/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/entry/entry_64.S:298
+ </TASK>

@@ -1,0 +1,95 @@
+==================================================================
+BUG: KASAN: use-after-free in udf_close_lvid+0x504/0x5c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2035
+Write of size 1 at addr ffff88807a903790 by task syz-executor.1/8101
+
+CPU: 0 PID: 8101 Comm: syz-executor.1 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:106
+ print_address_description g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:364 [inline]
+ print_report+0xc1/0x5e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:475
+ kasan_report+0xbe/0xf0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:588
+ udf_close_lvid+0x504/0x5c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2035
+ udf_put_super+0x19c/0x200 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2322
+ generic_shutdown_super+0x161/0x3c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:693
+ kill_block_super+0x3c/0x70 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:1646
+ deactivate_locked_super+0x98/0x170 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:481
+ deactivate_super+0xb1/0xd0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:514
+ cleanup_mnt+0x2ae/0x3d0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:1254
+ task_work_run+0x168/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/task_work.c:180
+ resume_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:171 [inline]
+ exit_to_user_mode_prepare+0x215/0x240 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x1d/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:296
+ do_syscall_64+0x46/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x47685b
+Code: ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 90 f3 0f 1e fa 31 f6 e9 05 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffcd2ab4b88 EFLAGS: 00000246 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 000000000000003e RCX: 000000000047685b
+RDX: 00007ffcd2ab4c3a RSI: 000000000000000a RDI: 00007ffcd2ab4c30
+RBP: 0000000000000000 R08: 00000000004c745f R09: 00007ffcd2ab4a20
+R10: 00000000fffffffb R11: 0000000000000246 R12: 00007ffcd2ab5ce0
+R13: 000000000248ed90 R14: 0000000000000000 R15: 0000000000000005
+ </TASK>
+
+The buggy address belongs to the physical page:
+page:ffffea0001ea40c0 refcount:0 mapcount:0 mapping:0000000000000000 index:0x1 pfn:0x7a903
+flags: 0x4fff00000000000(node=1|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 04fff00000000000 dead000000000100 dead000000000122 0000000000000000
+raw: 0000000000000001 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as freed
+page last allocated via order 0, migratetype Movable, gfp_mask 0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), pid 11042, tgid 11040 (syz-executor.5), ts 197829970468, free_ts 199173572060
+ set_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x2d8/0x350 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1536
+ prep_new_page g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0xf09/0x2c50 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:3170
+ __alloc_pages+0x1cb/0x4a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4426
+ __folio_alloc+0x16/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4458
+ vma_alloc_folio+0x157/0x870 g.linux/deadline/code/srcs/linux-stable-6.6/mm/mempolicy.c:2260
+ shmem_alloc_folio+0x121/0x1f0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1658
+ shmem_alloc_and_acct_folio+0xd2/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1683
+ shmem_get_folio_gfp+0x96b/0x18e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2020
+ shmem_get_folio g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2143 [inline]
+ shmem_write_begin+0x14a/0x440 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2688
+ generic_perform_write+0x26b/0x5d0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/filemap.c:3969
+ shmem_file_write_iter+0x113/0x140 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2865
+ call_write_iter g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/fs.h:1956 [inline]
+ new_sync_write g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:491 [inline]
+ vfs_write+0x98d/0xdb0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:584
+ ksys_write+0x122/0x250 g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:637
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+page last free stack trace:
+ reset_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:24 [inline]
+ free_pages_prepare g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x45e/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2312
+ free_unref_page_list+0xf0/0xad0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2451
+ shrink_folio_list+0x2c2f/0x3ea0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:2187
+ evict_folios+0x6fe/0x1930 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:5195
+ try_to_shrink_lruvec+0x7ed/0xb50 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:5371
+ shrink_one+0x45c/0x700 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:5415
+ shrink_many g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:5469 [inline]
+ lru_gen_shrink_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:5586 [inline]
+ shrink_node+0x2103/0x36e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:6526
+ kswapd_shrink_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:7331 [inline]
+ balance_pgdat+0xa1f/0x1a90 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:7521
+ kswapd+0x6df/0xd80 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmscan.c:7781
+ kthread+0x346/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/entry_64.S:304
+
+Memory state around the buggy address:
+ ffff88807a903680: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff88807a903700: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff88807a903780: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                         ^
+ ffff88807a903800: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff88807a903880: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================

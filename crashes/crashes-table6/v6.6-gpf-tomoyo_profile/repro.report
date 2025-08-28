@@ -1,0 +1,86 @@
+loop0: detected capacity change from 0 to 64
+hfs: unable to locate alternate MDB
+hfs: continuing without an alternate MDB
+general protection fault, probably for non-canonical address 0xdffffc0002400200: 0000 [#1] PREEMPT SMP KASAN
+KASAN: probably user-memory-access in range [0x0000000012001000-0x0000000012001007]
+CPU: 0 PID: 8196 Comm: syz-executor109 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:tomoyo_profile+0x29/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/common.c:530
+Code: 00 66 0f 1f 00 41 54 49 89 fc 53 89 f3 e8 5f 4d a7 fd 0f b6 db 48 b8 00 00 00 00 00 fc ff df 49 8d 3c dc 48 89 fa 48 c1 ea 03 <80> 3c 02 00 75 1e 4d 8b 24 dc 48 c7 c0 80 ed 1f 92 4d 85 e4 4c 0f
+RSP: 0018:ffffc900025977d8 EFLAGS: 00010206
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000002400200 RSI: ffffffff83de0561 RDI: 0000000012001000
+RBP: ffff88801db43f80 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000012001000
+R13: 0000000000000000 R14: 0000000000000001 R15: ffff888019454400
+FS:  0000000000ac8880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004272b0 CR3: 0000000017fc2000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ tomoyo_get_mode g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/util.c:1000 [inline]
+ tomoyo_get_mode g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/util.c:992 [inline]
+ tomoyo_init_request_info+0x175/0x380 g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/util.c:1031
+ tomoyo_check_open_permission+0x25d/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/file.c:769
+ tomoyo_file_open g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/tomoyo.c:332 [inline]
+ tomoyo_file_open+0xaa/0xd0 g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/tomoyo.c:327
+ security_file_open+0x49/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/security/security.c:2836
+ do_dentry_open+0x52d/0x1720 g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:916
+ do_open g.linux/deadline/code/srcs/linux-stable-6.6/fs/namei.c:3640 [inline]
+ path_openat+0x1b5a/0x26a0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namei.c:3797
+ do_filp_open+0x1c9/0x410 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namei.c:3824
+ do_sys_openat2+0x160/0x1c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:1422
+ do_sys_open g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:1437 [inline]
+ __do_sys_openat g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:1453 [inline]
+ __se_sys_openat g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:1448 [inline]
+ __x64_sys_openat+0x140/0x1f0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/open.c:1448
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x45028d
+Code: c3 e8 c7 29 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffdfbdd8fd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007ffdfbdd9060 RCX: 000000000045028d
+RDX: 0000000000141842 RSI: 0000000020000380 RDI: 00000000ffffff9c
+RBP: 0000000000000000 R08: 0000000000000260 R09: 00007ffdfbdd9000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000ac8840
+R13: 0000000000000004 R14: 00007ffdfbdd9020 R15: 0000000000000003
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:tomoyo_profile+0x29/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/security/tomoyo/common.c:530
+Code: 00 66 0f 1f 00 41 54 49 89 fc 53 89 f3 e8 5f 4d a7 fd 0f b6 db 48 b8 00 00 00 00 00 fc ff df 49 8d 3c dc 48 89 fa 48 c1 ea 03 <80> 3c 02 00 75 1e 4d 8b 24 dc 48 c7 c0 80 ed 1f 92 4d 85 e4 4c 0f
+RSP: 0018:ffffc900025977d8 EFLAGS: 00010206
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000002400200 RSI: ffffffff83de0561 RDI: 0000000012001000
+RBP: ffff88801db43f80 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000012001000
+R13: 0000000000000000 R14: 0000000000000001 R15: ffff888019454400
+FS:  0000000000ac8880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000560f28ecdff8 CR3: 0000000017fc2000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess), 1 bytes skipped:
+   0:	66 0f 1f 00          	nopw   (%rax)
+   4:	41 54                	push   %r12
+   6:	49 89 fc             	mov    %rdi,%r12
+   9:	53                   	push   %rbx
+   a:	89 f3                	mov    %esi,%ebx
+   c:	e8 5f 4d a7 fd       	callq  0xfda74d70
+  11:	0f b6 db             	movzbl %bl,%ebx
+  14:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  1b:	fc ff df
+  1e:	49 8d 3c dc          	lea    (%r12,%rbx,8),%rdi
+  22:	48 89 fa             	mov    %rdi,%rdx
+  25:	48 c1 ea 03          	shr    $0x3,%rdx
+* 29:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2d:	75 1e                	jne    0x4d
+  2f:	4d 8b 24 dc          	mov    (%r12,%rbx,8),%r12
+  33:	48 c7 c0 80 ed 1f 92 	mov    $0xffffffff921fed80,%rax
+  3a:	4d 85 e4             	test   %r12,%r12
+  3d:	4c                   	rex.WR
+  3e:	0f                   	.byte 0xf

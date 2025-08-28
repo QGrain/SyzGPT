@@ -1,0 +1,93 @@
+==================================================================
+BUG: KASAN: use-after-free in vmclear_local_loaded_vmcss g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/vmx/vmx.c:4494 [inline]
+BUG: KASAN: use-after-free in hardware_disable+0x4d6/0x540 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/vmx/vmx.c:4513
+Read of size 8 at addr ffff88804523dc70 by task syz-executor.0/39657
+
+CPU: 0 PID: 39657 Comm: syz-executor.0 Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ print_address_description.cold+0x54/0x222 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:255
+ kasan_report_error g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:353 [inline]
+ kasan_report g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:411 [inline]
+ kasan_report.cold+0x88/0x2af g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:395
+ vmclear_local_loaded_vmcss g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/vmx/vmx.c:4494 [inline]
+ hardware_disable+0x4d6/0x540 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/vmx/vmx.c:4513
+ kvm_arch_hardware_disable+0x34/0xe0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/x86.c:8895
+ hardware_disable_nolock+0x6c/0x90 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:3590
+ on_each_cpu+0xae/0x1f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/smp.c:604
+ hardware_disable_all_nolock+0x52/0x60 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:3608
+ hardware_disable_all g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:3614 [inline]
+ kvm_destroy_vm g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:830 [inline]
+ kvm_put_kvm+0x733/0xc60 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:844
+ kvm_vcpu_release+0x77/0xa0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:2676
+ __fput+0x2ce/0x890 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file_table.c:278
+ task_work_run+0x13f/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/task_work.c:113
+ tracehook_notify_resume g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/tracehook.h:193 [inline]
+ exit_to_usermode_loop+0x251/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:167
+ prepare_exit_to_usermode g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:198 [inline]
+ syscall_return_slowpath g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:271 [inline]
+ do_syscall_64+0x538/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:296
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x41a66b
+Code: 03 00 00 00 0f 05 48 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 63 fc ff ff 8b 7c 24 0c 41 89 c0 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2f 44 89 c7 89 44 24 0c e8 a1 fc ff ff 8b 44
+RSP: 002b:00007ffe5fa0ed50 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 0000000000000006 RCX: 000000000041a66b
+RDX: 0000000000000000 RSI: ffffffff8165941a RDI: 0000000000000005
+RBP: 000000000059d980 R08: 0000000000000000 R09: 0000000000001513
+R10: 0000000081659517 R11: 0000000000000293 R12: 00000000000dfda3
+R13: 00007fa5a326aca0 R14: 00007fa5a326aca8 R15: 00007fa5a326aca0
+
+Allocated by task 39658:
+ kmem_cache_alloc+0x122/0x320 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3559
+ kmem_cache_zalloc g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/slab.h:699 [inline]
+ vmx_create_vcpu+0x99/0x23c0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/vmx/vmx.c:11182
+ kvm_vm_ioctl_create_vcpu g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:2745 [inline]
+ kvm_vm_ioctl+0x627/0x1730 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:3251
+ vfs_ioctl g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:46 [inline]
+ file_ioctl g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:501 [inline]
+ do_vfs_ioctl+0xcdb/0x12e0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:688
+ ksys_ioctl+0x9b/0xc0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:705
+ __do_sys_ioctl g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:712 [inline]
+ __se_sys_ioctl g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:710 [inline]
+ __x64_sys_ioctl+0x6f/0xb0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ioctl.c:710
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+
+Freed by task 39657:
+ __cache_free g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3503 [inline]
+ kmem_cache_free+0x7f/0x200 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3765
+ kvm_free_vcpus g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/x86.c:9113 [inline]
+ kvm_arch_destroy_vm+0x25c/0x4e0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/x86.c:9215
+ kvm_destroy_vm g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:822 [inline]
+ kvm_put_kvm+0x455/0xc60 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:844
+ kvm_vcpu_release+0x77/0xa0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/kvm/../../../virt/kvm/kvm_main.c:2676
+ __fput+0x2ce/0x890 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file_table.c:278
+ task_work_run+0x13f/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/task_work.c:113
+ tracehook_notify_resume g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/tracehook.h:193 [inline]
+ exit_to_usermode_loop+0x251/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:167
+ prepare_exit_to_usermode g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:198 [inline]
+ syscall_return_slowpath g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:271 [inline]
+ do_syscall_64+0x538/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:296
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+
+The buggy address belongs to the object at ffff888045238100
+ which belongs to the cache kvm_vcpu of size 23872
+The buggy address is located 23408 bytes inside of
+ 23872-byte region [ffff888045238100, ffff88804523de40)
+The buggy address belongs to the page:
+page:ffffea0001148e00 count:1 mapcount:0 mapping:ffff888133551300 index:0x0 compound_mapcount: 0
+flags: 0xfff00000008100(slab|head)
+raw: 00fff00000008100 ffff888060b57648 ffff888060b57648 ffff888133551300
+raw: 0000000000000000 ffff888045238100 0000000100000001 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88804523db00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88804523db80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff88804523dc00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                                             ^
+ ffff88804523dc80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88804523dd00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

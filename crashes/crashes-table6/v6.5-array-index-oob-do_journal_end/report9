@@ -1,0 +1,36 @@
+================================================================================
+UBSAN: array-index-out-of-bounds in fs/reiserfs/journal.c:4166:5
+index 1 is out of range for type '__le32[1]' (aka 'unsigned int[1]')
+CPU: 1 PID: 8136 Comm: syz-executor.7 Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1b5/0x2a0 lib/dump_stack.c:106
+ ubsan_epilogue lib/ubsan.c:217 [inline]
+ __ubsan_handle_out_of_bounds+0xf0/0x120 lib/ubsan.c:348
+ do_journal_end+0x20a7/0x4730 fs/reiserfs/journal.c:4166
+ reiserfs_sync_fs+0xbf/0x140 fs/reiserfs/super.c:78
+ sync_filesystem+0xec/0x220 fs/sync.c:56
+ generic_shutdown_super+0x6f/0x340 fs/super.c:472
+ kill_block_super+0x68/0xa0 fs/super.c:1417
+ deactivate_locked_super+0xa4/0x110 fs/super.c:330
+ cleanup_mnt+0x426/0x4c0 fs/namespace.c:1254
+ task_work_run+0x24a/0x300 kernel/task_work.c:179
+ resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop+0xd1/0xf0 kernel/entry/common.c:171
+ exit_to_user_mode_prepare+0xb1/0x140 kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:286 [inline]
+ syscall_exit_to_user_mode+0x54/0x270 kernel/entry/common.c:297
+ do_syscall_64+0x4d/0xc0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f200049206b
+Code: ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 90 f3 0f 1e fa 31 f6 e9 05 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe71edfce8 EFLAGS: 00000246 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00007f200049206b
+RDX: 00007f20004289c0 RSI: 000000000000000a RDI: 00007ffe71edfdb0
+RBP: 00007ffe71edfdb0 R08: 00007f20004fba65 R09: 00007ffe71edfb70
+R10: 00000000fffffffb R11: 0000000000000246 R12: 00007f20004fba3e
+R13: 00007ffe71ee0e50 R14: 0000555557395d90 R15: 00007ffe71ee0e90
+ </TASK>
+================================================================================

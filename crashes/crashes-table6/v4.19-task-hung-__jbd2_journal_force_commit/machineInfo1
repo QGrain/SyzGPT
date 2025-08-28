@@ -1,0 +1,87 @@
+QEMU emulator version 4.2.1 (Debian 1:4.2-3ubuntu6.24)
+qemu-system-x86_64 ["-m" "4096" "-smp" "2" "-chardev" "socket,id=SOCKSYZ,server=on,wait=off,host=localhost,port=38206" "-mon" "chardev=SOCKSYZ,mode=control" "-display" "none" "-serial" "stdio" "-no-reboot" "-name" "VM-1" "-device" "virtio-rng-pci" "-enable-kvm" "-cpu" "host,migratable=off" "-device" "e1000,netdev=net0" "-netdev" "user,id=net0,restrict=on,hostfwd=tcp:127.0.0.1:54165-:22" "-hda" "/root/images/image-1/bullseye.img" "-snapshot" "-kernel" "/g.linux/deadline/code/objs/linux-stable-4.19.300-211config/arch/x86/boot/bzImage" "-append" "root=/dev/sda console=ttyS0 "]
+
+[CPU Info]
+processor           : 0, 1
+vendor_id           : GenuineIntel
+cpu family          : 6
+model               : 79
+model name          : Intel(R) Xeon(R) CPU E7-4850 v4 @ 2.10GHz
+stepping            : 1
+microcode           : 0x1
+cpu MHz             : 2094.950
+cache size          : 16384 KB
+physical id         : 0, 1
+siblings            : 1
+core id             : 0
+cpu cores           : 1
+apicid              : 0, 1
+initial apicid      : 0, 1
+fpu                 : yes
+fpu_exception       : yes
+cpuid level         : 13
+wp                  : yes
+flags               : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt arat md_clear
+bugs                : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs taa itlb_multihit mmio_stale_data
+bogomips            : 4189.90
+clflush size        : 64
+cache_alignment     : 64
+address sizes       : 40 bits physical, 48 bits virtual
+power management    : 
+
+--------------------------------------------------------------------------------
+
+[KVM]
+/sys/module/kvm:
+	enable_vmware_backdoor: N
+	force_emulation_prefix: N
+	halt_poll_ns: 200000
+	halt_poll_ns_grow: 2
+	halt_poll_ns_shrink: 0
+	ignore_msrs: N
+	kvmclock_periodic_sync: Y
+	lapic_timer_advance_ns: 0
+	min_timer_period_us: 200
+	nx_huge_pages: Y
+	nx_huge_pages_recovery_ratio: 60
+	report_ignored_msrs: Y
+	tsc_tolerance_ppm: 250
+	vector_hashing: Y
+
+/sys/module/kvm_amd:
+	avic: 0
+	nested: 1
+	npt: 1
+	pause_filter_count: 3000
+	pause_filter_count_grow: 2
+	pause_filter_count_max: 65535
+	pause_filter_count_shrink: 0
+	pause_filter_thresh: 128
+	sev: 0
+	vgif: 1
+	vls: 1
+
+/sys/module/kvm_intel:
+	emulate_invalid_guest_state: Y
+	enable_apicv: Y
+	enable_shadow_vmcs: N
+	ept: Y
+	eptad: Y
+	fasteoi: Y
+	flexpriority: Y
+	nested: Y
+	ple_gap: 0
+	ple_window: 0
+	ple_window_grow: 0
+	ple_window_max: 0
+	ple_window_shrink: 0
+	pml: Y
+	preemption_timer: Y
+	unrestricted_guest: Y
+	vmentry_l1d_flush: cond
+	vnmi: Y
+	vpid: Y
+
+
+--------------------------------------------------------------------------------
+

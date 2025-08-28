@@ -1,0 +1,95 @@
+==================================================================
+BUG: KASAN: use-after-free in atomic_read g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/asm-generic/atomic-instrumented.h:21 [inline]
+BUG: KASAN: use-after-free in refcount_dec_not_one+0x71/0x1e0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/refcount.c:269
+Read of size 4 at addr ffff888133c2fd98 by task systemd-udevd/128440
+
+CPU: 0 PID: 128440 Comm: systemd-udevd Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ print_address_description.cold+0x54/0x222 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:255
+ kasan_report_error g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:353 [inline]
+ kasan_report g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:411 [inline]
+ kasan_report.cold+0x88/0x2af g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/kasan/report.c:395
+ atomic_read g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/asm-generic/atomic-instrumented.h:21 [inline]
+ refcount_dec_not_one+0x71/0x1e0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/refcount.c:269
+ refcount_dec_and_mutex_lock+0x1c/0x80 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/refcount.c:308
+ nbd_put+0x21/0x170 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:228
+ __blkdev_put+0x5df/0x7a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/block_dev.c:1819
+ blkdev_close+0x86/0xb0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/block_dev.c:1888
+ __fput+0x2ce/0x890 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file_table.c:278
+ task_work_run+0x13f/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/task_work.c:113
+ tracehook_notify_resume g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/tracehook.h:193 [inline]
+ exit_to_usermode_loop+0x251/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:167
+ prepare_exit_to_usermode g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:198 [inline]
+ syscall_return_slowpath g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:271 [inline]
+ do_syscall_64+0x538/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:296
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x7f3faa77f0f3
+Code: 8b 15 d9 ae 00 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 45 c3 0f 1f 40 00 48 83 ec 18 89 7c 24 0c e8
+RSP: 002b:00007ffe9f723bc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 00007f3faa1d76c0 RCX: 00007f3faa77f0f3
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000006
+RBP: 0000000000000006 R08: 000055cc07454400 R09: 0000000000000000
+R10: 00007f3faa1d76c0 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000002e1c R15: 00007ffe9f723c40
+
+Allocated by task 128715:
+ kmem_cache_alloc_trace+0x14b/0x350 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3625
+ kmalloc g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/slab.h:515 [inline]
+ kzalloc g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/slab.h:709 [inline]
+ nbd_dev_add+0x44/0x8a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:1635
+ nbd_genl_connect+0x48b/0x15b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:1782
+ genl_family_rcv_msg+0x642/0xc40 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/genetlink.c:602
+ genl_rcv_msg+0xbf/0x160 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/genetlink.c:627
+ netlink_rcv_skb+0x160/0x440 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/af_netlink.c:2459
+ genl_rcv+0x24/0x40 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/genetlink.c:638
+ netlink_unicast_kernel g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/af_netlink.c:1331 [inline]
+ netlink_unicast+0x4d6/0x690 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/af_netlink.c:1357
+ netlink_sendmsg+0x6e5/0xc90 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/netlink/af_netlink.c:1907
+ sock_sendmsg_nosec g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/socket.c:652 [inline]
+ __sock_sendmsg+0xc3/0x120 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/socket.c:663
+ ___sys_sendmsg+0x809/0x930 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/socket.c:2256
+ __sys_sendmsg+0xec/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/net/socket.c:2294
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+
+Freed by task 128440:
+ __cache_free g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3503 [inline]
+ kfree+0xce/0x1d0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/slab.c:3822
+ nbd_dev_remove g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:223 [inline]
+ nbd_put g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:231 [inline]
+ nbd_put+0x131/0x170 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:226
+ nbd_config_put+0x5b0/0x830 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:1185
+ nbd_release+0xf4/0x140 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/block/nbd.c:1469
+ __blkdev_put+0x5df/0x7a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/block_dev.c:1819
+ blkdev_close+0x86/0xb0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/block_dev.c:1888
+ __fput+0x2ce/0x890 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file_table.c:278
+ task_work_run+0x13f/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/task_work.c:113
+ tracehook_notify_resume g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/tracehook.h:193 [inline]
+ exit_to_usermode_loop+0x251/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:167
+ prepare_exit_to_usermode g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:198 [inline]
+ syscall_return_slowpath g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:271 [inline]
+ do_syscall_64+0x538/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:296
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+
+The buggy address belongs to the object at ffff888133c2fcc0
+ which belongs to the cache kmalloc-512 of size 512
+The buggy address is located 216 bytes inside of
+ 512-byte region [ffff888133c2fcc0, ffff888133c2fec0)
+The buggy address belongs to the page:
+page:ffffea0004cf0bc0 count:1 mapcount:0 mapping:ffff888063c00940 index:0x0
+flags: 0x57ff00000000100(slab)
+raw: 057ff00000000100 ffffea00043710c8 ffffea0004a7bc88 ffff888063c00940
+raw: 0000000000000000 ffff888133c2f040 0000000100000006 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888133c2fc80: fc fc fc fc fc fc fc fc fb fb fb fb fb fb fb fb
+ ffff888133c2fd00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff888133c2fd80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                            ^
+ ffff888133c2fe00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888133c2fe80: fb fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+==================================================================

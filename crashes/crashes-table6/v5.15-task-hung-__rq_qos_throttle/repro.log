@@ -1,0 +1,1657 @@
+Warning: Permanently added '[localhost]:53653' (ECDSA) to the list of known hosts.
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=ea9f7e52-0858-406a-99b6-b80cbd9a9b2e
+syzkaller login: [  353.336037][ T6479] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k FS
+[  353.612493][ T6482] chnl_net:caif_netlink_parms(): no params data found
+[  353.751993][ T6482] bridge0: port 1(bridge_slave_0) entered blocking state
+[  353.757486][ T6482] bridge0: port 1(bridge_slave_0) entered disabled state
+[  353.765601][ T6482] device bridge_slave_0 entered promiscuous mode
+[  353.774510][ T6482] bridge0: port 2(bridge_slave_1) entered blocking state
+[  353.783836][ T6482] bridge0: port 2(bridge_slave_1) entered disabled state
+[  353.791243][ T6482] device bridge_slave_1 entered promiscuous mode
+[  353.846749][ T6482] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  353.855403][ T6482] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  353.921103][ T6482] team0: Port device team_slave_0 added
+[  353.925496][ T6482] team0: Port device team_slave_1 added
+[  353.974149][ T6482] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  353.976523][ T6482] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  353.987274][ T6482] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  353.999110][ T6482] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  354.002900][ T6482] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  354.015286][ T6482] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  354.094448][ T6482] device hsr_slave_0 entered promiscuous mode
+[  354.097745][ T6482] device hsr_slave_1 entered promiscuous mode
+[  354.361830][ T6482] netdevsim netdevsim0 netdevsim0: renamed from eth0
+[  354.370045][ T6482] netdevsim netdevsim0 netdevsim1: renamed from eth1
+[  354.379658][ T6482] netdevsim netdevsim0 netdevsim2: renamed from eth2
+[  354.385191][ T6482] netdevsim netdevsim0 netdevsim3: renamed from eth3
+[  354.420635][ T6482] bridge0: port 2(bridge_slave_1) entered blocking state
+[  354.423025][ T6482] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  354.425501][ T6482] bridge0: port 1(bridge_slave_0) entered blocking state
+[  354.427318][ T6482] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  354.495687][ T6482] 8021q: adding VLAN 0 to HW filter on device bond0
+[  354.507372][ T2981] IPv6: ADDRCONF(NETDEV_CHANGE): veth0: link becomes ready
+[  354.513838][ T2981] bridge0: port 1(bridge_slave_0) entered disabled state
+[  354.520638][ T2981] bridge0: port 2(bridge_slave_1) entered disabled state
+[  354.524129][ T2981] IPv6: ADDRCONF(NETDEV_CHANGE): bond0: link becomes ready
+[  354.539207][ T6482] 8021q: adding VLAN 0 to HW filter on device team0
+[  354.552530][ T2981] IPv6: ADDRCONF(NETDEV_CHANGE): bridge_slave_0: link becomes ready
+[  354.555533][ T2981] bridge0: port 1(bridge_slave_0) entered blocking state
+[  354.558697][ T2981] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  354.570274][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): bridge_slave_1: link becomes ready
+[  354.575104][    T7] bridge0: port 2(bridge_slave_1) entered blocking state
+[  354.578092][    T7] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  354.607044][ T2943] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_to_bond: link becomes ready
+[  354.631225][ T2943] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_to_team: link becomes ready
+[  354.654242][ T2943] IPv6: ADDRCONF(NETDEV_CHANGE): team_slave_0: link becomes ready
+[  354.665273][ T2943] IPv6: ADDRCONF(NETDEV_CHANGE): team0: link becomes ready
+[  354.714227][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_to_team: link becomes ready
+[  354.728779][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): team_slave_1: link becomes ready
+[  354.731816][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_to_hsr: link becomes ready
+[  354.734659][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): hsr_slave_0: link becomes ready
+[  354.749520][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_to_hsr: link becomes ready
+[  354.755092][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): hsr_slave_1: link becomes ready
+[  354.772380][ T6482] IPv6: ADDRCONF(NETDEV_CHANGE): hsr0: link becomes ready
+[  354.793441][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): vxcan1: link becomes ready
+[  354.797051][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): vxcan0: link becomes ready
+[  354.812869][ T6482] 8021q: adding VLAN 0 to HW filter on device batadv0
+[  354.835138][ T2981] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_virt_wifi: link becomes ready
+[  354.841572][ T2981] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_virt_wifi: link becomes ready
+[  354.859935][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_vlan: link becomes ready
+[  354.872295][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_vlan: link becomes ready
+[  354.877531][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): vlan0: link becomes ready
+[  354.883272][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): vlan1: link becomes ready
+[  354.892801][ T6482] device veth0_vlan entered promiscuous mode
+[  354.907645][ T6482] device veth1_vlan entered promiscuous mode
+[  354.938113][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): macvlan0: link becomes ready
+[  354.947118][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): macvlan1: link becomes ready
+[  354.952687][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_macvtap: link becomes ready
+[  354.961353][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_macvtap: link becomes ready
+[  354.976673][ T6482] device veth0_macvtap entered promiscuous mode
+[  355.006954][ T6482] device veth1_macvtap entered promiscuous mode
+[  355.057724][ T6482] batman_adv: batadv0: Interface activated: batadv_slave_0
+[  355.064897][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): macvtap0: link becomes ready
+[  355.076110][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): macsec0: link becomes ready
+[  355.083620][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): batadv_slave_0: link becomes ready
+[  355.093649][    T7] IPv6: ADDRCONF(NETDEV_CHANGE): veth0_to_batadv: link becomes ready
+[  355.112554][ T6482] batman_adv: batadv0: Interface activated: batadv_slave_1
+[  355.125892][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): batadv_slave_1: link becomes ready
+[  355.132404][  T927] IPv6: ADDRCONF(NETDEV_CHANGE): veth1_to_batadv: link becomes ready
+[  355.150970][ T6482] netdevsim netdevsim0 netdevsim0: set [1, 0] type 2 family 0 port 6081 - 0
+[  355.155625][ T6482] netdevsim netdevsim0 netdevsim1: set [1, 0] type 2 family 0 port 6081 - 0
+[  355.172505][ T6482] netdevsim netdevsim0 netdevsim2: set [1, 0] type 2 family 0 port 6081 - 0
+[  355.174774][ T6482] netdevsim netdevsim0 netdevsim3: set [1, 0] type 2 family 0 port 6081 - 0
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+[  591.838506][   T28] INFO: task kworker/u6:2:167 blocked for more than 143 seconds.
+[  591.840858][   T28]       Not tainted 5.15.140 #1
+[  591.842116][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  591.845148][   T28] task:kworker/u6:2    state:D stack:23456 pid:  167 ppid:     2 flags:0x00004000
+[  591.847968][   T28] Workqueue: writeback wb_workfn (flush-8:0)
+[  591.851367][   T28] Call Trace:
+[  591.852238][   T28]  <TASK>
+[  591.852971][   T28]  __schedule+0xd98/0x5b40
+[  591.854113][   T28]  ? lock_acquire+0x1a8/0x4c0
+[  591.855327][   T28]  ? prepare_to_wait_exclusive+0xd7/0x290
+[  591.856877][   T28]  ? mark_lock+0x18c0/0x1910
+[  591.858100][   T28]  ? io_schedule_timeout+0x150/0x150
+[  591.859679][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  591.861192][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  591.862717][   T28]  ? wbt_done+0x350/0x350
+[  591.863799][   T28]  schedule+0x115/0x250
+[  591.864833][   T28]  io_schedule+0xba/0x130
+[  591.865957][   T28]  rq_qos_wait+0x19e/0x2d0
+[  591.867068][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  591.868486][   T28]  ? sysv68_partition+0xa70/0xa70
+[  591.869810][   T28]  ? wbt_requeue+0x130/0x130
+[  591.871025][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  591.872332][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  591.873906][   T28]  wbt_wait+0x19f/0x380
+[  591.875012][   T28]  ? wbt_track+0x70/0x70
+[  591.876121][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  591.877395][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  591.878801][   T28]  ? wbt_track+0x70/0x70
+[  591.879907][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  591.881131][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  591.882437][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  591.884032][   T28]  ? rcu_is_watching+0xe/0xb0
+[  591.885255][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  591.886630][   T28]  ? wb_writeback+0x84d/0xac0
+[  591.887852][   T28]  __submit_bio+0x79f/0x900
+[  591.889990][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  591.891408][   T28]  submit_bio_noacct+0x73a/0x960
+[  591.892682][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  591.894258][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  591.895631][   T28]  ? __submit_bio+0x900/0x900
+[  591.896867][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  591.898635][   T28]  submit_bio+0x1ef/0x480
+[  591.899790][   T28]  ? submit_bio_noacct+0x960/0x960
+[  591.901132][   T28]  ext4_io_submit+0x17c/0x210
+[  591.902375][   T28]  ext4_writepages+0xeab/0x3a80
+[  591.903702][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  591.905174][   T28]  ? lock_chain_count+0x20/0x20
+[  591.906454][   T28]  ? wb_update_bandwidth+0x96/0xd0
+[  591.907857][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  591.909415][   T28]  ? do_writepages+0x1be/0x7b0
+[  591.910692][   T28]  do_writepages+0x1be/0x7b0
+[  591.911888][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  591.913440][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  591.914964][   T28]  ? find_held_lock+0x2d/0x110
+[  591.916208][   T28]  ? wbc_attach_and_unlock_inode+0x4d0/0xa50
+[  591.917786][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  591.919255][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  591.920651][   T28]  __writeback_single_inode+0x15d/0xda0
+[  591.922115][   T28]  ? __mark_inode_dirty+0xd60/0xd60
+[  591.923474][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  591.924717][   T28]  ? wbc_attach_and_unlock_inode+0x526/0xa50
+[  591.926285][   T28]  writeback_sb_inodes+0x583/0x1070
+[  591.927630][   T28]  ? sync_inode_metadata+0xd0/0xd0
+[  591.929049][   T28]  __writeback_inodes_wb+0xff/0x2d0
+[  591.930443][   T28]  ? writeback_sb_inodes+0x1070/0x1070
+[  591.931853][   T28]  ? queue_io+0x3a2/0x480
+[  591.932976][   T28]  wb_writeback+0x84d/0xac0
+[  591.934177][   T28]  ? __writeback_inodes_wb+0x2d0/0x2d0
+[  591.935591][   T28]  ? mark_held_locks+0x9f/0xe0
+[  591.936844][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  591.938208][   T28]  ? cpumask_next+0x9e/0xe0
+[  591.939368][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  591.940699][   T28]  wb_workfn+0xb00/0x11a0
+[  591.941839][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  591.943392][   T28]  ? inode_wait_for_writeback+0x30/0x30
+[  591.944706][   T28]  ? lock_acquire+0x1a8/0x4c0
+[  591.945921][   T28]  ? lock_downgrade+0x710/0x710
+[  591.947144][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  591.948813][   T28]  process_one_work+0x9db/0x1530
+[  591.950085][   T28]  ? lock_downgrade+0x710/0x710
+[  591.951298][   T28]  ? pwq_dec_nr_in_flight+0x2a0/0x2a0
+[  591.952657][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  591.953953][   T28]  ? _raw_spin_lock_irq+0x41/0x50
+[  591.955326][   T28]  worker_thread+0x686/0x1180
+[  591.956564][   T28]  ? process_one_work+0x1530/0x1530
+[  591.957927][   T28]  kthread+0x3d0/0x4c0
+[  591.959164][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  591.960534][   T28]  ? set_kthread_struct+0x130/0x130
+[  591.961918][   T28]  ret_from_fork+0x1f/0x30
+[  591.963061][   T28]  </TASK>
+[  591.964140][   T28] INFO: task kworker/u4:2:6341 blocked for more than 143 seconds.
+[  591.966075][   T28]       Not tainted 5.15.140 #1
+[  591.967253][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  591.969507][   T28] task:kworker/u4:2    state:D stack:27024 pid: 6341 ppid:     2 flags:0x00004000
+[  591.971685][   T28] Workqueue: ext4-rsv-conversion ext4_end_io_rsv_work
+[  591.973437][   T28] Call Trace:
+[  591.974317][   T28]  <TASK>
+[  591.975077][   T28]  __schedule+0xd98/0x5b40
+[  591.976240][   T28]  ? lock_chain_count+0x20/0x20
+[  591.977579][   T28]  ? lock_downgrade+0x710/0x710
+[  591.978955][   T28]  ? io_schedule_timeout+0x150/0x150
+[  591.980350][   T28]  ? __wait_on_bit+0xca/0x180
+[  591.981613][   T28]  schedule+0x115/0x250
+[  591.982745][   T28]  io_schedule+0xba/0x130
+[  591.983891][   T28]  bit_wait_io+0x12/0xd0
+[  591.985008][   T28]  __wait_on_bit+0x5e/0x180
+[  591.986264][   T28]  ? bit_wait+0xd0/0xd0
+[  591.987382][   T28]  out_of_line_wait_on_bit+0xd7/0x110
+[  591.988890][   T28]  ? __wait_on_bit+0x180/0x180
+[  591.990162][   T28]  ? var_wake_function+0x130/0x130
+[  591.991509][   T28]  do_get_write_access+0x83b/0x10e0
+[  591.992899][   T28]  jbd2_journal_get_write_access+0x122/0x180
+[  591.994477][   T28]  __ext4_journal_get_write_access+0x1c0/0x440
+[  591.996089][   T28]  ext4_reserve_inode_write+0x137/0x270
+[  591.997545][   T28]  __ext4_mark_inode_dirty+0x199/0x800
+[  592.007892][   T28]  ? ext4_expand_extra_isize+0x5f0/0x5f0
+[  592.009679][   T28]  ? ext4_can_extents_be_merged.constprop.0+0xc4/0x380
+[  592.011488][   T28]  ? ext4_ext_try_to_merge_right+0x2ef/0x350
+[  592.013065][   T28]  __ext4_ext_dirty+0x1c2/0x220
+[  592.014380][   T28]  ext4_ext_map_blocks+0x32be/0x5c80
+[  592.015767][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.017310][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.018967][   T28]  ? __lock_acquire+0x15be/0x5630
+[  592.020284][   T28]  ? ext4_ext_release+0x10/0x10
+[  592.021609][   T28]  ? __cant_migrate+0x130/0x130
+[  592.022892][   T28]  ? lock_acquire+0x1a8/0x4c0
+[  592.024133][   T28]  ? __down_timeout+0x10/0x10
+[  592.025365][   T28]  ext4_map_blocks+0x730/0x1710
+[  592.026661][   T28]  ? ext4_issue_zeroout+0x1f0/0x1f0
+[  592.028017][   T28]  ? trace_jbd2_handle_start+0x1f0/0x1f0
+[  592.029623][   T28]  ext4_convert_unwritten_extents+0x2b5/0x4b0
+[  592.031222][   T28]  ? ext4_fallocate+0x3df0/0x3df0
+[  592.032539][   T28]  ? __ext4_journal_start_reserved+0x1ab/0x4e0
+[  592.034145][   T28]  ? ext4_convert_unwritten_io_end_vec+0x39/0x270
+[  592.035766][   T28]  ext4_convert_unwritten_io_end_vec+0x123/0x270
+[  592.037396][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.038978][   T28]  ext4_end_io_rsv_work+0x2c6/0x690
+[  592.040322][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.041736][   T28]  ? __switch_to+0x5dd/0x1080
+[  592.042960][   T28]  ? ext4_last_io_end_vec+0x70/0x70
+[  592.044266][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.045808][   T28]  process_one_work+0x9db/0x1530
+[  592.047057][   T28]  ? lock_downgrade+0x710/0x710
+[  592.048458][   T28]  ? pwq_dec_nr_in_flight+0x2a0/0x2a0
+[  592.049823][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.051060][   T28]  ? _raw_spin_lock_irq+0x41/0x50
+[  592.052349][   T28]  worker_thread+0x686/0x1180
+[  592.053605][   T28]  ? process_one_work+0x1530/0x1530
+[  592.055002][   T28]  kthread+0x3d0/0x4c0
+[  592.056077][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  592.057443][   T28]  ? set_kthread_struct+0x130/0x130
+[  592.058963][   T28]  ret_from_fork+0x1f/0x30
+[  592.060156][   T28]  </TASK>
+[  592.060979][   T28] INFO: task syz-executor359:7083 blocked for more than 143 seconds.
+[  592.063071][   T28]       Not tainted 5.15.140 #1
+[  592.064322][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.066554][   T28] task:syz-executor359 state:D stack:24688 pid: 7083 ppid:  6482 flags:0x00004002
+[  592.069097][   T28] Call Trace:
+[  592.070008][   T28]  <TASK>
+[  592.070802][   T28]  __schedule+0xd98/0x5b40
+[  592.072016][   T28]  ? lock_acquire+0x1a8/0x4c0
+[  592.073266][   T28]  ? find_held_lock+0x2d/0x110
+[  592.074553][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.075944][   T28]  ? do_raw_spin_lock+0x12a/0x2b0
+[  592.077217][   T28]  schedule+0x115/0x250
+[  592.078503][   T28]  io_schedule+0xba/0x130
+[  592.079646][   T28]  wait_on_page_bit_common+0x593/0xeb0
+[  592.081077][   T28]  ? filemap_map_pages+0x1620/0x1620
+[  592.082469][   T28]  ? file_write_and_wait_range+0x1e0/0x1e0
+[  592.083980][   T28]  wait_on_page_writeback+0x4c/0x370
+[  592.085370][   T28]  truncate_inode_pages_range+0x565/0x10f0
+[  592.086909][   T28]  ? pagecache_isize_extended+0x3f0/0x3f0
+[  592.088510][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.090138][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  592.091490][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.092840][   T28]  ext4_evict_inode+0x59d/0x1c80
+[  592.094178][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.095591][   T28]  ? var_wake_function+0x130/0x130
+[  592.096929][   T28]  ? ext4_da_write_begin+0x9e0/0x9e0
+[  592.098394][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.099682][   T28]  ? ext4_da_write_begin+0x9e0/0x9e0
+[  592.101054][   T28]  evict+0x2ed/0x6b0
+[  592.102097][   T28]  iput.part.0+0x54e/0x710
+[  592.103239][   T28]  ? ext4_nfs_commit_metadata+0x260/0x260
+[  592.104689][   T28]  iput+0x58/0x70
+[  592.105648][   T28]  dentry_unlink_inode+0x292/0x430
+[  592.106965][   T28]  __dentry_kill+0x3b8/0x640
+[  592.109000][   T28]  ? dput+0x35/0xfd0
+[  592.110061][   T28]  dput+0x701/0xfd0
+[  592.111074][   T28]  __fput+0x3cd/0xa60
+[  592.112112][   T28]  task_work_run+0xdd/0x1a0
+[  592.113298][   T28]  do_exit+0xbb3/0x2970
+[  592.114406][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.115798][   T28]  do_group_exit+0x125/0x310
+[  592.116991][   T28]  get_signal+0x37a/0x25b0
+[  592.118235][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.119711][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.120968][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.122342][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.123659][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.125013][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.126476][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.127814][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.129175][   T28] RIP: 0033:0x0
+[  592.130135][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.131720][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.133739][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.135783][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.137808][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 00000000000611f2
+[  592.139844][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.141851][   T28]  </TASK>
+[  592.142670][   T28] INFO: task syz-executor359:7085 blocked for more than 143 seconds.
+[  592.144642][   T28]       Not tainted 5.15.140 #1
+[  592.145857][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.147898][   T28] task:syz-executor359 state:D stack:24688 pid: 7085 ppid:  6482 flags:0x00004002
+[  592.150382][   T28] Call Trace:
+[  592.151199][   T28]  <TASK>
+[  592.151926][   T28]  __schedule+0xd98/0x5b40
+[  592.153045][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.154417][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.155570][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.156949][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.158521][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.160106][   T28]  ? wbt_done+0x350/0x350
+[  592.161233][   T28]  schedule+0x115/0x250
+[  592.162326][   T28]  io_schedule+0xba/0x130
+[  592.163431][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.164547][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.165871][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.167111][   T28]  ? wbt_requeue+0x130/0x130
+[  592.168351][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.169607][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.171072][   T28]  wbt_wait+0x19f/0x380
+[  592.172177][   T28]  ? wbt_track+0x70/0x70
+[  592.173295][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.174654][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.176268][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.177602][   T28]  ? wbt_track+0x70/0x70
+[  592.178837][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.180088][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.181431][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.183059][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.184305][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.185688][   T28]  ? ext4_release_file+0x183/0x370
+[  592.187019][   T28]  __submit_bio+0x79f/0x900
+[  592.188276][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.189626][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.191018][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.192306][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.193862][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.195207][   T28]  ? __submit_bio+0x900/0x900
+[  592.196412][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.197880][   T28]  submit_bio+0x1ef/0x480
+[  592.199113][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.200455][   T28]  ext4_io_submit+0x17c/0x210
+[  592.201699][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.203003][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.204455][   T28]  ? find_held_lock+0x2d/0x110
+[  592.205739][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.207286][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.208837][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.210077][   T28]  do_writepages+0x1be/0x7b0
+[  592.211253][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.212667][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.214063][   T28]  ? lock_downgrade+0x710/0x710
+[  592.215339][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.216652][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.217913][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.220184][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.221626][   T28]  filemap_flush+0x8f/0xc0
+[  592.222759][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.224162][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.225764][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.227116][   T28]  ext4_release_file+0x183/0x370
+[  592.228468][   T28]  __fput+0x27b/0xa60
+[  592.229534][   T28]  task_work_run+0xdd/0x1a0
+[  592.230745][   T28]  do_exit+0xbb3/0x2970
+[  592.231843][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.233224][   T28]  do_group_exit+0x125/0x310
+[  592.234417][   T28]  get_signal+0x37a/0x25b0
+[  592.235556][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.237019][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.238372][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.239702][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.241013][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.242382][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.243805][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.245182][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.246428][   T28] RIP: 0033:0x0
+[  592.247333][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.248909][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.250891][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.252819][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.254840][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000061f5e
+[  592.256775][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.258932][   T28]  </TASK>
+[  592.259752][   T28] INFO: task syz-executor359:7091 blocked for more than 143 seconds.
+[  592.261862][   T28]       Not tainted 5.15.140 #1
+[  592.263145][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.265358][   T28] task:syz-executor359 state:D stack:24688 pid: 7091 ppid:  6482 flags:0x00004002
+[  592.267745][   T28] Call Trace:
+[  592.268650][   T28]  <TASK>
+[  592.269396][   T28]  __schedule+0xd98/0x5b40
+[  592.270532][   T28]  ? lock_acquire+0x1a8/0x4c0
+[  592.271710][   T28]  ? lock_downgrade+0x710/0x710
+[  592.272915][   T28]  ? find_held_lock+0x2d/0x110
+[  592.274146][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.275503][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.276894][   T28]  schedule+0x115/0x250
+[  592.278042][   T28]  bit_wait+0x12/0xd0
+[  592.279174][   T28]  __wait_on_bit+0x5e/0x180
+[  592.280367][   T28]  ? bit_wait_timeout+0x160/0x160
+[  592.281709][   T28]  __inode_wait_for_writeback+0x152/0x1f0
+[  592.283206][   T28]  ? inode_prepare_wbs_switch+0x340/0x340
+[  592.284632][   T28]  ? var_wake_function+0x130/0x130
+[  592.285903][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.287200][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.288666][   T28]  inode_wait_for_writeback+0x21/0x30
+[  592.290089][   T28]  evict+0x2b7/0x6b0
+[  592.291128][   T28]  iput.part.0+0x54e/0x710
+[  592.292285][   T28]  ? ext4_nfs_commit_metadata+0x260/0x260
+[  592.293792][   T28]  iput+0x58/0x70
+[  592.294753][   T28]  dentry_unlink_inode+0x292/0x430
+[  592.296076][   T28]  __dentry_kill+0x3b8/0x640
+[  592.297268][   T28]  ? dput+0x35/0xfd0
+[  592.298380][   T28]  dput+0x701/0xfd0
+[  592.299397][   T28]  __fput+0x3cd/0xa60
+[  592.300471][   T28]  task_work_run+0xdd/0x1a0
+[  592.301679][   T28]  do_exit+0xbb3/0x2970
+[  592.302776][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.304180][   T28]  do_group_exit+0x125/0x310
+[  592.305379][   T28]  get_signal+0x37a/0x25b0
+[  592.306534][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.307828][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.308851][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.309860][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.310835][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.311846][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.312913][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.313962][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.315245][   T28] RIP: 0033:0x0
+[  592.316125][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.317666][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.319736][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.321244][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.322738][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000062014
+[  592.324238][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.326184][   T28]  </TASK>
+[  592.326926][   T28] INFO: task syz-executor359:7093 blocked for more than 143 seconds.
+[  592.329672][   T28]       Not tainted 5.15.140 #1
+[  592.330870][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.332941][   T28] task:syz-executor359 state:D stack:24688 pid: 7093 ppid:  6482 flags:0x00004002
+[  592.335216][   T28] Call Trace:
+[  592.336011][   T28]  <TASK>
+[  592.336728][   T28]  __schedule+0xd98/0x5b40
+[  592.337840][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.339284][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.340429][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.341736][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.343161][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.344587][   T28]  ? wbt_done+0x350/0x350
+[  592.345705][   T28]  schedule+0x115/0x250
+[  592.346735][   T28]  io_schedule+0xba/0x130
+[  592.347591][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.348478][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.349483][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.350455][   T28]  ? wbt_requeue+0x130/0x130
+[  592.351571][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.352914][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.354400][   T28]  wbt_wait+0x19f/0x380
+[  592.355472][   T28]  ? wbt_track+0x70/0x70
+[  592.356587][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.357893][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.359391][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.360573][   T28]  ? wbt_track+0x70/0x70
+[  592.361634][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.362889][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.364199][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.365886][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.367014][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.368366][   T28]  ? ext4_release_file+0x183/0x370
+[  592.369705][   T28]  __submit_bio+0x79f/0x900
+[  592.370866][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.372177][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.373584][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.374940][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.376501][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.377857][   T28]  ? __submit_bio+0x900/0x900
+[  592.379226][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.380689][   T28]  submit_bio+0x1ef/0x480
+[  592.381844][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.383156][   T28]  ext4_io_submit+0x17c/0x210
+[  592.384382][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.385677][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.387124][   T28]  ? find_held_lock+0x2d/0x110
+[  592.388475][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.390018][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.391450][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.392653][   T28]  do_writepages+0x1be/0x7b0
+[  592.393840][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.395232][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.396593][   T28]  ? lock_downgrade+0x710/0x710
+[  592.397832][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.399186][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.400420][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.401935][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.403263][   T28]  filemap_flush+0x8f/0xc0
+[  592.404316][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.405692][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.407266][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.408772][   T28]  ext4_release_file+0x183/0x370
+[  592.410214][   T28]  __fput+0x27b/0xa60
+[  592.411306][   T28]  task_work_run+0xdd/0x1a0
+[  592.412490][   T28]  do_exit+0xbb3/0x2970
+[  592.413602][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.414992][   T28]  do_group_exit+0x125/0x310
+[  592.416171][   T28]  get_signal+0x37a/0x25b0
+[  592.417309][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.418918][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.420249][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.421666][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.423029][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.424460][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.425969][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.427412][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.428799][   T28] RIP: 0033:0x0
+[  592.429736][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.431304][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.433333][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.435399][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.437439][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006205c
+[  592.440426][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.442501][   T28]  </TASK>
+[  592.443272][   T28] INFO: task syz-executor359:7095 blocked for more than 143 seconds.
+[  592.445272][   T28]       Not tainted 5.15.140 #1
+[  592.446533][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.448737][   T28] task:syz-executor359 state:D stack:24688 pid: 7095 ppid:  6482 flags:0x00004002
+[  592.451144][   T28] Call Trace:
+[  592.451997][   T28]  <TASK>
+[  592.452763][   T28]  __schedule+0xd98/0x5b40
+[  592.453936][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.455380][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.456592][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.457980][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.459548][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.461077][   T28]  ? wbt_done+0x350/0x350
+[  592.462230][   T28]  schedule+0x115/0x250
+[  592.463300][   T28]  io_schedule+0xba/0x130
+[  592.464411][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.465532][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.466900][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.468272][   T28]  ? wbt_requeue+0x130/0x130
+[  592.469462][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.470732][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.472243][   T28]  wbt_wait+0x19f/0x380
+[  592.473286][   T28]  ? wbt_track+0x70/0x70
+[  592.474357][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.475622][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.477168][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.478582][   T28]  ? wbt_track+0x70/0x70
+[  592.479658][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.480831][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.482149][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.483794][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.485046][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.486513][   T28]  ? ext4_release_file+0x183/0x370
+[  592.487844][   T28]  __submit_bio+0x79f/0x900
+[  592.489088][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.490414][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.491772][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.493024][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.494596][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.495981][   T28]  ? __submit_bio+0x900/0x900
+[  592.497259][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.498866][   T28]  submit_bio+0x1ef/0x480
+[  592.500017][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.501387][   T28]  ext4_io_submit+0x17c/0x210
+[  592.502644][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.503895][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.505341][   T28]  ? find_held_lock+0x2d/0x110
+[  592.506690][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.508352][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.509854][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.511092][   T28]  do_writepages+0x1be/0x7b0
+[  592.512282][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.513778][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.515233][   T28]  ? lock_downgrade+0x710/0x710
+[  592.516520][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.517881][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.519206][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.520712][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.522105][   T28]  filemap_flush+0x8f/0xc0
+[  592.523243][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.524652][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.526248][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.527601][   T28]  ext4_release_file+0x183/0x370
+[  592.529000][   T28]  __fput+0x27b/0xa60
+[  592.530081][   T28]  task_work_run+0xdd/0x1a0
+[  592.531264][   T28]  do_exit+0xbb3/0x2970
+[  592.532366][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.533774][   T28]  do_group_exit+0x125/0x310
+[  592.534973][   T28]  get_signal+0x37a/0x25b0
+[  592.536124][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.537619][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.538977][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.540335][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.541674][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.543043][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.544474][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.545893][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.547150][   T28] RIP: 0033:0x0
+[  592.548026][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.550453][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.552444][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.554405][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.556415][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006208e
+[  592.558431][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.560408][   T28]  </TASK>
+[  592.561211][   T28] INFO: task syz-executor359:7099 blocked for more than 144 seconds.
+[  592.563336][   T28]       Not tainted 5.15.140 #1
+[  592.564640][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.566850][   T28] task:syz-executor359 state:D stack:24688 pid: 7099 ppid:  6482 flags:0x00004002
+[  592.569283][   T28] Call Trace:
+[  592.570138][   T28]  <TASK>
+[  592.570866][   T28]  __schedule+0xd98/0x5b40
+[  592.571972][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.573356][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.574537][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.575918][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.577323][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.578980][   T28]  ? wbt_done+0x350/0x350
+[  592.580164][   T28]  schedule+0x115/0x250
+[  592.581264][   T28]  io_schedule+0xba/0x130
+[  592.582458][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.583640][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.584921][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.586272][   T28]  ? wbt_requeue+0x130/0x130
+[  592.587476][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.588861][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.590442][   T28]  wbt_wait+0x19f/0x380
+[  592.591545][   T28]  ? wbt_track+0x70/0x70
+[  592.592641][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.594017][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.595628][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.596950][   T28]  ? wbt_track+0x70/0x70
+[  592.598090][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.599416][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.600713][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.602337][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.603559][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.604939][   T28]  ? ext4_release_file+0x183/0x370
+[  592.606282][   T28]  __submit_bio+0x79f/0x900
+[  592.607455][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.608861][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.610275][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.611533][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.613081][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.614481][   T28]  ? __submit_bio+0x900/0x900
+[  592.615693][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.617117][   T28]  submit_bio+0x1ef/0x480
+[  592.618367][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.619695][   T28]  ext4_io_submit+0x17c/0x210
+[  592.620916][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.622232][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.623651][   T28]  ? find_held_lock+0x2d/0x110
+[  592.624826][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.626239][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.627681][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.628982][   T28]  do_writepages+0x1be/0x7b0
+[  592.630186][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.631589][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.632938][   T28]  ? lock_downgrade+0x710/0x710
+[  592.634161][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.635501][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.636707][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.638356][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.639710][   T28]  filemap_flush+0x8f/0xc0
+[  592.640895][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.642260][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.643745][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.645025][   T28]  ext4_release_file+0x183/0x370
+[  592.646275][   T28]  __fput+0x27b/0xa60
+[  592.647320][   T28]  task_work_run+0xdd/0x1a0
+[  592.648642][   T28]  do_exit+0xbb3/0x2970
+[  592.649768][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.651230][   T28]  do_group_exit+0x125/0x310
+[  592.652417][   T28]  get_signal+0x37a/0x25b0
+[  592.653572][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.655046][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.656287][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.657619][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.659714][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.661135][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.662692][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.664159][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.665457][   T28] RIP: 0033:0x0
+[  592.666388][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.667979][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.670150][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.672204][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.674266][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 00000000000620f5
+[  592.676286][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.678419][   T28]  </TASK>
+[  592.679217][   T28] INFO: task syz-executor359:7101 blocked for more than 144 seconds.
+[  592.681281][   T28]       Not tainted 5.15.140 #1
+[  592.682559][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.684755][   T28] task:syz-executor359 state:D stack:24688 pid: 7101 ppid:  6482 flags:0x00004002
+[  592.687149][   T28] Call Trace:
+[  592.688002][   T28]  <TASK>
+[  592.688881][   T28]  __schedule+0xd98/0x5b40
+[  592.690053][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.691486][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.692680][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.694080][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.695573][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.697028][   T28]  ? wbt_done+0x350/0x350
+[  592.698257][   T28]  schedule+0x115/0x250
+[  592.699268][   T28]  io_schedule+0xba/0x130
+[  592.700373][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.701506][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.702851][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.704099][   T28]  ? wbt_requeue+0x130/0x130
+[  592.705258][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.706580][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.708092][   T28]  wbt_wait+0x19f/0x380
+[  592.709320][   T28]  ? wbt_track+0x70/0x70
+[  592.710467][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.711761][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.713322][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.714574][   T28]  ? wbt_track+0x70/0x70
+[  592.715706][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.716925][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.718302][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.719849][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.721092][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.722405][   T28]  ? ext4_release_file+0x183/0x370
+[  592.723678][   T28]  __submit_bio+0x79f/0x900
+[  592.724808][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.726178][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.727495][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.728769][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.730333][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.731726][   T28]  ? __submit_bio+0x900/0x900
+[  592.732965][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.734556][   T28]  submit_bio+0x1ef/0x480
+[  592.735701][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.737037][   T28]  ext4_io_submit+0x17c/0x210
+[  592.738355][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.739646][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.741068][   T28]  ? find_held_lock+0x2d/0x110
+[  592.742331][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.743897][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.745400][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.746703][   T28]  do_writepages+0x1be/0x7b0
+[  592.747923][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.749462][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.750909][   T28]  ? lock_downgrade+0x710/0x710
+[  592.752200][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.753578][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.754870][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.756373][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.757803][   T28]  filemap_flush+0x8f/0xc0
+[  592.759035][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.760487][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.762084][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.763434][   T28]  ext4_release_file+0x183/0x370
+[  592.764713][   T28]  __fput+0x27b/0xa60
+[  592.765813][   T28]  task_work_run+0xdd/0x1a0
+[  592.767009][   T28]  do_exit+0xbb3/0x2970
+[  592.769134][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.770592][   T28]  do_group_exit+0x125/0x310
+[  592.771802][   T28]  get_signal+0x37a/0x25b0
+[  592.772969][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.774464][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.775728][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.777066][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.778488][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.779885][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.781346][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.782799][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.784056][   T28] RIP: 0033:0x0
+[  592.784954][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.786529][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.788647][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.790692][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.792687][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006213e
+[  592.794709][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.796732][   T28]  </TASK>
+[  592.797525][   T28] INFO: task syz-executor359:7103 blocked for more than 144 seconds.
+[  592.799642][   T28]       Not tainted 5.15.140 #1
+[  592.800862][   T28] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  592.803015][   T28] task:syz-executor359 state:D stack:24688 pid: 7103 ppid:  6482 flags:0x00004002
+[  592.805336][   T28] Call Trace:
+[  592.806196][   T28]  <TASK>
+[  592.806939][   T28]  __schedule+0xd98/0x5b40
+[  592.808280][   T28]  ? blk_mq_insert_requests+0x4d0/0x4d0
+[  592.809693][   T28]  ? mark_lock+0x18c2/0x1910
+[  592.810844][   T28]  ? io_schedule_timeout+0x150/0x150
+[  592.812161][   T28]  ? blk_insert_cloned_request+0x4f0/0x4f0
+[  592.813700][   T28]  ? _raw_spin_unlock_irqrestore+0x4a/0x70
+[  592.815125][   T28]  ? wbt_done+0x350/0x350
+[  592.816227][   T28]  schedule+0x115/0x250
+[  592.817258][   T28]  io_schedule+0xba/0x130
+[  592.818426][   T28]  rq_qos_wait+0x19e/0x2d0
+[  592.819581][   T28]  ? rq_depth_scale_down+0x3d0/0x3d0
+[  592.820984][   T28]  ? sysv68_partition+0xa70/0xa70
+[  592.822293][   T28]  ? wbt_requeue+0x130/0x130
+[  592.823574][   T28]  ? rwlock_bug.part.0+0x90/0x90
+[  592.824864][   T28]  ? __sanitizer_cov_trace_switch+0x45/0x70
+[  592.826409][   T28]  wbt_wait+0x19f/0x380
+[  592.827483][   T28]  ? wbt_track+0x70/0x70
+[  592.828673][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.829980][   T28]  ? blk_attempt_bio_merge.part.0+0x14a/0x430
+[  592.831520][   T28]  ? dd_request_merge+0x3e0/0x3e0
+[  592.832820][   T28]  ? wbt_track+0x70/0x70
+[  592.833974][   T28]  __rq_qos_throttle+0x4f/0xa0
+[  592.835264][   T28]  blk_mq_submit_bio+0x434/0x1800
+[  592.836605][   T28]  ? blk_mq_try_issue_list_directly+0xae0/0xae0
+[  592.838353][   T28]  ? rcu_is_watching+0xe/0xb0
+[  592.839621][   T28]  ? blk_try_enter_queue+0x18d/0x640
+[  592.841016][   T28]  ? ext4_release_file+0x183/0x370
+[  592.842372][   T28]  __submit_bio+0x79f/0x900
+[  592.843560][   T28]  ? asm_exc_page_fault+0x22/0x30
+[  592.844889][   T28]  ? submit_bio_checks+0x19a0/0x19a0
+[  592.846351][   T28]  submit_bio_noacct+0x73a/0x960
+[  592.847646][   T28]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[  592.849293][   T28]  ? lockdep_hardirqs_on+0x79/0x100
+[  592.850641][   T28]  ? __submit_bio+0x900/0x900
+[  592.851857][   T28]  ? mpage_process_page_bufs+0x840/0x840
+[  592.853322][   T28]  submit_bio+0x1ef/0x480
+[  592.854474][   T28]  ? submit_bio_noacct+0x960/0x960
+[  592.855754][   T28]  ext4_io_submit+0x17c/0x210
+[  592.856900][   T28]  ext4_writepages+0xeab/0x3a80
+[  592.858328][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.859786][   T28]  ? find_held_lock+0x2d/0x110
+[  592.861068][   T28]  ? lockdep_hardirqs_on_prepare+0x400/0x400
+[  592.862654][   T28]  ? __ext4_mark_inode_dirty+0x800/0x800
+[  592.864058][   T28]  ? do_writepages+0x1be/0x7b0
+[  592.865249][   T28]  do_writepages+0x1be/0x7b0
+[  592.866444][   T28]  ? writeback_set_ratelimit+0x140/0x140
+[  592.867882][   T28]  ? reacquire_held_locks+0x4b0/0x4b0
+[  592.869352][   T28]  ? lock_downgrade+0x710/0x710
+[  592.870654][   T28]  ? do_raw_spin_unlock+0x16f/0x230
+[  592.872011][   T28]  ? _raw_spin_unlock+0x24/0x40
+[  592.873283][   T28]  ? ext4_generic_write_checks+0x2f0/0x2f0
+[  592.874833][   T28]  filemap_fdatawrite_wbc+0x1d3/0x2e0
+[  592.876224][   T28]  filemap_flush+0x8f/0xc0
+[  592.877368][   T28]  ? filemap_fdatawrite_range+0xe0/0xe0
+[  592.880196][   T28]  ? wait_for_completion_io_timeout+0x20/0x20
+[  592.881821][   T28]  ext4_alloc_da_blocks+0x1ea/0x270
+[  592.883170][   T28]  ext4_release_file+0x183/0x370
+[  592.884447][   T28]  __fput+0x27b/0xa60
+[  592.885495][   T28]  task_work_run+0xdd/0x1a0
+[  592.886695][   T28]  do_exit+0xbb3/0x2970
+[  592.887777][   T28]  ? mm_update_next_owner+0x7b0/0x7b0
+[  592.889255][   T28]  do_group_exit+0x125/0x310
+[  592.890488][   T28]  get_signal+0x37a/0x25b0
+[  592.891642][   T28]  arch_do_signal_or_restart+0x1f5/0x1bc0
+[  592.893097][   T28]  ? get_sigframe_size+0x10/0x10
+[  592.894361][   T28]  ? lockdep_hardirqs_off+0x90/0xd0
+[  592.895672][   T28]  ? trace_hardirqs_off+0x6b/0x1b0
+[  592.896966][   T28]  ? do_user_addr_fault+0x901/0x11a0
+[  592.898385][   T28]  exit_to_user_mode_prepare+0x135/0x270
+[  592.899792][   T28]  irqentry_exit_to_user_mode+0x5/0x40
+[  592.901176][   T28]  asm_exc_page_fault+0x22/0x30
+[  592.902444][   T28] RIP: 0033:0x0
+[  592.903300][   T28] RSP: 002b:0000000020000008 EFLAGS: 00010217
+[  592.904777][   T28] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+[  592.906817][   T28] RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+[  592.908996][   T28] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+[  592.911132][   T28] R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000062172
+[  592.913157][   T28] R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+[  592.915180][   T28]  </TASK>
+[  592.916196][   T28] 
+[  592.916196][   T28] Showing all locks held in the system:
+[  592.918055][   T28] 3 locks held by kworker/u5:0/9:
+[  592.919373][   T28]  #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530
+[  592.922164][   T28]  #1: ffffc900006c7da0 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530
+[  592.925332][   T28]  #2: ffff8881000940e0 (&type->s_umount_key#45){.+.+}-{3:3}, at: trylock_super+0x18/0x100
+[  592.928031][   T28] 1 lock held by khungtaskd/28:
+[  592.929422][   T28]  #0: ffffffff8bf8cb80 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x53/0x272
+[  592.932078][   T28] 4 locks held by kworker/u6:2/167:
+[  592.933424][   T28]  #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530
+[  592.936212][   T28]  #1: ffffc900018afda0 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530
+[  592.939379][   T28]  #2: ffff88810d5c40e0 (&type->s_umount_key#43){++++}-{3:3}, at: trylock_super+0x18/0x100
+[  592.942042][   T28]  #3: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.944919][   T28] 3 locks held by systemd-journal/2969:
+[  592.946374][   T28]  #0: ffff888106970828 (&mm->mmap_lock){++++}-{3:3}, at: do_user_addr_fault+0x2a6/0x11a0
+[  592.949045][   T28]  #1: ffff88810d5c4558 (sb_pagefaults){.+.+}-{0:0}, at: do_page_mkwrite+0x1a0/0x540
+[  592.951476][   T28]  #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  592.954040][   T28] 1 lock held by in:imklog/5911:
+[  592.955311][   T28]  #0: ffff8881088360f0 (&f->f_pos_lock){+.+.}-{3:3}, at: __fdget_pos+0xf5/0x1a0
+[  592.957730][   T28] 4 locks held by kworker/u4:2/6341:
+[  592.960136][   T28]  #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530
+[  592.963152][   T28]  #1: ffffc90002e9fda0 ((work_completion)(&ei->i_rsv_conversion_work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530
+[  592.966414][   T28]  #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  592.969029][   T28]  #3: ffff8880289abe48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  592.971610][   T28] 1 lock held by syz-executor359/7085:
+[  592.972997][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.975647][   T28] 1 lock held by syz-executor359/7093:
+[  592.977026][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.979748][   T28] 1 lock held by syz-executor359/7095:
+[  592.981124][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.983712][   T28] 1 lock held by syz-executor359/7099:
+[  592.985054][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.987645][   T28] 1 lock held by syz-executor359/7101:
+[  592.989849][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.992421][   T28] 1 lock held by syz-executor359/7103:
+[  592.993808][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  592.996457][   T28] 1 lock held by syz-executor359/7105:
+[  592.997887][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.000711][   T28] 1 lock held by syz-executor359/7107:
+[  593.002128][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.004713][   T28] 1 lock held by syz-executor359/7109:
+[  593.006088][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.008779][   T28] 1 lock held by syz-executor359/7111:
+[  593.010274][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.013026][   T28] 1 lock held by syz-executor359/7113:
+[  593.014483][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.017225][   T28] 1 lock held by syz-executor359/7115:
+[  593.018763][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.021466][   T28] 1 lock held by syz-executor359/7127:
+[  593.022889][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.025532][   T28] 1 lock held by syz-executor359/7129:
+[  593.026951][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.029738][   T28] 3 locks held by syz-executor359/7153:
+[  593.031183][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.033887][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.036427][   T28]  #2: ffff8880289af020 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.046750][   T28] 3 locks held by syz-executor359/7155:
+[  593.048375][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.051012][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.053505][   T28]  #2: ffff88811461d238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.056084][   T28] 3 locks held by syz-executor359/7157:
+[  593.057493][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.060252][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.062793][   T28]  #2: ffff88811d1db450 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.065298][   T28] 3 locks held by syz-executor359/7159:
+[  593.066728][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.069518][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.072044][   T28]  #2: ffff88811461c840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.074609][   T28] 3 locks held by syz-executor359/7161:
+[  593.075989][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.078460][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.080876][   T28]  #2: ffff888113525238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.083306][   T28] 3 locks held by syz-executor359/7163:
+[  593.084717][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.087285][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.089821][   T28]  #2: ffff88811d1dbe48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.092365][   T28] 3 locks held by syz-executor359/7165:
+[  593.093756][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.096260][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.099616][   T28]  #2: ffff888113524840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.102176][   T28] 3 locks held by syz-executor359/7167:
+[  593.103653][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.106282][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.108867][   T28]  #2: ffff88811d1dc840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.111382][   T28] 3 locks held by syz-executor359/7169:
+[  593.112763][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.115355][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.117770][   T28]  #2: ffff888024170278 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.120384][   T28] 3 locks held by syz-executor359/7171:
+[  593.121887][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.124636][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.127223][   T28]  #2: ffff888024170c70 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.129982][   T28] 3 locks held by syz-executor359/7173:
+[  593.131437][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.134224][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.136793][   T28]  #2: ffff88811d1dd238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.139490][   T28] 3 locks held by syz-executor359/7175:
+[  593.140919][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.143591][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.146156][   T28]  #2: ffff888024171668 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.148816][   T28] 3 locks held by syz-executor359/7177:
+[  593.150254][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.152918][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.155435][   T28]  #2: ffff888024172060 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.157998][   T28] 3 locks held by syz-executor359/7179:
+[  593.159518][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.162215][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.164721][   T28]  #2: ffff888024172a58 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.167273][   T28] 3 locks held by syz-executor359/7181:
+[  593.168795][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.171482][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.174014][   T28]  #2: ffff88811d1ddc30 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.176564][   T28] 3 locks held by syz-executor359/7183:
+[  593.177988][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.180684][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.183190][   T28]  #2: ffff888024173450 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.185468][   T28] 3 locks held by syz-executor359/7185:
+[  593.186860][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.189565][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.191973][   T28]  #2: ffff88811d1de628 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.194430][   T28] 3 locks held by syz-executor359/7187:
+[  593.195872][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.198463][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.200917][   T28]  #2: ffff888024173e48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.203550][   T28] 3 locks held by syz-executor359/7189:
+[  593.205041][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.207715][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.210904][   T28]  #2: ffff88811d1df020 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.213330][   T28] 3 locks held by syz-executor359/7191:
+[  593.214712][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.217027][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.219364][   T28]  #2: ffff888024174840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.221849][   T28] 3 locks held by syz-executor359/7193:
+[  593.223318][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.226069][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.228732][   T28]  #2: ffff88811450a060 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.231347][   T28] 3 locks held by syz-executor359/7195:
+[  593.232792][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.235516][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.238091][   T28]  #2: ffff888024175238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.240739][   T28] 3 locks held by syz-executor359/7197:
+[  593.242209][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.244914][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.247502][   T28]  #2: ffff888114509668 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.250186][   T28] 3 locks held by syz-executor359/7199:
+[  593.251630][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.254246][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.256562][   T28]  #2: ffff888024175c30 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.259238][   T28] 3 locks held by syz-executor359/7201:
+[  593.260670][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.263322][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.265926][   T28]  #2: ffff888024176628 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.268578][   T28] 3 locks held by syz-executor359/7203:
+[  593.270002][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.272651][   T28]  #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.275153][   T28]  #2: ffff888114508c70 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710
+[  593.277649][   T28] 1 lock held by syz-executor359/7205:
+[  593.279157][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.281817][   T28] 1 lock held by syz-executor359/7207:
+[  593.283168][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.285802][   T28] 1 lock held by syz-executor359/7209:
+[  593.287176][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.289926][   T28] 1 lock held by syz-executor359/7211:
+[  593.291298][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.293913][   T28] 1 lock held by syz-executor359/7213:
+[  593.295222][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.297519][   T28] 1 lock held by syz-executor359/7215:
+[  593.298998][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.301640][   T28] 1 lock held by syz-executor359/7217:
+[  593.303001][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.305583][   T28] 1 lock held by syz-executor359/7219:
+[  593.306981][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.309826][   T28] 1 lock held by syz-executor359/7221:
+[  593.311235][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.313967][   T28] 1 lock held by syz-executor359/7223:
+[  593.315362][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.317960][   T28] 1 lock held by syz-executor359/7225:
+[  593.320203][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.322929][   T28] 1 lock held by syz-executor359/7227:
+[  593.324390][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.327177][   T28] 1 lock held by syz-executor359/7229:
+[  593.328725][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.331507][   T28] 1 lock held by syz-executor359/7231:
+[  593.332923][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.335653][   T28] 1 lock held by syz-executor359/7233:
+[  593.337063][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.339908][   T28] 1 lock held by syz-executor359/7235:
+[  593.341343][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.344039][   T28] 1 lock held by syz-executor359/7237:
+[  593.345437][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.348294][   T28] 1 lock held by syz-executor359/7239:
+[  593.349726][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.352422][   T28] 1 lock held by syz-executor359/7241:
+[  593.353843][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.356497][   T28] 1 lock held by syz-executor359/7243:
+[  593.357915][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.360597][   T28] 1 lock held by syz-executor359/7245:
+[  593.362027][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.364698][   T28] 1 lock held by syz-executor359/7247:
+[  593.366121][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.368878][   T28] 1 lock held by syz-executor359/7249:
+[  593.370321][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.372955][   T28] 1 lock held by syz-executor359/7251:
+[  593.374379][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.377014][   T28] 1 lock held by syz-executor359/7253:
+[  593.378488][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.381141][   T28] 1 lock held by syz-executor359/7255:
+[  593.382567][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.385172][   T28] 1 lock held by syz-executor359/7257:
+[  593.386575][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.389254][   T28] 1 lock held by syz-executor359/7259:
+[  593.390642][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.393251][   T28] 1 lock held by syz-executor359/7261:
+[  593.394588][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.397136][   T28] 1 lock held by syz-executor359/7263:
+[  593.398565][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.401115][   T28] 1 lock held by syz-executor359/7265:
+[  593.402555][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.405182][   T28] 1 lock held by syz-executor359/7267:
+[  593.406579][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.409380][   T28] 1 lock held by syz-executor359/7269:
+[  593.410835][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.413531][   T28] 1 lock held by syz-executor359/7271:
+[  593.414945][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.417524][   T28] 1 lock held by syz-executor359/7273:
+[  593.418974][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.421635][   T28] 1 lock held by syz-executor359/7275:
+[  593.423078][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.425836][   T28] 1 lock held by syz-executor359/7277:
+[  593.427264][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.430906][   T28] 1 lock held by syz-executor359/7279:
+[  593.432341][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.435067][   T28] 1 lock held by syz-executor359/7281:
+[  593.436486][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.439263][   T28] 1 lock held by syz-executor359/7283:
+[  593.440660][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.443320][   T28] 1 lock held by syz-executor359/7285:
+[  593.444708][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.447394][   T28] 1 lock held by syz-executor359/7287:
+[  593.448907][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.451570][   T28] 1 lock held by syz-executor359/7289:
+[  593.452968][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.455610][   T28] 1 lock held by syz-executor359/7291:
+[  593.457003][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.459835][   T28] 1 lock held by syz-executor359/7293:
+[  593.461237][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.463926][   T28] 1 lock held by syz-executor359/7295:
+[  593.465316][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.467979][   T28] 1 lock held by syz-executor359/7297:
+[  593.469462][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.472138][   T28] 1 lock held by syz-executor359/7299:
+[  593.473514][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.476161][   T28] 1 lock held by syz-executor359/7301:
+[  593.477532][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.480264][   T28] 1 lock held by syz-executor359/7303:
+[  593.481654][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.484248][   T28] 1 lock held by syz-executor359/7305:
+[  593.485606][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.488294][   T28] 1 lock held by syz-executor359/7307:
+[  593.489709][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.492260][   T28] 1 lock held by syz-executor359/7309:
+[  593.493621][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.496256][   T28] 1 lock held by syz-executor359/7311:
+[  593.497598][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.500182][   T28] 1 lock held by syz-executor359/7313:
+[  593.501597][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.504312][   T28] 1 lock held by syz-executor359/7315:
+[  593.505774][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.508551][   T28] 1 lock held by syz-executor359/7317:
+[  593.510480][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.513121][   T28] 1 lock held by syz-executor359/7319:
+[  593.514560][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.517291][   T28] 1 lock held by syz-executor359/7321:
+[  593.519571][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.522484][   T28] 1 lock held by syz-executor359/7323:
+[  593.523890][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.526606][   T28] 1 lock held by syz-executor359/7325:
+[  593.528025][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.530864][   T28] 1 lock held by syz-executor359/7327:
+[  593.532266][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.534910][   T28] 1 lock held by syz-executor359/7329:
+[  593.536273][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.539926][   T28] 1 lock held by syz-executor359/7331:
+[  593.541352][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.544122][   T28] 1 lock held by syz-executor359/7333:
+[  593.545533][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.548286][   T28] 1 lock held by syz-executor359/7335:
+[  593.549696][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.552358][   T28] 1 lock held by syz-executor359/7337:
+[  593.553765][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.556439][   T28] 1 lock held by syz-executor359/7339:
+[  593.557854][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.560569][   T28] 1 lock held by syz-executor359/7341:
+[  593.561991][   T28]  #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0
+[  593.564702][   T28] 3 locks held by syz-executor359/7343:
+[  593.566089][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: get_signal+0x2f7/0x25b0
+[  593.568471][   T28]  #1: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: ext4_buffered_write_iter+0xaa/0x4d0
+[  593.571420][   T28]  #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490
+[  593.573938][   T28] 3 locks held by syz-executor359/7345:
+[  593.575341][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.577699][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.580396][   T28]  #2: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: vfs_unlink+0xcf/0x900
+[  593.582979][   T28] 2 locks held by syz-executor359/7347:
+[  593.584343][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.586626][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.589325][   T28] 2 locks held by syz-executor359/7349:
+[  593.590711][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.593129][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.595882][   T28] 2 locks held by syz-executor359/7351:
+[  593.597328][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.599896][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.602509][   T28] 2 locks held by syz-executor359/7353:
+[  593.603873][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.606245][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.609100][   T28] 2 locks held by syz-executor359/7355:
+[  593.610575][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.612976][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.615720][   T28] 2 locks held by syz-executor359/7357:
+[  593.617154][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.619628][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.622370][   T28] 2 locks held by syz-executor359/7359:
+[  593.623797][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.626194][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.628808][   T28] 2 locks held by syz-executor359/7361:
+[  593.630273][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.632651][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.635371][   T28] 2 locks held by syz-executor359/7363:
+[  593.636786][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.639259][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.641949][   T28] 2 locks held by syz-executor359/7365:
+[  593.643363][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.645758][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.649312][   T28] 2 locks held by syz-executor359/7367:
+[  593.650729][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.653063][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.655545][   T28] 2 locks held by syz-executor359/7369:
+[  593.656806][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.659197][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.661913][   T28] 2 locks held by syz-executor359/7371:
+[  593.663317][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.665646][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.668471][   T28] 2 locks held by syz-executor359/7373:
+[  593.669891][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.672206][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.674831][   T28] 2 locks held by syz-executor359/7375:
+[  593.676241][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.678706][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.681277][   T28] 2 locks held by syz-executor359/7377:
+[  593.682736][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.684968][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.687572][   T28] 2 locks held by syz-executor359/7379:
+[  593.689122][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.691537][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.694261][   T28] 2 locks held by syz-executor359/7381:
+[  593.695666][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.698013][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.700685][   T28] 2 locks held by syz-executor359/7383:
+[  593.702125][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.704561][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.707326][   T28] 2 locks held by syz-executor359/7385:
+[  593.708871][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.711306][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.714022][   T28] 2 locks held by syz-executor359/7387:
+[  593.715451][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.717861][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.720660][   T28] 2 locks held by syz-executor359/7389:
+[  593.722094][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.724452][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.727181][   T28] 2 locks held by syz-executor359/7391:
+[  593.728677][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.731081][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.733778][   T28] 2 locks held by syz-executor359/7393:
+[  593.735246][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.737591][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.740291][   T28] 2 locks held by syz-executor359/7395:
+[  593.741736][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.744077][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.746762][   T28] 2 locks held by syz-executor359/7397:
+[  593.748272][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.750682][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.753325][   T28] 2 locks held by syz-executor359/7399:
+[  593.754750][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.757087][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.760677][   T28] 2 locks held by syz-executor359/7401:
+[  593.762119][   T28]  #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0
+[  593.764467][   T28]  #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0
+[  593.767128][   T28] 
+[  593.767728][   T28] =============================================
+[  593.767728][   T28] 
+[  593.769924][   T28] NMI backtrace for cpu 1
+[  593.771019][   T28] CPU: 1 PID: 28 Comm: khungtaskd Not tainted 5.15.140 #1
+[  593.772789][   T28] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  593.775245][   T28] Call Trace:
+[  593.776050][   T28]  <TASK>
+[  593.776774][   T28]  dump_stack_lvl+0xfc/0x174
+[  593.778033][   T28]  nmi_cpu_backtrace.cold+0x22/0x16f
+[  593.779328][   T28]  ? lapic_can_unplug_cpu+0x60/0x60
+[  593.780600][   T28]  nmi_trigger_cpumask_backtrace+0x23e/0x290
+[  593.782106][   T28]  watchdog+0xd6f/0x1040
+[  593.783220][   T28]  ? reset_hung_task_detector+0x30/0x30
+[  593.784705][   T28]  ? reset_hung_task_detector+0x30/0x30
+[  593.786159][   T28]  kthread+0x3d0/0x4c0
+[  593.787249][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  593.788619][   T28]  ? set_kthread_struct+0x130/0x130
+[  593.789968][   T28]  ret_from_fork+0x1f/0x30
+[  593.791114][   T28]  </TASK>
+[  593.791977][   T28] Sending NMI from CPU 1 to CPUs 0:
+[  593.793306][    C0] NMI backtrace for cpu 0 skipped: idling at default_idle+0xb/0x10
+[  593.794299][   T28] Kernel panic - not syncing: hung_task: blocked tasks
+[  593.797911][   T28] CPU: 1 PID: 28 Comm: khungtaskd Not tainted 5.15.140 #1
+[  593.799771][   T28] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  593.802401][   T28] Call Trace:
+[  593.803255][   T28]  <TASK>
+[  593.804025][   T28]  dump_stack_lvl+0xfc/0x174
+[  593.805243][   T28]  panic+0x2e1/0x6fa
+[  593.806295][   T28]  ? __warn_printk+0x10f/0x10f
+[  593.807563][   T28]  ? irq_work_claim+0x76/0x90
+[  593.808777][   T28]  ? lapic_can_unplug_cpu+0x60/0x60
+[  593.810164][   T28]  ? irq_work_queue+0x26/0x70
+[  593.811383][   T28]  ? __wake_up_klogd.part.0+0x99/0xf0
+[  593.812771][   T28]  ? watchdog.cold+0x150/0x178
+[  593.814049][   T28]  ? watchdog+0xbbb/0x1040
+[  593.815193][   T28]  watchdog.cold+0x161/0x178
+[  593.816393][   T28]  ? reset_hung_task_detector+0x30/0x30
+[  593.817853][   T28]  ? reset_hung_task_detector+0x30/0x30
+[  593.819278][   T28]  kthread+0x3d0/0x4c0
+[  593.820323][   T28]  ? _raw_spin_unlock_irq+0x1f/0x40
+[  593.821690][   T28]  ? set_kthread_struct+0x130/0x130
+[  593.823045][   T28]  ret_from_fork+0x1f/0x30
+[  593.824236][   T28]  </TASK>
+[  593.825102][   T28] Kernel Offset: disabled
+[  593.826244][   T28] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+21:02:03  Registers:
+info registers vcpu 0
+RAX=000000000018b069 RBX=ffffffff8bcbe600 RCX=ffffffff8990c871 RDX=0000000000000000
+RSI=ffffffff89ec78a0 RDI=ffffffff8a44cce0 RBP=0000000000000000 RSP=ffffffff8bc07e40
+R8 =0000000000000001 R9 =ffff888063c3aa8b R10=ffffed100c787551 R11=0000000000000000
+R12=fffffbfff1797cc0 R13=0000000000000000 R14=0000000000000000 R15=dffffc0000000000
+RIP=ffffffff8993bb5b RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888063c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=000000000046d4d0 CR3=0000000107f6f000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=a8250441f64d2082ce6ff238c8464ad4 XMM01=2ef383f69e04ab3425ffae72e7dba564
+XMM02=7889081bd05a66fae29511dbbcf4cdf8 XMM03=c2807b3cb2aa9d89d99d07f4fe05e70d
+XMM04=00000000000000000000000000000121 XMM05=00000000000000009c0a54793ed1aca4
+XMM06=0000000000000000000000009c0a5479 XMM07=9c0a54793ed1aca40000012188c82c29
+XMM08=4000000066000000c600000000000000 XMM09=00000000000000000000000000000000
+XMM10=0d1101a268361fbdcb876f0f562cc314 XMM11=ac1469a04a9e2ad43bd6a7ca19cfc15e
+XMM12=0d0c0f0e09080b0a0504070601000302 XMM13=0c0f0e0d080b0a090407060500030201
+XMM14=000000000000000000000000000005c0 XMM15=00000000000000000000000000000040
+info registers vcpu 1
+RAX=000000000000003a RBX=00000000000003f8 RCX=0000000000000000 RDX=00000000000003f8
+RSI=ffffffff8442df51 RDI=ffffffff91610220 RBP=ffffffff916101e0 RSP=ffffc9000081f980
+R8 =0000000000000001 R9 =0000000000000003 R10=000000000000001f R11=6f776b3a6b736174
+R12=0000000000000000 R13=000000000000003a R14=ffffffff8442e960 R15=dffffc0000000000
+RIP=ffffffff8442df7a RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888135c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=000000001ffffc40 CR3=0000000112d22000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00000000000f42400000000000000000 XMM01=000000000000000000000000000f4240
+XMM02=ffffffffffffffffffffffffffffffff XMM03=ffffffffffffffffffffffffffffffff
+XMM04=ffffffffffffffffffffffffffffffff XMM05=ffffffffffffffffffffffffffffffff
+XMM06=ffffffffffffffffffffffffffffffff XMM07=000000000000000000e800a800000000
+XMM08=00000000000000000000000000000000 XMM09=00000000000000000000000000000000
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

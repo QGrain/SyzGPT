@@ -1,0 +1,560 @@
+Extracting prog: 42m20.835918689s
+Minimizing prog: 1h12m31.384456365s
+Simplifying prog options: 0s
+Extracting C: 1m43.347298571s
+Simplifying C: 1h8m54.712876296s
+
+
+639 programs, 4 VMs, timeouts [6m0s]
+extracting reproducer from 639 programs
+single: executing 8 programs separately with timeout 6m0s
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): epoll_create-socket$nl_route-epoll_ctl$EPOLL_CTL_ADD
+detailed listing:
+executing program 0:
+r0 = epoll_create(0x3)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+epoll_ctl$EPOLL_CTL_ADD(r0, 0x1, r1, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): epoll_create-socket$nl_route-epoll_ctl$EPOLL_CTL_ADD-epoll_create-epoll_ctl$EPOLL_CTL_ADD
+detailed listing:
+executing program 0:
+r0 = epoll_create(0x3)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+epoll_ctl$EPOLL_CTL_ADD(r0, 0x1, r1, 0x0)
+r2 = epoll_create(0x4)
+epoll_ctl$EPOLL_CTL_ADD(r2, 0x1, r0, &(0x7f0000000000))
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket$inet6-sendto$inet6-listen-accept4
+detailed listing:
+executing program 0:
+r0 = socket$inet6(0xa, 0x1, 0x8010000000000084)
+sendto$inet6(r0, &(0x7f0000bc2000)="8190e2b180b2e9160f8fab58f37d7fc95953350553f5f86d2144d9b788cde28bbfe41fd7cfeb66d2a836003077f7d08144db1d41fa7f1255dff1fe48d081fadc68a93a7adde602d9d01034199ebd5e4b0ed5358a454cc0916d6c0d3f00a7064305ccd46be9553b978243ab9b8e6108f50d9ce98a064592b4a1e4c65d178ed27971639ee2611147ce5f1a3f1ddf213fe4dbb0e1a9e4f307b80ce853ead942049f8c56dc2b880eb0e9e66c679e2b5c2299bd20b39433033ae7119fc61baaab9e67a2d1b24c8f416f2da9a7324e456a1230efeade28f89d03cdee5d867d155e232bb8447512e4a9baee76fd436acd568f285e08fede7e556b7e6f674c34bbc115ec3d94d3928a47ef03ac3e29a0bdb3d5d9eba7bba7d9fd25e76daee480f39831fabbeddd3cd2291d11ba8a2fdafd0387919e2930ba5e91552811b3b90252420a6608fbe93ead3ee66a9283ffb109b32059a9e2fce77fffefdfb7d99b6a61887e320bc019d2463c1a665088be9ca6b9f8c2fe56e5b861cd6f4897a1386d294c73e1c5350ca74b43280f898a30cac1ec91ead092123de6f2b6e9165da84ec60f1c682d7288a75819779f6b071dbf080beee6408268e876adf49fa41231bfb907755e1f2a9ea159b1c09032e797046139547c0fb88167a7780d689106e0303a2c1c9f057776b4f7bd62064f72ae1a080e39e5a1d467f774298f755f64c451f9e01aed896ed84ab1ac72b1448bef1495774573f30131f3b02a35f74222430251b5b1246cdef5b7535f3d32d5ae315d2a0a8f3485d07c257d3f3da00ef2a276db61537e8e0b520a1b1c069d13682a73767ead8a83904873eff3b427f7c2fe6e59196aa2e98b947c996816fe6f", 0x269, 0x0, &(0x7f0000606fe4)={0xa, 0x0, 0x0, @local={0xfe, 0x80, '\x00', 0xffffffffffffffff}, 0x1}, 0x1c)
+listen(r0, 0x7)
+accept4(r0, 0x0, &(0x7f0000192000)=0xfffffffffffffe75, 0x80000)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket$nl_generic-syz_genetlink_get_family_id$nl80211-ioctl$sock_SIOCGIFINDEX_80211-sendmsg$NL80211_CMD_SET_INTERFACE-socket$nl_generic-syz_genetlink_get_family_id$nl80211-ioctl$sock_SIOCGIFINDEX_80211-sendmsg$NL80211_CMD_SET_INTERFACE
+detailed listing:
+executing program 0:
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000200), 0xffffffffffffffff)
+ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000700)={'wlan0\x00', <r2=>0x0})
+sendmsg$NL80211_CMD_SET_INTERFACE(r0, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000240)={0x24, r1, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r2}, @void}}, [@NL80211_ATTR_IFTYPE={0x8}]}, 0x24}}, 0x0)
+r3 = socket$nl_generic(0x10, 0x3, 0x10)
+r4 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000200), 0xffffffffffffffff)
+ioctl$sock_SIOCGIFINDEX_80211(r3, 0x8933, &(0x7f0000000700)={'wlan0\x00', <r5=>0x0})
+sendmsg$NL80211_CMD_SET_INTERFACE(r3, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000240)={0x24, r4, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r5}, @void}}, [@NL80211_ATTR_IFTYPE={0x8, 0x5, 0x3}]}, 0x24}}, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$kvm-ioctl$KVM_CREATE_VM-ioctl$KVM_CREATE_IRQCHIP-ioctl$KVM_CREATE_VCPU-ioctl$KVM_SET_MP_STATE-ioctl$KVM_SET_CPUID-syz_kvm_setup_cpu$x86
+detailed listing:
+executing program 0:
+r0 = openat$kvm(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+ioctl$KVM_CREATE_IRQCHIP(r1, 0xae60)
+r2 = ioctl$KVM_CREATE_VCPU(r1, 0xae41, 0x0)
+ioctl$KVM_SET_MP_STATE(r2, 0x4004ae99, 0x0)
+ioctl$KVM_SET_CPUID(r2, 0xae80, 0x0)
+syz_kvm_setup_cpu$x86(r1, 0xffffffffffffffff, &(0x7f0000fe8000/0x18000)=nil, 0x0, 0x0, 0x0, 0x0, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket$inet_tcp-setsockopt$IPT_SO_SET_REPLACE
+detailed listing:
+executing program 0:
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$IPT_SO_SET_REPLACE(r0, 0x4000000000000, 0x40, &(0x7f0000000ac0)=ANY=[@ANYBLOB="72617700000000000000000000000000000000000000000000000000000000000200000003000000480300009000000000000000000000000000000000000000b0020000b0020000b0020000b0020000b002000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000023000000000000000000000000000000000000000000000000000000000000000000000000000000000000700090000000000000000206000000000000000000000000200054524143450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0012002000000000000ebffffff000000000000000000005001686173686c696d6974000000000000000000000000000000000000000002766c616e3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f50f000000000000000000000000d11e51fca9bcfb3b000003000000000000000000000000000000600053455400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000980000000000000000000000000000000005a30000002800000000000000000000000000000000000000000000000000000000000000feffffff00"], 0x3a8)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600)={'team0\x00', <r1=>0x0})
+r2 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r2, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f0000000000)=@newqdisc={0xd4, 0x24, 0xf0b, 0x0, 0x0, {0x0, 0x0, 0x12, r1, {}, {0xffff, 0xffff}}, [@qdisc_kind_options=@q_taprio={{0xb}, {0x9c, 0x2, [@TCA_TAPRIO_ATTR_PRIOMAP={0x56, 0x1, {0x2, [], 0x0, [0x8, 0x4], [0x0, 0x8]}}, @TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST={0x38, 0x2, 0x0, 0x1, [{0x34, 0x1, 0x0, 0x1, [@TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x80000001}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x7}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x70d9}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x7b}]}]}, @TCA_TAPRIO_ATTR_SCHED_CLOCKID={0x8}]}}, @TCA_RATE={0x6, 0x5, {0x9}}]}, 0xd4}}, 0x0)
+
+program crashed: INFO: rcu detected stall in batadv_purge_orig
+single: successfully extracted reproducer
+found reproducer with 4 syscalls
+minimizing guilty program
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600))
+socket$netlink(0x10, 0x3, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600)={'team0\x00', <r1=>0x0})
+sendmsg$nl_route_sched(0xffffffffffffffff, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f0000000000)=@newqdisc={0xd4, 0x24, 0xf0b, 0x0, 0x0, {0x0, 0x0, 0x12, r1, {}, {0xffff, 0xffff}}, [@qdisc_kind_options=@q_taprio={{0xb}, {0x9c, 0x2, [@TCA_TAPRIO_ATTR_PRIOMAP={0x56, 0x1, {0x2, [], 0x0, [0x8, 0x4], [0x0, 0x8]}}, @TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST={0x38, 0x2, 0x0, 0x1, [{0x34, 0x1, 0x0, 0x1, [@TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x80000001}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x7}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x70d9}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x7b}]}]}, @TCA_TAPRIO_ATTR_SCHED_CLOCKID={0x8}]}}, @TCA_RATE={0x6, 0x5, {0x9}}]}, 0xd4}}, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+socket(0x11, 0x800000003, 0x0)
+r0 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r0, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f0000000000)=@newqdisc={0xd4, 0x24, 0xf0b, 0x0, 0x0, {0x0, 0x0, 0x12, 0x0, {}, {0xffff, 0xffff}}, [@qdisc_kind_options=@q_taprio={{0xb}, {0x9c, 0x2, [@TCA_TAPRIO_ATTR_PRIOMAP={0x56, 0x1, {0x2, [], 0x0, [0x8, 0x4], [0x0, 0x8]}}, @TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST={0x38, 0x2, 0x0, 0x1, [{0x34, 0x1, 0x0, 0x1, [@TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x80000001}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x7}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x70d9}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x7b}]}]}, @TCA_TAPRIO_ATTR_SCHED_CLOCKID={0x8}]}}, @TCA_RATE={0x6, 0x5, {0x9}}]}, 0xd4}}, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+ioctl$ifreq_SIOCGIFINDEX_team(0xffffffffffffffff, 0x8933, &(0x7f0000000600)={'team0\x00', <r0=>0x0})
+r1 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r1, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f0000000000)=@newqdisc={0xd4, 0x24, 0xf0b, 0x0, 0x0, {0x0, 0x0, 0x12, r0, {}, {0xffff, 0xffff}}, [@qdisc_kind_options=@q_taprio={{0xb}, {0x9c, 0x2, [@TCA_TAPRIO_ATTR_PRIOMAP={0x56, 0x1, {0x2, [], 0x0, [0x8, 0x4], [0x0, 0x8]}}, @TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST={0x38, 0x2, 0x0, 0x1, [{0x34, 0x1, 0x0, 0x1, [@TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x80000001}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x7}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x70d9}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x7b}]}]}, @TCA_TAPRIO_ATTR_SCHED_CLOCKID={0x8}]}}, @TCA_RATE={0x6, 0x5, {0x9}}]}, 0xd4}}, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, 0x0)
+r1 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r1, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={&(0x7f0000000000)=@newqdisc={0xd4, 0x24, 0xf0b, 0x0, 0x0, {0x0, 0x0, 0x12, 0x0, {}, {0xffff, 0xffff}}, [@qdisc_kind_options=@q_taprio={{0xb}, {0x9c, 0x2, [@TCA_TAPRIO_ATTR_PRIOMAP={0x56, 0x1, {0x2, [], 0x0, [0x8, 0x4], [0x0, 0x8]}}, @TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST={0x38, 0x2, 0x0, 0x1, [{0x34, 0x1, 0x0, 0x1, [@TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x80000001}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x4}, @TCA_TAPRIO_SCHED_ENTRY_GATE_MASK={0x8, 0x3, 0x7}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x70d9}, @TCA_TAPRIO_SCHED_ENTRY_INTERVAL={0x8, 0x4, 0x7b}]}]}, @TCA_TAPRIO_ATTR_SCHED_CLOCKID={0x8}]}}, @TCA_RATE={0x6, 0x5, {0x9}}]}, 0xd4}}, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600))
+r1 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r1, 0x0, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600))
+r1 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r1, &(0x7f00000007c0)={0x0, 0x0, 0x0}, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+detailed listing:
+executing program 0:
+r0 = socket(0x11, 0x800000003, 0x0)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000000600))
+r1 = socket$netlink(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched(r1, &(0x7f00000007c0)={0x0, 0x0, &(0x7f0000000780)={0x0}}, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in tc_modify_qdisc
+simplifying C reproducer
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in tc_modify_qdisc
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in wg_packet_encrypt_worker
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in batadv_tt_purge
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in wg_packet_tx_worker
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in smp_call_function
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in wg_ratelimiter_gc_entries
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in call_usermodehelper_exec_async
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in corrupted
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in wg_ratelimiter_gc_entries
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in neigh_periodic_work
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket-ioctl$ifreq_SIOCGIFINDEX_team-socket$netlink-sendmsg$nl_route_sched
+program crashed: INFO: rcu detected stall in sys_getdents64
+reproducing took 3h5m30.280589932s
+repro crashed as (corrupted=false):
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...!: (1 ticks this GP) idle=ff7c/1/0x4000000000000000 softirq=17904/17904 fqs=0
+rcu: 	(detected by 1, t=10508 jiffies, g=14181, q=764 ncpus=2)
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:check_kcov_mode kernel/kcov.c:173 [inline]
+RIP: 0010:write_comp_data kernel/kcov.c:236 [inline]
+RIP: 0010:__sanitizer_cov_trace_const_cmp4+0x1e/0x90 kernel/kcov.c:304
+Code: 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 4c 8b 04 24 65 48 8b 15 e0 8b 7a 7e 65 8b 05 e1 8b 7a 7e a9 00 01 ff 00 74 10 <a9> 00 01 00 00 74 5b 83 ba 04 16 00 00 00 74 52 8b 82 e0 15 00 00
+RSP: 0018:ffffc90000007c88 EFLAGS: 00000006
+RAX: 0000000000010002 RBX: 0000000000000001 RCX: ffff888024235940
+RDX: ffff888024235940 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffff88801a260000 R08: ffffffff88d4f13e R09: fffff52000000f80
+R10: dffffc0000000000 R11: fffff52000000f80 R12: 0000000000000002
+R13: ffffffff88d4f080 R14: ffff88802a880340 R15: dffffc0000000000
+FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <IRQ>
+ advance_sched+0xbe/0xc80 net/sched/sch_taprio.c:936
+ __run_hrtimer kernel/time/hrtimer.c:1688 [inline]
+ __hrtimer_run_queues+0x59f/0xd10 kernel/time/hrtimer.c:1752
+ hrtimer_interrupt+0x396/0x980 kernel/time/hrtimer.c:1814
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1098 [inline]
+ __sysvec_apic_timer_interrupt+0x13f/0x480 arch/x86/kernel/apic/apic.c:1115
+ sysvec_apic_timer_interrupt+0x90/0xb0 arch/x86/kernel/apic/apic.c:1109
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:645
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120 kernel/locking/spinlock.c:194
+Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+ __debug_check_no_obj_freed lib/debugobjects.c:1042 [inline]
+ debug_check_no_obj_freed+0x39e/0x420 lib/debugobjects.c:1063
+ free_pages_prepare mm/page_alloc.c:1167 [inline]
+ free_unref_page_prepare+0x241/0xa30 mm/page_alloc.c:2348
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2443
+ discard_slab mm/slub.c:2108 [inline]
+ __unfreeze_partials+0x1e4/0x220 mm/slub.c:2647
+ put_cpu_partial+0x106/0x170 mm/slub.c:2723
+ __slab_free+0x29c/0x370 mm/slub.c:3671
+ qlist_free_all+0x22/0x60 mm/kasan/quarantine.c:185
+ kasan_quarantine_reduce+0x14b/0x160 mm/kasan/quarantine.c:292
+ ____kasan_kmalloc mm/kasan/common.c:340 [inline]
+ __kasan_kmalloc+0x23/0xb0 mm/kasan/common.c:383
+ kmalloc include/linux/slab.h:582 [inline]
+ kzalloc include/linux/slab.h:703 [inline]
+ ext4_htree_create_dir_info fs/ext4/dir.c:438 [inline]
+ ext4_dx_readdir fs/ext4/dir.c:556 [inline]
+ ext4_readdir+0x526/0x3730 fs/ext4/dir.c:142
+ iterate_dir+0x231/0x5a0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1c0/0x4a0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f66544eef07
+Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+ </TASK>
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.777 msecs
+rcu: rcu_preempt kthread timer wakeup didn't happen for 10507 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+rcu: 	Possible timer handling issue on cpu=0 timer-softirq=14450
+rcu: rcu_preempt kthread starved for 10508 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I stack:26160 pid:18    ppid:2      flags:0x00004000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5381 [inline]
+ __schedule+0x1887/0x4920 kernel/sched/core.c:6710
+ schedule+0xc3/0x180 kernel/sched/core.c:6786
+ schedule_timeout+0x1ae/0x300 kernel/time/timer.c:2167
+ rcu_gp_fqs_loop+0x29f/0xff0 kernel/rcu/tree.c:1609
+ rcu_gp_kthread+0x9c/0x380 kernel/rcu/tree.c:1808
+ kthread+0x2b8/0x350 kernel/kthread.c:389
+ ret_from_fork+0x2e/0x60 arch/x86/kernel/process.c:145
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:296
+RIP: 0000:0x0
+Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+RSP: 0000:0000000000000000 EFLAGS: 00000000 ORIG_RAX: 0000000000000000
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:__lock_acquire+0x6c6/0x7ef0 kernel/locking/lockdep.c:5094
+Code: 10 00 48 8b 54 24 60 0f 84 b7 05 00 00 31 db 48 81 c3 c9 00 00 00 48 89 d8 48 c1 e8 03 42 0f b6 04 00 84 c0 0f 85 1d 14 00 00 <48> 8b 44 24 38 48 8d 04 d0 48 89 44 24 78 45 84 f6 0f 84 84 04 00
+RSP: 0018:ffffc90000007700 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffffffff902ea399 RCX: ffffffff816902c7
+RDX: 000000000000000f RSI: 0000000000000008 RDI: ffffffff90614300
+RBP: ffffc900000079c8 R08: dffffc0000000000 R09: 1ffffffff20c2860
+R10: dffffc0000000000 R11: fffffbfff20c2861 R12: ffff888024236400
+R13: ffff888024235940 R14: 0000000000000002 R15: ffff8880242364a0
+FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <IRQ>
+ lock_acquire+0x1b9/0x4f0 kernel/locking/lockdep.c:5761
+ __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0xb7/0x100 kernel/locking/spinlock.c:162
+ debug_object_activate+0x161/0x530 lib/debugobjects.c:717
+ debug_hrtimer_activate kernel/time/hrtimer.c:422 [inline]
+ debug_activate kernel/time/hrtimer.c:477 [inline]
+ enqueue_hrtimer+0x30/0x310 kernel/time/hrtimer.c:1087
+ __run_hrtimer kernel/time/hrtimer.c:1705 [inline]
+ __hrtimer_run_queues+0x6c0/0xd10 kernel/time/hrtimer.c:1752
+ hrtimer_interrupt+0x396/0x980 kernel/time/hrtimer.c:1814
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1098 [inline]
+ __sysvec_apic_timer_interrupt+0x13f/0x480 arch/x86/kernel/apic/apic.c:1115
+ sysvec_apic_timer_interrupt+0x90/0xb0 arch/x86/kernel/apic/apic.c:1109
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:645
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120 kernel/locking/spinlock.c:194
+Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+ __debug_check_no_obj_freed lib/debugobjects.c:1042 [inline]
+ debug_check_no_obj_freed+0x39e/0x420 lib/debugobjects.c:1063
+ free_pages_prepare mm/page_alloc.c:1167 [inline]
+ free_unref_page_prepare+0x241/0xa30 mm/page_alloc.c:2348
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2443
+ discard_slab mm/slub.c:2108 [inline]
+ __unfreeze_partials+0x1e4/0x220 mm/slub.c:2647
+ put_cpu_partial+0x106/0x170 mm/slub.c:2723
+ __slab_free+0x29c/0x370 mm/slub.c:3671
+ qlist_free_all+0x22/0x60 mm/kasan/quarantine.c:185
+ kasan_quarantine_reduce+0x14b/0x160 mm/kasan/quarantine.c:292
+ ____kasan_kmalloc mm/kasan/common.c:340 [inline]
+ __kasan_kmalloc+0x23/0xb0 mm/kasan/common.c:383
+ kmalloc include/linux/slab.h:582 [inline]
+ kzalloc include/linux/slab.h:703 [inline]
+ ext4_htree_create_dir_info fs/ext4/dir.c:438 [inline]
+ ext4_dx_readdir fs/ext4/dir.c:556 [inline]
+ ext4_readdir+0x526/0x3730 fs/ext4/dir.c:142
+ iterate_dir+0x231/0x5a0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1c0/0x4a0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f66544eef07
+Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+ </TASK>
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 2.230 msecs
+
+final repro crashed as (corrupted=false):
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...!: (1 ticks this GP) idle=ff7c/1/0x4000000000000000 softirq=17904/17904 fqs=0
+rcu: 	(detected by 1, t=10508 jiffies, g=14181, q=764 ncpus=2)
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:check_kcov_mode kernel/kcov.c:173 [inline]
+RIP: 0010:write_comp_data kernel/kcov.c:236 [inline]
+RIP: 0010:__sanitizer_cov_trace_const_cmp4+0x1e/0x90 kernel/kcov.c:304
+Code: 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 4c 8b 04 24 65 48 8b 15 e0 8b 7a 7e 65 8b 05 e1 8b 7a 7e a9 00 01 ff 00 74 10 <a9> 00 01 00 00 74 5b 83 ba 04 16 00 00 00 74 52 8b 82 e0 15 00 00
+RSP: 0018:ffffc90000007c88 EFLAGS: 00000006
+RAX: 0000000000010002 RBX: 0000000000000001 RCX: ffff888024235940
+RDX: ffff888024235940 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffff88801a260000 R08: ffffffff88d4f13e R09: fffff52000000f80
+R10: dffffc0000000000 R11: fffff52000000f80 R12: 0000000000000002
+R13: ffffffff88d4f080 R14: ffff88802a880340 R15: dffffc0000000000
+FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <IRQ>
+ advance_sched+0xbe/0xc80 net/sched/sch_taprio.c:936
+ __run_hrtimer kernel/time/hrtimer.c:1688 [inline]
+ __hrtimer_run_queues+0x59f/0xd10 kernel/time/hrtimer.c:1752
+ hrtimer_interrupt+0x396/0x980 kernel/time/hrtimer.c:1814
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1098 [inline]
+ __sysvec_apic_timer_interrupt+0x13f/0x480 arch/x86/kernel/apic/apic.c:1115
+ sysvec_apic_timer_interrupt+0x90/0xb0 arch/x86/kernel/apic/apic.c:1109
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:645
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120 kernel/locking/spinlock.c:194
+Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+ __debug_check_no_obj_freed lib/debugobjects.c:1042 [inline]
+ debug_check_no_obj_freed+0x39e/0x420 lib/debugobjects.c:1063
+ free_pages_prepare mm/page_alloc.c:1167 [inline]
+ free_unref_page_prepare+0x241/0xa30 mm/page_alloc.c:2348
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2443
+ discard_slab mm/slub.c:2108 [inline]
+ __unfreeze_partials+0x1e4/0x220 mm/slub.c:2647
+ put_cpu_partial+0x106/0x170 mm/slub.c:2723
+ __slab_free+0x29c/0x370 mm/slub.c:3671
+ qlist_free_all+0x22/0x60 mm/kasan/quarantine.c:185
+ kasan_quarantine_reduce+0x14b/0x160 mm/kasan/quarantine.c:292
+ ____kasan_kmalloc mm/kasan/common.c:340 [inline]
+ __kasan_kmalloc+0x23/0xb0 mm/kasan/common.c:383
+ kmalloc include/linux/slab.h:582 [inline]
+ kzalloc include/linux/slab.h:703 [inline]
+ ext4_htree_create_dir_info fs/ext4/dir.c:438 [inline]
+ ext4_dx_readdir fs/ext4/dir.c:556 [inline]
+ ext4_readdir+0x526/0x3730 fs/ext4/dir.c:142
+ iterate_dir+0x231/0x5a0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1c0/0x4a0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f66544eef07
+Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+ </TASK>
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.777 msecs
+rcu: rcu_preempt kthread timer wakeup didn't happen for 10507 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+rcu: 	Possible timer handling issue on cpu=0 timer-softirq=14450
+rcu: rcu_preempt kthread starved for 10508 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I stack:26160 pid:18    ppid:2      flags:0x00004000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5381 [inline]
+ __schedule+0x1887/0x4920 kernel/sched/core.c:6710
+ schedule+0xc3/0x180 kernel/sched/core.c:6786
+ schedule_timeout+0x1ae/0x300 kernel/time/timer.c:2167
+ rcu_gp_fqs_loop+0x29f/0xff0 kernel/rcu/tree.c:1609
+ rcu_gp_kthread+0x9c/0x380 kernel/rcu/tree.c:1808
+ kthread+0x2b8/0x350 kernel/kthread.c:389
+ ret_from_fork+0x2e/0x60 arch/x86/kernel/process.c:145
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:296
+RIP: 0000:0x0
+Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+RSP: 0000:0000000000000000 EFLAGS: 00000000 ORIG_RAX: 0000000000000000
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:__lock_acquire+0x6c6/0x7ef0 kernel/locking/lockdep.c:5094
+Code: 10 00 48 8b 54 24 60 0f 84 b7 05 00 00 31 db 48 81 c3 c9 00 00 00 48 89 d8 48 c1 e8 03 42 0f b6 04 00 84 c0 0f 85 1d 14 00 00 <48> 8b 44 24 38 48 8d 04 d0 48 89 44 24 78 45 84 f6 0f 84 84 04 00
+RSP: 0018:ffffc90000007700 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffffffff902ea399 RCX: ffffffff816902c7
+RDX: 000000000000000f RSI: 0000000000000008 RDI: ffffffff90614300
+RBP: ffffc900000079c8 R08: dffffc0000000000 R09: 1ffffffff20c2860
+R10: dffffc0000000000 R11: fffffbfff20c2861 R12: ffff888024236400
+R13: ffff888024235940 R14: 0000000000000002 R15: ffff8880242364a0
+FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <IRQ>
+ lock_acquire+0x1b9/0x4f0 kernel/locking/lockdep.c:5761
+ __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0xb7/0x100 kernel/locking/spinlock.c:162
+ debug_object_activate+0x161/0x530 lib/debugobjects.c:717
+ debug_hrtimer_activate kernel/time/hrtimer.c:422 [inline]
+ debug_activate kernel/time/hrtimer.c:477 [inline]
+ enqueue_hrtimer+0x30/0x310 kernel/time/hrtimer.c:1087
+ __run_hrtimer kernel/time/hrtimer.c:1705 [inline]
+ __hrtimer_run_queues+0x6c0/0xd10 kernel/time/hrtimer.c:1752
+ hrtimer_interrupt+0x396/0x980 kernel/time/hrtimer.c:1814
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1098 [inline]
+ __sysvec_apic_timer_interrupt+0x13f/0x480 arch/x86/kernel/apic/apic.c:1115
+ sysvec_apic_timer_interrupt+0x90/0xb0 arch/x86/kernel/apic/apic.c:1109
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:645
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120 kernel/locking/spinlock.c:194
+Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+ __debug_check_no_obj_freed lib/debugobjects.c:1042 [inline]
+ debug_check_no_obj_freed+0x39e/0x420 lib/debugobjects.c:1063
+ free_pages_prepare mm/page_alloc.c:1167 [inline]
+ free_unref_page_prepare+0x241/0xa30 mm/page_alloc.c:2348
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2443
+ discard_slab mm/slub.c:2108 [inline]
+ __unfreeze_partials+0x1e4/0x220 mm/slub.c:2647
+ put_cpu_partial+0x106/0x170 mm/slub.c:2723
+ __slab_free+0x29c/0x370 mm/slub.c:3671
+ qlist_free_all+0x22/0x60 mm/kasan/quarantine.c:185
+ kasan_quarantine_reduce+0x14b/0x160 mm/kasan/quarantine.c:292
+ ____kasan_kmalloc mm/kasan/common.c:340 [inline]
+ __kasan_kmalloc+0x23/0xb0 mm/kasan/common.c:383
+ kmalloc include/linux/slab.h:582 [inline]
+ kzalloc include/linux/slab.h:703 [inline]
+ ext4_htree_create_dir_info fs/ext4/dir.c:438 [inline]
+ ext4_dx_readdir fs/ext4/dir.c:556 [inline]
+ ext4_readdir+0x526/0x3730 fs/ext4/dir.c:142
+ iterate_dir+0x231/0x5a0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1c0/0x4a0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f66544eef07
+Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+ </TASK>
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 2.230 msecs
+

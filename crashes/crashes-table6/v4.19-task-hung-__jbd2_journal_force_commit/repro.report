@@ -1,0 +1,320 @@
+vhci_hcd: disconnect device
+vhci_hcd vhci_hcd.0: pdev(3) rhport(6) sockfd(81)
+vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+vhci_hcd: stop threads
+vhci_hcd: release socket
+INFO: task systemd-journal:4727 blocked for more than 140 seconds.
+      Not tainted 4.19.300 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+vhci_hcd: disconnect device
+systemd-journal D25392  4727      1 0x00000304
+Call Trace:
+ context_switch g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:2834 [inline]
+ __schedule+0x8a2/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3522
+vhci_hcd vhci_hcd.0: Device attached
+vhci_hcd: stop threads
+vhci_hcd vhci_hcd.0: Device attached
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ jbd2_log_wait_commit+0x2d1/0x430 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:728
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+vhci_hcd: stop threads
+vhci_hcd vhci_hcd.0: port 7 already used
+vhci_hcd vhci_hcd.0: port 6 already used
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+vhci_hcd vhci_hcd.0: pdev(3) rhport(7) sockfd(83)
+vhci_hcd: stop threads
+vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+vhci_hcd: release socket
+vhci_hcd vhci_hcd.0: Device attached
+ __jbd2_journal_force_commit+0x103/0x230 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:579
+vhci_hcd: disconnect device
+ jbd2_journal_force_commit+0x48/0x70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:614
+ ext4_journal_force_commit g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/ext4_jbd2.h:359 [inline]
+ ext4_force_commit+0xb1/0xe0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/super.c:5138
+vhci_hcd vhci_hcd.0: port 0 already used
+ ext4_sync_file+0x338/0x1280 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/fsync.c:144
+vhci_hcd: stop threads
+ vfs_fsync_range+0x13a/0x220 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:197
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+vhci_hcd vhci_hcd.0: pdev(7) rhport(0) sockfd(85)
+vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+vhci_hcd vhci_hcd.0: Device attached
+vhci_hcd vhci_hcd.0: port 0 already used
+ vfs_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:211 [inline]
+ do_fsync+0x4d/0x90 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:221
+vhci_hcd: vhci_device speed not set
+ __do_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:229 [inline]
+ __se_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227 [inline]
+ __x64_sys_fsync+0x2f/0x40 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227
+vhci_hcd vhci_hcd.0: port 7 already used
+vhci_hcd: stop threads
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+vhci_hcd: connection closed
+RIP: 0033:0x7fd2c8e3402b
+Code: Bad RIP value.
+RSP: 002b:00007ffe78b1e250 EFLAGS: 00000293 ORIG_RAX: 000000000000004a
+RAX: ffffffffffffffda RBX: 0000000000000017 RCX: 00007fd2c8e3402b
+vhci_hcd: connection closed
+RDX: 0000000000000007 RSI: 0000000000000001 RDI: 0000000000000014
+RBP: 00005653e3988190 R08: 0000000000000000 R09: 00007fd2c8f10be0
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000000
+R13: 00005653e3954798 R14: 0000000000000001 R15: ffffffffffffffff
+vhci_hcd vhci_hcd.0: port 0 already used
+
+Showing all locks held in the system:
+5 locks held by kworker/1:0/20:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+vhci_hcd: stop threads
+ #1: 000000009b63c63e ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd: release socket
+ #2: 0000000037eb3e9d (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 0000000037eb3e9d (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+vhci_hcd: disconnect device
+ #3: 00000000bde56ff5 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 00000000bde56ff5 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 00000000bde56ff5 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 00000000bde56ff5 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 00000000bde56ff5 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 00000000ba400aa5 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 00000000ba400aa5 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 00000000ba400aa5 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 00000000ba400aa5 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+4 locks held by kworker/u6:2/66:
+ #0: 000000007b5a000e ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000097d18879 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd: stop threads
+ #2: 0000000041d6ea93 (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+vhci_hcd: release socket
+ #3: 00000000b1e9c58d (&sbi->s_writepages_rwsem){.+.+}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by khungtaskd/1575:
+ #0: 000000009400b19b (rcu_read_lock){....}, at: debug_show_all_locks+0x53/0x265 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/locking/lockdep.c:4441
+vhci_hcd: disconnect device
+5 locks held by kworker/1:2/3043:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000001fac1c03 ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd: stop threads
+vhci_hcd: release socket
+ #2: 00000000e04f5c13 (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 00000000e04f5c13 (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+vhci_hcd: disconnect device
+ #3: 00000000f731b601 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 00000000f731b601 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 00000000f731b601 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 00000000f731b601 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 00000000f731b601 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 00000000b44cda54 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 00000000b44cda54 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 00000000b44cda54 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 00000000b44cda54 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+vhci_hcd: stop threads
+1 lock held by in:imklog/7583:
+vhci_hcd: release socket
+ #0: 0000000007e817ee (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+vhci_hcd: disconnect device
+5 locks held by kworker/1:3/8024:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000096e58f40 ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 00000000ea0ca60b (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 00000000ea0ca60b (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+vhci_hcd: stop threads
+ #3: 000000000890adf6 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 000000000890adf6 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 000000000890adf6 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 000000000890adf6 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 000000000890adf6 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 00000000ef89f19e (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 00000000ef89f19e (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 00000000ef89f19e (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 00000000ef89f19e (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+5 locks held by kworker/1:1/8223:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+vhci_hcd: release socket
+ #1: 000000000db09475 ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd: disconnect device
+ #2: 0000000042d606cd (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 0000000042d606cd (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+vhci_hcd: stop threads
+ #3: 000000005d274490 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 000000005d274490 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 000000005d274490 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 000000005d274490 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 000000005d274490 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+vhci_hcd: release socket
+ #4: 0000000095020a33 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 0000000095020a33 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 0000000095020a33 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 0000000095020a33 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+5 locks held by kworker/0:1/8228:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000ca350036 ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd: disconnect device
+ #2: 0000000038283e84 (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 0000000038283e84 (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+ #3: 00000000b5b738c5 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 00000000b5b738c5 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 00000000b5b738c5 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 00000000b5b738c5 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 00000000b5b738c5 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 00000000f0710745 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 00000000f0710745 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 00000000f0710745 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 00000000f0710745 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+5 locks held by kworker/0:2/8263:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+vhci_hcd: stop threads
+ #1: 000000009f735ccd ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 00000000b89f9406 (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 00000000b89f9406 (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+ #3: 0000000069200922 (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 0000000069200922 (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 0000000069200922 (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 0000000069200922 (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 0000000069200922 (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+vhci_hcd: release socket
+ #4: 00000000ef97d7c2 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 00000000ef97d7c2 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 00000000ef97d7c2 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 00000000ef97d7c2 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+2 locks held by kworker/u6:0/8269:
+ #0: 000000007b5a000e ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000758d7d87 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+3 locks held by kworker/u6:1/8854:
+ #0: 000000007b5a000e ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000005c6f943c ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 00000000c3a1870b (&type->s_umount_key#42){.+.+}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+5 locks held by kworker/1:4/9811:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000071064703 ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 00000000ba760c20 (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 00000000ba760c20 (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+ #3: 00000000efa020dc (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 00000000efa020dc (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 00000000efa020dc (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 00000000efa020dc (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 00000000efa020dc (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 000000005973d107 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 000000005973d107 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 000000005973d107 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 000000005973d107 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+5 locks held by kworker/0:4/9812:
+ #0: 00000000b537202d ((wq_completion)"usb_hub_wq"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000e573497c ((work_completion)(&hub->events)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 000000006ddf763b (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #2: 000000006ddf763b (&dev->mutex){....}, at: hub_event+0x11e/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5422
+vhci_hcd: disconnect device
+ #3: 00000000767d5dcf (&port_dev->status_lock){+.+.}, at: usb_lock_port g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:3001 [inline]
+ #3: 00000000767d5dcf (&port_dev->status_lock){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5064 [inline]
+ #3: 00000000767d5dcf (&port_dev->status_lock){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #3: 00000000767d5dcf (&port_dev->status_lock){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #3: 00000000767d5dcf (&port_dev->status_lock){+.+.}, at: hub_event+0xeff/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+ #4: 0000000041d91133 (hcd->address0_mutex){+.+.}, at: hub_port_connect g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5065 [inline]
+ #4: 0000000041d91133 (hcd->address0_mutex){+.+.}, at: hub_port_connect_change g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5288 [inline]
+ #4: 0000000041d91133 (hcd->address0_mutex){+.+.}, at: port_event g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5396 [inline]
+ #4: 0000000041d91133 (hcd->address0_mutex){+.+.}, at: hub_event+0xf28/0x3f70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/core/hub.c:5476
+4 locks held by kworker/u5:4/9846:
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: connection closed
+vhci_hcd: stop threads
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+ #0: 000000007b5a000e ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000004d21e2d7 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+vhci_hcd vhci_hcd.0: port 0 already used
+ #2: 0000000041d6ea93 (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+vhci_hcd: stop threads
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+ #3: 00000000b1e9c58d (&sbi->s_writepages_rwsem){.+.+}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+vhci_hcd: stop threads
+5 locks held by syz-executor.6/70252:
+vhci_hcd: release socket
+ #0: 00000000baf20ff0 (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+vhci_hcd: disconnect device
+vhci_hcd: stop threads
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+vhci_hcd: stop threads
+vhci_hcd: release socket
+vhci_hcd: disconnect device
+vhci_hcd: stop threads
+ #1: 000000000792f0ac (sb_writers#5){.+.+}, at: file_start_write g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/fs.h:2781 [inline]
+ #1: 000000000792f0ac (sb_writers#5){.+.+}, at: vfs_write+0x463/0x540 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/read_write.c:548
+vhci_hcd: release socket
+ #2: 000000001aca1b57 (&of->mutex){+.+.}, at: kernfs_fop_write+0x200/0x470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/kernfs/file.c:307
+vhci_hcd: disconnect device
+vhci_hcd vhci_hcd.0: port 1 already used
+ #3: 000000006d7c7229 (kn->count#210){.+.+}, at: kernfs_fop_write+0x223/0x470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/kernfs/file.c:308
+vhci_hcd: stop threads
+vhci_hcd: release socket
+ #4: 00000000bc3fabf6 (&vdev->ud.sysfs_lock){+.+.}, at: attach_store+0x2e4/0xb30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/usb/usbip/vhci_sysfs.c:357
+vhci_hcd: disconnect device
+vhci_hcd: stop threads
+
+=============================================
+
+NMI backtrace for cpu 1
+vhci_hcd: release socket
+CPU: 1 PID: 1575 Comm: khungtaskd Not tainted 4.19.300 #1
+vhci_hcd: disconnect device
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ nmi_cpu_backtrace.cold+0x63/0xa2 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:101
+ nmi_trigger_cpumask_backtrace+0x1a6/0x1f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/nmi.h:148 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:203 [inline]
+ watchdog+0x962/0xd80 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:287
+ kthread+0x33f/0x460 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/kthread.c:259
+ ret_from_fork+0x24/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/entry_64.S:417
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 8244 Comm: syz-executor.7 Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:pick_next_task_fair+0x8ae/0x1410 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/fair.c:6793
+Code: 80 3c 3a 00 0f 85 5e 08 00 00 4c 8b a8 60 01 00 00 4d 85 ed 0f 84 56 02 00 00 49 8d 7d 40 48 89 f8 48 c1 e8 03 42 80 3c 38 00 <0f> 85 4a 08 00 00 4d 8b 65 40 4d 85 e4 74 ad 49 8d 7c 24 40 48 89
+RSP: 0018:ffff88805f137a60 EFLAGS: 00000046
+RAX: 1ffff1100be05658 RBX: ffffffff8849f080 RCX: 0000000000000000
+RDX: 1ffff1100a60abc4 RSI: ffff888053055cc0 RDI: ffff88805f02b2c0
+RBP: ffff8880642351c0 R08: 0000000000000000 R09: 0000000000000004
+R10: ffff888051971490 R11: ffff888064235308 R12: 0000000000000000
+R13: ffff88805f02b280 R14: ffff8880624de578 R15: dffffc0000000000
+FS:  00000000019f1980(0000) GS:ffff888064200000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000001862c88 CR3: 0000000062cc9000 CR4: 00000000003406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ pick_next_task g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3368 [inline]
+ __schedule+0x472/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3496
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ freezable_schedule g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/freezer.h:172 [inline]
+ do_nanosleep+0x201/0x6a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/time/hrtimer.c:1755
+ hrtimer_nanosleep+0x24d/0x570 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/time/hrtimer.c:1809
+ common_nsleep+0x23/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/time/posix-timers.c:1209
+ __do_sys_clock_nanosleep g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/time/posix-timers.c:1237 [inline]
+ __se_sys_clock_nanosleep+0x22f/0x300 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/time/posix-timers.c:1214
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x49ddbf
+Code: 44 00 00 b8 16 00 00 00 eb b2 90 89 7c 24 08 e8 37 e7 ff ff 8b 7c 24 08 4d 89 ea 4c 89 e2 41 89 c0 89 ee b8 e6 00 00 00 0f 05 <44> 89 c7 48 89 44 24 08 e8 74 e7 ff ff 48 8b 44 24 08 e9 5e ff ff
+RSP: 002b:00007ffc15e10aa0 EFLAGS: 00000293 ORIG_RAX: 00000000000000e6
+RAX: ffffffffffffffda RBX: 0000000000000401 RCX: 000000000049ddbf
+RDX: 00007ffc15e10b20 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 000000c4b31f7cbf
+R10: 0000000000000000 R11: 0000000000000293 R12: 00007ffc15e10b20
+R13: 0000000000000000 R14: 00000000000c1819 R15: 0000000000000004

@@ -1,0 +1,134 @@
+INFO: task systemd-udevd:8054 blocked for more than 142 seconds.
+      Not tainted 6.6.12 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:systemd-udevd   state:D stack:26992 pid:8054  ppid:4495   flags:0x00000004
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:5384 [inline]
+ __schedule+0xedb/0x5af0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:6698
+ schedule+0xe7/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:6772
+ io_schedule+0xbe/0x130 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:9027
+ bit_wait_io+0x16/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:209
+ __wait_on_bit_lock+0x112/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:90
+ out_of_line_wait_on_bit_lock+0xdb/0x110 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:117
+ wait_on_bit_lock_io g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/wait_bit.h:208 [inline]
+ __lock_buffer g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:71 [inline]
+ lock_buffer g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/buffer_head.h:385 [inline]
+ block_read_full_folio+0x80a/0xae0 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:2440
+ filemap_read_folio+0x27b/0x2c0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2382
+ filemap_update_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2466 [inline]
+ filemap_get_pages+0x130f/0x1830 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2580
+ filemap_read+0x39b/0xcf0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2652
+ blkdev_read_iter+0x191/0x510 g.linux/deadline/code/srcs/linux-stable-6.6.12/block/fops.c:730
+ call_read_iter g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/fs.h:2009 [inline]
+ new_sync_read g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:389 [inline]
+ vfs_read+0x4e0/0x930 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:470
+ ksys_read+0x12f/0x250 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:613
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:81
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f2f3920804e
+RSP: 002b:00007ffcfe4fa208 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
+RAX: ffffffffffffffda RBX: 0000559c46fe3a28 RCX: 00007f2f3920804e
+RDX: 0000000000000200 RSI: 0000559c46fe3a38 RDI: 0000000000000010
+RBP: 0000559c467544c0 R08: 0000559c46fe3a10 R09: 00007f2f391f0be0
+R10: 0000000000000008 R11: 0000000000000246 R12: 0000000000008000
+R13: 0000000000000200 R14: 0000559c46fe3a10 R15: 0000559c46754510
+ </TASK>
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/33:
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/rcupdate.h:303 [inline]
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/rcupdate.h:749 [inline]
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x75/0x340 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/locking/lockdep.c:6614
+5 locks held by kworker/u5:2/86:
+1 lock held by in:imklog/7691:
+1 lock held by syz-executor202/8052:
+1 lock held by systemd-udevd/8054:
+ #0: ffff88810488abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_invalidate_lock_shared g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/fs.h:857 [inline]
+ #0: ffff88810488abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_update_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2432 [inline]
+ #0: ffff88810488abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_get_pages+0x485/0x1830 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2580
+2 locks held by kworker/1:0/8057:
+
+=============================================
+
+NMI backtrace for cpu 1
+CPU: 1 PID: 33 Comm: khungtaskd Not tainted 6.6.12 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/dump_stack.c:106
+ nmi_cpu_backtrace+0x277/0x390 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x299/0x300 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/nmi.h:160 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/hung_task.c:222 [inline]
+ watchdog+0xf87/0x1210 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/hung_task.c:379
+ kthread+0x2c6/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/entry_64.S:304
+ </TASK>
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 8052 Comm: syz-executor202 Not tainted 6.6.12 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:clear_page_erms+0xb/0x10 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/lib/clear_page_64.S:50
+Code: 48 89 47 20 48 89 47 28 48 89 47 30 48 89 47 38 48 8d 7f 40 75 d9 90 c3 0f 1f 80 00 00 00 00 f3 0f 1e fa b9 00 10 00 00 31 c0 <f3> aa c3 66 90 f3 0f 1e fa 48 83 f9 40 73 36 83 f9 08 73 0f 85 c9
+RSP: 0018:ffffc90002b0f170 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000001000
+RDX: ffffea0002d20000 RSI: ffff888000000000 RDI: ffff8880b4800000
+RBP: ffffea0002d20000 R08: 0000160000000000 R09: 0000000000000000
+R10: ffffed1016900000 R11: dffffc0000000000 R12: 0000000000000000
+R13: ffffea0002d20040 R14: 0000000000000001 R15: 0000000000000000
+FS:  0000000001837880(0000) GS:ffff888063a00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f6e206f9c30 CR3: 000000010553f000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <TASK>
+ clear_page g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/include/asm/page_64.h:53 [inline]
+ clear_highpage_kasan_tagged g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/highmem.h:248 [inline]
+ kernel_init_pages g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/page_alloc.c:1071 [inline]
+ post_alloc_hook+0x1a3/0x350 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/page_alloc.c:1534
+ prep_new_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0xee2/0x2f30 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/page_alloc.c:3170
+ __alloc_pages+0x22e/0x2420 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/page_alloc.c:4426
+ alloc_pages+0x1a9/0x270 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/mempolicy.c:2303
+ folio_alloc+0x1e/0x60 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/mempolicy.c:2313
+ filemap_alloc_folio+0x3bb/0x490 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:976
+ __filemap_get_folio+0x5b8/0xbd0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:1936
+ grow_dev_page g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:1058 [inline]
+ grow_buffers g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:1118 [inline]
+ __getblk_slow+0x1fb/0x720 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:1145
+ __getblk_gfp+0x70/0x80 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:1439
+ sb_getblk_gfp g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/buffer_head.h:351 [inline]
+ ext4_sb_breadahead_unmovable+0x66/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/super.c:258
+ __ext4_get_inode_loc+0xf17/0x1330 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/inode.c:4479
+ __ext4_get_inode_loc_noinmem+0xb9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/inode.c:4509
+ __ext4_iget+0x43c/0x4300 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/inode.c:4731
+ __ext4_fill_super g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/super.c:5474 [inline]
+ ext4_fill_super+0x64ab/0xad50 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/ext4/super.c:5704
+ get_tree_bdev+0x3b5/0x650 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/super.c:1577
+ vfs_get_tree+0x8c/0x370 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/super.c:1750
+ do_new_mount g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3335 [inline]
+ path_mount+0x1492/0x1ed0 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3662
+ do_mount g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3675 [inline]
+ __do_sys_mount g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3884 [inline]
+ __se_sys_mount g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3861 [inline]
+ __x64_sys_mount+0x293/0x310 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/namespace.c:3861
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:81
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x45257e
+Code: 83 c4 08 5b 5d c3 66 0f 1f 44 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc8f60b4c8 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 0000000001837840 RCX: 000000000045257e
+RDX: 0000000020000240 RSI: 0000000020000280 RDI: 00007ffc8f60b4d0
+RBP: 00007ffc8f60b4d0 R08: 00007ffc8f60b510 R09: 0000000000000237
+R10: 000000000000000b R11: 0000000000000202 R12: 0000000000000004
+R13: 00007ffc8f60b510 R14: 0000000000000003 R15: 0000000000000000
+ </TASK>
+INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.537 msecs

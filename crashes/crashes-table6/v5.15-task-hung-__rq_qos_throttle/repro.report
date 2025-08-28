@@ -1,0 +1,909 @@
+INFO: task kworker/u6:2:167 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u6:2    state:D stack:23456 pid:  167 ppid:     2 flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ __writeback_single_inode+0x15d/0xda0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:1647
+ writeback_sb_inodes+0x583/0x1070 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:1930
+ __writeback_inodes_wb+0xff/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:2001
+ wb_writeback+0x84d/0xac0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:2106
+ wb_check_old_data_flush g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:2206 [inline]
+ wb_do_writeback g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:2259 [inline]
+ wb_workfn+0xb00/0x11a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:2288
+ process_one_work+0x9db/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2310
+ worker_thread+0x686/0x1180 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2457
+ kthread+0x3d0/0x4c0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/kthread.c:319
+ ret_from_fork+0x1f/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/entry/entry_64.S:298
+ </TASK>
+INFO: task kworker/u4:2:6341 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u4:2    state:D stack:27024 pid: 6341 ppid:     2 flags:0x00004000
+Workqueue: ext4-rsv-conversion ext4_end_io_rsv_work
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ bit_wait_io+0x12/0xd0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/wait_bit.c:209
+ __wait_on_bit+0x5e/0x180 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/wait_bit.c:49
+ out_of_line_wait_on_bit+0xd7/0x110 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/wait_bit.c:64
+ wait_on_bit_io g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/wait_bit.h:101 [inline]
+ do_get_write_access+0x83b/0x10e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:1116
+ jbd2_journal_get_write_access+0x122/0x180 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:1251
+ __ext4_journal_get_write_access+0x1c0/0x440 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/ext4_jbd2.c:235
+ ext4_reserve_inode_write+0x137/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:5782
+ __ext4_mark_inode_dirty+0x199/0x800 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:5956
+ __ext4_ext_dirty+0x1c2/0x220 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:183
+ ext4_convert_unwritten_extents_endio g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:3773 [inline]
+ ext4_ext_handle_unwritten_extents g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:3898 [inline]
+ ext4_ext_map_blocks+0x32be/0x5c80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:4168
+ ext4_map_blocks+0x730/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:645
+ ext4_convert_unwritten_extents+0x2b5/0x4b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:4815
+ ext4_convert_unwritten_io_end_vec+0x123/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/extents.c:4854
+ ext4_end_io_end g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:186 [inline]
+ ext4_do_flush_completed_IO g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:259 [inline]
+ ext4_end_io_rsv_work+0x2c6/0x690 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:273
+ process_one_work+0x9db/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2310
+ worker_thread+0x686/0x1180 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2457
+ kthread+0x3d0/0x4c0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/kthread.c:319
+ ret_from_fork+0x1f/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/entry/entry_64.S:298
+ </TASK>
+INFO: task syz-executor359:7083 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7083 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ wait_on_page_bit_common+0x593/0xeb0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:1356
+ wait_on_page_writeback+0x4c/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2887
+ truncate_inode_pages_range+0x565/0x10f0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/truncate.c:396
+ ext4_evict_inode+0x59d/0x1c80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:224
+ evict+0x2ed/0x6b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:587
+ iput_final g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1705 [inline]
+ iput.part.0+0x54e/0x710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1731
+ iput+0x58/0x70 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1721
+ dentry_unlink_inode+0x292/0x430 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:376
+ __dentry_kill+0x3b8/0x640 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:582
+ dentry_kill g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:720 [inline]
+ dput+0x701/0xfd0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:888
+ __fput+0x3cd/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:288
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 00000000000611f2
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7085 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7085 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000061f5e
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7091 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7091 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ bit_wait+0x12/0xd0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/wait_bit.c:199
+ __wait_on_bit+0x5e/0x180 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/wait_bit.c:49
+ __inode_wait_for_writeback+0x152/0x1f0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:1516
+ inode_wait_for_writeback+0x21/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/fs-writeback.c:1528
+ evict+0x2b7/0x6b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:584
+ iput_final g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1705 [inline]
+ iput.part.0+0x54e/0x710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1731
+ iput+0x58/0x70 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/inode.c:1721
+ dentry_unlink_inode+0x292/0x430 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:376
+ __dentry_kill+0x3b8/0x640 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:582
+ dentry_kill g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:720 [inline]
+ dput+0x701/0xfd0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/dcache.c:888
+ __fput+0x3cd/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:288
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000062014
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7093 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7093 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006205c
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7095 blocked for more than 143 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7095 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006208e
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7099 blocked for more than 144 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7099 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 00000000000620f5
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7101 blocked for more than 144 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7101 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 000000000006213e
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+INFO: task syz-executor359:7103 blocked for more than 144 seconds.
+      Not tainted 5.15.140 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor359 state:D stack:24688 pid: 7103 ppid:  6482 flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:5030 [inline]
+ __schedule+0xd98/0x5b40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6376
+ schedule+0x115/0x250 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:6459
+ io_schedule+0xba/0x130 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/sched/core.c:8484
+ rq_qos_wait+0x19e/0x2d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:288
+ __wbt_wait g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:522 [inline]
+ wbt_wait+0x19f/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-wbt.c:586
+ __rq_qos_throttle+0x4f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.c:72
+ rq_qos_throttle g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-rq-qos.h:203 [inline]
+ blk_mq_submit_bio+0x434/0x1800 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-mq.c:2210
+ __submit_bio+0x79f/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:917
+ __submit_bio_noacct_mq g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:997 [inline]
+ submit_bio_noacct+0x73a/0x960 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1027
+ submit_bio+0x1ef/0x480 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-core.c:1089
+ ext4_io_submit+0x17c/0x210 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/page-io.c:381
+ ext4_writepages+0xeab/0x3a80 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:2837
+ do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ filemap_fdatawrite_wbc g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:400 [inline]
+ filemap_fdatawrite_wbc+0x1d3/0x2e0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:390
+ __filemap_fdatawrite_range g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:433 [inline]
+ __filemap_fdatawrite g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:439 [inline]
+ filemap_flush+0x8f/0xc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/filemap.c:466
+ ext4_alloc_da_blocks+0x1ea/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:3128
+ ext4_release_file+0x183/0x370 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:141
+ __fput+0x27b/0xa60 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/task_work.h:32 [inline]
+ do_exit+0xbb3/0x2970 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:872
+ do_group_exit+0x125/0x310 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/exit.c:994
+ get_signal+0x37a/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2889
+ arch_do_signal_or_restart+0x1f5/0x1bc0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/signal.c:867
+ handle_signal_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:148 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:172 [inline]
+ exit_to_user_mode_prepare+0x135/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ irqentry_exit_to_user_mode+0x5/0x40 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:314
+ asm_exc_page_fault+0x22/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/idtentry.h:568
+RIP: 0033:0x0
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000004580bd
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000010004000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000003
+R10: 0000000020000080 R11: 0000000000000246 R12: 0000000000062172
+R13: 00007ffeedcd80c0 R14: 00000000004d0018 R15: 0000000000000000
+ </TASK>
+
+Showing all locks held in the system:
+3 locks held by kworker/u5:0/9:
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: arch_atomic64_set g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/atomic64_64.h:34 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: arch_atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-long.h:41 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-instrumented.h:1198 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: set_work_data g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:635 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: set_work_pool_and_clear_pending g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:662 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2281
+ #1: ffffc900006c7da0 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2285
+ #2: ffff8881000940e0 (&type->s_umount_key#45){.+.+}-{3:3}, at: trylock_super+0x18/0x100 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:418
+1 lock held by khungtaskd/28:
+ #0: ffffffff8bf8cb80 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x53/0x272 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/locking/lockdep.c:6451
+4 locks held by kworker/u6:2/167:
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: arch_atomic64_set g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/atomic64_64.h:34 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: arch_atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-long.h:41 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-instrumented.h:1198 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: set_work_data g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:635 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: set_work_pool_and_clear_pending g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:662 [inline]
+ #0: ffff888012787138 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2281
+ #1: ffffc900018afda0 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2285
+ #2: ffff88810d5c40e0 (&type->s_umount_key#43){++++}-{3:3}, at: trylock_super+0x18/0x100 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:418
+ #3: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+3 locks held by systemd-journal/2969:
+ #0: ffff888106970828 (&mm->mmap_lock){++++}-{3:3}, at: mmap_read_trylock g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/mmap_lock.h:136 [inline]
+ #0: ffff888106970828 (&mm->mmap_lock){++++}-{3:3}, at: do_user_addr_fault+0x2a6/0x11a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/mm/fault.c:1338
+ #1: ffff88810d5c4558 (sb_pagefaults){.+.+}-{0:0}, at: do_page_mkwrite+0x1a0/0x540 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/memory.c:2892
+ #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+1 lock held by in:imklog/5911:
+ #0: ffff8881088360f0 (&f->f_pos_lock){+.+.}-{3:3}, at: __fdget_pos+0xf5/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/file.c:1088
+4 locks held by kworker/u4:2/6341:
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: arch_atomic64_set g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/atomic64_64.h:34 [inline]
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: arch_atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-long.h:41 [inline]
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: atomic_long_set g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/atomic/atomic-instrumented.h:1198 [inline]
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: set_work_data g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:635 [inline]
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: set_work_pool_and_clear_pending g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:662 [inline]
+ #0: ffff88810d4d7938 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: process_one_work+0x8c1/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2281
+ #1: ffffc90002e9fda0 ((work_completion)(&ei->i_rsv_conversion_work)){+.+.}-{0:0}, at: process_one_work+0x8f5/0x1530 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/workqueue.c:2285
+ #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #3: ffff8880289abe48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+1 lock held by syz-executor359/7085:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7093:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7095:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7099:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7101:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7103:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7105:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7107:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7109:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7111:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7113:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7115:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7127:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7129:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+3 locks held by syz-executor359/7153:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff8880289af020 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7155:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811461d238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7157:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1db450 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7159:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811461c840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7161:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888113525238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7163:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1dbe48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7165:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888113524840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7167:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1dc840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7169:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024170278 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7171:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024170c70 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7173:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1dd238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7175:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024171668 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7177:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024172060 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7179:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024172a58 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7181:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1ddc30 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7183:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024173450 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7185:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1de628 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7187:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024173e48 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7189:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811d1df020 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7191:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024174840 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7193:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff88811450a060 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7195:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024175238 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7197:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888114509668 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7199:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024175c30 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7201:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888024176628 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+3 locks held by syz-executor359/7203:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+ #1: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+ #2: ffff888114508c70 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x6be/0x1710 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/inode.c:638
+1 lock held by syz-executor359/7205:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7207:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7209:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7211:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7213:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7215:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7217:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7219:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7221:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7223:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7225:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7227:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7229:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7231:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7233:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7235:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7237:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7239:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7241:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7243:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7245:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7247:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7249:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7251:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7253:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7255:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7257:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7259:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7261:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7263:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7265:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7267:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7269:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7271:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7273:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7275:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7277:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7279:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7281:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7283:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7285:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7287:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7289:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7291:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7293:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7295:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7297:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7299:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7301:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7303:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7305:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7307:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7309:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7311:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7313:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7315:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7317:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7319:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7321:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7323:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7325:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7327:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7329:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7331:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7333:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7335:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7337:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7339:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+1 lock held by syz-executor359/7341:
+ #0: ffff88810d5c6bd8 (&sbi->s_writepages_rwsem){.+.+}-{0:0}, at: do_writepages+0x1be/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/mm/page-writeback.c:2364
+3 locks held by syz-executor359/7343:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: get_signal+0x2f7/0x25b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/signal.c:2875
+ #1: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: inode_lock g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:787 [inline]
+ #1: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: ext4_buffered_write_iter+0xaa/0x4d0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/ext4/file.c:262
+ #2: ffff88810d5d0990 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x109c/0x1490 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jbd2/transaction.c:462
+3 locks held by syz-executor359/7345:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+ #2: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: inode_lock g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:787 [inline]
+ #2: ffff88811d1e2bd0 (&sb->s_type->i_mutex_key#9){++++}-{3:3}, at: vfs_unlink+0xcf/0x900 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4198
+2 locks held by syz-executor359/7347:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7349:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7351:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7353:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7355:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7357:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7359:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7361:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7363:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7365:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7367:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7369:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7371:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7373:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7375:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7377:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7379:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7381:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7383:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7385:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7387:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7389:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7391:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7393:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7395:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7397:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7399:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+2 locks held by syz-executor359/7401:
+ #0: ffff88810d5c4460 (sb_writers#5){.+.+}-{0:0}, at: do_unlinkat+0x1b6/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4256
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: inode_lock_nested g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/fs.h:822 [inline]
+ #1: ffff888016890de8 (&type->i_mutex_dir_key#4/1){+.+.}-{3:3}, at: do_unlinkat+0x265/0x6a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namei.c:4260
+
+=============================================
+
+NMI backtrace for cpu 1
+CPU: 1 PID: 28 Comm: khungtaskd Not tainted 5.15.140 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-5.15.140/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xfc/0x174 g.linux/deadline/code/srcs/linux-stable-5.15.140/lib/dump_stack.c:106
+ nmi_cpu_backtrace.cold+0x22/0x16f g.linux/deadline/code/srcs/linux-stable-5.15.140/lib/nmi_backtrace.c:111
+ nmi_trigger_cpumask_backtrace+0x23e/0x290 g.linux/deadline/code/srcs/linux-stable-5.15.140/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/nmi.h:148 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/hung_task.c:210 [inline]
+ watchdog+0xd6f/0x1040 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/hung_task.c:295
+ kthread+0x3d0/0x4c0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/kthread.c:319
+ ret_from_fork+0x1f/0x30 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/entry/entry_64.S:298
+ </TASK>
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0 skipped: idling at native_safe_halt g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/irqflags.h:51 [inline]
+NMI backtrace for cpu 0 skipped: idling at arch_safe_halt g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/include/asm/irqflags.h:89 [inline]
+NMI backtrace for cpu 0 skipped: idling at default_idle+0xb/0x10 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/kernel/process.c:717

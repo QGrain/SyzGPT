@@ -1,0 +1,312 @@
+Extracting prog: 2m14.451941239s
+Minimizing prog: 5m30.400520596s
+Simplifying prog options: 0s
+Extracting C: 22.911906941s
+Simplifying C: 2m25.312540196s
+
+
+468 programs, 4 VMs, timeouts [15s 1m40s 6m0s]
+extracting reproducer from 456 programs
+single: executing 8 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-socket$inet_udp-ioctl$sock_inet_SIOCSARP-shutdown-shutdown
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000040)=@file={0x0, './file0\x00'}, 0x6e)
+r2 = socket$inet_udp(0x2, 0x2, 0x0)
+ioctl$sock_inet_SIOCSARP(r2, 0x8955, &(0x7f0000000140)={{0x2, 0x0, @dev={0xac, 0x14, 0x14, 0x8}}, {0x0, @dev}, 0x0, {0x2, 0x0, @multicast1}, 'gretap0\x00'}) (async)
+shutdown(r2, 0x1)
+shutdown(r1, 0x2000000)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_emit_ethernet
+detailed listing:
+executing program 0:
+syz_emit_ethernet(0x8a, &(0x7f0000000200)=ANY=[@ANYBLOB="aaaaaaaaaaaaaaaaaaaaaa0086dd60a7f3a300542f00fe88000000000000002f890000000001f6"], 0x0)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-recvmmsg$unix-shutdown
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+recvmmsg$unix(r0, &(0x7f00000036c0)=[{{0x0, 0x0, &(0x7f0000003500), 0x0, &(0x7f0000003540)=[@rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x34, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x20, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x150}}], 0x1, 0x10000, &(0x7f0000003700))
+shutdown(r0, 0x0)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix-mkdir-shutdown-openat$vsock-ppoll-bind$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+mkdir(&(0x7f0000001480)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x1da)
+shutdown(r0, 0x0)
+r4 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r4}], 0x1, 0x0, 0x0, 0x0)
+bind$unix(r4, &(0x7f0000000040)=@file={0x0, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+
+program crashed: kernel BUG in unix_bind
+single: successfully extracted reproducer
+found reproducer with 11 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix-mkdir-shutdown-openat$vsock-ppoll
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+mkdir(&(0x7f0000001480)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x1da)
+shutdown(r0, 0x0)
+r4 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r4}], 0x1, 0x0, 0x0, 0x0)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix-mkdir-shutdown-openat$vsock
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+mkdir(&(0x7f0000001480)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x1da)
+shutdown(r0, 0x0)
+openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix-mkdir-shutdown
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+mkdir(&(0x7f0000001480)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x1da)
+shutdown(r0, 0x0)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix-mkdir
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+mkdir(&(0x7f0000001480)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x1da)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime-recvmmsg$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400)={<r2=>0x0, <r3=>0x0})
+recvmmsg$unix(r1, &(0x7f00000012c0)=[{{&(0x7f00000001c0), 0x6e, &(0x7f00000000c0)=[{&(0x7f0000000240)=""/113, 0x71}, {&(0x7f00000002c0)=""/254, 0xfe}, {&(0x7f00000003c0)=""/117, 0x75}], 0x3, &(0x7f0000000440)=[@rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @rights={{0x24, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x30, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x140}}, {{&(0x7f0000000580)=@abs, 0x6e, &(0x7f0000000840)=[{&(0x7f0000000600)=""/30, 0x1e}, {&(0x7f0000000640)=""/241, 0xf1}, {&(0x7f0000000740)=""/122, 0x7a}, {&(0x7f00000007c0)=""/101, 0x65}], 0x4, &(0x7f0000001500)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x2c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}], 0xa0}}, {{&(0x7f0000000940)=@abs, 0x6e, &(0x7f0000000a00)=[{&(0x7f00000009c0)=""/34, 0x22}], 0x1}}, {{&(0x7f0000000a40), 0x6e, &(0x7f0000000bc0)=[{&(0x7f0000000ac0)=""/255, 0xff}], 0x1, &(0x7f0000000c00)=[@cred={{0x1c}}, @cred={{0x1c}}, @cred={{0x1c}}, @rights={{0x1c, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}], 0x98}}, {{0x0, 0x0, &(0x7f00000011c0)=[{&(0x7f00000015c0)=""/195, 0xc3}, {&(0x7f0000000dc0)=""/249, 0xf9}, {&(0x7f0000000ec0)=""/61, 0x3d}, {&(0x7f0000000f00)=""/207, 0xcf}, {&(0x7f0000001000)=""/238, 0xee}, {&(0x7f0000001100)=""/181, 0xb5}], 0x6, &(0x7f0000000880)=[@cred={{0x1c}}, @rights={{0x14, 0x1, 0x1, [0xffffffffffffffff]}}, @cred={{0x1c}}, @cred={{0x1c}}], 0x78}}], 0x5, 0x0, &(0x7f0000001440)={r2, r3+10000000})
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll-clock_gettime
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+clock_gettime(0x0, &(0x7f0000001400))
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock-ppoll
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+r1 = openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+ppoll(&(0x7f0000000100)=[{r1}], 0x1, 0x0, 0x0, 0x0)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix-openat$vsock
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+openat$vsock(0xffffffffffffff9c, &(0x7f0000000000), 0x200080, 0x0)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+
+program crashed: kernel BUG in unix_bind
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000))
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): bind$unix
+detailed listing:
+executing program 0:
+bind$unix(0xffffffffffffffff, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, 0x0)
+bind$unix(0xffffffffffffffff, &(0x7f0000000140)=@file={0x1, './file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, 0x6e)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+detailed listing:
+executing program 0:
+socketpair$unix(0x1, 0x1, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, 0x0, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:true Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socketpair$unix-bind$unix
+program crashed: kernel BUG in unix_bind
+reproducing took 10m33.076937242s
+repro crashed as (corrupted=false):
+detected buffer overflow in __fortify_strlen
+------------[ cut here ]------------
+kernel BUG at lib/string_helpers.c:1031!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 7992 Comm: syz-executor476 Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:fortify_panic+0x13/0x20 lib/string_helpers.c:1031
+Code: 24 4c 89 e0 48 83 c4 10 5b 41 5c 41 5d 41 5e 41 5f 5d c3 0f 1f 40 00 f3 0f 1e fa 48 89 fe 48 c7 c7 40 7d 3a 8b e8 5d 67 fe ff <0f> 0b 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 55 48 89 e5 41
+RSP: 0018:ffffc90001c37cb8 EFLAGS: 00010246
+RAX: 000000000000002c RBX: ffffc90001c37e6e RCX: 8ab851af55646f00
+RDX: 0000000000000000 RSI: 0000000080000000 RDI: 0000000000000000
+RBP: ffffc90001c37db0 R08: ffffffff816ce41c R09: 1ffff92000386f4c
+R10: dffffc0000000000 R11: fffff52000386f4d R12: 000000000000006e
+R13: ffffc90001c37e00 R14: ffffc90001c37e02 R15: 000000000000006c
+FS:  0000555555a34880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000000 CR3: 0000000018eb9000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ _Z16__fortify_strlenPKcU25pass_dynamic_object_size1 include/linux/fortify-string.h:217 [inline]
+ unix_bind_bsd net/unix/af_unix.c:1212 [inline]
+ unix_bind+0xf40/0xfd0 net/unix/af_unix.c:1326
+ __sys_bind+0x217/0x2b0 net/socket.c:1792
+ __do_sys_bind net/socket.c:1803 [inline]
+ __se_sys_bind net/socket.c:1801 [inline]
+ __x64_sys_bind+0x7a/0x90 net/socket.c:1801
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f005015ea8d
+Code: 28 c3 e8 36 29 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff3d13c208 EFLAGS: 00000246 ORIG_RAX: 0000000000000031
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f005015ea8d
+RDX: 000000000000006e RSI: 0000000020000140 RDI: 0000000000000004
+RBP: 00007f0050118450 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f00501184f0
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:fortify_panic+0x13/0x20 lib/string_helpers.c:1031
+Code: 24 4c 89 e0 48 83 c4 10 5b 41 5c 41 5d 41 5e 41 5f 5d c3 0f 1f 40 00 f3 0f 1e fa 48 89 fe 48 c7 c7 40 7d 3a 8b e8 5d 67 fe ff <0f> 0b 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 55 48 89 e5 41
+RSP: 0018:ffffc90001c37cb8 EFLAGS: 00010246
+RAX: 000000000000002c RBX: ffffc90001c37e6e RCX: 8ab851af55646f00
+RDX: 0000000000000000 RSI: 0000000080000000 RDI: 0000000000000000
+RBP: ffffc90001c37db0 R08: ffffffff816ce41c R09: 1ffff92000386f4c
+R10: dffffc0000000000 R11: fffff52000386f4d R12: 000000000000006e
+R13: ffffc90001c37e00 R14: ffffc90001c37e02 R15: 000000000000006c
+FS:  0000555555a34880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f1f8080b000 CR3: 0000000018eb9000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+
+final repro crashed as (corrupted=false):
+detected buffer overflow in __fortify_strlen
+------------[ cut here ]------------
+kernel BUG at lib/string_helpers.c:1031!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 7992 Comm: syz-executor476 Not tainted 6.5.0-rc3 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:fortify_panic+0x13/0x20 lib/string_helpers.c:1031
+Code: 24 4c 89 e0 48 83 c4 10 5b 41 5c 41 5d 41 5e 41 5f 5d c3 0f 1f 40 00 f3 0f 1e fa 48 89 fe 48 c7 c7 40 7d 3a 8b e8 5d 67 fe ff <0f> 0b 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 55 48 89 e5 41
+RSP: 0018:ffffc90001c37cb8 EFLAGS: 00010246
+RAX: 000000000000002c RBX: ffffc90001c37e6e RCX: 8ab851af55646f00
+RDX: 0000000000000000 RSI: 0000000080000000 RDI: 0000000000000000
+RBP: ffffc90001c37db0 R08: ffffffff816ce41c R09: 1ffff92000386f4c
+R10: dffffc0000000000 R11: fffff52000386f4d R12: 000000000000006e
+R13: ffffc90001c37e00 R14: ffffc90001c37e02 R15: 000000000000006c
+FS:  0000555555a34880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000000 CR3: 0000000018eb9000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ _Z16__fortify_strlenPKcU25pass_dynamic_object_size1 include/linux/fortify-string.h:217 [inline]
+ unix_bind_bsd net/unix/af_unix.c:1212 [inline]
+ unix_bind+0xf40/0xfd0 net/unix/af_unix.c:1326
+ __sys_bind+0x217/0x2b0 net/socket.c:1792
+ __do_sys_bind net/socket.c:1803 [inline]
+ __se_sys_bind net/socket.c:1801 [inline]
+ __x64_sys_bind+0x7a/0x90 net/socket.c:1801
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f005015ea8d
+Code: 28 c3 e8 36 29 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff3d13c208 EFLAGS: 00000246 ORIG_RAX: 0000000000000031
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f005015ea8d
+RDX: 000000000000006e RSI: 0000000020000140 RDI: 0000000000000004
+RBP: 00007f0050118450 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f00501184f0
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:fortify_panic+0x13/0x20 lib/string_helpers.c:1031
+Code: 24 4c 89 e0 48 83 c4 10 5b 41 5c 41 5d 41 5e 41 5f 5d c3 0f 1f 40 00 f3 0f 1e fa 48 89 fe 48 c7 c7 40 7d 3a 8b e8 5d 67 fe ff <0f> 0b 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 55 48 89 e5 41
+RSP: 0018:ffffc90001c37cb8 EFLAGS: 00010246
+RAX: 000000000000002c RBX: ffffc90001c37e6e RCX: 8ab851af55646f00
+RDX: 0000000000000000 RSI: 0000000080000000 RDI: 0000000000000000
+RBP: ffffc90001c37db0 R08: ffffffff816ce41c R09: 1ffff92000386f4c
+R10: dffffc0000000000 R11: fffff52000386f4d R12: 000000000000006e
+R13: ffffc90001c37e00 R14: ffffc90001c37e02 R15: 000000000000006c
+FS:  0000555555a34880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f1f8080b000 CR3: 0000000018eb9000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+

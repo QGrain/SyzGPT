@@ -1,0 +1,80 @@
+ieee802154 phy0 wpan0: encryption failed: -22
+ieee802154 phy1 wpan1: encryption failed: -22
+ieee802154 phy0 wpan0: encryption failed: -22
+ieee802154 phy1 wpan1: encryption failed: -22
+INFO: task syz-executor.3:28639 blocked for more than 140 seconds.
+      Not tainted 4.19.300 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+syz-executor.3  D27544 28639   8171 0x00000004
+Call Trace:
+ context_switch g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:2834 [inline]
+ __schedule+0x8a2/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3522
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ jbd2_log_wait_commit+0x2d1/0x430 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:728
+ __jbd2_journal_force_commit+0x103/0x230 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:579
+ jbd2_journal_force_commit_nested+0x12/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:598
+ ext4_should_retry_alloc+0x1b4/0x210 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/balloc.c:660
+ ext4_xattr_set+0x1f5/0x330 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/xattr.c:2543
+ __vfs_setxattr+0x10e/0x170 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:149
+ __vfs_setxattr_noperm+0x11a/0x420 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:180
+ __vfs_setxattr_locked+0x176/0x250 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:238
+ vfs_setxattr+0xe5/0x270 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:255
+ setxattr+0x23d/0x330 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:520
+ path_setxattr+0x170/0x190 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:539
+ __do_sys_lsetxattr g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:561 [inline]
+ __se_sys_lsetxattr g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:557 [inline]
+ __x64_sys_lsetxattr+0xbd/0x150 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:557
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x473eed
+Code: Bad RIP value.
+RSP: 002b:00007f62cd53fbe8 EFLAGS: 00000246 ORIG_RAX: 00000000000000bd
+RAX: ffffffffffffffda RBX: 000000000059bf80 RCX: 0000000000473eed
+RDX: 0000000020000440 RSI: 0000000020000080 RDI: 0000000020000040
+RBP: 000000000059bf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000001015 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fffbb5a5f5f R14: 00007fffbb5a60e0 R15: 00007f62cd53fd80
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/1573:
+ #0: 0000000050a9d843 (rcu_read_lock){....}, at: debug_show_all_locks+0x53/0x265 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/locking/lockdep.c:4441
+4 locks held by kworker/u5:4/2945:
+ #0: 000000000b49be02 ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000005a3afe1e ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000017d87094 (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 0000000025645e0b (&sbi->s_writepages_rwsem){.+.+}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by journal-offline/28892:
+ #0: 0000000025645e0b (&sbi->s_writepages_rwsem){.+.+}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by in:imklog/7609:
+ #0: 0000000000ddab74 (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+2 locks held by syz-fuzzer/10069:
+ #0: 000000004a014006 (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+ #1: 00000000f0e18c7b (&type->i_mutex_dir_key#3){++++}, at: iterate_dir+0xd2/0x5c0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/readdir.c:41
+4 locks held by kworker/u6:6/9870:
+ #0: 000000000b49be02 ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000ae2094f7 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000017d87094 (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 0000000025645e0b (&sbi->s_writepages_rwsem){.+.+}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by syz-executor.3/28639:
+ #0: 00000000f44cc777 (sb_writers#3){.+.+}, at: sb_start_write g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/fs.h:1581 [inline]
+ #0: 00000000f44cc777 (sb_writers#3){.+.+}, at: mnt_want_write+0x3a/0xb0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/namespace.c:360
+ #1: 00000000f0e18c7b (&type->i_mutex_dir_key#3){++++}, at: inode_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/fs.h:748 [inline]
+ #1: 00000000f0e18c7b (&type->i_mutex_dir_key#3){++++}, at: vfs_setxattr+0xc7/0x270 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/xattr.c:254
+
+=============================================
+
+NMI backtrace for cpu 1
+CPU: 1 PID: 1573 Comm: khungtaskd Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ nmi_cpu_backtrace.cold+0x63/0xa2 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:101
+ nmi_trigger_cpumask_backtrace+0x1a6/0x1f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/nmi.h:148 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:203 [inline]
+ watchdog+0x962/0xd80 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:287
+ kthread+0x33f/0x460 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/kthread.c:259
+ ret_from_fork+0x24/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/entry_64.S:417
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0 skipped: idling at native_safe_halt+0xe/0x10 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/include/asm/irqflags.h:60

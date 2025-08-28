@@ -1,0 +1,85 @@
+general protection fault, probably for non-canonical address 0xdffffc00000000ba: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x00000000000005d0-0x00000000000005d7]
+CPU: 1 PID: 6507 Comm: syz-executor427 Not tainted 5.15.140 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:bio_associate_blkg_from_css g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-cgroup.c:1854 [inline]
+RIP: 0010:bio_associate_blkg_from_css+0x3b9/0x1090 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-cgroup.c:1845
+Code: 48 c1 ea 03 80 3c 02 00 0f 85 bb 0b 00 00 48 b8 00 00 00 00 00 fc ff df 48 8b 5d 08 48 8d bb d0 05 00 00 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 d3 0b 00 00 48 8b 9b d0 05 00 00 48 b8 00 00 00
+RSP: 0018:ffffc900018dfa40 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff83d25ade
+RDX: 00000000000000ba RSI: ffffffff83d249ce RDI: 00000000000005d0
+RBP: ffff88810c477140 R08: 0000000000000000 R09: ffffffff90ac0ae7
+R10: 0000000000000000 R11: 000000000008c083 R12: ffff88810c477148
+R13: ffff888102397000 R14: 0000000000000000 R15: ffffffff914cd6e0
+FS:  000000000115f880(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe79ee1d68 CR3: 0000000101bb0000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ bio_associate_blkg+0xcd/0x410 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-cgroup.c:1880
+ lbmStartIO+0x1ec/0x430 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:2130
+ lbmWrite+0x2ea/0x420 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:2079
+ lmNextPage.isra.0+0x278/0x700 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:624
+ lmWriteRecord+0xab4/0x1160 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:537
+ lmLogSync+0x182/0x7b0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:977
+ jfs_syncpt+0x85/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/jfs_logmgr.c:1049
+ jfs_sync_fs+0x7f/0xa0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/jfs/super.c:690
+ sync_filesystem g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/sync.c:56 [inline]
+ sync_filesystem+0x105/0x280 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/sync.c:30
+ generic_shutdown_super+0x70/0x380 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:448
+ kill_block_super+0x97/0xf0 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:1414
+ deactivate_locked_super+0x96/0x160 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:335
+ deactivate_super+0xda/0x100 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/super.c:366
+ cleanup_mnt+0x317/0x550 g.linux/deadline/code/srcs/linux-stable-5.15.140/fs/namespace.c:1143
+ task_work_run+0xdd/0x1a0 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/task_work.c:164
+ tracehook_notify_resume g.linux/deadline/code/srcs/linux-stable-5.15.140/include/linux/tracehook.h:189 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:175 [inline]
+ exit_to_user_mode_prepare+0x24a/0x270 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:208
+ __syscall_exit_to_user_mode_work g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:290 [inline]
+ syscall_exit_to_user_mode+0x19/0x60 g.linux/deadline/code/srcs/linux-stable-5.15.140/kernel/entry/common.c:301
+ do_syscall_64+0x40/0xb0 g.linux/deadline/code/srcs/linux-stable-5.15.140/arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x61/0xcb
+RIP: 0033:0x4529fb
+Code: 07 00 48 83 c4 08 5b 5d c3 66 0f 1f 44 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe79ee2498 EFLAGS: 00000202 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 00007ffe79ee3600 RCX: 00000000004529fb
+RDX: 00007ffe79ee254a RSI: 000000000000000a RDI: 00007ffe79ee2540
+RBP: 0000000000000000 R08: 000000000049d009 R09: 00007ffe79ee2330
+R10: 00000000fffffffb R11: 0000000000000202 R12: 00007ffe79ee35a0
+R13: 0000000001160b70 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 95ce3b74729d300b ]---
+RIP: 0010:bio_associate_blkg_from_css g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-cgroup.c:1854 [inline]
+RIP: 0010:bio_associate_blkg_from_css+0x3b9/0x1090 g.linux/deadline/code/srcs/linux-stable-5.15.140/block/blk-cgroup.c:1845
+Code: 48 c1 ea 03 80 3c 02 00 0f 85 bb 0b 00 00 48 b8 00 00 00 00 00 fc ff df 48 8b 5d 08 48 8d bb d0 05 00 00 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 d3 0b 00 00 48 8b 9b d0 05 00 00 48 b8 00 00 00
+RSP: 0018:ffffc900018dfa40 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff83d25ade
+RDX: 00000000000000ba RSI: ffffffff83d249ce RDI: 00000000000005d0
+RBP: ffff88810c477140 R08: 0000000000000000 R09: ffffffff90ac0ae7
+R10: 0000000000000000 R11: 000000000008c083 R12: ffff88810c477148
+R13: ffff888102397000 R14: 0000000000000000 R15: ffffffff914cd6e0
+FS:  000000000115f880(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f5f00043088 CR3: 0000000101bb0000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess):
+   0:	48 c1 ea 03          	shr    $0x3,%rdx
+   4:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   8:	0f 85 bb 0b 00 00    	jne    0xbc9
+   e:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  15:	fc ff df
+  18:	48 8b 5d 08          	mov    0x8(%rbp),%rbx
+  1c:	48 8d bb d0 05 00 00 	lea    0x5d0(%rbx),%rdi
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 d3 0b 00 00    	jne    0xc07
+  34:	48 8b 9b d0 05 00 00 	mov    0x5d0(%rbx),%rbx
+  3b:	48                   	rex.W
+  3c:	b8                   	.byte 0xb8
+  3d:	00 00                	add    %al,(%rax)

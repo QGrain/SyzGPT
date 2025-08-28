@@ -1,0 +1,55 @@
+==================================================================
+BUG: KASAN: use-after-free in udf_close_lvid+0x504/0x5c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2035
+Write of size 1 at addr ffff8880594ff1d8 by task syz-executor243/8030
+
+CPU: 1 PID: 8030 Comm: syz-executor243 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:106
+ print_address_description g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:364 [inline]
+ print_report+0xc1/0x5e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:475
+ kasan_report+0xbe/0xf0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:588
+ udf_close_lvid+0x504/0x5c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2035
+ udf_put_super+0x19c/0x200 g.linux/deadline/code/srcs/linux-stable-6.6/fs/udf/super.c:2322
+ generic_shutdown_super+0x161/0x3c0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:693
+ kill_block_super+0x3c/0x70 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:1646
+ deactivate_locked_super+0x98/0x170 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:481
+ deactivate_super+0xb1/0xd0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:514
+ cleanup_mnt+0x2ae/0x3d0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:1254
+ task_work_run+0x168/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/task_work.c:180
+ resume_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:171 [inline]
+ exit_to_user_mode_prepare+0x215/0x240 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x1d/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:296
+ do_syscall_64+0x46/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x452e2b
+Code: 09 00 48 83 c4 08 5b 5d c3 66 0f 1f 44 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe9e3fa098 EFLAGS: 00000202 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 0000000000030a87 RCX: 0000000000452e2b
+RDX: 00007ffe9e3fa147 RSI: 000000000000000a RDI: 00007ffe9e3fa140
+RBP: 0000000000000000 R08: 000000000049d009 R09: 00007ffe9e3f9f30
+R10: 00000000fffffffd R11: 0000000000000202 R12: 00007ffe9e3fb1a0
+R13: 0000000001e57b70 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+
+The buggy address belongs to the physical page:
+page:ffffea0001653fc0 refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x594ff
+flags: 0x4fff00000000000(node=1|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 04fff00000000000 ffffea0001653fc8 ffffea0001653fc8 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner info is not present (never set?)
+
+Memory state around the buggy address:
+ ffff8880594ff080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff8880594ff100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff8880594ff180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                                    ^
+ ffff8880594ff200: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff8880594ff280: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================

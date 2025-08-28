@@ -1,0 +1,109 @@
+loop5: rw=0, sector=32772, nr_sectors = 2 limit=4096
+syz-executor.5: attempt to access beyond end of device
+loop5: rw=0, sector=32774, nr_sectors = 2 limit=4096
+==================================================================
+BUG: KASAN: use-after-free in ntfs_attr_find+0xa5d/0xba0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/attrib.c:609
+Read of size 2 at addr ffff88806303e152 by task syz-executor.5/147929
+
+CPU: 1 PID: 147929 Comm: syz-executor.5 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:106
+ print_address_description g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:364 [inline]
+ print_report+0xc1/0x5e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:475
+ kasan_report+0xbe/0xf0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:588
+ ntfs_attr_find+0xa5d/0xba0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/attrib.c:609
+ ntfs_attr_lookup+0x105a/0x2070 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/attrib.c:1213
+ ntfs_read_locked_attr_inode g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/inode.c:1239 [inline]
+ ntfs_attr_iget+0x697/0x2690 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/inode.c:238
+ load_system_files g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/super.c:1808 [inline]
+ ntfs_fill_super+0x28bb/0x9330 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ntfs/super.c:2900
+ mount_bdev+0x201/0x2f0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:1629
+ legacy_get_tree+0x109/0x220 g.linux/deadline/code/srcs/linux-stable-6.6/fs/fs_context.c:662
+ vfs_get_tree+0x91/0x370 g.linux/deadline/code/srcs/linux-stable-6.6/fs/super.c:1750
+ do_new_mount g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3335 [inline]
+ path_mount+0x675/0x1e40 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3662
+ do_mount g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3675 [inline]
+ __do_sys_mount g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3884 [inline]
+ __se_sys_mount g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3861 [inline]
+ __x64_sys_mount+0x283/0x300 g.linux/deadline/code/srcs/linux-stable-6.6/fs/namespace.c:3861
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x47688e
+Code: 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f13bef4da08 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 000000000001f621 RCX: 000000000047688e
+RDX: 000000002001f6c0 RSI: 000000002001f640 RDI: 00007f13bef4da60
+RBP: 00007f13bef4daa0 R08: 00007f13bef4daa0 R09: 0000000000008703
+R10: 0000000000008703 R11: 0000000000000202 R12: 000000002001f6c0
+R13: 000000002001f640 R14: 00007f13bef4da60 R15: 000000002001f700
+ </TASK>
+
+The buggy address belongs to the physical page:
+page:ffffea00018c0f80 refcount:0 mapcount:0 mapping:0000000000000000 index:0x1 pfn:0x6303e
+flags: 0x4fff00000000000(node=1|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 04fff00000000000 ffffea00018a8d48 ffffea00018b4e88 0000000000000000
+raw: 0000000000000001 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as freed
+page last allocated via order 0, migratetype Movable, gfp_mask 0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), pid 147854, tgid 147851 (syz-executor.3), ts 1874418050848, free_ts 1874508168652
+ set_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x2d8/0x350 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1536
+ prep_new_page g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0xf09/0x2c50 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:3170
+ __alloc_pages+0x1cb/0x4a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4426
+ __folio_alloc+0x16/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4458
+ vma_alloc_folio+0x157/0x870 g.linux/deadline/code/srcs/linux-stable-6.6/mm/mempolicy.c:2260
+ shmem_alloc_folio+0x121/0x1f0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1658
+ shmem_alloc_and_acct_folio+0xd2/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1683
+ shmem_get_folio_gfp+0x96b/0x18e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2020
+ shmem_get_folio g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2143 [inline]
+ shmem_write_begin+0x14a/0x440 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2688
+ generic_perform_write+0x26b/0x5d0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/filemap.c:3969
+ shmem_file_write_iter+0x113/0x140 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:2865
+ call_write_iter g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/fs.h:1956 [inline]
+ new_sync_write g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:491 [inline]
+ vfs_write+0x98d/0xdb0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:584
+ ksys_write+0x122/0x250 g.linux/deadline/code/srcs/linux-stable-6.6/fs/read_write.c:637
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+page last free stack trace:
+ reset_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:24 [inline]
+ free_pages_prepare g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x45e/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2312
+ free_unref_page_list+0xf0/0xad0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2451
+ release_pages+0xcd7/0x1390 g.linux/deadline/code/srcs/linux-stable-6.6/mm/swap.c:1042
+ __folio_batch_release+0x77/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/swap.c:1062
+ folio_batch_release g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/pagevec.h:83 [inline]
+ shmem_undo_range+0x545/0x10f0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1022
+ shmem_truncate_range g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1114 [inline]
+ shmem_evict_inode+0x39e/0xb90 g.linux/deadline/code/srcs/linux-stable-6.6/mm/shmem.c:1243
+ evict+0x2ed/0x6b0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/inode.c:664
+ iput_final g.linux/deadline/code/srcs/linux-stable-6.6/fs/inode.c:1775 [inline]
+ iput.part.0+0x50f/0x710 g.linux/deadline/code/srcs/linux-stable-6.6/fs/inode.c:1801
+ iput+0x5c/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/fs/inode.c:1791
+ dentry_unlink_inode+0x28c/0x430 g.linux/deadline/code/srcs/linux-stable-6.6/fs/dcache.c:401
+ __dentry_kill+0x3bd/0x640 g.linux/deadline/code/srcs/linux-stable-6.6/fs/dcache.c:607
+ dentry_kill g.linux/deadline/code/srcs/linux-stable-6.6/fs/dcache.c:733 [inline]
+ dput+0x84b/0xde0 g.linux/deadline/code/srcs/linux-stable-6.6/fs/dcache.c:913
+ __fput+0x543/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/fs/file_table.c:392
+ task_work_run+0x168/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/task_work.c:180
+ resume_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:171 [inline]
+ exit_to_user_mode_prepare+0x215/0x240 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x1d/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:296
+
+Memory state around the buggy address:
+ ffff88806303e000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff88806303e080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff88806303e100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                                 ^
+ ffff88806303e180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff88806303e200: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================

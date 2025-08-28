@@ -1,0 +1,192 @@
+Warning: Permanently added '[localhost]:28411' (ECDSA) to the list of known hosts.
+syzkaller login: [   67.865309][   T31] audit: type=1400 audit(1693237778.991:6): avc:  denied  { execmem } for  pid=7969 comm="syz-executor853" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+executing program
+[   67.929001][ T7970] memfd_create() without MFD_EXEC nor MFD_NOEXEC_SEAL, pid=7970 'syz-executor853'
+[   67.972368][ T7970] loop0: detected capacity change from 0 to 8192
+[   67.977973][ T7970] REISERFS warning:  read_super_block: reiserfs filesystem is deprecated and scheduled to be removed from the kernel in 2025
+[   67.979579][ T7970] REISERFS (device loop0): found reiserfs format "3.6" with non-standard journal
+[   67.980929][ T7970] REISERFS (device loop0): using ordered data mode
+[   67.981699][ T7970] reiserfs: using flush barriers
+[   67.983315][ T7970] REISERFS (device loop0): journal params: device loop0, size 512, journal first block 18, max trans len 256, max batch 225, max commit age 30, max trans age 30
+[   67.985468][ T7970] REISERFS (device loop0): checking transaction log (loop0)
+[   68.050349][ T7970] REISERFS (device loop0): Using rupasov hash to sort names
+[   68.052504][ T7970] REISERFS (device loop0): Created .reiserfs_priv - reserved for xattr storage.
+[   68.086579][ T7970] ================================================================================
+[   68.087800][ T7970] UBSAN: array-index-out-of-bounds in fs/reiserfs/journal.c:4166:5
+[   68.088715][ T7970] index 1 is out of range for type '__le32[1]' (aka 'unsigned int[1]')
+[   68.089656][ T7970] CPU: 1 PID: 7970 Comm: syz-executor853 Not tainted 6.5.0-rc3 #1
+[   68.090569][ T7970] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   68.091886][ T7970] Call Trace:
+[   68.092291][ T7970]  <TASK>
+[   68.092648][ T7970]  dump_stack_lvl+0x1b5/0x2a0
+[   68.095951][ T7970]  ? nf_tcp_handle_invalid+0x650/0x650
+[   68.096608][ T7970]  ? vsnprintf+0x17f/0x1d80
+[   68.097143][ T7970]  ? panic+0x6f0/0x6f0
+[   68.097631][ T7970]  ? do_journal_end+0x142a/0x4730
+[   68.098223][ T7970]  ? mutex_lock_io_nested+0x60/0x60
+[   68.098844][ T7970]  __ubsan_handle_out_of_bounds+0xf0/0x120
+[   68.099518][ T7970]  do_journal_end+0x20a7/0x4730
+[   68.100095][ T7970]  ? journal_mark_dirty+0xe40/0xe40
+[   68.100700][ T7970]  ? dqput+0x860/0x860
+[   68.101188][ T7970]  ? journal_end_sync+0x112/0x1e0
+[   68.101770][ T7970]  reiserfs_sync_fs+0xbf/0x140
+[   68.102343][ T7970]  ? handle_attrs+0x1f0/0x1f0
+[   68.102907][ T7970]  ? __static_call_return0+0x9/0x10
+[   68.103507][ T7970]  ? get_nr_dirty_inodes+0x1c7/0x210
+[   68.104129][ T7970]  sync_filesystem+0xec/0x220
+[   68.104681][ T7970]  generic_shutdown_super+0x6f/0x340
+[   68.105299][ T7970]  kill_block_super+0x68/0xa0
+[   68.105852][ T7970]  deactivate_locked_super+0xa4/0x110
+[   68.106487][ T7970]  cleanup_mnt+0x426/0x4c0
+[   68.107033][ T7970]  ? _raw_spin_unlock_irq+0x23/0x50
+[   68.107644][ T7970]  task_work_run+0x24a/0x300
+[   68.108194][ T7970]  ? kasan_quarantine_put+0xc4/0x210
+[   68.108812][ T7970]  ? task_work_cancel+0x2b0/0x2b0
+[   68.109399][ T7970]  ? kmem_cache_free+0x291/0x500
+[   68.109984][ T7970]  ? do_exit+0x66f/0x2280
+[   68.110507][ T7970]  do_exit+0x674/0x2280
+[   68.111012][ T7970]  ? put_task_struct+0x80/0x80
+[   68.111578][ T7970]  ? lockdep_hardirqs_on_prepare+0x418/0x780
+[   68.112276][ T7970]  ? print_irqtrace_events+0x220/0x220
+[   68.112912][ T7970]  ? _raw_spin_unlock_irq+0x23/0x50
+[   68.113524][ T7970]  ? lockdep_hardirqs_on+0x90/0x130
+[   68.114136][ T7970]  do_group_exit+0x206/0x2c0
+[   68.114698][ T7970]  __x64_sys_exit_group+0x3f/0x40
+[   68.115301][ T7970]  do_syscall_64+0x41/0xc0
+[   68.115837][ T7970]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[   68.116528][ T7970] RIP: 0033:0x7f938a87c3d6
+[   68.117072][ T7970] Code: Unable to access opcode bytes at 0x7f938a87c3ac.
+[   68.117864][ T7970] RSP: 002b:00007ffece04a258 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+[   68.118830][ T7970] RAX: ffffffffffffffda RBX: 00007f938a8fc210 RCX: 00007f938a87c3d6
+[   68.119720][ T7970] RDX: 0000000000000001 RSI: 000000000000003c RDI: 0000000000000001
+[   68.120619][ T7970] RBP: 0000000000000001 R08: 00000000000000e7 R09: ffffffffffffffc0
+[   68.121526][ T7970] R10: 0000000000000000 R11: 0000000000000246 R12: 00007f938a8fc210
+[   68.122426][ T7970] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+[   68.123349][ T7970]  </TASK>
+[   68.132172][ T7970] ================================================================================
+[   68.133564][ T7970] Kernel panic - not syncing: UBSAN: panic_on_warn set ...
+[   68.134635][ T7970] CPU: 1 PID: 7970 Comm: syz-executor853 Not tainted 6.5.0-rc3 #1
+[   68.135731][ T7970] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   68.137205][ T7970] Call Trace:
+[   68.137646][ T7970]  <TASK>
+[   68.138080][ T7970]  dump_stack_lvl+0x1b5/0x2a0
+[   68.138863][ T7970]  ? nf_tcp_handle_invalid+0x650/0x650
+[   68.139618][ T7970]  ? panic+0x6f0/0x6f0
+[   68.140133][ T7970]  ? vscnprintf+0x5d/0x80
+[   68.140755][ T7970]  panic+0x2b4/0x6f0
+[   68.141360][ T7970]  ? check_panic_on_warn+0x21/0xa0
+[   68.142092][ T7970]  ? __memcpy_flushcache+0x2b0/0x2b0
+[   68.142871][ T7970]  ? dump_stack_lvl+0x20f/0x2a0
+[   68.143557][ T7970]  ? do_journal_end+0x142a/0x4730
+[   68.144267][ T7970]  ? mutex_lock_io_nested+0x60/0x60
+[   68.145062][ T7970]  check_panic_on_warn+0x82/0xa0
+[   68.145697][ T7970]  __ubsan_handle_out_of_bounds+0x110/0x120
+[   68.146548][ T7970]  do_journal_end+0x20a7/0x4730
+[   68.147137][ T7970]  ? journal_mark_dirty+0xe40/0xe40
+[   68.147842][ T7970]  ? dqput+0x860/0x860
+[   68.148473][ T7970]  ? journal_end_sync+0x112/0x1e0
+[   68.149269][ T7970]  reiserfs_sync_fs+0xbf/0x140
+[   68.149917][ T7970]  ? handle_attrs+0x1f0/0x1f0
+[   68.150437][ T7970]  ? __static_call_return0+0x9/0x10
+[   68.151036][ T7970]  ? get_nr_dirty_inodes+0x1c7/0x210
+[   68.151612][ T7970]  sync_filesystem+0xec/0x220
+[   68.152126][ T7970]  generic_shutdown_super+0x6f/0x340
+[   68.152707][ T7970]  kill_block_super+0x68/0xa0
+[   68.153281][ T7970]  deactivate_locked_super+0xa4/0x110
+[   68.153918][ T7970]  cleanup_mnt+0x426/0x4c0
+[   68.154458][ T7970]  ? _raw_spin_unlock_irq+0x23/0x50
+[   68.155118][ T7970]  task_work_run+0x24a/0x300
+[   68.155664][ T7970]  ? kasan_quarantine_put+0xc4/0x210
+[   68.156296][ T7970]  ? task_work_cancel+0x2b0/0x2b0
+[   68.156877][ T7970]  ? kmem_cache_free+0x291/0x500
+[   68.157468][ T7970]  ? do_exit+0x66f/0x2280
+[   68.157994][ T7970]  do_exit+0x674/0x2280
+[   68.158502][ T7970]  ? put_task_struct+0x80/0x80
+[   68.159079][ T7970]  ? lockdep_hardirqs_on_prepare+0x418/0x780
+[   68.159783][ T7970]  ? print_irqtrace_events+0x220/0x220
+[   68.160438][ T7970]  ? _raw_spin_unlock_irq+0x23/0x50
+[   68.161053][ T7970]  ? lockdep_hardirqs_on+0x90/0x130
+[   68.161660][ T7970]  do_group_exit+0x206/0x2c0
+[   68.162213][ T7970]  __x64_sys_exit_group+0x3f/0x40
+[   68.162816][ T7970]  do_syscall_64+0x41/0xc0
+[   68.163346][ T7970]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[   68.164046][ T7970] RIP: 0033:0x7f938a87c3d6
+[   68.164565][ T7970] Code: Unable to access opcode bytes at 0x7f938a87c3ac.
+[   68.165347][ T7970] RSP: 002b:00007ffece04a258 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+[   68.166335][ T7970] RAX: ffffffffffffffda RBX: 00007f938a8fc210 RCX: 00007f938a87c3d6
+[   68.167245][ T7970] RDX: 0000000000000001 RSI: 000000000000003c RDI: 0000000000000001
+[   68.168185][ T7970] RBP: 0000000000000001 R08: 00000000000000e7 R09: ffffffffffffffc0
+[   68.169076][ T7970] R10: 0000000000000000 R11: 0000000000000246 R12: 00007f938a8fc210
+[   68.169959][ T7970] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+[   68.170846][ T7970]  </TASK>
+[   68.171333][ T7970] Kernel Offset: disabled
+[   68.171941][ T7970] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+23:49:39  Registers:
+info registers vcpu 0
+RAX=6f32b717bb698f00 RBX=ffffffff8163693e RCX=000000000000fe39 RDX=0000000000000001
+RSI=ffffffff8aeaa040 RDI=ffffffff8b3ab920 RBP=ffffffff8ce07ec0 RSP=ffffffff8ce07d68
+R8 =ffff88802ca36a8b R9 =1ffff11005946d51 R10=dffffc0000000000 R11=ffffed1005946d52
+R12=1ffffffff19c0fc6 R13=1ffffffff19d28b0 R14=0000000000000000 R15=dffffc0000000000
+RIP=ffffffff8ab22e43 RFL=000002c2 [--SZ---] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff88802ca00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f4f1eca6598 CR3=000000001886c000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00000000000000000000000000000000 XMM01=a0b1878815bac1a50d4fe7a177e4a104
+XMM02=ccc855e230e3ccbd00000000000aea08 XMM03=2494e05109aea1bd00000000007c2cd0
+XMM04=dfafc3c53b1367d1000000000094fc20 XMM05=d3fdd5f48436fbd700000000000aeab0
+XMM06=8ca0b852b1c7c8e100000000000ae7b8 XMM07=15c32259ea58804300000000000ae6a8
+XMM08=44495f474f4c5359530069253d595449 XMM09=00000000000000000000000000000000
+XMM10=0f231100226b07070707070707070707 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 1
+RAX=0000000000000036 RBX=ffffffff921a2d60 RCX=0000000000000000 RDX=00000000000003f8
+RSI=0000000000000000 RDI=0000000000000020 RBP=0000000000000000 RSP=ffffc90002296fb0
+R8 =ffffffff84be646b R9 =1ffff11002ea8046 R10=dffffc0000000000 R11=ffffed1002ea8047
+R12=dffffc0000000000 R13=0000000000000036 R14=0000000000000036 R15=00000000000003f8
+RIP=ffffffff84be649e RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff88807ec00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00005649ebe87650 CR3=00000000171b8000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000002f2e2e2f002e2e XMM01=000000000000000000006c696146002f
+XMM02=ffffffffffffffffff0f0e0d0c0b0a09 XMM03=0000000000000000000030706f6f6c2f
+XMM04=2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f XMM05=00005649ebeac9e000005649ebe80dc0
+XMM06=00005649ebe80de0ffffffff00000000 XMM07=00000000000000000000000000000000
+XMM08=3a212d2b007b3d0d0a0920002c0d0a09 XMM09=00000000000000000000000000000000
+XMM10=6464322d8f977d046464322d8f9741f4 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

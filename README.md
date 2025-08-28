@@ -30,6 +30,7 @@ We also generate a [wiki page](https://deepwiki.com/QGrain/SyzGPT) for SyzGPT th
 .
 ├── analyzer/           # Corpus Analyzer
 ├── crawler/            # Crawler for Linux Manpages
+├── crashes/            # Crashes found during our experiments
 ├── data/               # Data used in SyzGPT
 ├── docs/               # Documentations of SyzGPT (apart from the READMEs)
 ├── examples/           # Examples for better understanding

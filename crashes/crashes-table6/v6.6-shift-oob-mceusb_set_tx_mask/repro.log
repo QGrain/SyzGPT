@@ -1,0 +1,507 @@
+Warning: Permanently added '[localhost]:23407' (ECDSA) to the list of known hosts.
+executing program
+[   46.388344][   T44] audit: type=1400 audit(1700652153.618:20): avc:  denied  { execmem } for  pid=8121 comm="syz-executor223" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   46.666764][   T50] usb 1-1: new high-speed USB device number 2 using dummy_hcd
+[   46.906603][   T50] usb 1-1: Using ep0 maxpacket: 32
+[   47.026965][   T50] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x7 has invalid wMaxPacketSize 0
+[   47.028953][   T50] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x5 has invalid wMaxPacketSize 0
+[   47.030644][   T50] usb 1-1: config 0 interface 0 altsetting 0 bulk endpoint 0x5 has invalid maxpacket 0
+[   47.032661][   T50] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x82 has an invalid bInterval 0, changing to 7
+[   47.034737][   T50] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x82 has invalid maxpacket 49408, setting to 1024
+[   47.037034][   T50] usb 1-1: config 0 interface 0 altsetting 0 has 3 endpoint descriptors, different from the interface descriptor's value: 4
+[   47.039532][   T50] usb 1-1: New USB device found, idVendor=1509, idProduct=9242, bcdDevice=fb.5c
+[   47.040778][   T50] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[   47.044795][   T50] usb 1-1: config 0 descriptor??
+[   47.156462][   T50] rc_core: IR keymap rc-rc6-mce not found
+[   47.157150][   T50] Registered IR keymap rc-empty
+[   47.158136][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.186599][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.218619][   T50] rc rc0: Media Center Ed. eHome Infrared Remote Transceiver (1509:9242) as /devices/platform/dummy_hcd.0/usb1/1-1/1-1:0.0/rc/rc0
+[   47.222860][   T50] input: Media Center Ed. eHome Infrared Remote Transceiver (1509:9242) as /devices/platform/dummy_hcd.0/usb1/1-1/1-1:0.0/rc/rc0/input4
+[   47.229388][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.256678][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.296593][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.326647][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.356668][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.386652][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.416728][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.456597][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.486576][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.526452][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.556515][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.586470][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.616467][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.656527][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.696521][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.733745][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.766453][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.796660][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.836487][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.867040][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.897402][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.926655][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.956819][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   47.986500][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.016552][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.046537][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.077397][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.106532][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.136593][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.166457][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.196816][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.226419][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.256443][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.286425][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.316575][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.346517][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.376448][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.406478][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.436465][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.466531][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.496455][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.526573][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.556496][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.586492][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.616482][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.646492][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.676777][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.706496][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.736494][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.766510][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.796493][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.826438][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.856566][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.886514][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.916444][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.946456][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   48.976579][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.006471][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.036571][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.066446][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.096456][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.126604][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.157662][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.186641][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.226509][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.256498][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.286455][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.316685][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.346517][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.376435][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.406519][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.436492][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.466482][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.496493][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.526484][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.556587][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.586455][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.616571][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.646492][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.676492][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.706452][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.736485][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.766509][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.796518][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.826503][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.859607][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.886486][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.916496][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.946495][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   49.976474][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.006487][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.036573][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.066504][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.096498][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.126442][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.156488][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.186499][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.216523][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.246488][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.276484][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.306507][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.336507][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.366488][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.396496][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.426493][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.456481][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.486486][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.516476][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.546482][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.576474][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.606527][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.636498][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.666493][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.696481][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.726461][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.756944][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.786515][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.816469][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.846501][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.876495][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.906510][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.936512][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.966556][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   50.996658][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.026641][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.056616][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.086887][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.116732][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.146565][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.176607][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.206628][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.237828][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.266617][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.296518][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.326645][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.356478][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.386532][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.426442][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.456468][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.486490][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.516489][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.546497][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.576476][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.606608][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.636570][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.666525][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.696566][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.726583][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.766799][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.796452][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.826461][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.856415][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.896442][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.926428][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.956491][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   51.986421][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.016551][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.046440][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.076465][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.106461][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.136466][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.166448][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.196708][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.226433][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.266459][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.296446][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.336516][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.366510][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.396525][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.426577][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.466508][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.496640][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.526539][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.556634][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.596743][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.626637][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.656598][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.696469][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.726487][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.757334][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.786686][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.826433][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.856519][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.886518][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.916504][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.946489][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   52.976438][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.006593][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.036638][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.076509][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.106514][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.146480][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.176416][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.216619][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.246423][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.286460][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.317114][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.346466][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.376488][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.406459][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.436675][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.466464][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.496438][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.526451][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.556557][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.586496][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.616478][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.646472][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.676480][   T50] mceusb 1-1:0.0: Error: mce write submit urb error = -90
+[   53.706458][   T50] ================================================================================
+[   53.707194][   T50] UBSAN: shift-out-of-bounds in drivers/media/rc/mceusb.c:1019:17
+[   53.707849][   T50] shift exponent 200 is too large for 32-bit type 'int'
+[   53.708450][   T50] CPU: 2 PID: 50 Comm: kworker/2:1 Not tainted 6.6.1 #1
+[   53.709087][   T50] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   53.709895][   T50] Workqueue: usb_hub_wq hub_event
+[   53.710273][   T50] Call Trace:
+[   53.710484][   T50]  <TASK>
+[   53.710667][   T50]  dump_stack_lvl+0x1e7/0x2d0
+[   53.710964][   T50]  ? nf_tcp_handle_invalid+0x650/0x650
+[   53.711300][   T50]  ? panic+0x770/0x770
+[   53.711559][   T50]  __ubsan_handle_shift_out_of_bounds+0x3c3/0x420
+[   53.711950][   T50]  mceusb_set_tx_mask+0x174/0x180
+[   53.712264][   T50]  mceusb_dev_probe+0x16ee/0x1ea0
+[   53.712603][   T50]  ? vfd_write+0x840/0x840
+[   53.712955][   T50]  ? do_raw_spin_unlock+0x13b/0x8b0
+[   53.713432][   T50]  usb_probe_interface+0x5c4/0xb00
+[   53.713878][   T50]  ? usb_register_driver+0x3d0/0x3d0
+[   53.714299][   T50]  really_probe+0x294/0xc30
+[   53.714657][   T50]  __driver_probe_device+0x1a2/0x3d0
+[   53.715112][   T50]  driver_probe_device+0x50/0x420
+[   53.715570][   T50]  __device_attach_driver+0x2d3/0x520
+[   53.716060][   T50]  bus_for_each_drv+0x24a/0x2d0
+[   53.716511][   T50]  ? coredump_store+0x90/0x90
+[   53.716951][   T50]  ? bus_find_device+0x2e0/0x2e0
+[   53.717427][   T50]  __device_attach+0x32f/0x510
+[   53.717888][   T50]  ? __lock_acquire+0x7f70/0x7f70
+[   53.718389][   T50]  ? device_attach+0x20/0x20
+[   53.718825][   T50]  ? do_raw_spin_unlock+0x13b/0x8b0
+[   53.719327][   T50]  bus_probe_device+0x185/0x260
+[   53.719759][   T50]  device_add+0x956/0xd30
+[   53.720135][   T50]  usb_set_configuration+0x1976/0x1fb0
+[   53.720612][   T50]  usb_generic_driver_probe+0x88/0x140
+[   53.721137][   T50]  usb_probe_device+0x134/0x270
+[   53.721468][   T50]  ? usb_register_device_driver+0x240/0x240
+[   53.721866][   T50]  really_probe+0x294/0xc30
+[   53.722197][   T50]  __driver_probe_device+0x1a2/0x3d0
+[   53.722529][   T50]  driver_probe_device+0x50/0x420
+[   53.722845][   T50]  __device_attach_driver+0x2d3/0x520
+[   53.723180][   T50]  bus_for_each_drv+0x24a/0x2d0
+[   53.723489][   T50]  ? coredump_store+0x90/0x90
+[   53.723784][   T50]  ? bus_find_device+0x2e0/0x2e0
+[   53.724099][   T50]  __device_attach+0x32f/0x510
+[   53.724404][   T50]  ? lockdep_hardirqs_on+0x98/0x140
+[   53.724730][   T50]  ? device_attach+0x20/0x20
+[   53.725024][   T50]  bus_probe_device+0x185/0x260
+[   53.725342][   T50]  device_add+0x956/0xd30
+[   53.725619][   T50]  usb_new_device+0xb7e/0x18d0
+[   53.725931][   T50]  ? usb_disconnect+0x8d0/0x8d0
+[   53.726251][   T50]  ? _raw_spin_unlock_irq+0x23/0x50
+[   53.726582][   T50]  ? lockdep_hardirqs_on+0x98/0x140
+[   53.726907][   T50]  hub_event+0x2e3c/0x50a0
+[   53.727203][   T50]  ? led_work+0x770/0x770
+[   53.727500][   T50]  ? read_lock_is_recursive+0x20/0x20
+[   53.727861][   T50]  ? lockdep_hardirqs_on_prepare+0x43c/0x7a0
+[   53.728315][   T50]  ? print_irqtrace_events+0x220/0x220
+[   53.728791][   T50]  ? process_scheduled_works+0x885/0x1490
+[   53.729248][   T50]  process_scheduled_works+0x96f/0x1490
+[   53.729695][   T50]  ? assign_work+0x3d0/0x3d0
+[   53.730113][   T50]  ? assign_work+0x364/0x3d0
+[   53.730539][   T50]  worker_thread+0xa5f/0xff0
+[   53.730958][   T50]  kthread+0x2d3/0x370
+[   53.731348][   T50]  ? pr_cont_work+0x5e0/0x5e0
+[   53.731772][   T50]  ? kthread_blkcg+0xd0/0xd0
+[   53.732205][   T50]  ret_from_fork+0x48/0x80
+[   53.732619][   T50]  ? kthread_blkcg+0xd0/0xd0
+[   53.733050][   T50]  ret_from_fork_asm+0x11/0x20
+[   53.733491][   T50]  </TASK>
+[   53.733836][   T50] ================================================================================
+[   53.734654][   T50] Kernel panic - not syncing: UBSAN: panic_on_warn set ...
+[   53.735283][   T50] CPU: 2 PID: 50 Comm: kworker/2:1 Not tainted 6.6.1 #1
+[   53.735889][   T50] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   53.736748][   T50] Workqueue: usb_hub_wq hub_event
+[   53.737213][   T50] Call Trace:
+[   53.737523][   T50]  <TASK>
+[   53.737794][   T50]  dump_stack_lvl+0x1e7/0x2d0
+[   53.738238][   T50]  ? nf_tcp_handle_invalid+0x650/0x650
+[   53.738724][   T50]  ? panic+0x770/0x770
+[   53.739059][   T50]  ? vscnprintf+0x5d/0x80
+[   53.739408][   T50]  panic+0x30f/0x770
+[   53.739740][   T50]  ? check_panic_on_warn+0x21/0xa0
+[   53.740200][   T50]  ? __memcpy_flushcache+0x2b0/0x2b0
+[   53.740689][   T50]  ? dump_stack_lvl+0x253/0x2d0
+[   53.741154][   T50]  check_panic_on_warn+0x82/0xa0
+[   53.741614][   T50]  __ubsan_handle_shift_out_of_bounds+0x3e2/0x420
+[   53.742107][   T50]  mceusb_set_tx_mask+0x174/0x180
+[   53.742512][   T50]  mceusb_dev_probe+0x16ee/0x1ea0
+[   53.742912][   T50]  ? vfd_write+0x840/0x840
+[   53.743272][   T50]  ? do_raw_spin_unlock+0x13b/0x8b0
+[   53.743689][   T50]  usb_probe_interface+0x5c4/0xb00
+[   53.744150][   T50]  ? usb_register_driver+0x3d0/0x3d0
+[   53.744647][   T50]  really_probe+0x294/0xc30
+[   53.745072][   T50]  __driver_probe_device+0x1a2/0x3d0
+[   53.745543][   T50]  driver_probe_device+0x50/0x420
+[   53.745927][   T50]  __device_attach_driver+0x2d3/0x520
+[   53.746340][   T50]  bus_for_each_drv+0x24a/0x2d0
+[   53.746716][   T50]  ? coredump_store+0x90/0x90
+[   53.747074][   T50]  ? bus_find_device+0x2e0/0x2e0
+[   53.747465][   T50]  __device_attach+0x32f/0x510
+[   53.747827][   T50]  ? __lock_acquire+0x7f70/0x7f70
+[   53.748204][   T50]  ? device_attach+0x20/0x20
+[   53.748547][   T50]  ? do_raw_spin_unlock+0x13b/0x8b0
+[   53.748994][   T50]  bus_probe_device+0x185/0x260
+[   53.749446][   T50]  device_add+0x956/0xd30
+[   53.749826][   T50]  usb_set_configuration+0x1976/0x1fb0
+[   53.750319][   T50]  usb_generic_driver_probe+0x88/0x140
+[   53.750805][   T50]  usb_probe_device+0x134/0x270
+[   53.751271][   T50]  ? usb_register_device_driver+0x240/0x240
+[   53.751788][   T50]  really_probe+0x294/0xc30
+[   53.752205][   T50]  __driver_probe_device+0x1a2/0x3d0
+[   53.752675][   T50]  driver_probe_device+0x50/0x420
+[   53.753118][   T50]  __device_attach_driver+0x2d3/0x520
+[   53.753567][   T50]  bus_for_each_drv+0x24a/0x2d0
+[   53.753961][   T50]  ? coredump_store+0x90/0x90
+[   53.754394][   T50]  ? bus_find_device+0x2e0/0x2e0
+[   53.754830][   T50]  __device_attach+0x32f/0x510
+[   53.755248][   T50]  ? lockdep_hardirqs_on+0x98/0x140
+[   53.755864][   T50]  ? device_attach+0x20/0x20
+[   53.756364][   T50]  bus_probe_device+0x185/0x260
+[   53.756900][   T50]  device_add+0x956/0xd30
+[   53.757309][   T50]  usb_new_device+0xb7e/0x18d0
+[   53.757768][   T50]  ? usb_disconnect+0x8d0/0x8d0
+[   53.758272][   T50]  ? _raw_spin_unlock_irq+0x23/0x50
+[   53.758747][   T50]  ? lockdep_hardirqs_on+0x98/0x140
+[   53.759196][   T50]  hub_event+0x2e3c/0x50a0
+[   53.759639][   T50]  ? led_work+0x770/0x770
+[   53.759938][   T50]  ? read_lock_is_recursive+0x20/0x20
+[   53.760336][   T50]  ? lockdep_hardirqs_on_prepare+0x43c/0x7a0
+[   53.760779][   T50]  ? print_irqtrace_events+0x220/0x220
+[   53.761109][   T50]  ? process_scheduled_works+0x885/0x1490
+[   53.761584][   T50]  process_scheduled_works+0x96f/0x1490
+[   53.761979][   T50]  ? assign_work+0x3d0/0x3d0
+[   53.762280][   T50]  ? assign_work+0x364/0x3d0
+[   53.762587][   T50]  worker_thread+0xa5f/0xff0
+[   53.762961][   T50]  kthread+0x2d3/0x370
+[   53.763270][   T50]  ? pr_cont_work+0x5e0/0x5e0
+[   53.763584][   T50]  ? kthread_blkcg+0xd0/0xd0
+[   53.763914][   T50]  ret_from_fork+0x48/0x80
+[   53.764231][   T50]  ? kthread_blkcg+0xd0/0xd0
+[   53.764594][   T50]  ret_from_fork_asm+0x11/0x20
+[   53.764899][   T50]  </TASK>
+[   53.765391][   T50] Kernel Offset: disabled
+[   53.765737][   T50] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+19:22:45  Registers:
+info registers vcpu 0
+RAX=ffffffff81332c4a RBX=0000000080000008 RCX=ffff8880132bc1c0 RDX=0000000080010001
+RSI=0000000000000008 RDI=ffffffff90335240 RBP=ffffc90000007fe0 RSP=ffffc90000007f40
+R8 =ffffffff90335247 R9 =1ffffffff2066a48 R10=dffffc0000000000 R11=fffffbfff2066a49
+R12=ffff888063a218c0 R13=dffffc0000000000 R14=0000000000000000 R15=0000000000000046
+RIP=ffffffff81332c4b RFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888063a00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6b431b6010 CR3=0000000015eae000 CR4=00750ef0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=57df909cd09b509c9aa5b6890b2292a5 XMM01=725de44eb7ec51414af109df2a696133
+XMM02=6fde643bcf32c2ac546581eafbf3ee53 XMM03=bcd605bb8e686d45cb431b7c1228ecb9
+XMM04=00000000000000000000000000001c00 XMM05=00000000000000000000000000000040
+XMM06=0080010000800100b9b6af6c00800100 XMM07=0000001d0000001d0000001d00800100
+XMM08=b9a6d3da0000001d00800100b9867004 XMM09=0000001db9e467dcb9d2d9220000001d
+XMM10=26d077c0fc01ea1c3fe93da332eae491 XMM11=d9f399e57944f7711e0d9c685761aa04
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=a54ff53a3c6ef372bb67ae856a09e667 XMM15=5be0cd191f83d9ab9b05688c510e527f
+info registers vcpu 1
+RAX=ffffffff81332c4a RBX=0000000080000008 RCX=ffff888102a60080 RDX=0000000080010001
+RSI=0000000000000008 RDI=ffffffff90335240 RBP=ffffc900003f8fe0 RSP=ffffc900003f8f40
+R8 =ffffffff90335247 R9 =1ffffffff2066a48 R10=dffffc0000000000 R11=fffffbfff2066a49
+R12=ffff888135c218c0 R13=dffffc0000000000 R14=0000000000000001 R15=0000000000000046
+RIP=ffffffff81332c4b RFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888135c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 00000000 00000000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6b43de5250 CR3=0000000108486000 CR4=00750ee0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00ffffffffffffffffffffffff000000 XMM01=74656e2f6e75722f7261762f0074656e
+XMM02=ffffffffffffff0f0e0d0c0b0a090807 XMM03=00000000000000000000000000000000
+XMM04=00000000000000000000000000000000 XMM05=00000000000000000000000000000000
+XMM06=00000000000000000000000000000000 XMM07=00000000000000000000000000000000
+XMM08=00000000000000200000000000002000 XMM09=0000ffffffffffffffffffffffffff00
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 2
+RAX=0000000080000001 RBX=0000001fd8120718 RCX=ffffffff92160303 RDX=000000000000001f
+RSI=ffffffff8b7b9aa0 RDI=0000000000000001 RBP=000000000010cdfa RSP=ffffc90000bde940
+R8 =ffffffff870b67dc R9 =1ffff1100c76516a R10=dffffc0000000000 R11=ffffed100c76516b
+R12=0000000000000fdc R13=ffff8880166f4700 R14=0000000000230362 R15=0000000000000002
+RIP=ffffffff815f0ba8 RFL=00000082 [--S----] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888063b00000 ffffffff 00c00000
+LDT=0000 0000000000000000 00000000 00000000
+TR =0040 fffffe0000091000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe000008f000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6b42fed060 CR3=0000000108486000 CR4=00750ee0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00ffffffffffffffffffffffff000000 XMM01=74656e2f6e75722f7261762f0074656e
+XMM02=ffffffffffffff0f0e0d0c0b0a090807 XMM03=00000000000000000000000000000000
+XMM04=00000000000000000000000000000000 XMM05=00000000000000000000000000000000
+XMM06=00000000000000000000000000000000 XMM07=00000000000000000000000000000000
+XMM08=00000000000000200000000000002000 XMM09=0000ffffffffffffffffffffffffff00
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 3
+RAX=ffffffff81332c4a RBX=0000000080000008 RCX=ffff888102a640c0 RDX=0000000080010001
+RSI=0000000000000008 RDI=ffffffff90335240 RBP=ffffc90000ab0fe0 RSP=ffffc90000ab0f40
+R8 =ffffffff90335247 R9 =1ffffffff2066a48 R10=dffffc0000000000 R11=fffffbfff2066a49
+R12=ffff888135d218c0 R13=dffffc0000000000 R14=0000000000000003 R15=0000000000000046
+RIP=ffffffff81332c4b RFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff888135d00000 ffffffff 00c00000
+LDT=0000 0000000000000000 00000000 00000000
+TR =0040 fffffe00000d8000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe00000d6000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6b42c13df8 CR3=0000000015eae000 CR4=00750ee0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00000000000000000000000000000000 XMM01=00007ffc1876b4300000003000000018
+XMM02=ffffffffffffff0f0e0d0c0b0a090807 XMM03=00000000000000000000000000000000
+XMM04=00000000655de47a0000000000000000 XMM05=00000000655de47a0000000012f8b9fe
+XMM06=00000000655de47a0000000012f8b9fe XMM07=00000000000000000000000000000000
+XMM08=00000000000000000000000000ff0000 XMM09=050f231100226b070707070707070707
+XMM10=07505151515151685b0707241100226b XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

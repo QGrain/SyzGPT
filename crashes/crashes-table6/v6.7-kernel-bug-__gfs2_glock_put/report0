@@ -1,0 +1,62 @@
+gfs2: fsid=„½%b­i’~NFSSÂ“e°6_.0: G:  s:UN n:2/13 f:n t:UN d:EX/0 a:0 v:0 r:-128 m:20 p:1
+------------[ cut here ]------------
+kernel BUG at fs/gfs2/glock.c:282!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 7444 Comm: syz-executor.7 Not tainted 6.7.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:__gfs2_glock_put+0x3cd/0x3f0 fs/gfs2/glock.c:282
+Code: de e8 c7 7b cc fd 40 84 ed 75 2f e8 2d 79 cc fd e9 fd fd ff ff e8 23 79 cc fd 31 ff 4c 89 fe ba 01 00 00 00 e8 54 da ff ff 90 <0f> 0b e8 0c 79 cc fd 90 0f 0b 90 e9 0a ff ff ff e8 fe 78 cc fd e8
+RSP: 0018:ffffc90002c5f988 EFLAGS: 00010246
+RAX: 64a61a8dd758e000 RBX: 0000000000018051 RCX: ffff888129c021c0
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffff83c05587 R09: 1ffff9200058be44
+R10: dffffc0000000000 R11: fffff5200058be45 R12: ffff888017385838
+R13: 1ffff1100256a815 R14: ffff888012b54000 R15: ffff888017385548
+FS:  0000000002cb9980(0000) GS:ffff888063c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000c00176e000 CR3: 0000000129fd8000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ gfs2_glock_put_eventually fs/gfs2/super.c:1273 [inline]
+ gfs2_evict_inode+0x67e/0x12c0 fs/gfs2/super.c:1545
+ evict+0x2a4/0x630 fs/inode.c:666
+ gfs2_jindex_free+0x44d/0x500 fs/gfs2/super.c:75
+ gfs2_put_super+0x8cf/0x940 fs/gfs2/super.c:644
+ generic_shutdown_super+0x13a/0x2c0 fs/super.c:696
+ kill_block_super+0x44/0x90 fs/super.c:1667
+ deactivate_locked_super+0xc1/0x130 fs/super.c:484
+ cleanup_mnt+0x426/0x4c0 fs/namespace.c:1256
+ task_work_run+0x24a/0x300 kernel/task_work.c:180
+ resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop+0xde/0x100 kernel/entry/common.c:171
+ exit_to_user_mode_prepare+0xb1/0x150 kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x69/0x2a0 kernel/entry/common.c:296
+ do_syscall_64+0x52/0x110 arch/x86/entry/common.c:89
+ entry_SYSCALL_64_after_hwframe+0x63/0x6b
+RIP: 0033:0x47685b
+Code: ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 90 f3 0f 1e fa 31 f6 e9 05 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff3b2872d8 EFLAGS: 00000246 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 000000000000081b RCX: 000000000047685b
+RDX: 00007fff3b28738b RSI: 000000000000000a RDI: 00007fff3b287380
+RBP: 0000000000000000 R08: 00000000004c745f R09: 00007fff3b287170
+R10: 00000000fffffffb R11: 0000000000000246 R12: 00007fff3b288430
+R13: 0000000002cbad90 R14: 0000000000000000 R15: 0000000000000003
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:__gfs2_glock_put+0x3cd/0x3f0 fs/gfs2/glock.c:282
+Code: de e8 c7 7b cc fd 40 84 ed 75 2f e8 2d 79 cc fd e9 fd fd ff ff e8 23 79 cc fd 31 ff 4c 89 fe ba 01 00 00 00 e8 54 da ff ff 90 <0f> 0b e8 0c 79 cc fd 90 0f 0b 90 e9 0a ff ff ff e8 fe 78 cc fd e8
+RSP: 0018:ffffc90002c5f988 EFLAGS: 00010246
+RAX: 64a61a8dd758e000 RBX: 0000000000018051 RCX: ffff888129c021c0
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffff83c05587 R09: 1ffff9200058be44
+R10: dffffc0000000000 R11: fffff5200058be45 R12: ffff888017385838
+R13: 1ffff1100256a815 R14: ffff888012b54000 R15: ffff888017385548
+FS:  0000000002cb9980(0000) GS:ffff888063c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000598000 CR3: 0000000129fd8000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

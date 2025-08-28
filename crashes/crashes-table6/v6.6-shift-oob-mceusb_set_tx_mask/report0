@@ -1,0 +1,48 @@
+mceusb 4-1:0.0: Error: mce write submit urb error = -90
+================================================================================
+UBSAN: shift-out-of-bounds in drivers/media/rc/mceusb.c:1019:17
+shift exponent 200 is too large for 32-bit type 'int'
+CPU: 1 PID: 12589 Comm: kworker/1:5 Not tainted 6.6.1 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: usb_hub_wq hub_event
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1e7/0x2d0 lib/dump_stack.c:106
+ ubsan_epilogue lib/ubsan.c:217 [inline]
+ __ubsan_handle_shift_out_of_bounds+0x3c3/0x420 lib/ubsan.c:387
+ mceusb_set_tx_mask+0x174/0x180 drivers/media/rc/mceusb.c:1019
+ mceusb_dev_probe+0x16ee/0x1ea0 drivers/media/rc/mceusb.c:1809
+ usb_probe_interface+0x5c4/0xb00 drivers/usb/core/driver.c:396
+ really_probe+0x294/0xc30 drivers/base/dd.c:658
+ __driver_probe_device+0x1a2/0x3d0 drivers/base/dd.c:800
+ driver_probe_device+0x50/0x420 drivers/base/dd.c:830
+ __device_attach_driver+0x2d3/0x520 drivers/base/dd.c:958
+ bus_for_each_drv+0x24a/0x2d0 drivers/base/bus.c:457
+ __device_attach+0x32f/0x510 drivers/base/dd.c:1030
+ bus_probe_device+0x185/0x260 drivers/base/bus.c:532
+ device_add+0x956/0xd30 drivers/base/core.c:3624
+ usb_set_configuration+0x1976/0x1fb0 drivers/usb/core/message.c:2207
+ usb_generic_driver_probe+0x88/0x140 drivers/usb/core/generic.c:238
+ usb_probe_device+0x134/0x270 drivers/usb/core/driver.c:293
+ really_probe+0x294/0xc30 drivers/base/dd.c:658
+ __driver_probe_device+0x1a2/0x3d0 drivers/base/dd.c:800
+ driver_probe_device+0x50/0x420 drivers/base/dd.c:830
+ __device_attach_driver+0x2d3/0x520 drivers/base/dd.c:958
+ bus_for_each_drv+0x24a/0x2d0 drivers/base/bus.c:457
+ __device_attach+0x32f/0x510 drivers/base/dd.c:1030
+ bus_probe_device+0x185/0x260 drivers/base/bus.c:532
+ device_add+0x956/0xd30 drivers/base/core.c:3624
+ usb_new_device+0xb7e/0x18d0 drivers/usb/core/hub.c:2597
+ hub_port_connect drivers/usb/core/hub.c:5459 [inline]
+ hub_port_connect_change drivers/usb/core/hub.c:5599 [inline]
+ port_event drivers/usb/core/hub.c:5759 [inline]
+ hub_event+0x2e3c/0x50a0 drivers/usb/core/hub.c:5841
+ process_one_work kernel/workqueue.c:2630 [inline]
+ process_scheduled_works+0x96f/0x1490 kernel/workqueue.c:2703
+ worker_thread+0xa5f/0xff0 kernel/workqueue.c:2784
+ kthread+0x2d3/0x370 kernel/kthread.c:388
+ ret_from_fork+0x48/0x80 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+ </TASK>
+================================================================================

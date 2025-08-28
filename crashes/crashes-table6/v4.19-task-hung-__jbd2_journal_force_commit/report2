@@ -1,0 +1,114 @@
+ieee802154 phy0 wpan0: encryption failed: -22
+ieee802154 phy1 wpan1: encryption failed: -22
+INFO: task systemd-journal:4727 blocked for more than 140 seconds.
+      Not tainted 4.19.300 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+systemd-journal D25344  4727      1 0x00000304
+Call Trace:
+ context_switch g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:2834 [inline]
+ __schedule+0x8a2/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3522
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ jbd2_log_wait_commit+0x2d1/0x430 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:728
+ __jbd2_journal_force_commit+0x103/0x230 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:579
+ jbd2_journal_force_commit+0x48/0x70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:614
+ ext4_journal_force_commit g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/ext4_jbd2.h:359 [inline]
+ ext4_force_commit+0xb1/0xe0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/super.c:5138
+ ext4_sync_file+0x338/0x1280 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/fsync.c:144
+ vfs_fsync_range+0x13a/0x220 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:197
+ vfs_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:211 [inline]
+ do_fsync+0x4d/0x90 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:221
+ __do_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:229 [inline]
+ __se_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227 [inline]
+ __x64_sys_fsync+0x2f/0x40 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x7f36ee5d702b
+Code: Bad RIP value.
+RSP: 002b:00007ffc68f41f30 EFLAGS: 00000293 ORIG_RAX: 000000000000004a
+RAX: ffffffffffffffda RBX: 0000000000000014 RCX: 00007f36ee5d702b
+RDX: 0000000000000007 RSI: 0000000000000005 RDI: 0000000000000017
+RBP: 000055a8fb1a9c90 R08: 0000000000000000 R09: 00007f36ee6b3be0
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000000
+R13: 000055a8fb197798 R14: 0000000000000001 R15: ffffffffffffffff
+
+Showing all locks held in the system:
+4 locks held by kworker/u5:0/7:
+ #0: 00000000ce0fe962 ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000009066953b ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 000000005ac14f0c (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 0000000085d39853 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+4 locks held by kworker/u6:0/22:
+ #0: 00000000ce0fe962 ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000c4d12757 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 000000005ac14f0c (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 0000000085d39853 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by khungtaskd/1572:
+ #0: 00000000494dd9dd (rcu_read_lock){....}, at: debug_show_all_locks+0x53/0x265 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/locking/lockdep.c:4441
+1 lock held by in:imklog/7609:
+ #0: 00000000b628a99a (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+4 locks held by kworker/1:0/23438:
+ #0: 00000000002e1f35 ((wq_completion)"events"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000316277d3 ((work_completion)(&ap->scsi_rescan_task)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 00000000d3317799 (&ap->scsi_scan_mutex){+.+.}, at: ata_scsi_dev_rescan+0x38/0x230 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/ata/libata-scsi.c:4974
+ #3: 00000000db4eb39c (&dev->mutex){....}, at: device_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/device.h:1176 [inline]
+ #3: 00000000db4eb39c (&dev->mutex){....}, at: scsi_rescan_device+0x25/0x220 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/drivers/scsi/scsi_scan.c:1521
+4 locks held by kworker/u6:2/29726:
+ #0: 00000000ce0fe962 ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000e481c77b ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 000000005ac14f0c (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 0000000085d39853 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by apt.systemd.dai/63747:
+ #0: 000000004c5c4ef8 (&sig->cred_guard_mutex){+.+.}, at: prepare_bprm_creds+0x51/0x120 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/exec.c:1419
+ #1: 00000000ec713607 (&iint->mutex){+.+.}, at: process_measurement+0x316/0x1440 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/security/integrity/ima/ima_main.c:224
+1 lock held by syz-executor.7/66939:
+ #0: 0000000085d39853 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+
+=============================================
+
+NMI backtrace for cpu 1
+CPU: 1 PID: 1572 Comm: khungtaskd Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ nmi_cpu_backtrace.cold+0x63/0xa2 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:101
+ nmi_trigger_cpumask_backtrace+0x1a6/0x1f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/nmi.h:148 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:203 [inline]
+ watchdog+0x962/0xd80 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:287
+ kthread+0x33f/0x460 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/kthread.c:259
+ ret_from_fork+0x24/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/entry_64.S:417
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 7609 Comm: in:imklog Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:__sanitizer_cov_trace_const_cmp4+0x0/0x20 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/kcov.c:188
+Code: 66 2e 0f 1f 84 00 00 00 00 00 48 8b 0c 24 0f b7 d6 0f b7 f7 bf 03 00 00 00 e9 ec fe ff ff 66 66 2e 0f 1f 84 00 00 00 00 00 90 <48> 8b 0c 24 89 f2 89 fe bf 05 00 00 00 e9 ce fe ff ff 66 66 2e 0f
+RSP: 0000:ffff8880562e7ce0 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000000 RCX: ffffffff8197ffd5
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: 0000000000000001 R08: ffff88805fc344c0 R09: ffffed100c84595b
+R10: ffffed100c84595a R11: ffff88806422cad3 R12: ffffea0004537948
+R13: 1ffff1100ac5cfa3 R14: 0000000000000000 R15: ffff88805fd67630
+FS:  00007f749a627700(0000) GS:ffff888064200000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f749401c2f8 CR3: 00000000598c6000 CR4: 00000000003406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ do_numa_page g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/memory.c:4088 [inline]
+ handle_pte_fault g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/memory.c:4219 [inline]
+ __handle_mm_fault+0x376a/0x41c0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/memory.c:4336
+ handle_mm_fault+0x436/0xb10 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/memory.c:4373
+ __do_page_fault+0x68e/0xd50 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/mm/fault.c:1412
+ async_page_fault+0x1e/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/entry_64.S:1211
+RIP: 0033:0x7f749ae3cc94
+Code: 0f 85 56 03 00 00 89 d1 e9 3c fa ff ff 89 f8 c1 e0 06 83 c0 0c 49 8d 54 c4 f0 b8 01 00 00 00 e9 ee fc ff ff 49 8b 72 10 eb ce <4d> 8b 6f 08 48 8b 5c 24 28 49 83 e5 f8 4c 39 ed 0f 87 fd 02 00 00
+RSP: 002b:00007f749a6062e0 EFLAGS: 00010287
+RAX: 0000000000004000 RBX: 0000000000000000 RCX: 00000000ffffdfff
+RDX: 00007f7494000550 RSI: 0000000001004000 RDI: 0000000000000002
+RBP: 0000000000000280 R08: 0000000000000002 R09: 00007f7494000080
+R10: 0000000000000040 R11: 0000000000000000 R12: 00007f7494000020
+R13: 00007f74940008d0 R14: fffffffffffffee0 R15: 00007f749401c2f0

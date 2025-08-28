@@ -1,0 +1,126 @@
+INFO: task systemd-udevd:10943 blocked for more than 143 seconds.
+      Not tainted 6.6.12 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:systemd-udevd   state:D stack:26368 pid:10943 ppid:4496   flags:0x00000000
+Call Trace:
+ <TASK>
+ context_switch g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:5384 [inline]
+ __schedule+0xedb/0x5af0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:6698
+ schedule+0xe7/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:6772
+ io_schedule+0xbe/0x130 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:9027
+ bit_wait_io+0x16/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:209
+ __wait_on_bit_lock+0x112/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:90
+ out_of_line_wait_on_bit_lock+0xdb/0x110 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/wait_bit.c:117
+ wait_on_bit_lock_io g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/wait_bit.h:208 [inline]
+ __lock_buffer g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:71 [inline]
+ lock_buffer g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/buffer_head.h:385 [inline]
+ block_read_full_folio+0x80a/0xae0 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/buffer.c:2440
+ filemap_read_folio+0x27b/0x2c0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2382
+ filemap_update_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2466 [inline]
+ filemap_get_pages+0x130f/0x1830 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2580
+ filemap_read+0x39b/0xcf0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2652
+ blkdev_read_iter+0x191/0x510 g.linux/deadline/code/srcs/linux-stable-6.6.12/block/fops.c:730
+ call_read_iter g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/fs.h:2009 [inline]
+ new_sync_read g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:389 [inline]
+ vfs_read+0x4e0/0x930 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:470
+ ksys_read+0x12f/0x250 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/read_write.c:613
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/common.c:81
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7face660f04e
+RSP: 002b:00007ffc718e0e58 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
+RAX: ffffffffffffffda RBX: 000055a73a4b5828 RCX: 00007face660f04e
+RDX: 0000000000000200 RSI: 000055a73a4b5838 RDI: 0000000000000012
+RBP: 000055a73a4bd2b0 R08: 000055a73a4b5810 R09: 00007face65f7be0
+R10: 0000000000000010 R11: 0000000000000246 R12: 0000000000008000
+R13: 0000000000000200 R14: 000055a73a4b5810 R15: 000055a73a4bd300
+ </TASK>
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/32:
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/rcupdate.h:303 [inline]
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/rcupdate.h:749 [inline]
+ #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x75/0x340 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/locking/lockdep.c:6614
+1 lock held by systemd-journal/4482:
+1 lock held by in:imklog/7676:
+ #0: ffff88801d4b2848 (&f->f_pos_lock){+.+.}-{3:3}, at: __fdget_pos+0xe7/0x170 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/file.c:1064
+1 lock held by systemd-udevd/10943:
+ #0: ffff8881049194c0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_invalidate_lock_shared g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/fs.h:857 [inline]
+ #0: ffff8881049194c0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_update_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2432 [inline]
+ #0: ffff8881049194c0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_get_pages+0x485/0x1830 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2580
+5 locks held by kworker/u6:13/11719:
+ #0: ffff888135c3c6d8 (&rq->__lock){-.-.}-{2:2}, at: raw_spin_rq_lock_nested+0x29/0x130 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/core.c:558
+ #1: ffff888135c28888 (&per_cpu_ptr(group->pcpu, cpu)->seq){-.-.}-{0:0}, at: psi_task_switch+0x2d9/0x900 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/sched/psi.c:999
+ #2: ffff888135c297d8 (&base->lock){-.-.}-{2:2}, at: lock_timer_base+0x5d/0x200 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/time/timer.c:999
+ #3: ffffffff9229ade8 (&obj_hash[i].lock){-.-.}-{2:2}, at: debug_object_activate+0x1a0/0x490 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/debugobjects.c:717
+ #4: ffffffff8c86b068 (text_mutex){+.+.}-{3:3}, at: arch_jump_label_transform_apply+0x17/0x30 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/jump_label.c:145
+1 lock held by systemd-udevd/25038:
+ #0: ffff88810491abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_invalidate_lock_shared g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/fs.h:857 [inline]
+ #0: ffff88810491abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_update_page g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2432 [inline]
+ #0: ffff88810491abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_get_pages+0x485/0x1830 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/filemap.c:2580
+1 lock held by syz-executor.0/68579:
+1 lock held by syz-executor.2/69430:
+
+=============================================
+
+NMI backtrace for cpu 0
+CPU: 0 PID: 32 Comm: khungtaskd Not tainted 6.6.12 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/dump_stack.c:106
+ nmi_cpu_backtrace+0x277/0x390 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x299/0x300 g.linux/deadline/code/srcs/linux-stable-6.6.12/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/nmi.h:160 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/hung_task.c:222 [inline]
+ watchdog+0xf87/0x1210 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/hung_task.c:379
+ kthread+0x2c6/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/entry_64.S:304
+ </TASK>
+Sending NMI from CPU 0 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 PID: 22 Comm: ksoftirqd/1 Not tainted 6.6.12 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:orc_find g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/unwind_orc.c:206 [inline]
+RIP: 0010:unwind_next_frame+0x1c3/0x2390 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/unwind_orc.c:494
+Code: f3 cb 4b 00 45 84 ed 0f 84 c9 02 00 00 e8 b5 d0 4b 00 31 ff 4c 89 e6 e8 3b cc 4b 00 4d 85 e4 0f 84 f0 0a 00 00 e8 9d d0 4b 00 <48> c7 c6 00 00 00 81 4c 89 e7 e8 9e cb 4b 00 49 81 fc 00 00 00 81
+RSP: 0018:ffffc9000019f7b0 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: ffffc9000019f830 RCX: ffffffff8139c7f5
+RDX: ffff888101e75940 RSI: ffffffff8139c803 RDI: 0000000000000007
+RBP: 0000000000000001 R08: 0000000000000007 R09: 0000000000000000
+R10: ffffffff81daa942 R11: 0000000000000001 R12: ffffffff81daa942
+R13: 0000000000000000 R14: ffffc9000019f8f0 R15: ffffc9000019f865
+FS:  0000000000000000(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f6bc18371d0 CR3: 000000000c777000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ <TASK>
+ arch_stack_walk+0xfa/0x170 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x96/0xd0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/stacktrace.c:122
+ kasan_save_stack+0x33/0x50 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/kasan/common.c:45
+ kasan_set_track+0x25/0x30 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/kasan/common.c:52
+ kasan_save_free_info+0x2b/0x40 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/kasan/generic.c:522
+ ____kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/kasan/common.c:236 [inline]
+ ____kasan_slab_free+0x15b/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/kasan/common.c:200
+ kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6.12/include/linux/kasan.h:164 [inline]
+ slab_free_hook g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/slub.c:1800 [inline]
+ slab_free_freelist_hook+0x114/0x1e0 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/slub.c:1826
+ slab_free g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/slub.c:3809 [inline]
+ kmem_cache_free+0xf0/0x490 g.linux/deadline/code/srcs/linux-stable-6.6.12/mm/slub.c:3831
+ file_free_rcu+0xb8/0x100 g.linux/deadline/code/srcs/linux-stable-6.6.12/fs/file_table.c:72
+ rcu_do_batch g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/rcu/tree.c:2157 [inline]
+ rcu_core+0x7f5/0x1610 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/rcu/tree.c:2430
+ __do_softirq+0x218/0x8db g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/softirq.c:553
+ run_ksoftirqd g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/softirq.c:921 [inline]
+ run_ksoftirqd+0x31/0x60 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/softirq.c:913
+ smpboot_thread_fn+0x660/0xa10 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/smpboot.c:164
+ kthread+0x2c6/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6.12/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6.12/arch/x86/entry/entry_64.S:304
+ </TASK>

@@ -1,0 +1,346 @@
+Warning: Permanently added '[localhost]:40353' (ECDSA) to the list of known hosts.
+syzkaller login: [  197.804801][   T31] audit: type=1400 audit(1701338697.139:10): avc:  denied  { execmem } for  pid=8025 comm="syz-executor109" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+executing program
+[  197.815340][ T8026] syz-executor109[8026]: memfd_create() called without MFD_EXEC or MFD_NOEXEC_SEAL set
+[  197.823149][ T8026] loop0: detected capacity change from 0 to 64
+[  197.830588][ T8026] hfs: unable to locate alternate MDB
+[  197.831356][ T8026] hfs: continuing without an alternate MDB
+executing program
+[  197.878778][ T8030] loop0: detected capacity change from 0 to 64
+[  197.882164][ T8030] hfs: unable to locate alternate MDB
+[  197.882922][ T8030] hfs: continuing without an alternate MDB
+executing program
+[  197.922169][ T8034] loop0: detected capacity change from 0 to 64
+[  197.947495][ T8034] hfs: unable to locate alternate MDB
+[  197.948277][ T8034] hfs: continuing without an alternate MDB
+executing program
+[  197.992544][ T8038] loop0: detected capacity change from 0 to 64
+[  197.995620][ T8038] hfs: unable to locate alternate MDB
+[  197.996330][ T8038] hfs: continuing without an alternate MDB
+executing program
+[  198.035611][ T8039] loop0: detected capacity change from 0 to 64
+[  198.042567][ T8039] hfs: unable to locate alternate MDB
+[  198.044361][ T8039] hfs: continuing without an alternate MDB
+executing program
+[  198.077648][ T8042] loop0: detected capacity change from 0 to 64
+[  198.092156][ T8042] hfs: unable to locate alternate MDB
+[  198.093064][ T8042] hfs: continuing without an alternate MDB
+executing program
+[  198.139375][ T8049] loop0: detected capacity change from 0 to 64
+[  198.142807][ T8049] hfs: unable to locate alternate MDB
+[  198.143489][ T8049] hfs: continuing without an alternate MDB
+executing program
+executing program
+executing program
+[  198.199478][ T8052] loop0: detected capacity change from 0 to 64
+[  198.203938][ T8052] hfs: unable to locate alternate MDB
+[  198.204661][ T8052] hfs: continuing without an alternate MDB
+[  198.259876][ T8057] loop0: detected capacity change from 0 to 64
+executing program
+[  198.268038][ T8057] hfs: unable to locate alternate MDB
+[  198.268676][ T8057] hfs: continuing without an alternate MDB
+executing program
+[  198.302695][ T8061] loop0: detected capacity change from 0 to 64
+[  198.326580][ T8061] hfs: unable to locate alternate MDB
+[  198.327229][ T8061] hfs: continuing without an alternate MDB
+executing program
+[  198.371293][ T8062] loop0: detected capacity change from 0 to 64
+[  198.374491][ T8062] hfs: unable to locate alternate MDB
+[  198.375185][ T8062] hfs: continuing without an alternate MDB
+executing program
+[  198.422208][ T8069] loop0: detected capacity change from 0 to 64
+[  198.429828][ T8069] hfs: unable to locate alternate MDB
+[  198.430517][ T8069] hfs: continuing without an alternate MDB
+executing program
+[  198.469213][ T8070] loop0: detected capacity change from 0 to 64
+[  198.472058][ T8070] hfs: unable to locate alternate MDB
+[  198.472702][ T8070] hfs: continuing without an alternate MDB
+executing program
+[  198.502497][ T8073] loop0: detected capacity change from 0 to 64
+[  198.507980][ T8073] hfs: unable to locate alternate MDB
+[  198.508650][ T8073] hfs: continuing without an alternate MDB
+executing program
+[  198.548008][ T8076] loop0: detected capacity change from 0 to 64
+[  198.558395][ T8076] hfs: unable to locate alternate MDB
+[  198.559082][ T8076] hfs: continuing without an alternate MDB
+executing program
+[  198.602056][ T8079] loop0: detected capacity change from 0 to 64
+[  198.610167][ T8079] hfs: unable to locate alternate MDB
+[  198.611127][ T8079] hfs: continuing without an alternate MDB
+executing program
+[  198.639424][ T8082] loop0: detected capacity change from 0 to 64
+[  198.642420][ T8082] hfs: unable to locate alternate MDB
+[  198.643106][ T8082] hfs: continuing without an alternate MDB
+executing program
+[  198.667809][ T8086] loop0: detected capacity change from 0 to 64
+[  198.672708][ T8086] hfs: unable to locate alternate MDB
+[  198.673433][ T8086] hfs: continuing without an alternate MDB
+executing program
+[  198.710858][ T8091] loop0: detected capacity change from 0 to 64
+[  198.719932][ T8091] hfs: unable to locate alternate MDB
+[  198.720581][ T8091] hfs: continuing without an alternate MDB
+executing program
+[  198.778537][ T8096] loop0: detected capacity change from 0 to 64
+[  198.782447][ T8096] hfs: unable to locate alternate MDB
+[  198.783105][ T8096] hfs: continuing without an alternate MDB
+executing program
+[  198.829563][ T8099] loop0: detected capacity change from 0 to 64
+[  198.837954][ T8099] hfs: unable to locate alternate MDB
+[  198.838610][ T8099] hfs: continuing without an alternate MDB
+[  198.881608][ T8102] loop0: detected capacity change from 0 to 64
+executing program
+[  198.884998][ T8102] hfs: unable to locate alternate MDB
+[  198.885621][ T8102] hfs: continuing without an alternate MDB
+executing program
+[  198.930456][ T8108] loop0: detected capacity change from 0 to 64
+[  198.934641][ T8108] hfs: unable to locate alternate MDB
+[  198.935264][ T8108] hfs: continuing without an alternate MDB
+executing program
+[  198.963156][ T8110] loop0: detected capacity change from 0 to 64
+[  198.978037][ T8110] hfs: unable to locate alternate MDB
+[  198.978674][ T8110] hfs: continuing without an alternate MDB
+executing program
+[  199.019826][ T8115] loop0: detected capacity change from 0 to 64
+[  199.023655][ T8115] hfs: unable to locate alternate MDB
+[  199.027176][ T8115] hfs: continuing without an alternate MDB
+executing program
+[  199.069914][ T8118] loop0: detected capacity change from 0 to 64
+[  199.087479][ T8118] hfs: unable to locate alternate MDB
+[  199.088143][ T8118] hfs: continuing without an alternate MDB
+[  199.114755][ T8123] loop0: detected capacity change from 0 to 64
+executing program
+[  199.120606][ T8123] hfs: unable to locate alternate MDB
+[  199.121348][ T8123] hfs: continuing without an alternate MDB
+executing program
+[  199.157850][ T8126] loop0: detected capacity change from 0 to 64
+[  199.162035][ T8126] hfs: unable to locate alternate MDB
+[  199.162713][ T8126] hfs: continuing without an alternate MDB
+executing program
+[  199.212859][ T8128] loop0: detected capacity change from 0 to 64
+[  199.217827][ T8128] hfs: unable to locate alternate MDB
+[  199.218528][ T8128] hfs: continuing without an alternate MDB
+executing program
+[  199.242260][ T8134] loop0: detected capacity change from 0 to 64
+[  199.247578][ T8134] hfs: unable to locate alternate MDB
+[  199.248265][ T8134] hfs: continuing without an alternate MDB
+[  199.272942][ T8137] loop0: detected capacity change from 0 to 64
+executing program
+[  199.276337][ T8137] hfs: unable to locate alternate MDB
+[  199.280407][ T8137] hfs: continuing without an alternate MDB
+executing program
+[  199.320465][ T8139] loop0: detected capacity change from 0 to 64
+[  199.323295][ T8139] hfs: unable to locate alternate MDB
+[  199.324009][ T8139] hfs: continuing without an alternate MDB
+executing program
+[  199.353312][ T8145] loop0: detected capacity change from 0 to 64
+[  199.355990][ T8145] hfs: unable to locate alternate MDB
+[  199.357169][ T8145] hfs: continuing without an alternate MDB
+executing program
+[  199.382320][ T8148] loop0: detected capacity change from 0 to 64
+[  199.384945][ T8148] hfs: unable to locate alternate MDB
+[  199.385630][ T8148] hfs: continuing without an alternate MDB
+executing program
+[  199.414221][ T8152] loop0: detected capacity change from 0 to 64
+[  199.422054][ T8152] hfs: unable to locate alternate MDB
+[  199.422810][ T8152] hfs: continuing without an alternate MDB
+executing program
+[  199.459394][ T8153] loop0: detected capacity change from 0 to 64
+[  199.468363][ T8153] hfs: unable to locate alternate MDB
+[  199.470227][ T8153] hfs: continuing without an alternate MDB
+executing program
+[  199.511798][ T8157] loop0: detected capacity change from 0 to 64
+[  199.515209][ T8033] I/O error, dev loop0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  199.523318][ T8157] hfs: unable to locate alternate MDB
+[  199.524092][ T8157] hfs: continuing without an alternate MDB
+executing program
+[  199.566676][ T8161] loop0: detected capacity change from 0 to 64
+[  199.585901][ T8161] hfs: unable to locate alternate MDB
+[  199.586827][ T8161] hfs: continuing without an alternate MDB
+executing program
+[  199.625046][ T8165] loop0: detected capacity change from 0 to 64
+[  199.629372][ T8165] hfs: unable to locate alternate MDB
+[  199.629997][ T8165] hfs: continuing without an alternate MDB
+executing program
+[  199.683774][ T8167] loop0: detected capacity change from 0 to 64
+[  199.687632][ T8167] hfs: unable to locate alternate MDB
+[  199.688271][ T8167] hfs: continuing without an alternate MDB
+executing program
+executing program
+[  199.750420][ T8175] loop0: detected capacity change from 0 to 64
+executing program
+[  199.760206][ T8175] hfs: unable to locate alternate MDB
+[  199.761422][ T8175] hfs: continuing without an alternate MDB
+executing program
+[  199.801396][ T8179] loop0: detected capacity change from 0 to 64
+[  199.804040][ T8179] hfs: unable to locate alternate MDB
+[  199.804712][ T8179] hfs: continuing without an alternate MDB
+executing program
+[  199.851448][ T8182] loop0: detected capacity change from 0 to 64
+[  199.855381][ T8182] hfs: unable to locate alternate MDB
+[  199.856051][ T8182] hfs: continuing without an alternate MDB
+executing program
+[  199.884170][ T8184] loop0: detected capacity change from 0 to 64
+[  199.889945][ T8184] hfs: unable to locate alternate MDB
+[  199.890773][ T8184] hfs: continuing without an alternate MDB
+executing program
+[  199.920634][ T8188] loop0: detected capacity change from 0 to 64
+[  199.928470][ T8188] hfs: unable to locate alternate MDB
+[  199.929097][ T8188] hfs: continuing without an alternate MDB
+executing program
+[  199.973307][ T8194] loop0: detected capacity change from 0 to 64
+[  199.980950][ T8194] hfs: unable to locate alternate MDB
+[  199.982141][ T8194] hfs: continuing without an alternate MDB
+executing program
+[  200.020508][ T8196] loop0: detected capacity change from 0 to 64
+[  200.025459][ T8196] hfs: unable to locate alternate MDB
+[  200.027003][ T8196] hfs: continuing without an alternate MDB
+[  200.033880][ T8196] general protection fault, probably for non-canonical address 0xdffffc0002400200: 0000 [#1] PREEMPT SMP KASAN
+[  200.035186][ T8196] KASAN: probably user-memory-access in range [0x0000000012001000-0x0000000012001007]
+[  200.036218][ T8196] CPU: 0 PID: 8196 Comm: syz-executor109 Not tainted 6.6.0 #1
+[  200.037043][ T8196] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  200.038259][ T8196] RIP: 0010:tomoyo_profile+0x29/0x60
+[  200.038894][ T8196] Code: 00 66 0f 1f 00 41 54 49 89 fc 53 89 f3 e8 5f 4d a7 fd 0f b6 db 48 b8 00 00 00 00 00 fc ff df 49 8d 3c dc 48 89 fa 48 c1 ea 03 <80> 3c 02 00 75 1e 4d 8b 24 dc 48 c7 c0 80 ed 1f 92 4d 85 e4 4c 0f
+[  200.041969][ T8196] RSP: 0018:ffffc900025977d8 EFLAGS: 00010206
+[  200.042643][ T8196] RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[  200.043497][ T8196] RDX: 0000000002400200 RSI: ffffffff83de0561 RDI: 0000000012001000
+[  200.044351][ T8196] RBP: ffff88801db43f80 R08: 0000000000000001 R09: 0000000000000000
+[  200.045214][ T8196] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000012001000
+[  200.046065][ T8196] R13: 0000000000000000 R14: 0000000000000001 R15: ffff888019454400
+[  200.046917][ T8196] FS:  0000000000ac8880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+[  200.047930][ T8196] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  200.048743][ T8196] CR2: 00000000004272b0 CR3: 0000000017fc2000 CR4: 00000000003506f0
+[  200.049727][ T8196] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  200.050706][ T8196] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  200.051566][ T8196] Call Trace:
+[  200.051953][ T8196]  <TASK>
+[  200.052285][ T8196]  ? show_regs+0x96/0xa0
+[  200.052782][ T8196]  ? die_addr+0x50/0xe0
+[  200.053265][ T8196]  ? exc_general_protection+0x1a4/0x320
+[  200.053888][ T8196]  ? asm_exc_general_protection+0x26/0x30
+[  200.054527][ T8196]  ? tomoyo_profile+0x11/0x60
+[  200.055069][ T8196]  ? tomoyo_profile+0x29/0x60
+[  200.055661][ T8196]  ? tomoyo_profile+0x11/0x60
+[  200.056245][ T8196]  tomoyo_init_request_info+0x175/0x380
+[  200.056942][ T8196]  tomoyo_check_open_permission+0x25d/0x3a0
+[  200.057668][ T8196]  ? tomoyo_path_number_perm+0x550/0x550
+[  200.058318][ T8196]  ? lockdep_hardirqs_on_prepare+0x410/0x410
+[  200.059005][ T8196]  ? hook_path_mknod+0x6c0/0x6c0
+[  200.059623][ T8196]  ? spin_bug+0x1d0/0x1d0
+[  200.060173][ T8196]  tomoyo_file_open+0xaa/0xd0
+[  200.060725][ T8196]  security_file_open+0x49/0xb0
+[  200.061280][ T8196]  do_dentry_open+0x52d/0x1720
+[  200.061814][ T8196]  ? may_open+0x1f6/0x420
+[  200.062303][ T8196]  path_openat+0x1b5a/0x26a0
+[  200.062819][ T8196]  ? path_lookupat+0x760/0x760
+[  200.063351][ T8196]  ? lockdep_hardirqs_on_prepare+0x410/0x410
+[  200.064026][ T8196]  do_filp_open+0x1c9/0x410
+[  200.064591][ T8196]  ? may_open_dev+0xf0/0xf0
+[  200.065175][ T8196]  ? find_held_lock+0x2d/0x110
+[  200.065779][ T8196]  ? do_raw_spin_lock+0x12d/0x2b0
+[  200.066361][ T8196]  ? spin_bug+0x1d0/0x1d0
+[  200.066857][ T8196]  ? _raw_spin_unlock+0x28/0x40
+[  200.067461][ T8196]  ? alloc_fd+0x2c8/0x730
+[  200.068004][ T8196]  do_sys_openat2+0x160/0x1c0
+[  200.068596][ T8196]  ? build_open_flags+0x6b0/0x6b0
+[  200.069228][ T8196]  __x64_sys_openat+0x140/0x1f0
+[  200.069847][ T8196]  ? __ia32_sys_open+0x1c0/0x1c0
+[  200.070468][ T8196]  ? lockdep_hardirqs_on+0x7d/0x100
+[  200.071046][ T8196]  ? syscall_enter_from_user_mode+0x26/0x80
+[  200.071713][ T8196]  do_syscall_64+0x39/0xb0
+[  200.072236][ T8196]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[  200.072905][ T8196] RIP: 0033:0x45028d
+[  200.073373][ T8196] Code: c3 e8 c7 29 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[  200.075473][ T8196] RSP: 002b:00007ffdfbdd8fd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[  200.076384][ T8196] RAX: ffffffffffffffda RBX: 00007ffdfbdd9060 RCX: 000000000045028d
+[  200.077269][ T8196] RDX: 0000000000141842 RSI: 0000000020000380 RDI: 00000000ffffff9c
+[  200.078286][ T8196] RBP: 0000000000000000 R08: 0000000000000260 R09: 00007ffdfbdd9000
+[  200.079251][ T8196] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000ac8840
+[  200.080204][ T8196] R13: 0000000000000004 R14: 00007ffdfbdd9020 R15: 0000000000000003
+[  200.081072][ T8196]  </TASK>
+[  200.081428][ T8196] Modules linked in:
+[  200.103203][ T8196] ---[ end trace 0000000000000000 ]---
+[  200.103883][ T8196] RIP: 0010:tomoyo_profile+0x29/0x60
+[  200.104513][ T8196] Code: 00 66 0f 1f 00 41 54 49 89 fc 53 89 f3 e8 5f 4d a7 fd 0f b6 db 48 b8 00 00 00 00 00 fc ff df 49 8d 3c dc 48 89 fa 48 c1 ea 03 <80> 3c 02 00 75 1e 4d 8b 24 dc 48 c7 c0 80 ed 1f 92 4d 85 e4 4c 0f
+[  200.106959][ T8196] RSP: 0018:ffffc900025977d8 EFLAGS: 00010206
+[  200.107649][ T8196] RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[  200.108510][ T8196] RDX: 0000000002400200 RSI: ffffffff83de0561 RDI: 0000000012001000
+[  200.109436][ T8196] RBP: ffff88801db43f80 R08: 0000000000000001 R09: 0000000000000000
+[  200.110314][ T8196] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000012001000
+[  200.111175][ T8196] R13: 0000000000000000 R14: 0000000000000001 R15: ffff888019454400
+[  200.112055][ T8196] FS:  0000000000ac8880(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+[  200.113039][ T8196] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  200.113772][ T8196] CR2: 0000560f28ecdff8 CR3: 0000000017fc2000 CR4: 00000000003506f0
+[  200.114632][ T8196] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  200.115579][ T8196] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  200.116576][ T8196] Kernel panic - not syncing: Fatal exception
+[  200.118401][ T8196] Kernel Offset: disabled
+[  200.118943][ T8196] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+18:04:59  Registers:
+info registers vcpu 0
+RAX=0000000000000066 RBX=00000000000003f8 RCX=0000000000000000 RDX=00000000000003f8
+RSI=ffffffff848f7095 RDI=ffffffff9234c0e0 RBP=ffffffff9234c0a0 RSP=ffffc90002597100
+R8 =0000000000000001 R9 =000000000000001f R10=0000000000000000 R11=205d363931385420
+R12=0000000000000000 R13=0000000000000066 R14=ffffffff848f7030 R15=0000000000000000
+RIP=ffffffff848f70bf RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000ac8880 ffffffff 00c00000
+GS =0000 ffff88802ca00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00000000004272b0 CR3=0000000017fc2000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=ffffffffffffffffffffffffff0000ff XMM01=00000000000000000000000000736668
+XMM02=38396dd2c8777e2b5444d80a4ecb17d3 XMM03=66666666666678300000000000000000
+XMM04=2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f XMM05=00000000000000000000000000000000
+XMM06=00000000000000000000000000000000 XMM07=00000000000000000000000000000000
+XMM08=65642f0064252f2e006a64615f65726f XMM09=00000000000000000000000000000000
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 1
+RAX=0000000080000000 RBX=0000000000000000 RCX=ffffffff813ae6af RDX=ffff8880194800c0
+RSI=0000000000000000 RDI=0000000000000007 RBP=ffff8880c5e71080 RSP=ffffc90002227ae8
+R8 =0000000000000007 R9 =0000000000000000 R10=0000000000000000 R11=dffffc0000000000
+R12=0000000045e71080 R13=0000000000000028 R14=ffffffff83df162a R15=ffff888045e71080
+RIP=ffffffff81854dc6 RFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 00007f0116ffb8c0 ffffffff 00c00000
+GS =0000 ffff88807ec00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f0acc4b6788 CR3=000000001d81e000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000002f2e2e2f002e2e XMM01=000000000000000000006c696146002f
+XMM02=ffffffffffffffffff0f0e0d0c0b0a09 XMM03=696e656420737365636341002f737973
+XMM04=2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f XMM05=0000562499aa38600000562499b235a0
+XMM06=00000000000000000000000000000003 XMM07=00000000000000000000000000000000
+XMM08=3a212d2b007b3d0d0a0920002c0d0a09 XMM09=00000000000000000000000000000000
+XMM10=646464646464202d64643240fdcfe124 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

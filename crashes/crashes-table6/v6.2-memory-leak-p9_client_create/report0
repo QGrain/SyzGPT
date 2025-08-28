@@ -1,0 +1,24 @@
+BUG: memory leak
+unreferenced object 0xffff93bd80bfc430 (size 16):
+  comm "syz-executor.1", pid 32373, jiffies 4297431586 (age 62.705s)
+  hex dump (first 16 bytes):
+    3a 30 31 33 31 30 37 32 00 cd bf 80 bd 93 ff ff  :0131072........
+  backtrace:
+    [<000000005c5a7d07>] __kmalloc_node_track_caller+0x49/0x120
+    [<0000000008813e91>] kstrdup+0x3a/0x70
+    [<00000000930d180f>] kstrdup_const+0x41/0x60
+    [<00000000400dc579>] kvasprintf_const+0xc4/0xf0
+    [<00000000293478ce>] kobject_set_name_vargs+0x3b/0xd0
+    [<0000000079433360>] kobject_init_and_add+0x6f/0xd0
+    [<00000000428ea01f>] sysfs_slab_add+0x103/0x200
+    [<0000000067dd7c18>] __kmem_cache_create+0x449/0x500
+    [<0000000006437bdd>] kmem_cache_create_usercopy+0x164/0x240
+    [<000000006319cccd>] p9_client_create+0x32a/0x790
+    [<0000000082a8f9ab>] v9fs_session_init+0xba/0x8a0
+    [<000000002fedd923>] v9fs_mount+0x6b/0x4f0
+    [<00000000ee6c7d90>] legacy_get_tree+0x28/0x80
+    [<000000008f54da5a>] vfs_get_tree+0x2b/0x100
+    [<0000000046612cb6>] path_mount+0x738/0xc60
+    [<0000000073c75277>] do_mount+0x96/0xb0
+
+BUG: leak checking failed

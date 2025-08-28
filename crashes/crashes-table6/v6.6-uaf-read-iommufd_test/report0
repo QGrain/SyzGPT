@@ -1,0 +1,184 @@
+==================================================================
+BUG: KASAN: slab-use-after-free in __up_read+0x62a/0x750 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/locking/rwsem.c:1342
+Read of size 8 at addr ffff888040ccc868 by task syz-executor.1/97697
+
+CPU: 0 PID: 97697 Comm: syz-executor.1 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:106
+ print_address_description g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:364 [inline]
+ print_report+0xc1/0x5e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:475
+ kasan_report+0xbe/0xf0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:588
+ __up_read+0x62a/0x750 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/locking/rwsem.c:1342
+ iommufd_put_object g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/iommufd_private.h:149 [inline]
+ iommufd_test_add_reserved g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/selftest.c:509 [inline]
+ iommufd_test+0x14fa/0x2e10 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/selftest.c:999
+ iommufd_fops_ioctl+0x320/0x4c0 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/main.c:398
+ vfs_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:871 [inline]
+ __se_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857 [inline]
+ __x64_sys_ioctl+0x19d/0x210 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x473eed
+Code: c3 e8 a7 2e 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fd29599abe8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 000000000059c050 RCX: 0000000000473eed
+RDX: 00000000200000c0 RSI: 0000000000003ba0 RDI: 0000000000000004
+RBP: 000000000059c050 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ffe1ccac53f R14: 00007ffe1ccac6c0 R15: 00007fd29599ad80
+ </TASK>
+
+Allocated by task 97697:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ kasan_set_track+0x25/0x30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:52
+ ____kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:374 [inline]
+ ____kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:333 [inline]
+ __kasan_kmalloc+0xa3/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:383
+ kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/kasan.h:198 [inline]
+ __do_kmalloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1026 [inline]
+ __kmalloc+0x61/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1039
+ kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/slab.h:603 [inline]
+ kzalloc g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/slab.h:720 [inline]
+ _iommufd_object_alloc+0x28/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/main.c:40
+ iommufd_ioas_alloc g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/ioas.c:27 [inline]
+ iommufd_ioas_alloc_ioctl+0xb1/0x370 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/ioas.c:46
+ iommufd_fops_ioctl+0x320/0x4c0 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/main.c:398
+ vfs_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:871 [inline]
+ __se_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857 [inline]
+ __x64_sys_ioctl+0x19d/0x210 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+Freed by task 97704:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ kasan_set_track+0x25/0x30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:52
+ kasan_save_free_info+0x28/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/generic.c:522
+ ____kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:236 [inline]
+ ____kasan_slab_free+0x134/0x190 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:200
+ kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/kasan.h:164 [inline]
+ __cache_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3370 [inline]
+ __do_kmem_cache_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3557 [inline]
+ __kmem_cache_free+0xcd/0x2c0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3564
+ iommufd_destroy+0x126/0x190 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/main.c:216
+ iommufd_fops_ioctl+0x320/0x4c0 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/iommu/iommufd/main.c:398
+ vfs_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:871 [inline]
+ __se_sys_ioctl g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857 [inline]
+ __x64_sys_ioctl+0x19d/0x210 g.linux/deadline/code/srcs/linux-stable-6.6/fs/ioctl.c:857
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+Last potentially related work creation:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ __kasan_record_aux_stack+0x78/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/generic.c:492
+ insert_work+0x38/0x230 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1647
+ __queue_work+0x5b6/0x1000 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1799
+ queue_work_on+0xf2/0x110 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1834
+ queue_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/workqueue.h:554 [inline]
+ bpf_map_put g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:733 [inline]
+ bpf_map_put+0x1ca/0x2e0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:723
+ prog_array_map_clear_deferred+0x14e/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/arraymap.c:1113
+ process_one_work+0x876/0x15a0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2630
+ process_scheduled_works g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2703 [inline]
+ worker_thread+0x855/0x11f0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2784
+ kthread+0x346/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/entry_64.S:304
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ __kasan_record_aux_stack+0x78/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/generic.c:492
+ insert_work+0x38/0x230 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1647
+ __queue_work+0x5b6/0x1000 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1799
+ queue_work_on+0xf2/0x110 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:1834
+ queue_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/workqueue.h:554 [inline]
+ bpf_map_put g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:733 [inline]
+ bpf_map_put+0x1ca/0x2e0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:723
+ prog_array_map_clear_deferred+0x14e/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/arraymap.c:1113
+ process_one_work+0x876/0x15a0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2630
+ process_scheduled_works g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2703 [inline]
+ worker_thread+0x855/0x11f0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2784
+ kthread+0x346/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/entry_64.S:304
+
+The buggy address belongs to the object at ffff888040ccc800
+ which belongs to the cache kmalloc-cg-1k of size 1024
+The buggy address is located 104 bytes inside of
+ freed 1024-byte region [ffff888040ccc800, ffff888040cccc00)
+
+The buggy address belongs to the physical page:
+page:ffffea0001033300 refcount:1 mapcount:0 mapping:0000000000000000 index:0xffff888040ccc000 pfn:0x40ccc
+memcg:ffff88803f6f6d41
+flags: 0xfff00000000800(slab|node=0|zone=1|lastcpupid=0x7ff)
+page_type: 0x1()
+raw: 00fff00000000800 ffff88801284d800 ffffea00005fc590 ffffea000071b810
+raw: ffff888040ccc000 ffff888040ccc000 0000000100000001 ffff88803f6f6d41
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 0, migratetype Unmovable, gfp_mask 0x3520c0(__GFP_IO|__GFP_FS|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_HARDWALL|__GFP_THISNODE), pid 71164, tgid 71163 (syz-executor.4), ts 1310627844137, free_ts 1310034213125
+ set_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x2d8/0x350 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1536
+ prep_new_page g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0xf09/0x2c50 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:3170
+ __alloc_pages+0x1cb/0x4a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4426
+ __alloc_pages_node g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/gfp.h:237 [inline]
+ kmem_getpages g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:1356 [inline]
+ cache_grow_begin+0x9b/0x3c0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2550
+ cache_alloc_refill+0x288/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2923
+ ____cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2999 [inline]
+ ____cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2982 [inline]
+ __do_cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3182 [inline]
+ slab_alloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3230 [inline]
+ __kmem_cache_alloc_node+0x38e/0x410 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3521
+ __do_kmalloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1025 [inline]
+ __kmalloc_node+0x54/0x190 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1033
+ kmalloc_node g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/slab.h:619 [inline]
+ __bpf_map_area_alloc+0x15b/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:301
+ sock_map_alloc g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock_map.c:42 [inline]
+ sock_map_alloc+0x151/0x280 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock_map.c:31
+ map_create+0x548/0x1950 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:1207
+ __sys_bpf+0x13c5/0x5290 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:5326
+ __do_sys_bpf g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:5448 [inline]
+ __se_sys_bpf g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:5446 [inline]
+ __x64_sys_bpf+0x78/0xc0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/bpf/syscall.c:5446
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+page last free stack trace:
+ reset_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:24 [inline]
+ free_pages_prepare g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x45e/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2312
+ free_unref_page+0x33/0x3d0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2405
+ mon_free_buff g.linux/deadline/code/srcs/linux-stable-6.6/drivers/usb/mon/mon_bin.c:1355 [inline]
+ mon_bin_release+0x160/0x240 g.linux/deadline/code/srcs/linux-stable-6.6/drivers/usb/mon/mon_bin.c:795
+ __fput+0x406/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/fs/file_table.c:384
+ task_work_run+0x168/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/task_work.c:180
+ exit_task_work g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/task_work.h:38 [inline]
+ do_exit+0xa8a/0x2990 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/exit.c:874
+ do_group_exit+0xd4/0x2a0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/exit.c:1024
+ get_signal+0x2441/0x2630 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/signal.c:2892
+ arch_do_signal_or_restart+0x81/0x7d0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/kernel/signal.c:309
+ exit_to_user_mode_loop g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:168 [inline]
+ exit_to_user_mode_prepare+0x11f/0x240 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x1d/0x60 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/entry/common.c:296
+ do_syscall_64+0x46/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+Memory state around the buggy address:
+ ffff888040ccc700: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888040ccc780: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888040ccc800: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                                          ^
+ ffff888040ccc880: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888040ccc900: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

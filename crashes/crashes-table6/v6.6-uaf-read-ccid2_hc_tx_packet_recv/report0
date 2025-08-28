@@ -1,0 +1,190 @@
+R13: 00007ffd5bf68b0f R14: 00007ffd5bf68c90 R15: 00007f190cd32d80
+ </TASK>
+dccp_parse_options: DCCP(ffff8880752a0140): Option 32 (len=7) error=9
+==================================================================
+BUG: KASAN: slab-use-after-free in dccp_ackvec_runlen g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccids/../ackvec.h:43 [inline]
+BUG: KASAN: slab-use-after-free in ccid2_hc_tx_packet_recv+0x22d9/0x2640 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccids/ccid2.c:592
+Read of size 1 at addr ffff888048e55494 by task syz-executor.3/13801
+
+CPU: 0 PID: 13801 Comm: syz-executor.3 Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 g.linux/deadline/code/srcs/linux-stable-6.6/lib/dump_stack.c:106
+ print_address_description g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:364 [inline]
+ print_report+0xc1/0x5e0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:475
+ kasan_report+0xbe/0xf0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/report.c:588
+ dccp_ackvec_runlen g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccids/../ackvec.h:43 [inline]
+ ccid2_hc_tx_packet_recv+0x22d9/0x2640 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccids/ccid2.c:592
+ ccid_hc_tx_packet_recv g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccid.h:189 [inline]
+ dccp_deliver_input_to_ccids+0x1eb/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:182
+ dccp_rcv_established g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:374 [inline]
+ dccp_rcv_established+0x104/0x160 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:364
+ dccp_v4_do_rcv+0x168/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ipv4.c:675
+ sk_backlog_rcv g.linux/deadline/code/srcs/linux-stable-6.6/include/net/sock.h:1121 [inline]
+ __release_sock+0x133/0x3b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock.c:2983
+ release_sock+0x58/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock.c:3520
+ dccp_sendmsg+0x3b8/0xc20 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/proto.c:803
+ inet_sendmsg+0x9d/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/af_inet.c:846
+ sock_sendmsg_nosec g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:730 [inline]
+ __sock_sendmsg+0xda/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:745
+ ____sys_sendmsg+0x348/0x920 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2558
+ ___sys_sendmsg+0x11d/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2612
+ __sys_sendmmsg+0x18c/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2698
+ __do_sys_sendmmsg g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2727 [inline]
+ __se_sys_sendmmsg g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2724 [inline]
+ __x64_sys_sendmmsg+0x9c/0x100 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2724
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x473eed
+Code: c3 e8 a7 2e 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f190cd32be8 EFLAGS: 00000246 ORIG_RAX: 0000000000000133
+RAX: ffffffffffffffda RBX: 000000000059bf80 RCX: 0000000000473eed
+RDX: 04000000000001e6 RSI: 0000000020000c00 RDI: 0000000000000005
+RBP: 000000000059bf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007ffd5bf68b0f R14: 00007ffd5bf68c90 R15: 00007f190cd32d80
+ </TASK>
+
+Allocated by task 13801:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ kasan_set_track+0x25/0x30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:52
+ ____kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:374 [inline]
+ ____kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:333 [inline]
+ __kasan_kmalloc+0xa3/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:383
+ kasan_kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/kasan.h:198 [inline]
+ __do_kmalloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1026 [inline]
+ __kmalloc_node_track_caller+0x62/0x190 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1046
+ kmalloc_reserve+0xed/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:581
+ __alloc_skb+0x129/0x330 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:650
+ alloc_skb g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/skbuff.h:1286 [inline]
+ dccp_send_ack.part.0+0x75/0x2f0 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/output.c:585
+ dccp_send_ack+0x57/0x70 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/output.c:584
+ ccid2_hc_rx_packet_recv+0x182/0x200 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccids/ccid2.c:771
+ ccid_hc_rx_packet_recv g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ccid.h:182 [inline]
+ dccp_deliver_input_to_ccids+0xe1/0x260 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:176
+ dccp_rcv_established g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:374 [inline]
+ dccp_rcv_established+0x104/0x160 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/input.c:364
+ dccp_v4_do_rcv+0x168/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ipv4.c:675
+ sk_backlog_rcv g.linux/deadline/code/srcs/linux-stable-6.6/include/net/sock.h:1121 [inline]
+ __sk_receive_skb+0x2a7/0xba0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock.c:571
+ dccp_v4_rcv+0x10b6/0x18c0 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ipv4.c:898
+ ip_protocol_deliver_rcu+0x9f/0x480 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/ip_input.c:205
+ ip_local_deliver_finish+0x2ea/0x520 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/ip_input.c:233
+ NF_HOOK g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/netfilter.h:304 [inline]
+ NF_HOOK g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/netfilter.h:298 [inline]
+ ip_local_deliver+0x1c2/0x5a0 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/ip_input.c:254
+ dst_input g.linux/deadline/code/srcs/linux-stable-6.6/include/net/dst.h:468 [inline]
+ ip_rcv_finish+0x1cf/0x2f0 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/ip_input.c:449
+ NF_HOOK g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/netfilter.h:304 [inline]
+ NF_HOOK g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/netfilter.h:298 [inline]
+ ip_rcv+0xc9/0x460 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/ip_input.c:569
+ __netif_receive_skb_one_core+0x114/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:5552
+ __netif_receive_skb+0x1f/0x1c0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:5666
+ process_backlog+0x101/0x660 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:5994
+ __napi_poll.constprop.0+0xb3/0x520 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:6556
+ napi_poll g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:6623 [inline]
+ net_rx_action+0x8a5/0xca0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/dev.c:6756
+ __do_softirq+0x1d4/0x8ef g.linux/deadline/code/srcs/linux-stable-6.6/kernel/softirq.c:553
+
+Freed by task 13801:
+ kasan_save_stack+0x22/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:45
+ kasan_set_track+0x25/0x30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:52
+ kasan_save_free_info+0x28/0x40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/generic.c:522
+ ____kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:236 [inline]
+ ____kasan_slab_free+0x134/0x190 g.linux/deadline/code/srcs/linux-stable-6.6/mm/kasan/common.c:200
+ kasan_slab_free g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/kasan.h:164 [inline]
+ __cache_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3370 [inline]
+ __do_kmem_cache_free g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3557 [inline]
+ __kmem_cache_free+0xcd/0x2c0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3564
+ skb_kfree_head g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:945 [inline]
+ skb_free_head+0x110/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:957
+ skb_release_data+0x5b1/0x860 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:987
+ skb_release_all g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:1053 [inline]
+ __kfree_skb g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:1067 [inline]
+ kfree_skb_reason+0x11e/0x210 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/skbuff.c:1103
+ kfree_skb g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/skbuff.h:1234 [inline]
+ dccp_v4_do_rcv+0x142/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/ipv4.c:710
+ sk_backlog_rcv g.linux/deadline/code/srcs/linux-stable-6.6/include/net/sock.h:1121 [inline]
+ __release_sock+0x133/0x3b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock.c:2983
+ release_sock+0x58/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/core/sock.c:3520
+ dccp_sendmsg+0x3b8/0xc20 g.linux/deadline/code/srcs/linux-stable-6.6/net/dccp/proto.c:803
+ inet_sendmsg+0x9d/0xe0 g.linux/deadline/code/srcs/linux-stable-6.6/net/ipv4/af_inet.c:846
+ sock_sendmsg_nosec g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:730 [inline]
+ __sock_sendmsg+0xda/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:745
+ ____sys_sendmsg+0x348/0x920 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2558
+ ___sys_sendmsg+0x11d/0x1b0 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2612
+ __sys_sendmmsg+0x18c/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2698
+ __do_sys_sendmmsg g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2727 [inline]
+ __se_sys_sendmmsg g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2724 [inline]
+ __x64_sys_sendmmsg+0x9c/0x100 g.linux/deadline/code/srcs/linux-stable-6.6/net/socket.c:2724
+ do_syscall_x64 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+The buggy address belongs to the object at ffff888048e55000
+ which belongs to the cache kmalloc-2k of size 2048
+The buggy address is located 1172 bytes inside of
+ freed 2048-byte region [ffff888048e55000, ffff888048e55800)
+
+The buggy address belongs to the physical page:
+page:ffffea0001239540 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x48e55
+flags: 0x4fff00000000800(slab|node=1|zone=1|lastcpupid=0x7ff)
+page_type: 0x1()
+raw: 04fff00000000800 ffff888012840800 ffffea0001292250 ffffea0001dba790
+raw: 0000000000000000 ffff888048e55000 0000000100000001 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 0, migratetype Unmovable, gfp_mask 0x3420c0(__GFP_IO|__GFP_FS|__GFP_NOWARN|__GFP_COMP|__GFP_HARDWALL|__GFP_THISNODE), pid 8110, tgid 8025 (syz-fuzzer), ts 270814157141, free_ts 269209471452
+ set_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x2d8/0x350 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1536
+ prep_new_page g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0xf09/0x2c50 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:3170
+ __alloc_pages+0x1cb/0x4a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:4426
+ __alloc_pages_node g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/gfp.h:237 [inline]
+ kmem_getpages g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:1356 [inline]
+ cache_grow_begin+0x9b/0x3c0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2550
+ cache_alloc_refill+0x288/0x3a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2923
+ ____cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2999 [inline]
+ ____cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:2982 [inline]
+ __do_cache_alloc g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3182 [inline]
+ slab_alloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3230 [inline]
+ __kmem_cache_alloc_node+0x38e/0x410 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab.c:3521
+ __do_kmalloc_node g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1025 [inline]
+ __kmalloc+0x51/0x1a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/slab_common.c:1039
+ kmalloc g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/slab.h:603 [inline]
+ zswap_load+0x3be/0x12a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/zswap.c:1427
+ swap_readpage+0x29e/0x1770 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_io.c:516
+ swap_cluster_readahead+0x3d6/0x9b0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/swap_state.c:656
+ swapin_readahead+0xd3/0xed0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/swap_state.c:858
+ do_swap_page+0x503/0x3290 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:3825
+ handle_pte_fault g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4984 [inline]
+ __handle_mm_fault+0x11fa/0x3e40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:5122
+ handle_mm_fault+0x3c0/0xa30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:5287
+ do_user_addr_fault+0x2ed/0xfe0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1364
+ handle_page_fault g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1505 [inline]
+ exc_page_fault+0x98/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1561
+page last free stack trace:
+ reset_page_owner g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/page_owner.h:24 [inline]
+ free_pages_prepare g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x45e/0xa70 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2312
+ free_unref_page+0x33/0x3d0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/page_alloc.c:2405
+ vfree+0x180/0x7a0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmalloc.c:2842
+ delayed_vfree_work+0x57/0x70 g.linux/deadline/code/srcs/linux-stable-6.6/mm/vmalloc.c:2763
+ process_one_work+0x876/0x15a0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2630
+ process_scheduled_works g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2703 [inline]
+ worker_thread+0x855/0x11f0 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/workqueue.c:2784
+ kthread+0x346/0x450 g.linux/deadline/code/srcs/linux-stable-6.6/kernel/kthread.c:388
+ ret_from_fork+0x45/0x80 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/entry/entry_64.S:304
+
+Memory state around the buggy address:
+ ffff888048e55380: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888048e55400: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff888048e55480: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                         ^
+ ffff888048e55500: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888048e55580: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

@@ -1,0 +1,611 @@
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  234.747202][ T8016] apt-get (8016) used greatest stack depth: 18920 bytes left
+Warning: Permanently added '[localhost]:8138' (ECDSA) to the list of known hosts.
+[  907.581659][   T31] audit: type=1400 audit(1698214896.746:10): avc:  denied  { execmem } for  pid=8069 comm="syz-executor769" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+[  909.020510][ T8082] chnl_net:caif_netlink_parms(): no params data found
+[  909.025939][ T8085] chnl_net:caif_netlink_parms(): no params data found
+[  909.122189][ T8079] chnl_net:caif_netlink_parms(): no params data found
+[  909.160301][ T8084] chnl_net:caif_netlink_parms(): no params data found
+[  909.199767][ T8080] chnl_net:caif_netlink_parms(): no params data found
+[  909.234837][ T8083] chnl_net:caif_netlink_parms(): no params data found
+[  909.273278][ T8078] chnl_net:caif_netlink_parms(): no params data found
+[  909.300192][ T8081] chnl_net:caif_netlink_parms(): no params data found
+[  910.883850][ T8085] bridge0: port 1(bridge_slave_0) entered blocking state
+[  910.888867][ T8085] bridge0: port 1(bridge_slave_0) entered disabled state
+[  910.901176][ T8085] bridge_slave_0: entered allmulticast mode
+[  910.903641][ T8085] bridge_slave_0: entered promiscuous mode
+[  911.020233][ T8082] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.021477][ T8082] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.022914][ T8082] bridge_slave_0: entered allmulticast mode
+[  911.025054][ T8082] bridge_slave_0: entered promiscuous mode
+[  911.051395][ T8085] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.052639][ T8085] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.053838][ T8085] bridge_slave_1: entered allmulticast mode
+[  911.055569][ T8085] bridge_slave_1: entered promiscuous mode
+[  911.160238][ T8082] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.161481][ T8082] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.162755][ T8082] bridge_slave_1: entered allmulticast mode
+[  911.164898][ T8082] bridge_slave_1: entered promiscuous mode
+[  911.599846][ T8084] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.620002][ T8084] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.621328][ T8084] bridge_slave_0: entered allmulticast mode
+[  911.623338][ T8084] bridge_slave_0: entered promiscuous mode
+[  911.626575][ T8080] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.628832][ T8080] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.630163][ T8080] bridge_slave_0: entered allmulticast mode
+[  911.632374][ T8080] bridge_slave_0: entered promiscuous mode
+[  911.636725][ T8079] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.638195][ T8079] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.639450][ T8079] bridge_slave_0: entered allmulticast mode
+[  911.641620][ T8079] bridge_slave_0: entered promiscuous mode
+[  911.755756][ T8083] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.756970][ T8083] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.760469][ T8083] bridge_slave_0: entered allmulticast mode
+[  911.762605][ T8083] bridge_slave_0: entered promiscuous mode
+[  911.780921][ T8084] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.782087][ T8084] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.783301][ T8084] bridge_slave_1: entered allmulticast mode
+[  911.785439][ T8084] bridge_slave_1: entered promiscuous mode
+[  911.788695][ T8079] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.789899][ T8079] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.791120][ T8079] bridge_slave_1: entered allmulticast mode
+[  911.793290][ T8079] bridge_slave_1: entered promiscuous mode
+[  911.795230][ T8080] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.796382][ T8080] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.799898][ T8080] bridge_slave_1: entered allmulticast mode
+[  911.802081][ T8080] bridge_slave_1: entered promiscuous mode
+[  911.809212][ T8082] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  911.810944][ T8081] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.812090][ T8081] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.813385][ T8081] bridge_slave_0: entered allmulticast mode
+[  911.815417][ T8081] bridge_slave_0: entered promiscuous mode
+[  911.827336][ T8085] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  911.831581][ T8085] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  911.868288][ T8083] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.874504][ T8083] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.875722][ T8083] bridge_slave_1: entered allmulticast mode
+[  911.879020][ T8083] bridge_slave_1: entered promiscuous mode
+[  911.881365][ T8078] bridge0: port 1(bridge_slave_0) entered blocking state
+[  911.882659][ T8078] bridge0: port 1(bridge_slave_0) entered disabled state
+[  911.884073][ T8078] bridge_slave_0: entered allmulticast mode
+[  911.886440][ T8078] bridge_slave_0: entered promiscuous mode
+[  911.966643][ T8082] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  911.979448][ T8081] bridge0: port 2(bridge_slave_1) entered blocking state
+[  911.980807][ T8081] bridge0: port 2(bridge_slave_1) entered disabled state
+[  911.982450][ T8081] bridge_slave_1: entered allmulticast mode
+[  911.985164][ T8081] bridge_slave_1: entered promiscuous mode
+[  912.045603][ T8078] bridge0: port 2(bridge_slave_1) entered blocking state
+[  912.046801][ T8078] bridge0: port 2(bridge_slave_1) entered disabled state
+[  912.049898][ T8078] bridge_slave_1: entered allmulticast mode
+[  912.051943][ T8078] bridge_slave_1: entered promiscuous mode
+[  912.190651][ T8085] team0: Port device team_slave_0 added
+[  912.375483][ T8084] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.380064][ T8079] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.384076][ T8080] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.415934][ T8085] team0: Port device team_slave_1 added
+[  912.450113][ T8083] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.650975][ T8084] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  912.654626][ T8079] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  912.658415][ T8080] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  912.663338][ T8082] team0: Port device team_slave_0 added
+[  912.685104][ T8081] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.689360][ T8083] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  912.771904][ T8082] team0: Port device team_slave_1 added
+[  912.817683][ T8078] bond0: (slave bond_slave_0): Enslaving as an active interface with an up link
+[  912.848554][ T8081] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  913.189746][ T8078] bond0: (slave bond_slave_1): Enslaving as an active interface with an up link
+[  913.215287][ T8085] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  913.216462][ T8085] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  913.222244][ T8085] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  913.258955][ T8083] team0: Port device team_slave_0 added
+[  913.263162][ T8083] team0: Port device team_slave_1 added
+[  913.294960][ T8084] team0: Port device team_slave_0 added
+[  913.326323][ T8080] team0: Port device team_slave_0 added
+[  913.378658][ T8079] team0: Port device team_slave_0 added
+[  913.380464][ T8085] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  913.381455][ T8085] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  913.384865][ T8085] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  913.427047][ T8084] team0: Port device team_slave_1 added
+[  913.742101][ T8082] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  913.743239][ T8082] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  913.746874][ T8082] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  913.765469][ T8080] team0: Port device team_slave_1 added
+[  913.794554][ T8079] team0: Port device team_slave_1 added
+[  913.810073][ T8081] team0: Port device team_slave_0 added
+[  913.811995][ T8083] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  913.813038][ T8083] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  913.816557][ T8083] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.011399][ T8082] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.012525][ T8082] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.016248][ T8082] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  914.079312][ T8078] team0: Port device team_slave_0 added
+[  914.083816][ T8081] team0: Port device team_slave_1 added
+[  914.085665][ T8083] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.086750][ T8083] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.092691][ T8083] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  914.096537][ T8084] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  914.098912][ T8084] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.104527][ T8084] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.170223][ T8078] team0: Port device team_slave_1 added
+[  914.241215][ T8084] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.242407][ T8084] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.246246][ T8084] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  914.262664][ T8080] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  914.263769][ T8080] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.268402][ T8080] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.272857][ T8080] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.273940][ T8080] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.283479][ T8080] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  914.341843][ T8079] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  914.343011][ T8079] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.346869][ T8079] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.389834][ T8081] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  914.390999][ T8081] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.394932][ T8081] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.402844][ T8081] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.404057][ T8081] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.410139][ T8081] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  914.501409][ T8078] batman_adv: batadv0: Adding interface: batadv_slave_0
+[  914.502540][ T8078] batman_adv: batadv0: The MTU of interface batadv_slave_0 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.506385][ T8078] batman_adv: batadv0: Not using interface batadv_slave_0 (retrying later): interface not active
+[  914.511675][ T8079] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  914.512786][ T8079] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  914.516716][ T8079] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  915.109283][ T8082] hsr_slave_0: entered promiscuous mode
+[  915.111094][ T8082] hsr_slave_1: entered promiscuous mode
+[  915.117540][ T8078] batman_adv: batadv0: Adding interface: batadv_slave_1
+[  915.118400][ T8078] batman_adv: batadv0: The MTU of interface batadv_slave_1 is too small (1500) to handle the transport of batman-adv packets. Packets going over this interface will be fragmented on layer2 which could impact the performance. Setting the MTU to 1560 would solve the problem.
+[  915.121427][ T8078] batman_adv: batadv0: Not using interface batadv_slave_1 (retrying later): interface not active
+[  915.157417][ T8085] hsr_slave_0: entered promiscuous mode
+[  915.159065][ T8085] hsr_slave_1: entered promiscuous mode
+[  915.164937][ T8085] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.166626][ T8085] Cannot create hsr debugfs directory
+[  915.177920][ T8084] hsr_slave_0: entered promiscuous mode
+[  915.179787][ T8084] hsr_slave_1: entered promiscuous mode
+[  915.181215][ T8084] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.182391][ T8084] Cannot create hsr debugfs directory
+[  915.391434][ T8080] hsr_slave_0: entered promiscuous mode
+[  915.395266][ T8080] hsr_slave_1: entered promiscuous mode
+[  915.396872][ T8080] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.399142][ T8080] Cannot create hsr debugfs directory
+[  915.406889][ T8083] hsr_slave_0: entered promiscuous mode
+[  915.409502][ T8083] hsr_slave_1: entered promiscuous mode
+[  915.411156][ T8083] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.412331][ T8083] Cannot create hsr debugfs directory
+[  915.424023][ T8081] hsr_slave_0: entered promiscuous mode
+[  915.435116][ T8081] hsr_slave_1: entered promiscuous mode
+[  915.436723][ T8081] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.438690][ T8081] Cannot create hsr debugfs directory
+[  915.665434][ T8079] hsr_slave_0: entered promiscuous mode
+[  915.668919][ T8079] hsr_slave_1: entered promiscuous mode
+[  915.674592][ T8079] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.675820][ T8079] Cannot create hsr debugfs directory
+[  915.991039][ T8078] hsr_slave_0: entered promiscuous mode
+[  915.993172][ T8078] hsr_slave_1: entered promiscuous mode
+[  915.994811][ T8078] debugfs: Directory 'hsr0' with parent 'hsr' already present!
+[  915.995993][ T8078] Cannot create hsr debugfs directory
+[  918.344288][ T8082] netdevsim netdevsim0 netdevsim0: renamed from eth0
+[  918.406352][ T8082] netdevsim netdevsim0 netdevsim1: renamed from eth1
+[  918.434514][ T8082] netdevsim netdevsim0 netdevsim2: renamed from eth2
+[  918.470027][ T8082] netdevsim netdevsim0 netdevsim3: renamed from eth3
+[  918.560871][ T8078] netdevsim netdevsim3 netdevsim0: renamed from eth0
+[  918.566002][ T8078] netdevsim netdevsim3 netdevsim1: renamed from eth1
+[  918.592566][ T8078] netdevsim netdevsim3 netdevsim2: renamed from eth2
+[  918.618435][ T8078] netdevsim netdevsim3 netdevsim3: renamed from eth3
+[  918.808418][ T8083] netdevsim netdevsim7 netdevsim0: renamed from eth0
+[  918.837477][ T8083] netdevsim netdevsim7 netdevsim1: renamed from eth1
+[  918.869078][ T8082] 8021q: adding VLAN 0 to HW filter on device bond0
+[  918.916186][ T8083] netdevsim netdevsim7 netdevsim2: renamed from eth2
+[  918.985585][ T8083] netdevsim netdevsim7 netdevsim3: renamed from eth3
+[  919.087309][ T8082] 8021q: adding VLAN 0 to HW filter on device team0
+[  919.103130][ T8085] netdevsim netdevsim6 netdevsim0: renamed from eth0
+[  919.139960][ T8085] netdevsim netdevsim6 netdevsim1: renamed from eth1
+[  919.153224][    T7] bridge0: port 1(bridge_slave_0) entered blocking state
+[  919.154745][    T7] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  919.160592][    T7] bridge0: port 2(bridge_slave_1) entered blocking state
+[  919.162220][    T7] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  919.214278][ T8085] netdevsim netdevsim6 netdevsim2: renamed from eth2
+[  919.233110][ T8085] netdevsim netdevsim6 netdevsim3: renamed from eth3
+[  919.279222][ T8078] 8021q: adding VLAN 0 to HW filter on device bond0
+[  919.452147][ T8078] 8021q: adding VLAN 0 to HW filter on device team0
+[  919.513499][ T8081] netdevsim netdevsim2 netdevsim0: renamed from eth0
+[  919.562371][T10601] bridge0: port 1(bridge_slave_0) entered blocking state
+[  919.563710][T10601] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  919.592281][ T8081] netdevsim netdevsim2 netdevsim1: renamed from eth1
+[  919.642255][T10613] bridge0: port 2(bridge_slave_1) entered blocking state
+[  919.643647][T10613] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  919.654257][ T8081] netdevsim netdevsim2 netdevsim2: renamed from eth2
+[  919.689402][ T8083] 8021q: adding VLAN 0 to HW filter on device bond0
+[  919.722972][ T8081] netdevsim netdevsim2 netdevsim3: renamed from eth3
+[  919.849538][ T8083] 8021q: adding VLAN 0 to HW filter on device team0
+[  919.928976][ T8082] 8021q: adding VLAN 0 to HW filter on device batadv0
+[  920.012184][ T8078] 8021q: adding VLAN 0 to HW filter on device batadv0
+[  920.077012][ T8078] veth0_vlan: entered promiscuous mode
+[  920.108877][ T8080] netdevsim netdevsim4 netdevsim0: renamed from eth0
+[  920.195312][    T7] bridge0: port 1(bridge_slave_0) entered blocking state
+[  920.196552][    T7] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  920.199672][ T8080] netdevsim netdevsim4 netdevsim1: renamed from eth1
+[  920.257051][ T8080] netdevsim netdevsim4 netdevsim2: renamed from eth2
+[  920.275148][ T8080] netdevsim netdevsim4 netdevsim3: renamed from eth3
+[  920.293346][ T8078] veth1_vlan: entered promiscuous mode
+[  920.307526][T10602] bridge0: port 2(bridge_slave_1) entered blocking state
+[  920.308473][T10602] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  920.345821][ T8085] 8021q: adding VLAN 0 to HW filter on device bond0
+[  920.416753][ T8085] 8021q: adding VLAN 0 to HW filter on device team0
+[  921.285789][ T8080] 8021q: adding VLAN 0 to HW filter on device bond0
+[  921.294650][ T8078] veth0_macvtap: entered promiscuous mode
+[  921.342556][T10602] bridge0: port 1(bridge_slave_0) entered blocking state
+[  921.343693][T10602] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  921.346577][T10602] bridge0: port 2(bridge_slave_1) entered blocking state
+[  921.347746][T10602] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  921.381542][ T8084] netdevsim netdevsim5 netdevsim0: renamed from eth0
+[  921.391365][ T8078] veth1_macvtap: entered promiscuous mode
+[  921.437492][ T8084] netdevsim netdevsim5 netdevsim1: renamed from eth1
+[  921.442119][ T8084] netdevsim netdevsim5 netdevsim2: renamed from eth2
+[  921.494877][ T8082] veth0_vlan: entered promiscuous mode
+[  921.531807][ T8080] 8021q: adding VLAN 0 to HW filter on device team0
+[  921.533693][ T8084] netdevsim netdevsim5 netdevsim3: renamed from eth3
+[  921.572513][ T8078] batman_adv: batadv0: Interface activated: batadv_slave_0
+[  921.620819][ T8078] batman_adv: batadv0: Interface activated: batadv_slave_1
+[  921.631036][ T8081] 8021q: adding VLAN 0 to HW filter on device bond0
+[  921.636407][ T8082] veth1_vlan: entered promiscuous mode
+[  921.645502][T10614] bridge0: port 1(bridge_slave_0) entered blocking state
+[  921.649860][T10614] bridge0: port 1(bridge_slave_0) entered forwarding state
+[  921.723245][ T8085] hsr0: Slave B (hsr_slave_1) is not up; please bring it up to get a fully working HSR network
+[  921.761792][ T8078] netdevsim netdevsim3 netdevsim0: set [1, 0] type 2 family 0 port 6081 - 0
+[  921.763419][ T8078] netdevsim netdevsim3 netdevsim1: set [1, 0] type 2 family 0 port 6081 - 0
+[  921.764746][ T8078] netdevsim netdevsim3 netdevsim2: set [1, 0] type 2 family 0 port 6081 - 0
+[  921.766114][ T8078] netdevsim netdevsim3 netdevsim3: set [1, 0] type 2 family 0 port 6081 - 0
+[  921.825837][T10614] bridge0: port 2(bridge_slave_1) entered blocking state
+[  921.827394][T10614] bridge0: port 2(bridge_slave_1) entered forwarding state
+[  922.139553][ T8079] netdevsim netdevsim1 netdevsim0: renamed from eth0
+[  922.144280][ T8079] netdevsim netdevsim1 netdevsim1: renamed from eth1
+[  922.190255][ T8081] 8021q: adding VLAN 0 to HW filter on device team0
+[  922.218254][ T8079] netdevsim netdevsim1 netdevsim2: renamed from eth2
+[  922.244490][ T8085] 8021q: adding VLAN 0 to HW filter on device batadv0
+[  922.248887][ T8083] 8021q: adding VLAN 0 to HW filter on device batadv0
+[  922.316913][ T8079] netdevsim netdevsim1 netdevsim3: renamed from eth3
+executing program
+[  922.331882][ T8082] veth0_macvtap: entered promiscuous mode
+[  922.362196][T10614] bridge0: port 1(bridge_slave_0) entered blocking state
+[  922.363572][T10614] bridge0: port 1(bridge_slave_0) entered forwarding state
+[ 1002.029038][    C0] hrtimer: interrupt took 79638547834 ns
+[ 1107.123553][    C1] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+[ 1107.138812][    C1] rcu: 	0-...!: (1 ticks this GP) idle=ff7c/1/0x4000000000000000 softirq=17904/17904 fqs=0
+[ 1107.141458][    C1] rcu: 	(detected by 1, t=10508 jiffies, g=14181, q=764 ncpus=2)
+[ 1107.143100][    C1] Sending NMI from CPU 1 to CPUs 0:
+[ 1107.144953][    C0] NMI backtrace for cpu 0
+[ 1107.144985][    C0] CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+[ 1107.145000][    C0] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[ 1107.145015][    C0] RIP: 0010:__sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.145152][    C0] Code: 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 4c 8b 04 24 65 48 8b 15 e0 8b 7a 7e 65 8b 05 e1 8b 7a 7e a9 00 01 ff 00 74 10 <a9> 00 01 00 00 74 5b 83 ba 04 16 00 00 00 74 52 8b 82 e0 15 00 00
+[ 1107.145161][    C0] RSP: 0018:ffffc90000007c88 EFLAGS: 00000006
+[ 1107.145176][    C0] RAX: 0000000000010002 RBX: 0000000000000001 RCX: ffff888024235940
+[ 1107.145183][    C0] RDX: ffff888024235940 RSI: 0000000000000001 RDI: 0000000000000000
+[ 1107.145189][    C0] RBP: ffff88801a260000 R08: ffffffff88d4f13e R09: fffff52000000f80
+[ 1107.145198][    C0] R10: dffffc0000000000 R11: fffff52000000f80 R12: 0000000000000002
+[ 1107.145209][    C0] R13: ffffffff88d4f080 R14: ffff88802a880340 R15: dffffc0000000000
+[ 1107.145216][    C0] FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+[ 1107.145224][    C0] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1107.145230][    C0] CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+[ 1107.145240][    C0] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[ 1107.145276][    C0] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[ 1107.145285][    C0] Call Trace:
+[ 1107.145306][    C0]  <NMI>
+[ 1107.145311][    C0]  ? nmi_cpu_backtrace+0x373/0x470
+[ 1107.145370][    C0]  ? read_lock_is_recursive+0x20/0x20
+[ 1107.145415][    C0]  ? nmi_trigger_cpumask_backtrace+0x300/0x300
+[ 1107.145432][    C0]  ? unknown_nmi_error+0xc0/0xc0
+[ 1107.145485][    C0]  ? nmi_cpu_backtrace_handler+0xc/0x10
+[ 1107.145536][    C0]  ? nmi_handle+0xf7/0x370
+[ 1107.145560][    C0]  ? __sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.145582][    C0]  ? default_do_nmi+0x62/0x150
+[ 1107.145610][    C0]  ? exc_nmi+0x11e/0x1f0
+[ 1107.145618][    C0]  ? end_repeat_nmi+0x16/0x31
+[ 1107.145643][    C0]  ? taprio_dequeue_from_txq+0x920/0x920
+[ 1107.145678][    C0]  ? advance_sched+0xbe/0xc80
+[ 1107.145687][    C0]  ? __sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.145699][    C0]  ? __sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.145719][    C0]  ? __sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.145738][    C0]  </NMI>
+[ 1107.145740][    C0]  <IRQ>
+[ 1107.145743][    C0]  advance_sched+0xbe/0xc80
+[ 1107.145754][    C0]  ? _raw_spin_unlock_irqrestore+0xc5/0x120
+[ 1107.145799][    C0]  ? _raw_spin_unlock+0x40/0x40
+[ 1107.145823][    C0]  ? taprio_dequeue_from_txq+0x920/0x920
+[ 1107.145834][    C0]  __hrtimer_run_queues+0x59f/0xd10
+[ 1107.145868][    C0]  ? hrtimer_interrupt+0x980/0x980
+[ 1107.145883][    C0]  ? ktime_get_update_offsets_now+0x40b/0x420
+[ 1107.145903][    C0]  hrtimer_interrupt+0x396/0x980
+[ 1107.145916][    C0]  __sysvec_apic_timer_interrupt+0x13f/0x480
+[ 1107.145934][    C0]  sysvec_apic_timer_interrupt+0x90/0xb0
+[ 1107.145952][    C0]  </IRQ>
+[ 1107.145955][    C0]  <TASK>
+[ 1107.145958][    C0]  asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[ 1107.145973][    C0] RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120
+[ 1107.145986][    C0] Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+[ 1107.145994][    C0] RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+[ 1107.146009][    C0] RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+[ 1107.146016][    C0] RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+[ 1107.146022][    C0] RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+[ 1107.146029][    C0] R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+[ 1107.146036][    C0] R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+[ 1107.146043][    C0]  ? mark_lock+0x9a/0x340
+[ 1107.146055][    C0]  ? _raw_spin_unlock+0x40/0x40
+[ 1107.146068][    C0]  debug_check_no_obj_freed+0x39e/0x420
+[ 1107.146096][    C0]  free_unref_page_prepare+0x241/0xa30
+[ 1107.146121][    C0]  free_unref_page+0x37/0x3f0
+[ 1107.146129][    C0]  __unfreeze_partials+0x1e4/0x220
+[ 1107.146151][    C0]  put_cpu_partial+0x106/0x170
+[ 1107.146163][    C0]  __slab_free+0x29c/0x370
+[ 1107.146176][    C0]  qlist_free_all+0x22/0x60
+[ 1107.146188][    C0]  kasan_quarantine_reduce+0x14b/0x160
+[ 1107.146199][    C0]  __kasan_kmalloc+0x23/0xb0
+[ 1107.146208][    C0]  ext4_readdir+0x526/0x3730
+[ 1107.146227][    C0]  ? __asan_memset+0x23/0x40
+[ 1107.146238][    C0]  ? fsnotify+0x1da7/0x1eb0
+[ 1107.146257][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.146265][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.146273][    C0]  ? reacquire_held_locks+0x37e/0x640
+[ 1107.146284][    C0]  ? __might_sleep+0xc0/0xc0
+[ 1107.146309][    C0]  ? avc_policy_seqno+0x9/0x10
+[ 1107.146358][    C0]  ? selinux_file_permission+0x2dd/0x550
+[ 1107.146379][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.146392][    C0]  ? iterate_dir+0x117/0x5a0
+[ 1107.146414][    C0]  ? iterate_dir+0x117/0x5a0
+[ 1107.146424][    C0]  ? fsnotify_perm+0x4a1/0x5a0
+[ 1107.146440][    C0]  iterate_dir+0x231/0x5a0
+[ 1107.146450][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.146460][    C0]  __se_sys_getdents64+0x1c0/0x4a0
+[ 1107.146486][    C0]  ? __x64_sys_getdents64+0x80/0x80
+[ 1107.146501][    C0]  ? filldir+0x690/0x690
+[ 1107.146516][    C0]  ? syscall_enter_from_user_mode+0x32/0x230
+[ 1107.146532][    C0]  ? lockdep_hardirqs_on+0x90/0x130
+[ 1107.146546][    C0]  ? syscall_enter_from_user_mode+0x32/0x230
+[ 1107.146561][    C0]  do_syscall_64+0x41/0xc0
+[ 1107.146582][    C0]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[ 1107.146597][    C0] RIP: 0033:0x7f66544eef07
+[ 1107.146636][    C0] Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+[ 1107.146649][    C0] RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+[ 1107.146665][    C0] RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+[ 1107.146675][    C0] RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+[ 1107.146685][    C0] RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+[ 1107.146694][    C0] R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+[ 1107.146704][    C0] R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+[ 1107.146717][    C0]  </TASK>
+[ 1107.146731][    C0] INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.777 msecs
+[ 1107.146927][    C1] rcu: rcu_preempt kthread timer wakeup didn't happen for 10507 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+[ 1107.238858][    C1] rcu: 	Possible timer handling issue on cpu=0 timer-softirq=14450
+[ 1107.240043][    C1] rcu: rcu_preempt kthread starved for 10508 jiffies! g14181 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+[ 1107.241683][    C1] rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+[ 1107.243133][    C1] rcu: RCU grace-period kthread stack dump:
+[ 1107.244017][    C1] task:rcu_preempt     state:I stack:26160 pid:18    ppid:2      flags:0x00004000
+[ 1107.245428][    C1] Call Trace:
+[ 1107.245943][    C1]  <TASK>
+[ 1107.246409][    C1]  __schedule+0x1887/0x4920
+[ 1107.247121][    C1]  ? _raw_spin_unlock_irqrestore+0xc5/0x120
+[ 1107.248008][    C1]  ? release_firmware_map_entry+0x190/0x190
+[ 1107.248900][    C1]  ? __asan_memset+0x23/0x40
+[ 1107.249626][    C1]  ? lockdep_init_map_type+0xa1/0x890
+[ 1107.250435][    C1]  ? lockdep_softirqs_off+0x440/0x440
+[ 1107.251249][    C1]  ? _raw_spin_unlock+0x40/0x40
+[ 1107.251991][    C1]  schedule+0xc3/0x180
+[ 1107.252620][    C1]  schedule_timeout+0x1ae/0x300
+[ 1107.253383][    C1]  ? console_conditional_schedule+0x40/0x40
+[ 1107.254276][    C1]  ? update_process_times+0x1b0/0x1b0
+[ 1107.255071][    C1]  ? prepare_to_swait_event+0x329/0x350
+[ 1107.255840][    C1]  rcu_gp_fqs_loop+0x29f/0xff0
+[ 1107.256545][    C1]  ? lockdep_hardirqs_on+0x90/0x130
+[ 1107.257366][    C1]  ? rcu_gp_init+0x1560/0x1560
+[ 1107.258082][    C1]  ? _raw_spin_unlock_irqrestore+0xc5/0x120
+[ 1107.259032][    C1]  ? finish_swait+0xcd/0x1e0
+[ 1107.259779][    C1]  rcu_gp_kthread+0x9c/0x380
+[ 1107.260534][    C1]  ? rcu_report_qs_rsp+0x1a0/0x1a0
+[ 1107.261348][    C1]  ? lockdep_hardirqs_on_prepare+0x418/0x780
+[ 1107.262268][    C1]  ? __kthread_parkme+0x164/0x1c0
+[ 1107.263072][    C1]  kthread+0x2b8/0x350
+[ 1107.263720][    C1]  ? rcu_report_qs_rsp+0x1a0/0x1a0
+[ 1107.264520][    C1]  ? kthread_blkcg+0xd0/0xd0
+[ 1107.265244][    C1]  ret_from_fork+0x2e/0x60
+[ 1107.265966][    C1]  ? kthread_blkcg+0xd0/0xd0
+[ 1107.266678][    C1]  ret_from_fork_asm+0x11/0x20
+[ 1107.267428][    C1] RIP: 0000:0x0
+[ 1107.268038][    C1] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+[ 1107.269164][    C1] RSP: 0000:0000000000000000 EFLAGS: 00000000 ORIG_RAX: 0000000000000000
+[ 1107.270420][    C1] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[ 1107.271575][    C1] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[ 1107.272800][    C1] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+[ 1107.274016][    C1] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+[ 1107.275212][    C1] R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+[ 1107.276418][    C1]  </TASK>
+[ 1107.276931][    C1] rcu: Stack dump where RCU GP kthread last ran:
+[ 1107.277925][    C1] Sending NMI from CPU 1 to CPUs 0:
+[ 1107.278765][    C0] NMI backtrace for cpu 0
+[ 1107.278780][    C0] CPU: 0 PID: 10647 Comm: modprobe Not tainted 6.5.0-rc3 #1
+[ 1107.278800][    C0] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[ 1107.278810][    C0] RIP: 0010:__lock_acquire+0x6c6/0x7ef0
+[ 1107.278848][    C0] Code: 10 00 48 8b 54 24 60 0f 84 b7 05 00 00 31 db 48 81 c3 c9 00 00 00 48 89 d8 48 c1 e8 03 42 0f b6 04 00 84 c0 0f 85 1d 14 00 00 <48> 8b 44 24 38 48 8d 04 d0 48 89 44 24 78 45 84 f6 0f 84 84 04 00
+[ 1107.278863][    C0] RSP: 0018:ffffc90000007700 EFLAGS: 00000046
+[ 1107.278882][    C0] RAX: 0000000000000000 RBX: ffffffff902ea399 RCX: ffffffff816902c7
+[ 1107.278894][    C0] RDX: 000000000000000f RSI: 0000000000000008 RDI: ffffffff90614300
+[ 1107.278904][    C0] RBP: ffffc900000079c8 R08: dffffc0000000000 R09: 1ffffffff20c2860
+[ 1107.278916][    C0] R10: dffffc0000000000 R11: fffffbfff20c2861 R12: ffff888024236400
+[ 1107.278929][    C0] R13: ffff888024235940 R14: 0000000000000002 R15: ffff8880242364a0
+[ 1107.278941][    C0] FS:  00007f665494e540(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+[ 1107.278956][    C0] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1107.278968][    C0] CR2: 0000561b677134b8 CR3: 0000000000ccd000 CR4: 00000000003506f0
+[ 1107.278985][    C0] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[ 1107.278995][    C0] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[ 1107.279005][    C0] Call Trace:
+[ 1107.279015][    C0]  <NMI>
+[ 1107.279021][    C0]  ? nmi_cpu_backtrace+0x373/0x470
+[ 1107.279045][    C0]  ? read_lock_is_recursive+0x20/0x20
+[ 1107.279064][    C0]  ? nmi_trigger_cpumask_backtrace+0x300/0x300
+[ 1107.279081][    C0]  ? panic+0x6f0/0x6f0
+[ 1107.279122][    C0]  ? nmi_cpu_backtrace_handler+0xc/0x10
+[ 1107.279150][    C0]  ? nmi_handle+0xf7/0x370
+[ 1107.279174][    C0]  ? __lock_acquire+0x6c6/0x7ef0
+[ 1107.279193][    C0]  ? __sanitizer_cov_trace_const_cmp4+0x1e/0x90
+[ 1107.279224][    C0]  ? default_do_nmi+0x62/0x150
+[ 1107.279244][    C0]  ? exc_nmi+0x11e/0x1f0
+[ 1107.279259][    C0]  ? end_repeat_nmi+0x16/0x31
+[ 1107.279283][    C0]  ? __lock_acquire+0x647/0x7ef0
+[ 1107.279303][    C0]  ? __lock_acquire+0x6c6/0x7ef0
+[ 1107.279321][    C0]  ? __lock_acquire+0x6c6/0x7ef0
+[ 1107.279339][    C0]  ? __lock_acquire+0x6c6/0x7ef0
+[ 1107.279357][    C0]  </NMI>
+[ 1107.279362][    C0]  <IRQ>
+[ 1107.279368][    C0]  ? slab_post_alloc_hook+0x6d/0x3b0
+[ 1107.279394][    C0]  ? _raw_spin_unlock_irqrestore+0xc0/0x120
+[ 1107.279426][    C0]  ? verify_lock_unused+0x140/0x140
+[ 1107.279445][    C0]  ? __lock_acquire+0x1345/0x7ef0
+[ 1107.279465][    C0]  ? verify_lock_unused+0x140/0x140
+[ 1107.279482][    C0]  ? debug_objects_fill_pool+0xb2/0x980
+[ 1107.279527][    C0]  ? __lock_acquire+0x7ef0/0x7ef0
+[ 1107.279546][    C0]  ? _raw_spin_unlock_irqrestore+0xc5/0x120
+[ 1107.279568][    C0]  lock_acquire+0x1b9/0x4f0
+[ 1107.279588][    C0]  ? debug_object_activate+0x161/0x530
+[ 1107.279613][    C0]  ? read_lock_is_recursive+0x20/0x20
+[ 1107.279632][    C0]  ? debug_object_activate+0x3c2/0x530
+[ 1107.279655][    C0]  ? __lock_acquire+0x7ef0/0x7ef0
+[ 1107.279674][    C0]  ? debug_object_activate+0x530/0x530
+[ 1107.279699][    C0]  _raw_spin_lock_irqsave+0xb7/0x100
+[ 1107.279721][    C0]  ? debug_object_activate+0x161/0x530
+[ 1107.279742][    C0]  ? _raw_spin_lock+0x40/0x40
+[ 1107.279764][    C0]  debug_object_activate+0x161/0x530
+[ 1107.279788][    C0]  ? debug_object_init_on_stack+0x20/0x20
+[ 1107.279813][    C0]  ? _raw_spin_lock_irq+0xbe/0xf0
+[ 1107.279835][    C0]  ? _raw_spin_lock_irqsave+0x100/0x100
+[ 1107.279858][    C0]  enqueue_hrtimer+0x30/0x310
+[ 1107.279885][    C0]  __hrtimer_run_queues+0x6c0/0xd10
+[ 1107.279905][    C0]  ? hrtimer_interrupt+0x980/0x980
+[ 1107.279924][    C0]  ? ktime_get_update_offsets_now+0x40b/0x420
+[ 1107.279948][    C0]  hrtimer_interrupt+0x396/0x980
+[ 1107.279971][    C0]  __sysvec_apic_timer_interrupt+0x13f/0x480
+[ 1107.279993][    C0]  sysvec_apic_timer_interrupt+0x90/0xb0
+[ 1107.280013][    C0]  </IRQ>
+[ 1107.280018][    C0]  <TASK>
+[ 1107.280023][    C0]  asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[ 1107.280043][    C0] RIP: 0010:_raw_spin_unlock_irqrestore+0xc0/0x120
+[ 1107.280066][    C0] Code: f0 48 c1 e8 03 42 80 3c 20 00 74 08 4c 89 f7 e8 c6 60 27 f7 f6 44 24 21 02 75 4e 41 f7 c7 00 02 00 00 74 01 fb bf 01 00 00 00 <e8> cb ba a0 f6 65 8b 05 6c 9c 47 75 85 c0 74 3f 48 c7 04 24 0e 36
+[ 1107.280080][    C0] RSP: 0018:ffffc9000e47f700 EFLAGS: 00000206
+[ 1107.280106][    C0] RAX: 1ffff92001c8fee4 RBX: ffffffff92144f68 RCX: ffffffff8169c2fa
+[ 1107.280119][    C0] RDX: dffffc0000000000 RSI: ffffffff8aeaa040 RDI: 0000000000000001
+[ 1107.280131][    C0] RBP: ffffc9000e47f798 R08: ffffffff90614337 R09: 1ffffffff20c2866
+[ 1107.280143][    C0] R10: dffffc0000000000 R11: fffffbfff20c2867 R12: dffffc0000000000
+[ 1107.280163][    C0] R13: 1ffff92001c8fee0 R14: ffffc9000e47f720 R15: 0000000000000a02
+[ 1107.280176][    C0]  ? mark_lock+0x9a/0x340
+[ 1107.280197][    C0]  ? _raw_spin_unlock+0x40/0x40
+[ 1107.280220][    C0]  debug_check_no_obj_freed+0x39e/0x420
+[ 1107.280240][    C0]  free_unref_page_prepare+0x241/0xa30
+[ 1107.280260][    C0]  free_unref_page+0x37/0x3f0
+[ 1107.280277][    C0]  __unfreeze_partials+0x1e4/0x220
+[ 1107.280302][    C0]  put_cpu_partial+0x106/0x170
+[ 1107.280324][    C0]  __slab_free+0x29c/0x370
+[ 1107.280348][    C0]  qlist_free_all+0x22/0x60
+[ 1107.280368][    C0]  kasan_quarantine_reduce+0x14b/0x160
+[ 1107.280389][    C0]  __kasan_kmalloc+0x23/0xb0
+[ 1107.280407][    C0]  ext4_readdir+0x526/0x3730
+[ 1107.280426][    C0]  ? __asan_memset+0x23/0x40
+[ 1107.280446][    C0]  ? fsnotify+0x1da7/0x1eb0
+[ 1107.280469][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.280485][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.280499][    C0]  ? reacquire_held_locks+0x37e/0x640
+[ 1107.280520][    C0]  ? __might_sleep+0xc0/0xc0
+[ 1107.280547][    C0]  ? avc_policy_seqno+0x9/0x10
+[ 1107.280569][    C0]  ? selinux_file_permission+0x2dd/0x550
+[ 1107.280591][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.280606][    C0]  ? iterate_dir+0x117/0x5a0
+[ 1107.280628][    C0]  ? iterate_dir+0x117/0x5a0
+[ 1107.280647][    C0]  ? fsnotify_perm+0x4a1/0x5a0
+[ 1107.280669][    C0]  iterate_dir+0x231/0x5a0
+[ 1107.280688][    C0]  ? ext4_dir_llseek+0x500/0x500
+[ 1107.280703][    C0]  __se_sys_getdents64+0x1c0/0x4a0
+[ 1107.280726][    C0]  ? __x64_sys_getdents64+0x80/0x80
+[ 1107.280746][    C0]  ? filldir+0x690/0x690
+[ 1107.280766][    C0]  ? syscall_enter_from_user_mode+0x32/0x230
+[ 1107.280785][    C0]  ? lockdep_hardirqs_on+0x90/0x130
+[ 1107.280803][    C0]  ? syscall_enter_from_user_mode+0x32/0x230
+[ 1107.280822][    C0]  do_syscall_64+0x41/0xc0
+[ 1107.280847][    C0]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[ 1107.280864][    C0] RIP: 0033:0x7f66544eef07
+[ 1107.280882][    C0] Code: 0f 1f 00 48 8b 47 20 c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 81 fa ff ff ff 7f b8 ff ff ff 7f 48 0f 47 d0 b8 d9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 59 af 10 00 f7 d8 64 89 02 48
+[ 1107.280895][    C0] RSP: 002b:00007ffee75a3208 EFLAGS: 00000293 ORIG_RAX: 00000000000000d9
+[ 1107.280913][    C0] RAX: ffffffffffffffda RBX: 0000561b6770b480 RCX: 00007f66544eef07
+[ 1107.280925][    C0] RDX: 0000000000008000 RSI: 0000561b6770b4b0 RDI: 0000000000000000
+[ 1107.280936][    C0] RBP: 0000561b6770b4b0 R08: 0000000000000030 R09: 00007f66545fabe0
+[ 1107.280948][    C0] R10: 0000000000000076 R11: 0000000000000293 R12: ffffffffffffff80
+[ 1107.280958][    C0] R13: 0000561b6770b484 R14: 0000000000000000 R15: 0000561b6770b310
+[ 1107.280987][    C0]  </TASK>
+[ 1107.280997][    C0] INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 2.230 msecs
+
+VM DIAGNOSIS:
+14:24:56  Registers:
+info registers vcpu 0
+RAX=180dd7f633c7ee00 RBX=0000000000000001 RCX=ffffffff8178dfd6 RDX=ffff888024235940
+RSI=ffffffff8b3ab900 RDI=ffffffff8b3ab8c0 RBP=0000000000000001 RSP=ffffc90000007cd0
+R8 =ffffffff8178dffc R9 =1ffffffff1cfc1ed R10=dffffc0000000000 R11=fffffbfff1cfc1ee
+R12=dffffc0000000000 R13=ffff88802ca2b840 R14=ffff88802a880340 R15=dffffc0000000000
+RIP=ffffffff8ab22399 RFL=00000082 [--S----] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 00007f665494e540 ffffffff 00c00000
+GS =0000 ffff88802ca00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000561b677134b8 CR3=0000000000ccd000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0070656474666f732e73656c75646f6d XMM01=0070656474666f732e73656c75646f6d
+XMM02=00000000000000000000ffffffffffff XMM03=00000000000000000000ff00000000ff
+XMM04=2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f XMM05=00000000000000000000000000000000
+XMM06=00000000000000000000000000000000 XMM07=00000000000000000000000000000000
+XMM08=676f6c206d6f74737563000000000000 XMM09=00000000000000000000000000000000
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 1
+RAX=0000000080010003 RBX=0000022112155b3a RCX=0000000000010004 RDX=0000000000000221
+RSI=ffffffff8b3ab900 RDI=0000000000000001 RBP=00000000000db6c9 RSP=ffffc900004c8948
+R8 =ffffffff8aaae3a3 R9 =1ffff11005944e39 R10=dffffc0000000000 R11=ffffed1005944e3a
+R12=0000000000000000 R13=dffffc0000000000 R14=00000000001ff776 R15=0000000000000001
+RIP=ffffffff8aaf053c RFL=00000086 [--S--P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000000000000 ffffffff 00c00000
+GS =0000 ffff88807ec00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f71030c5d38 CR3=0000000000cf3000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=9c6db12e910c3cc45b99e59edb940344 XMM01=a84b8c862758589cb3a0ba98df3dc38b
+XMM02=c61c6f396b1462644f2581f828c9a3df XMM03=80411c92b024b118e8c0465ed9fa9050
+XMM04=000000000000000000000000ba25f80f XMM05=00000000000000001750f63e70549ae6
+XMM06=0000000000000000000000001750f63e XMM07=1750f63e70549ae6ba25f80f61a8f698
+XMM08=ce0000009c000000ac00000006000000 XMM09=00000000000000000000000000000000
+XMM10=cf85c1cd6816d34e0ce6d7d098fef3cf XMM11=e7a567bb0a75d8d3f6cbb2d801493fed
+XMM12=0d0c0f0e09080b0a0504070601000302 XMM13=0c0f0e0d080b0a090407060500030201
+XMM14=0000000000000000000000000000bac0 XMM15=00000000000000000000000000000040

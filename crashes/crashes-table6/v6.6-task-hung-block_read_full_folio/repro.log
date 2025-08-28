@@ -1,0 +1,293 @@
+Warning: Permanently added '[localhost]:14737' (ECDSA) to the list of known hosts.
+syzkaller login: [  367.545499][   T32] kauditd_printk_skb: 3 callbacks suppressed
+[  367.545517][   T32] audit: type=1400 audit(1706345734.771:21): avc:  denied  { execmem } for  pid=8051 comm="syz-executor202" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+executing program
+[  367.559548][ T8052] syz-executor202[8052]: memfd_create() called without MFD_EXEC or MFD_NOEXEC_SEAL set
+[  367.597148][ T8052] loop0: detected capacity change from 0 to 128
+[  367.600121][ T8052] EXT4-fs: Ignoring removed nomblk_io_submit option
+[  367.605300][ T8052] EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (46641!=39978)
+[  572.962702][   T33] INFO: task systemd-udevd:8054 blocked for more than 142 seconds.
+[  572.964686][   T33]       Not tainted 6.6.12 #1
+[  572.965630][   T33] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  572.967303][   T33] task:systemd-udevd   state:D stack:26992 pid:8054  ppid:4495   flags:0x00000004
+[  572.973118][   T33] Call Trace:
+[  572.973970][   T33]  <TASK>
+[  572.974371][   T33]  __schedule+0xedb/0x5af0
+[  572.975068][   T33]  ? print_usage_bug.part.0+0x550/0x550
+[  572.975809][   T33]  ? io_schedule_timeout+0x150/0x150
+[  572.976503][   T33]  ? prepare_to_wait_exclusive+0xde/0x2a0
+[  572.977222][   T33]  ? prepare_to_wait_exclusive+0xa6/0x2a0
+[  572.977964][   T33]  ? mark_held_locks+0x9f/0xe0
+[  572.978647][   T33]  schedule+0xe7/0x1b0
+[  572.979216][   T33]  io_schedule+0xbe/0x130
+[  572.979788][   T33]  bit_wait_io+0x16/0xe0
+[  572.980353][   T33]  __wait_on_bit_lock+0x112/0x1a0
+[  572.981022][   T33]  ? out_of_line_wait_on_bit_timeout+0x170/0x170
+[  572.989114][   T33]  out_of_line_wait_on_bit_lock+0xdb/0x110
+[  572.990060][   T33]  ? __wait_on_bit_lock+0x1a0/0x1a0
+[  572.990722][   T33]  ? sugov_init+0x840/0x840
+[  572.991507][   T33]  block_read_full_folio+0x80a/0xae0
+[  572.993473][   T33]  ? blkdev_write_begin+0x40/0x40
+[  572.994147][   T33]  ? decrypt_bh+0x480/0x480
+[  572.994723][   T33]  ? psi_memstall_enter+0x1be/0x2a0
+[  572.995410][   T33]  ? lockdep_hardirqs_on+0x7d/0x110
+[  572.996069][   T33]  ? blkdev_readahead+0x20/0x20
+[  572.996679][   T33]  filemap_read_folio+0x27b/0x2c0
+[  572.997494][   T33]  ? __folio_lock_killable+0x20/0x20
+[  572.998165][   T33]  ? mark_lock+0xb5/0xc50
+[  572.998714][   T33]  filemap_get_pages+0x130f/0x1830
+[  572.999383][   T33]  ? filemap_add_folio+0x1e0/0x1e0
+[  573.000021][   T33]  ? mark_lock+0xb5/0xc50
+[  573.000566][   T33]  ? preempt_count_sub+0x160/0x160
+[  573.001209][   T33]  ? mark_lock+0xb5/0xc50
+[  573.001814][   T33]  filemap_read+0x39b/0xcf0
+[  573.002392][   T33]  ? vm_normal_page+0x10e/0x270
+[  573.002978][   T33]  ? print_usage_bug.part.0+0x550/0x550
+[  573.003684][   T33]  ? filemap_get_pages+0x1830/0x1830
+[  573.004335][   T33]  ? fsnotify_perm.part.0+0x25d/0x630
+[  573.004996][   T33]  ? fsnotify_perm.part.0+0x268/0x630
+[  573.005659][   T33]  blkdev_read_iter+0x191/0x510
+[  573.006281][   T33]  vfs_read+0x4e0/0x930
+[  573.006813][   T33]  ? kernel_read+0x1b0/0x1b0
+[  573.007419][   T33]  ? __fget_light+0x1fc/0x260
+[  573.008017][   T33]  ksys_read+0x12f/0x250
+[  573.008552][   T33]  ? vfs_write+0xe40/0xe40
+[  573.009115][   T33]  ? __secure_computing+0x273/0x3f0
+[  573.009767][   T33]  ? syscall_trace_enter.constprop.0+0x8f/0x1e0
+[  573.010545][   T33]  do_syscall_64+0x39/0xb0
+[  573.011316][   T33]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[  574.543643][   T33] RIP: 0033:0x7f2f3920804e
+[  574.544967][   T33] RSP: 002b:00007ffcfe4fa208 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
+[  574.547142][   T33] RAX: ffffffffffffffda RBX: 0000559c46fe3a28 RCX: 00007f2f3920804e
+[  574.549186][   T33] RDX: 0000000000000200 RSI: 0000559c46fe3a38 RDI: 0000000000000010
+[  574.551279][   T33] RBP: 0000559c467544c0 R08: 0000559c46fe3a10 R09: 00007f2f391f0be0
+[  574.553558][   T33] R10: 0000000000000008 R11: 0000000000000246 R12: 0000000000008000
+[  574.555596][   T33] R13: 0000000000000200 R14: 0000559c46fe3a10 R15: 0000559c46754510
+[  574.557611][   T33]  </TASK>
+[  574.558470][   T33] 
+[  574.558470][   T33] Showing all locks held in the system:
+[  574.560476][   T33] 1 lock held by khungtaskd/33:
+[  574.561827][   T33]  #0: ffffffff8c9a94a0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x75/0x340
+[  574.564570][   T33] 5 locks held by kworker/u5:2/86:
+[  574.566256][   T33] 1 lock held by in:imklog/7691:
+[  574.567655][   T33] 1 lock held by syz-executor202/8052:
+[  574.569209][   T33] 1 lock held by systemd-udevd/8054:
+[  574.570797][   T33]  #0: ffff88810488abc0 (mapping.invalidate_lock#2){.+.+}-{3:3}, at: filemap_get_pages+0x485/0x1830
+[  574.573876][   T33] 2 locks held by kworker/1:0/8057:
+[  574.575884][   T33] 
+[  574.576561][   T33] =============================================
+[  574.576561][   T33] 
+[  574.578905][   T33] NMI backtrace for cpu 1
+[  574.580177][   T33] CPU: 1 PID: 33 Comm: khungtaskd Not tainted 6.6.12 #1
+[  574.582115][   T33] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  574.584900][   T33] Call Trace:
+[  574.585831][   T33]  <TASK>
+[  574.586648][   T33]  dump_stack_lvl+0xd9/0x1b0
+[  574.588000][   T33]  nmi_cpu_backtrace+0x277/0x390
+[  574.589397][   T33]  ? lapic_can_unplug_cpu+0xa0/0xa0
+[  574.590924][   T33]  nmi_trigger_cpumask_backtrace+0x299/0x300
+[  574.592710][   T33]  watchdog+0xf87/0x1210
+[  574.593966][   T33]  ? proc_dohung_task_timeout_secs+0x90/0x90
+[  574.596257][   T33]  ? __kthread_parkme+0x14b/0x220
+[  574.597922][   T33]  ? proc_dohung_task_timeout_secs+0x90/0x90
+[  574.599917][   T33]  kthread+0x2c6/0x3a0
+[  574.601303][   T33]  ? _raw_spin_unlock_irq+0x23/0x50
+[  574.602809][   T33]  ? kthread_complete_and_exit+0x40/0x40
+[  574.604386][   T33]  ret_from_fork+0x45/0x80
+[  574.605720][   T33]  ? kthread_complete_and_exit+0x40/0x40
+[  574.607310][   T33]  ret_from_fork_asm+0x11/0x20
+[  574.608648][   T33]  </TASK>
+[  574.609596][   T33] Sending NMI from CPU 1 to CPUs 0:
+[  574.643545][    C0] NMI backtrace for cpu 0
+[  574.643563][    C0] CPU: 0 PID: 8052 Comm: syz-executor202 Not tainted 6.6.12 #1
+[  574.643578][    C0] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  574.643586][    C0] RIP: 0010:clear_page_erms+0xb/0x10
+[  574.643619][    C0] Code: 48 89 47 20 48 89 47 28 48 89 47 30 48 89 47 38 48 8d 7f 40 75 d9 90 c3 0f 1f 80 00 00 00 00 f3 0f 1e fa b9 00 10 00 00 31 c0 <f3> aa c3 66 90 f3 0f 1e fa 48 83 f9 40 73 36 83 f9 08 73 0f 85 c9
+[  574.643632][    C0] RSP: 0018:ffffc90002b0f170 EFLAGS: 00010246
+[  574.643644][    C0] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000001000
+[  574.643653][    C0] RDX: ffffea0002d20000 RSI: ffff888000000000 RDI: ffff8880b4800000
+[  574.643661][    C0] RBP: ffffea0002d20000 R08: 0000160000000000 R09: 0000000000000000
+[  574.643669][    C0] R10: ffffed1016900000 R11: dffffc0000000000 R12: 0000000000000000
+[  574.643677][    C0] R13: ffffea0002d20040 R14: 0000000000000001 R15: 0000000000000000
+[  574.643685][    C0] FS:  0000000001837880(0000) GS:ffff888063a00000(0000) knlGS:0000000000000000
+[  574.643699][    C0] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  574.643708][    C0] CR2: 00007f6e206f9c30 CR3: 000000010553f000 CR4: 00000000003506f0
+[  574.643715][    C0] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  574.643723][    C0] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  574.643730][    C0] Call Trace:
+[  574.643739][    C0]  <NMI>
+[  574.643744][    C0]  ? show_regs+0x8f/0xa0
+[  574.643763][    C0]  ? nmi_cpu_backtrace+0x1d4/0x390
+[  574.643776][    C0]  ? nmi_cpu_backtrace_handler+0xc/0x10
+[  574.643799][    C0]  ? nmi_handle+0x1a6/0x570
+[  574.643813][    C0]  ? x86_pmu_event_mapped+0x1c0/0x1c0
+[  574.643837][    C0]  ? clear_page_erms+0xb/0x10
+[  574.643855][    C0]  ? default_do_nmi+0x6a/0x160
+[  574.643872][    C0]  ? exc_nmi+0x186/0x200
+[  574.643887][    C0]  ? end_repeat_nmi+0x16/0x31
+[  574.643907][    C0]  ? clear_page_erms+0xb/0x10
+[  574.643925][    C0]  ? clear_page_erms+0xb/0x10
+[  574.643943][    C0]  ? clear_page_erms+0xb/0x10
+[  574.643962][    C0]  </NMI>
+[  574.643965][    C0]  <TASK>
+[  574.643968][    C0]  post_alloc_hook+0x1a3/0x350
+[  574.643994][    C0]  get_page_from_freelist+0xee2/0x2f30
+[  574.644018][    C0]  ? preempt_count_sub+0x160/0x160
+[  574.644042][    C0]  ? __zone_watermark_ok+0x4c0/0x4c0
+[  574.644061][    C0]  ? __should_fail_alloc_page+0x115/0x130
+[  574.644080][    C0]  ? prepare_alloc_pages.constprop.0+0x16f/0x550
+[  574.644101][    C0]  __alloc_pages+0x22e/0x2420
+[  574.644114][    C0]  ? lockdep_hardirqs_on_prepare+0x420/0x420
+[  574.644135][    C0]  ? warn_alloc+0x3a0/0x3a0
+[  574.644155][    C0]  ? filemap_get_entry+0x239/0x460
+[  574.644170][    C0]  ? reacquire_held_locks+0x4c0/0x4c0
+[  574.644187][    C0]  ? xas_descend+0x141/0x4e0
+[  574.644204][    C0]  alloc_pages+0x1a9/0x270
+[  574.644222][    C0]  folio_alloc+0x1e/0x60
+[  574.644239][    C0]  filemap_alloc_folio+0x3bb/0x490
+[  574.644252][    C0]  ? __probestub_file_check_and_advance_wb_err+0x10/0x10
+[  574.644266][    C0]  ? __filemap_get_folio+0x31c/0xbd0
+[  574.644280][    C0]  __filemap_get_folio+0x5b8/0xbd0
+[  574.644295][    C0]  __getblk_slow+0x1fb/0x720
+[  574.644312][    C0]  __getblk_gfp+0x70/0x80
+[  574.644326][    C0]  ext4_sb_breadahead_unmovable+0x66/0xe0
+[  574.644348][    C0]  __ext4_get_inode_loc+0xf17/0x1330
+[  574.644365][    C0]  ? lock_acquire+0x1ae/0x520
+[  574.644381][    C0]  ? ext4_fill_raw_inode+0x1d20/0x1d20
+[  574.644395][    C0]  ? iget_locked+0x614/0x700
+[  574.644414][    C0]  ? reacquire_held_locks+0x4c0/0x4c0
+[  574.644431][    C0]  ? do_raw_spin_lock+0x12e/0x2b0
+[  574.644450][    C0]  __ext4_get_inode_loc_noinmem+0xb9/0x150
+[  574.644464][    C0]  ? __ext4_get_inode_loc+0x1330/0x1330
+[  574.644477][    C0]  ? _raw_spin_unlock+0x28/0x40
+[  574.644490][    C0]  ? iget_locked+0x174/0x700
+[  574.644507][    C0]  __ext4_iget+0x43c/0x4300
+[  574.644521][    C0]  ? alloc_workqueue+0xb61/0x1480
+[  574.644544][    C0]  ? ext4_get_projid+0x190/0x190
+[  574.644557][    C0]  ? workqueue_sysfs_register+0x400/0x400
+[  574.644575][    C0]  ? _raw_spin_unlock_irqrestore+0x4e/0x70
+[  574.644588][    C0]  ? ext4_fill_super+0x8655/0xad50
+[  574.644608][    C0]  ext4_fill_super+0x64ab/0xad50
+[  574.644629][    C0]  ? up_write+0x45a/0x510
+[  574.644642][    C0]  ? ext4_reconfigure+0x3050/0x3050
+[  574.644661][    C0]  ? lock_sync+0x190/0x190
+[  574.644679][    C0]  get_tree_bdev+0x3b5/0x650
+[  574.644698][    C0]  ? ext4_reconfigure+0x3050/0x3050
+[  574.644717][    C0]  ? sget_dev+0xe0/0xe0
+[  574.644732][    C0]  ? legacy_fs_context_free+0xd0/0xd0
+[  574.644753][    C0]  ? cap_capable+0x1cf/0x230
+[  574.644772][    C0]  ? security_capable+0x92/0xc0
+[  574.644791][    C0]  vfs_get_tree+0x8c/0x370
+[  574.644815][    C0]  path_mount+0x1492/0x1ed0
+[  574.644835][    C0]  ? kmem_cache_free+0xf0/0x490
+[  574.644854][    C0]  ? finish_automount+0xa40/0xa40
+[  574.644871][    C0]  ? putname+0x12e/0x170
+[  574.644886][    C0]  __x64_sys_mount+0x293/0x310
+[  574.644903][    C0]  ? copy_mnt_ns+0xb60/0xb60
+[  574.644919][    C0]  ? syscall_enter_from_user_mode+0x7f/0x120
+[  574.644938][    C0]  do_syscall_64+0x39/0xb0
+[  574.644953][    C0]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+[  574.644970][    C0] RIP: 0033:0x45257e
+[  574.645005][    C0] Code: 83 c4 08 5b 5d c3 66 0f 1f 44 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[  574.645017][    C0] RSP: 002b:00007ffc8f60b4c8 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+[  574.645030][    C0] RAX: ffffffffffffffda RBX: 0000000001837840 RCX: 000000000045257e
+[  574.645038][    C0] RDX: 0000000020000240 RSI: 0000000020000280 RDI: 00007ffc8f60b4d0
+[  574.645046][    C0] RBP: 00007ffc8f60b4d0 R08: 00007ffc8f60b510 R09: 0000000000000237
+[  574.645054][    C0] R10: 000000000000000b R11: 0000000000000202 R12: 0000000000000004
+[  574.645061][    C0] R13: 00007ffc8f60b510 R14: 0000000000000003 R15: 0000000000000000
+[  574.645071][    C0]  </TASK>
+[  574.645077][    C0] INFO: NMI handler (nmi_cpu_backtrace_handler) took too long to run: 1.537 msecs
+[  574.645120][   T33] Kernel panic - not syncing: hung_task: blocked tasks
+[  574.802833][   T33] CPU: 1 PID: 33 Comm: khungtaskd Not tainted 6.6.12 #1
+[  574.804762][   T33] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  574.807513][   T33] Call Trace:
+[  574.808435][   T33]  <TASK>
+[  574.809257][   T33]  dump_stack_lvl+0xd9/0x1b0
+[  574.810554][   T33]  panic+0x6a6/0x750
+[  574.811678][   T33]  ? panic_smp_self_stop+0xa0/0xa0
+[  574.813095][   T33]  ? lapic_can_unplug_cpu+0xa0/0xa0
+[  574.814567][   T33]  ? preempt_schedule_thunk+0x1a/0x30
+[  574.816061][   T33]  ? watchdog+0xd3e/0x1210
+[  574.817313][   T33]  ? watchdog+0xd31/0x1210
+[  574.818556][   T33]  watchdog+0xd4f/0x1210
+[  574.819761][   T33]  ? proc_dohung_task_timeout_secs+0x90/0x90
+[  574.821415][   T33]  ? __kthread_parkme+0x14b/0x220
+[  574.822808][   T33]  ? proc_dohung_task_timeout_secs+0x90/0x90
+[  574.824468][   T33]  kthread+0x2c6/0x3a0
+[  574.825619][   T33]  ? _raw_spin_unlock_irq+0x23/0x50
+[  574.827095][   T33]  ? kthread_complete_and_exit+0x40/0x40
+[  574.828663][   T33]  ret_from_fork+0x45/0x80
+[  574.829914][   T33]  ? kthread_complete_and_exit+0x40/0x40
+[  574.831504][   T33]  ret_from_fork_asm+0x11/0x20
+[  574.832843][   T33]  </TASK>
+[  575.209028][   T33] Kernel Offset: disabled
+[  575.209764][   T33] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+16:59:00  Registers:
+info registers vcpu 0
+RAX=0000000000000000 RBX=0000000000000000 RCX=0000000000001000 RDX=ffffea0002d18000
+RSI=ffff888000000000 RDI=ffff8880b4600000 RBP=ffffea0002d18000 RSP=ffffc90002b0f170
+R8 =0000160000000000 R9 =0000000000000000 R10=ffffed10168c0000 R11=dffffc0000000000
+R12=0000000000000000 R13=ffffea0002d18040 R14=0000000000000001 R15=0000000000000000
+RIP=ffffffff8a2ce46b RFL=00010246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 0000000001837880 ffffffff 00c00000
+GS =0000 ffff888063a00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6e206f9c30 CR3=000000010553f000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=ade6fafe7afeb77edb066eac2e96515a XMM01=dcae9bb8466395cdf4bb7cb7b7635e61
+XMM02=750f767abc19dd3ff2ad071cd7f7f048 XMM03=7ce1097addf9acb28932242548793894
+XMM04=00000000000000000000000013ed69ed XMM05=0000000000000000b77911d61e0b1bdd
+XMM06=000000000000000000000000b77911d6 XMM07=b77911d61e0b1bdd13ed69ed8cff82eb
+XMM08=500000003e000000280000000a000000 XMM09=00000000000000000000000000000000
+XMM10=df86dd6b92488e99478a67bfda492854 XMM11=f16a3c85a43213e054f5e9d9f452ad39
+XMM12=0d0c0f0e09080b0a0504070601000302 XMM13=0c0f0e0d080b0a090407060500030201
+XMM14=00000000000000000000000000000400 XMM15=00000000000000000000000000000040
+info registers vcpu 1
+RAX=0000000000000000 RBX=0000000000000003 RCX=0000000000001000 RDX=ffffea0002d18e00
+RSI=ffff888000000000 RDI=ffff8880b4638000 RBP=ffffea0002d18e00 RSP=ffffc900029cf778
+R8 =0000160000000000 R9 =0000000000000000 R10=ffffed10168c7000 R11=dffffc0000000000
+R12=0000000000000000 R13=ffffea0002d19000 R14=0000000000000001 R15=0000000000000000
+RIP=ffffffff8a2ce46b RFL=00010246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 00007f6e233f1900 ffffffff 00c00000
+GS =0000 ffff888135c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f6e20616140 CR3=0000000105030000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=ffffffffffffffffffffffffffffffff XMM01=37333261363563653437353834343839
+XMM02=33373332613635636534373538343438 XMM03=2f6c616e72756f6a2f676f6c2f6e7572
+XMM04=8ed255620abeb67e00000000000fe518 XMM05=a1fcdcf819d7e1e500000000000b04a8
+XMM06=d3fdd5f48436fbd700000000000af0f0 XMM07=00000000000000000000000000000000
+XMM08=44495f474f4c5359530069253d595449 XMM09=00000000000000000000000000000000
+XMM10=07070707070705075607505151515151 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

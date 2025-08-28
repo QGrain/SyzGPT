@@ -1,0 +1,224 @@
+INFO: task systemd-journal:4727 blocked for more than 140 seconds.
+      Not tainted 4.19.300 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+systemd-journal D25392  4727      1 0x00000304
+Call Trace:
+ context_switch g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:2834 [inline]
+ __schedule+0x8a2/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3522
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ jbd2_log_wait_commit+0x2d1/0x430 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:728
+ __jbd2_journal_force_commit+0x103/0x230 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:579
+ jbd2_journal_force_commit+0x48/0x70 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/journal.c:614
+ ext4_journal_force_commit g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/ext4_jbd2.h:359 [inline]
+ ext4_force_commit+0xb1/0xe0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/super.c:5138
+ ext4_sync_file+0x338/0x1280 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/ext4/fsync.c:144
+ vfs_fsync_range+0x13a/0x220 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:197
+ vfs_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:211 [inline]
+ do_fsync+0x4d/0x90 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:221
+ __do_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:229 [inline]
+ __se_sys_fsync g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227 [inline]
+ __x64_sys_fsync+0x2f/0x40 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/sync.c:227
+ do_syscall_64+0xf9/0x620 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:293
+ entry_SYSCALL_64_after_hwframe+0x61/0xd6
+RIP: 0033:0x7fb8e521302b
+Code: Bad RIP value.
+RSP: 002b:00007ffebe4b3220 EFLAGS: 00000293 ORIG_RAX: 000000000000004a
+RAX: ffffffffffffffda RBX: 0000000000000016 RCX: 00007fb8e521302b
+RDX: 0000000000000007 RSI: 0000000000000001 RDI: 0000000000000014
+RBP: 000055b494e66e30 R08: 0000000000000000 R09: 00007fb8e52efbe0
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000000
+R13: 000055b494e60798 R14: 0000000000000001 R15: ffffffffffffffff
+
+Showing all locks held in the system:
+4 locks held by kworker/u6:2/61:
+ #0: 00000000241d4b1a ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000060d8ce6c ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000084f878fd (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ISO 9660 Extensions: Microsoft Joliet Level 3
+EXT4-fs (loop5): Ignoring removed oldalloc option
+ #3: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+EXT4-fs (loop5): Ignoring removed nobh option
+EXT4-fs (loop5): Project quota feature not enabled. Cannot enable project quota enforcement.
+1 lock held by khungtaskd/1573:
+ #0: 00000000bf2b953a (rcu_read_lock){....}, at: debug_show_all_locks+0x53/0x265 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/locking/lockdep.c:4441
+4 locks held by kworker/u5:2/2151:
+ #0: 00000000241d4b1a ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 00000000a5864aef ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000084f878fd (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+4 locks held by kworker/u5:3/2938:
+ #0: 00000000241d4b1a ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+XFS (loop3): unknown mount option [smackfstransmute=xfs].
+ #1: 0000000095c370bd ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000084f878fd (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by kworker/1:3/4739:
+ #0: 000000003b833e97 ((wq_completion)"rcu_gp"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000045a93e22 ((work_completion)(&rew.rew_work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+1 lock held by systemd-udevd/4742:
+1 lock held by in:imklog/7740:
+ #0: 000000004d89ea11 (&f->f_pos_lock){+.+.}, at: __fdget_pos+0xe3/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/file.c:818
+5 locks held by kworker/u6:4/8067:
+ #0: 00000000241d4b1a ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 000000008d1e3185 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000084f878fd (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #4: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+1 lock held by syz-executor.6/8147:
+ #0: 00000000bfe41fee (rcu_preempt_state.exp_mutex){+.+.}, at: exp_funnel_lock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/rcu/tree_exp.h:297 [inline]
+ #0: 00000000bfe41fee (rcu_preempt_state.exp_mutex){+.+.}, at: _synchronize_rcu_expedited+0x54d/0x750 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/rcu/tree_exp.h:669
+4 locks held by kworker/u5:5/10220:
+ #0: 00000000241d4b1a ((wq_completion)"writeback"){+.+.}, at: process_one_work+0x785/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2127
+ #1: 0000000086d2c387 ((work_completion)(&(&wb->dwork)->work)){+.+.}, at: process_one_work+0x7ba/0x1470 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/workqueue.c:2131
+ #2: 0000000084f878fd (&type->s_umount_key#40){++++}, at: trylock_super+0x1d/0x100 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/super.c:412
+ #3: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/48625:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/53980:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/53997:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/54233:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/54427:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/54872:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.0/55031:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by syz-executor.0/55509:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+1 lock held by syz-executor.0/56092:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by syz-executor.0/56156:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+2 locks held by syz-executor.0/56890:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+1 lock held by syz-executor.0/56924:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by syz-executor.0/57113:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+2 locks held by syz-executor.0/57183:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+2 locks held by syz-executor.2/73692:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+2 locks held by syz-executor.2/81051:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+1 lock held by syz-executor.2/90083:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+2 locks held by syz-executor.2/91603:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+ #1: 00000000c9f9a1ac (jbd2_handle){++++}, at: start_this_handle+0x4ca/0x1080 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/fs/jbd2/transaction.c:385
+1 lock held by syz-executor.2/92740:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/95125:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+EXT4-fs (loop5): Ignoring removed oldalloc option
+1 lock held by syz-executor.2/95134:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/95231:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+EXT4-fs (loop5): Ignoring removed nobh option
+1 lock held by syz-executor.2/95291:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+EXT4-fs (loop5): Project quota feature not enabled. Cannot enable project quota enforcement.
+1 lock held by syz-executor.2/95296:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/95348:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/95671:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/96108:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/96987:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/97212:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/97368:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/97372:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/100479:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/106713:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.7/106853:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.7/106963:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/115701:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/122508:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/122520:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/122525:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/122526:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+1 lock held by syz-executor.2/122622:
+ #0: 000000009def7b15 (&sbi->s_writepages_rwsem){++++}, at: do_writepages+0xf3/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/mm/page-writeback.c:2344
+3 locks held by syz-executor.0/125863:
+
+=============================================
+
+NMI backtrace for cpu 1
+CPU: 1 PID: 1573 Comm: khungtaskd Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ __dump_stack g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:77 [inline]
+ dump_stack+0x1fc/0x2ef g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/dump_stack.c:118
+ nmi_cpu_backtrace.cold+0x63/0xa2 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:101
+ nmi_trigger_cpumask_backtrace+0x1a6/0x1f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/nmi.h:148 [inline]
+ check_hung_uninterruptible_tasks g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:203 [inline]
+ watchdog+0x962/0xd80 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/hung_task.c:287
+ kthread+0x33f/0x460 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/kthread.c:259
+ ret_from_fork+0x24/0x30 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/entry_64.S:417
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 PID: 125877 Comm: syz-executor.3 Not tainted 4.19.300 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:__read_once_size g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/compiler.h:263 [inline]
+RIP: 0010:__rcu_read_unlock+0xcf/0x160 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/rcu/tree_plugin.h:427
+Code: 00 c7 83 78 03 00 00 00 00 00 80 48 8d bb 7c 03 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 14 02 48 89 f8 <83> e0 07 83 c0 03 38 d0 7c 04 84 d2 75 62 8b 83 7c 03 00 00 85 c0
+RSP: 0000:ffff88810bb67c30 EFLAGS: 00000803
+RAX: ffff888133c488fc RBX: ffff888133c48580 RCX: ffffffff814fea0c
+RDX: 0000000000000000 RSI: 0000000000000004 RDI: ffff888133c488fc
+RBP: ffff888133c488f8 R08: ffff888133c48580 R09: ffffed100c84595b
+R10: ffffed100c84595a R11: ffff88806422cad3 R12: 00000000000287d4
+R13: ffff8881269ce880 R14: ffff888133c48600 R15: ffff888133c48580
+FS:  00007f307ad5e700(0000) GS:ffff888064200000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f3073600000 CR3: 000000005fa54000 CR4: 00000000003406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <NMI>
+ </NMI>
+ rcu_read_unlock g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/rcupdate.h:698 [inline]
+ cgroup_account_cputime g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/include/linux/cgroup.h:774 [inline]
+ update_curr+0x3be/0x7f0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/fair.c:858
+ put_prev_entity+0xa44/0x1700 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/fair.c:4283
+ pick_next_task_fair+0xe36/0x1410 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/fair.c:6842
+ pick_next_task g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3368 [inline]
+ __schedule+0x472/0x1f00 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3496
+ schedule+0x8d/0x1b0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/kernel/sched/core.c:3566
+ exit_to_usermode_loop+0x234/0x2a0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:153
+ prepare_exit_to_usermode+0x27b/0x2e0 g.linux/deadline/code/srcs/linux-stable-4.19.300-211config/arch/x86/entry/common.c:198
+ retint_user+0x8/0x18
+RIP: 0033:0x405bce
+Code: 63 d5 48 01 c2 49 3b 56 08 77 4f 41 8d 55 ff 45 85 ed 74 34 0f 1f 84 00 00 00 00 00 48 39 c1 77 1a 49 8b 36 48 89 c7 48 29 cf <0f> b6 3c 3e 40 84 ff 74 08 40 88 3c 06 49 8b 46 10 48 83 c0 01 49
+RSP: 002b:00007f307ad5d080 EFLAGS: 00000202 ORIG_RAX: ffffffffffffff02
+RAX: 0000000000eb06f8 RBX: 00007f307ad5d0e0 RCX: 0000000000000001
+RDX: 0000000000000099 RSI: 00007f307293e000 RDI: 0000000000eb06f7
+RBP: 00007f307ad5d0f0 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 00007f307ad5d0f0 R12: 0000000000000000
+R13: 0000000000000102 R14: 00007f307ad5d180 R15: 0000000000000001

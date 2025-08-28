@@ -1,0 +1,264 @@
+Warning: Permanently added '[localhost]:9585' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   71.188515][ T6508] loop0: detected capacity change from 0 to 32768
+executing program
+[   71.416727][ T6511] loop0: detected capacity change from 0 to 32768
+executing program
+[   71.783152][ T6517] loop0: detected capacity change from 0 to 32768
+executing program
+[   72.060867][ T6520] loop0: detected capacity change from 0 to 32768
+executing program
+[   72.391562][ T6525] loop0: detected capacity change from 0 to 32768
+executing program
+[   72.859715][ T6530] loop0: detected capacity change from 0 to 32768
+executing program
+[   73.351007][ T6535] loop0: detected capacity change from 0 to 32768
+executing program
+[   73.810421][ T6540] loop0: detected capacity change from 0 to 32768
+executing program
+[   74.182144][ T6545] loop0: detected capacity change from 0 to 32768
+executing program
+[   74.576605][ T6550] loop0: detected capacity change from 0 to 32768
+executing program
+[   74.882019][ T6555] loop0: detected capacity change from 0 to 32768
+executing program
+[   75.163357][ T6558] loop0: detected capacity change from 0 to 32768
+executing program
+[   75.509061][ T6563] loop0: detected capacity change from 0 to 32768
+executing program
+[   75.847900][ T6568] loop0: detected capacity change from 0 to 32768
+executing program
+[   76.147027][ T6571] loop0: detected capacity change from 0 to 32768
+executing program
+[   76.626655][ T6577] loop0: detected capacity change from 0 to 32768
+executing program
+[   77.047849][ T6582] loop0: detected capacity change from 0 to 32768
+executing program
+[   77.451637][ T6587] loop0: detected capacity change from 0 to 32768
+executing program
+[   77.818758][ T6592] loop0: detected capacity change from 0 to 32768
+executing program
+[   78.227931][ T6597] loop0: detected capacity change from 0 to 32768
+executing program
+[   78.471193][ T6600] loop0: detected capacity change from 0 to 32768
+executing program
+[   79.105932][ T6604] loop0: detected capacity change from 0 to 32768
+executing program
+[   79.433605][ T6610] loop0: detected capacity change from 0 to 32768
+executing program
+[   79.816957][ T6614] loop0: detected capacity change from 0 to 32768
+executing program
+[   80.148153][ T6617] loop0: detected capacity change from 0 to 32768
+executing program
+[   80.669691][ T6623] loop0: detected capacity change from 0 to 32768
+executing program
+[   81.072407][ T6628] loop0: detected capacity change from 0 to 32768
+executing program
+[   81.407559][ T6633] loop0: detected capacity change from 0 to 32768
+executing program
+[   81.680777][ T6638] loop0: detected capacity change from 0 to 32768
+executing program
+[   82.077012][ T6643] loop0: detected capacity change from 0 to 32768
+executing program
+[   82.392471][ T6648] loop0: detected capacity change from 0 to 32768
+executing program
+[   82.705634][ T6651] loop0: detected capacity change from 0 to 32768
+executing program
+[   83.158139][ T6656] loop0: detected capacity change from 0 to 32768
+executing program
+[   83.511324][ T6661] loop0: detected capacity change from 0 to 32768
+executing program
+[   83.826806][ T6664] loop0: detected capacity change from 0 to 32768
+executing program
+[   84.270948][ T6670] loop0: detected capacity change from 0 to 32768
+executing program
+[   84.584512][ T6674] loop0: detected capacity change from 0 to 32768
+executing program
+[   84.887391][ T6679] loop0: detected capacity change from 0 to 32768
+executing program
+[   85.181771][ T6684] loop0: detected capacity change from 0 to 32768
+executing program
+[   85.868029][ T6689] loop0: detected capacity change from 0 to 32768
+executing program
+[   86.149754][ T6694] loop0: detected capacity change from 0 to 32768
+executing program
+[   86.579218][ T6699] loop0: detected capacity change from 0 to 32768
+executing program
+[   87.036153][ T6704] loop0: detected capacity change from 0 to 32768
+executing program
+[   87.425688][ T6709] loop0: detected capacity change from 0 to 32768
+executing program
+[   87.887792][ T6714] loop0: detected capacity change from 0 to 32768
+executing program
+[   88.120841][ T6717] loop0: detected capacity change from 0 to 32768
+executing program
+[   88.417262][ T6723] loop0: detected capacity change from 0 to 32768
+executing program
+[   88.874381][ T6728] loop0: detected capacity change from 0 to 32768
+executing program
+[   89.330740][ T6732] loop0: detected capacity change from 0 to 32768
+executing program
+[   89.735437][ T6737] loop0: detected capacity change from 0 to 32768
+executing program
+[   89.968322][ T6740] loop0: detected capacity change from 0 to 32768
+executing program
+[   90.304530][ T6746] loop0: detected capacity change from 0 to 32768
+executing program
+[   90.683075][ T6751] loop0: detected capacity change from 0 to 32768
+executing program
+[   91.153120][ T6756] loop0: detected capacity change from 0 to 32768
+executing program
+[   91.560995][ T6761] loop0: detected capacity change from 0 to 32768
+executing program
+[   91.949777][ T6766] loop0: detected capacity change from 0 to 32768
+executing program
+[   92.502664][ T6769] loop0: detected capacity change from 0 to 32768
+[   92.581467][ T6507] general protection fault, probably for non-canonical address 0xdffffc00000000ba: 0000 [#1] PREEMPT SMP KASAN
+[   92.583783][ T6507] KASAN: null-ptr-deref in range [0x00000000000005d0-0x00000000000005d7]
+[   92.585247][ T6507] CPU: 1 PID: 6507 Comm: syz-executor427 Not tainted 5.15.140 #1
+[   92.586777][ T6507] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   92.588690][ T6507] RIP: 0010:bio_associate_blkg_from_css+0x3b9/0x1090
+[   92.615705][ T6507] Code: 48 c1 ea 03 80 3c 02 00 0f 85 bb 0b 00 00 48 b8 00 00 00 00 00 fc ff df 48 8b 5d 08 48 8d bb d0 05 00 00 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 d3 0b 00 00 48 8b 9b d0 05 00 00 48 b8 00 00 00
+[   92.619553][ T6507] RSP: 0018:ffffc900018dfa40 EFLAGS: 00010202
+[   92.620754][ T6507] RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff83d25ade
+[   92.622320][ T6507] RDX: 00000000000000ba RSI: ffffffff83d249ce RDI: 00000000000005d0
+[   92.623880][ T6507] RBP: ffff88810c477140 R08: 0000000000000000 R09: ffffffff90ac0ae7
+[   92.635977][ T6507] R10: 0000000000000000 R11: 000000000008c083 R12: ffff88810c477148
+[   92.637632][ T6507] R13: ffff888102397000 R14: 0000000000000000 R15: ffffffff914cd6e0
+[   92.639272][ T6507] FS:  000000000115f880(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+[   92.641024][ T6507] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   92.642328][ T6507] CR2: 00007ffe79ee1d68 CR3: 0000000101bb0000 CR4: 00000000003506e0
+[   92.643898][ T6507] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   92.655632][ T6507] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   92.657209][ T6507] Call Trace:
+[   92.657867][ T6507]  <TASK>
+[   92.658453][ T6507]  ? die_addr.cold+0x8/0xd
+[   92.659343][ T6507]  ? exc_general_protection+0x18e/0x300
+[   92.660448][ T6507]  ? asm_exc_general_protection+0x22/0x30
+[   92.661596][ T6507]  ? bio_associate_blkg+0x36e/0x410
+[   92.662627][ T6507]  ? bio_associate_blkg_from_css+0x37e/0x1090
+[   92.663826][ T6507]  ? bio_associate_blkg_from_css+0x3b9/0x1090
+[   92.675199][ T6507]  bio_associate_blkg+0xcd/0x410
+[   92.676200][ T6507]  lbmStartIO+0x1ec/0x430
+[   92.677063][ T6507]  ? _raw_spin_unlock_irq+0x1f/0x40
+[   92.678110][ T6507]  lbmWrite+0x2ea/0x420
+[   92.678938][ T6507]  lmNextPage.isra.0+0x278/0x700
+[   92.679917][ T6507]  lmWriteRecord+0xab4/0x1160
+[   92.680846][ T6507]  ? mark_held_locks+0x9f/0xe0
+[   92.681805][ T6507]  ? __mutex_lock+0x246/0x1300
+[   92.682752][ T6507]  ? lockdep_hardirqs_on_prepare+0x17b/0x400
+[   92.683940][ T6507]  lmLogSync+0x182/0x7b0
+[   92.690327][ T6507]  ? jfs_flush_journal+0x7a0/0x7a0
+[   92.691347][ T6507]  ? __dentry_kill+0x499/0x640
+[   92.694811][ T6507]  ? dquot_scan_active+0x2d0/0x2d0
+[   92.697067][ T6507]  jfs_syncpt+0x85/0xa0
+[   92.699195][ T6507]  jfs_sync_fs+0x7f/0xa0
+[   92.701290][ T6507]  ? jfs_statfs+0x5e0/0x5e0
+[   92.703828][ T6507]  sync_filesystem+0x105/0x280
+[   92.707219][ T6507]  generic_shutdown_super+0x70/0x380
+[   92.713284][ T6507]  kill_block_super+0x97/0xf0
+[   92.716748][ T6507]  deactivate_locked_super+0x96/0x160
+[   92.721269][ T6507]  deactivate_super+0xda/0x100
+[   92.726690][ T6507]  cleanup_mnt+0x317/0x550
+[   92.728583][ T6507]  ? _raw_spin_unlock_irq+0x1f/0x40
+[   92.730798][ T6507]  task_work_run+0xdd/0x1a0
+[   92.732835][ T6507]  exit_to_user_mode_prepare+0x24a/0x270
+[   92.735224][ T6507]  syscall_exit_to_user_mode+0x19/0x60
+[   92.737518][ T6507]  do_syscall_64+0x40/0xb0
+[   92.739277][ T6507]  entry_SYSCALL_64_after_hwframe+0x61/0xcb
+[   92.742102][ T6507] RIP: 0033:0x4529fb
+[   92.743697][ T6507] Code: 07 00 48 83 c4 08 5b 5d c3 66 0f 1f 44 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   92.752631][ T6507] RSP: 002b:00007ffe79ee2498 EFLAGS: 00000202 ORIG_RAX: 00000000000000a6
+[   92.754448][ T6507] RAX: 0000000000000000 RBX: 00007ffe79ee3600 RCX: 00000000004529fb
+[   92.755945][ T6507] RDX: 00007ffe79ee254a RSI: 000000000000000a RDI: 00007ffe79ee2540
+[   92.757661][ T6507] RBP: 0000000000000000 R08: 000000000049d009 R09: 00007ffe79ee2330
+[   92.759168][ T6507] R10: 00000000fffffffb R11: 0000000000000202 R12: 00007ffe79ee35a0
+[   92.760786][ T6507] R13: 0000000001160b70 R14: 0000000000000000 R15: 0000000000000000
+[   92.762555][ T6507]  </TASK>
+[   92.763291][ T6507] Modules linked in:
+[   92.789222][ T6507] ---[ end trace 95ce3b74729d300b ]---
+[   92.793746][ T6507] RIP: 0010:bio_associate_blkg_from_css+0x3b9/0x1090
+[   92.810917][ T6507] Code: 48 c1 ea 03 80 3c 02 00 0f 85 bb 0b 00 00 48 b8 00 00 00 00 00 fc ff df 48 8b 5d 08 48 8d bb d0 05 00 00 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 d3 0b 00 00 48 8b 9b d0 05 00 00 48 b8 00 00 00
+[   92.817245][ T6507] RSP: 0018:ffffc900018dfa40 EFLAGS: 00010202
+[   92.819681][ T6507] RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff83d25ade
+[   92.822281][ T6507] RDX: 00000000000000ba RSI: ffffffff83d249ce RDI: 00000000000005d0
+[   92.837513][ T6507] RBP: ffff88810c477140 R08: 0000000000000000 R09: ffffffff90ac0ae7
+[   92.840083][ T6507] R10: 0000000000000000 R11: 000000000008c083 R12: ffff88810c477148
+[   92.843385][ T6507] R13: ffff888102397000 R14: 0000000000000000 R15: ffffffff914cd6e0
+[   92.846439][ T6507] FS:  000000000115f880(0000) GS:ffff888135c00000(0000) knlGS:0000000000000000
+[   92.849995][ T6507] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   92.852040][ T6507] CR2: 00007f5f00043088 CR3: 0000000101bb0000 CR4: 00000000003506e0
+[   92.866511][ T6507] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   92.869892][ T6507] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   92.872371][ T6507] Kernel panic - not syncing: Fatal exception
+[   92.875498][ T6507] Kernel Offset: disabled
+[   92.876881][ T6507] Rebooting in 86400 seconds..
+
+VM DIAGNOSIS:
+03:04:30  Registers:
+info registers vcpu 0
+RAX=0000000076f12a51 RBX=000000006f12a517 RCX=00000000559db2ef RDX=0000000000002800
+RSI=ffffc90000e5f8b4 RDI=0000000000000005 RBP=ffff888107ca1dc0 RSP=ffffc90000e5f7f0
+R8 =00000000bfea6fe9 R9 =0000000000000000 R10=fffffbfff1bbcdaa R11=000000000008c083
+R12=ffffc90000e5f878 R13=000000000000000a R14=000000000000000a R15=000000158f149fcf
+RIP=ffffffff83fec54c RFL=00000a13 [-O--A-C] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0000 0000000000000000 ffffffff 00c00000
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 00007fa2e6ce08c0 ffffffff 00c00000
+GS =0000 ffff888063c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=000055cf455ce000 CR3=000000010c815000 CR4=003506f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00000000000000000000000000000000 XMM01=00000000000000004341505350415753
+XMM02=ffffffffffffffff0000000000000000 XMM03=00000000000000000000000000000000
+XMM04=00000000ff0000000000000000000000 XMM05=ffff000000000000ffff000000ff0000
+XMM06=00000000ff0000000000000000000000 XMM07=00000000000000000000000000000000
+XMM08=610064253a64252f6b636f6c622f7665 XMM09=00000000000000000000000000000000
+XMM10=08051110160d124b1701070d1201004b XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000
+info registers vcpu 1
+RAX=dffffc0000000060 RBX=00000000000003fd RCX=0000000000000000 RDX=00000000000003fd
+RSI=ffffffff8442dfec RDI=ffffffff91610220 RBP=ffffffff916101e0 RSP=ffffc900018df3a8
+R8 =0000000000000000 R9 =ffffffff8dde6d57 R10=000000000000001f R11=313030203a504952
+R12=0000000000000000 R13=fffffbfff22c2091 R14=fffffbfff22c2046 R15=dffffc0000000000
+RIP=ffffffff8442e012 RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00000
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00000
+FS =0000 000000000115f880 ffffffff 00c00000
+GS =0000 ffff888135c00000 ffffffff 00c00000
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007ffe79ee1d68 CR3=0000000101bb0000 CR4=003506e0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000fffe0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=2030333a34303a393120342020636544 XMM01=2e72656c6c616b7a7973203a5d315b64
+XMM02=6f6d2e30656c69662d36352d6777594e XMM03=5b646d65747379732072656c6c616b7a
+XMM04=69662068637573206f4e203a656c6163 XMM05=3a656c696620766e65206e65706f206f
+XMM06=65733a6468737328766e655f6d617020 XMM07=616b7a79732039303a34303a39312034
+XMM08=6164732f7665642f3d746f6f7220313d XMM09=00000000000000000000000000000000
+XMM10=00000000000000000000000000000000 XMM11=00000000000000000000000000000000
+XMM12=00000000000000000000000000000000 XMM13=00000000000000000000000000000000
+XMM14=00000000000000000000000000000000 XMM15=00000000000000000000000000000000

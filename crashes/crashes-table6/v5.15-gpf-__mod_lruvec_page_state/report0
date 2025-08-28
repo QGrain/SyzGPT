@@ -1,0 +1,77 @@
+general protection fault, probably for non-canonical address 0xdffffc00400000cb: 0000 [#1] PREEMPT SMP KASAN
+KASAN: probably user-memory-access in range [0x0000000200000658-0x000000020000065f]
+CPU: 0 PID: 4502 Comm: systemd-udevd Not tainted 6.6.0 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:mem_cgroup_lruvec g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/memcontrol.h:749 [inline]
+RIP: 0010:__mod_lruvec_page_state+0x1e4/0x420 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memcontrol.c:869
+Code: 80 3c 02 00 0f 85 44 02 00 00 49 8b ac de 40 0c 00 00 48 8d bd 58 06 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 e2 01 00 00 4c 3b bd 58 06 00 00 0f 85 57 01 00
+RSP: 0000:ffffc90002237ab0 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000001 RCX: ffffffff81e0abd4
+RDX: 00000000400000cb RSI: 0000000000000008 RDI: 0000000200000659
+RBP: 0000000200000001 R08: 0000000000000000 R09: fffff94000346218
+R10: ffffea0001a310c7 R11: 0000000000000001 R12: 0000000000000001
+R13: 0000000000000012 R14: ffff888060404000 R15: ffff88807ffd9000
+FS:  00007f57f87cc8c0(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f57f8a31390 CR3: 00000000160fd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ __lruvec_stat_mod_folio g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/vmstat.h:615 [inline]
+ folio_add_file_rmap_range+0x3e6/0x640 g.linux/deadline/code/srcs/linux-stable-6.6/mm/rmap.c:1353
+ set_pte_range+0x2eb/0x8f0 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4359
+ filemap_map_order0_folio g.linux/deadline/code/srcs/linux-stable-6.6/mm/filemap.c:3552 [inline]
+ filemap_map_pages+0x465/0x1340 g.linux/deadline/code/srcs/linux-stable-6.6/mm/filemap.c:3598
+ do_fault_around g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4528 [inline]
+ do_read_fault g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4561 [inline]
+ do_fault g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4708 [inline]
+ do_pte_missing g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:3672 [inline]
+ handle_pte_fault g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:4981 [inline]
+ __handle_mm_fault+0x2b4f/0x3e40 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:5122
+ handle_mm_fault+0x3c0/0xa30 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memory.c:5287
+ do_user_addr_fault+0x2ed/0xfe0 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1364
+ handle_page_fault g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1505 [inline]
+ exc_page_fault+0x98/0x180 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/mm/fault.c:1561
+ asm_exc_page_fault+0x26/0x30 g.linux/deadline/code/srcs/linux-stable-6.6/arch/x86/include/asm/idtentry.h:570
+RIP: 0033:0x7f57f8913180
+Code: e5 41 57 41 89 ff 41 56 45 31 f6 41 55 45 31 ed 41 54 53 48 89 f3 48 83 ec 68 48 89 55 b0 48 89 4d b8 4c 89 45 c0 4c 89 4d c8 <44> 0f b6 26 64 48 8b 04 25 28 00 00 00 48 89 45 98 31 c0 48 8d 45
+RSP: 002b:00007fff30b0d950 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: 00007f57f8a31390 RCX: 000055db6ff92010
+RDX: 00007f57f8a33750 RSI: 00007f57f8a31390 RDI: 0000000000000001
+RBP: 00007fff30b0d9e0 R08: 0000000000000000 R09: 00007f57f8a67be0
+R10: 0000000000000010 R11: 0000000000000212 R12: 000055db708ced00
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:mem_cgroup_lruvec g.linux/deadline/code/srcs/linux-stable-6.6/include/linux/memcontrol.h:749 [inline]
+RIP: 0010:__mod_lruvec_page_state+0x1e4/0x420 g.linux/deadline/code/srcs/linux-stable-6.6/mm/memcontrol.c:869
+Code: 80 3c 02 00 0f 85 44 02 00 00 49 8b ac de 40 0c 00 00 48 8d bd 58 06 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 e2 01 00 00 4c 3b bd 58 06 00 00 0f 85 57 01 00
+RSP: 0000:ffffc90002237ab0 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000001 RCX: ffffffff81e0abd4
+RDX: 00000000400000cb RSI: 0000000000000008 RDI: 0000000200000659
+RBP: 0000000200000001 R08: 0000000000000000 R09: fffff94000346218
+R10: ffffea0001a310c7 R11: 0000000000000001 R12: 0000000000000001
+R13: 0000000000000012 R14: ffff888060404000 R15: ffff88807ffd9000
+FS:  00007f57f87cc8c0(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f57f8a31390 CR3: 00000000160fd000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess):
+   0:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   4:	0f 85 44 02 00 00    	jne    0x24e
+   a:	49 8b ac de 40 0c 00 	mov    0xc40(%r14,%rbx,8),%rbp
+  11:	00
+  12:	48 8d bd 58 06 00 00 	lea    0x658(%rbp),%rdi
+  19:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  20:	fc ff df
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 e2 01 00 00    	jne    0x216
+  34:	4c 3b bd 58 06 00 00 	cmp    0x658(%rbp),%r15
+  3b:	0f                   	.byte 0xf
+  3c:	85 57 01             	test   %edx,0x1(%rdi)

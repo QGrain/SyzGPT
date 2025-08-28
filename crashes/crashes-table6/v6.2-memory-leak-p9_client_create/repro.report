@@ -1,0 +1,24 @@
+2023/02/13 01:16:51 executed programs: 646
+BUG: memory leak
+unreferenced object 0xffff9f9792c1a500 (size 16):
+  comm "syz-executor.4", pid 5757, jiffies 4295961616 (age 12.050s)
+  hex dump (first 16 bytes):
+    3a 30 31 33 31 30 37 32 00 a2 c1 92 97 9f ff ff  :0131072........
+  backtrace:
+    [<00000000dc6848a9>] __kmalloc_node_track_caller+0x49/0x120
+    [<000000007732ff2f>] kstrdup+0x3a/0x70
+    [<0000000024078ff2>] kstrdup_const+0x41/0x60
+    [<00000000de2c9757>] kvasprintf_const+0xc4/0xf0
+    [<0000000043c7b987>] kobject_set_name_vargs+0x3b/0xd0
+    [<000000001508ef18>] kobject_init_and_add+0x6f/0xd0
+    [<0000000003ad991b>] sysfs_slab_add+0x103/0x200
+    [<0000000039e15c5b>] __kmem_cache_create+0x449/0x500
+    [<00000000f3ef162f>] kmem_cache_create_usercopy+0x164/0x240
+    [<00000000b9256800>] p9_client_create+0x32a/0x790
+    [<00000000cc260cb3>] v9fs_session_init+0xba/0x8a0
+    [<000000000c3d700a>] v9fs_mount+0x6b/0x4f0
+    [<00000000231b0966>] legacy_get_tree+0x28/0x80
+    [<0000000073783fe2>] vfs_get_tree+0x2b/0x100
+    [<00000000fe0577ae>] path_mount+0x738/0xc60
+    [<000000009c2354e8>] do_mount+0x96/0xb0
+

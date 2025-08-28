@@ -1,0 +1,196 @@
+==================================================================
+BUG: KASAN: slab-use-after-free in radix_tree_descend lib/radix-tree.c:87 [inline]
+BUG: KASAN: slab-use-after-free in __radix_tree_lookup lib/radix-tree.c:764 [inline]
+BUG: KASAN: slab-use-after-free in radix_tree_lookup+0x12d/0x290 lib/radix-tree.c:817
+Read of size 8 at addr ffff8880675ab1a8 by task kswapd0/88
+
+CPU: 0 PID: 88 Comm: kswapd0 Not tainted 6.4.0-rc6 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.10.2-1ubuntu1 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1ae/0x2a0 lib/dump_stack.c:106
+ print_address_description+0x78/0x390 mm/kasan/report.c:351
+ print_report+0x107/0x1e0 mm/kasan/report.c:462
+ kasan_report+0xcd/0x100 mm/kasan/report.c:572
+ radix_tree_descend lib/radix-tree.c:87 [inline]
+ __radix_tree_lookup lib/radix-tree.c:764 [inline]
+ radix_tree_lookup+0x12d/0x290 lib/radix-tree.c:817
+ shrink_slab_memcg+0x369/0x7c0 mm/vmscan.c:970
+ shrink_slab+0xbd/0x3c0 mm/vmscan.c:1062
+ shrink_one+0x30e/0x750 mm/vmscan.c:5380
+ shrink_many+0x3ce/0x6d0 mm/vmscan.c:5430
+ lru_gen_shrink_node+0x3c1/0x5c0 mm/vmscan.c:5547
+ kswapd_shrink_node mm/vmscan.c:7288 [inline]
+ balance_pgdat+0xca7/0x1ac0 mm/vmscan.c:7478
+ kswapd+0x2a5/0x540 mm/vmscan.c:7738
+ kthread+0x2eb/0x310 kernel/kthread.c:379
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:308
+ </TASK>
+
+Allocated by task 235529:
+ kasan_save_stack mm/kasan/common.c:45 [inline]
+ kasan_set_track+0x3d/0x60 mm/kasan/common.c:52
+ __kasan_slab_alloc+0x63/0x70 mm/kasan/common.c:328
+ kasan_slab_alloc include/linux/kasan.h:186 [inline]
+ slab_post_alloc_hook mm/slab.h:711 [inline]
+ slab_alloc_node mm/slab.c:3256 [inline]
+ slab_alloc mm/slab.c:3265 [inline]
+ __kmem_cache_alloc_lru mm/slab.c:3442 [inline]
+ kmem_cache_alloc+0x272/0x370 mm/slab.c:3451
+ radix_tree_node_alloc+0x8b/0x3b0 lib/radix-tree.c:274
+ radix_tree_extend+0x15c/0x5d0 lib/radix-tree.c:423
+ idr_get_free+0x1c4/0xb20 lib/radix-tree.c:1492
+ idr_alloc_u32 lib/idr.c:46 [inline]
+ idr_alloc+0x18c/0x2e0 lib/idr.c:87
+ prealloc_memcg_shrinker+0x4f/0x600 mm/vmscan.c:378
+ __prealloc_shrinker mm/vmscan.c:694 [inline]
+ prealloc_shrinker+0x55/0x1a0 mm/vmscan.c:735
+ alloc_super+0x752/0x930 fs/super.c:268
+ sget_fc+0x257/0x660 fs/super.c:581
+ vfs_get_super fs/super.c:1144 [inline]
+ get_tree_nodev+0x26/0x160 fs/super.c:1178
+ vfs_get_tree+0x86/0x270 fs/super.c:1510
+ fc_mount+0x17/0xa0 fs/namespace.c:1035
+ mq_create_mount ipc/mqueue.c:485 [inline]
+ mq_init_ns+0x3bf/0x520 ipc/mqueue.c:1700
+ create_ipc_ns ipc/namespace.c:73 [inline]
+ copy_ipcs+0x32d/0x530 ipc/namespace.c:112
+ create_new_namespaces+0x258/0xa00 kernel/nsproxy.c:90
+ copy_namespaces+0x3a3/0x410 kernel/nsproxy.c:179
+ copy_process+0x2dae/0x6610 kernel/fork.c:2510
+ kernel_clone+0x212/0x690 kernel/fork.c:2915
+ __do_sys_clone3 kernel/fork.c:3216 [inline]
+ __se_sys_clone3+0x29f/0x320 kernel/fork.c:3200
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+Freed by task 235482:
+ kasan_save_stack mm/kasan/common.c:45 [inline]
+ kasan_set_track+0x3d/0x60 mm/kasan/common.c:52
+ kasan_save_free_info+0x24/0x40 mm/kasan/generic.c:521
+ ____kasan_slab_free+0xbb/0x100 mm/kasan/common.c:236
+ kasan_slab_free include/linux/kasan.h:162 [inline]
+ __cache_free mm/slab.c:3389 [inline]
+ __do_kmem_cache_free mm/slab.c:3576 [inline]
+ kmem_cache_free+0xc1/0x150 mm/slab.c:3601
+ rcu_do_batch kernel/rcu/tree.c:2115 [inline]
+ rcu_core+0x927/0x1520 kernel/rcu/tree.c:2377
+ __do_softirq+0x287/0x73b kernel/softirq.c:571
+
+Last potentially related work creation:
+ kasan_save_stack+0x2b/0x50 mm/kasan/common.c:45
+ __kasan_record_aux_stack mm/kasan/generic.c:491 [inline]
+ kasan_record_aux_stack_noalloc+0x82/0x90 mm/kasan/generic.c:501
+ __call_rcu_common kernel/rcu/tree.c:2627 [inline]
+ call_rcu+0x163/0xa20 kernel/rcu/tree.c:2741
+ radix_tree_node_free lib/radix-tree.c:308 [inline]
+ radix_tree_shrink lib/radix-tree.c:534 [inline]
+ delete_node+0x5d8/0x7d0 lib/radix-tree.c:552
+ radix_tree_delete_item+0x2e2/0x3d0 lib/radix-tree.c:1429
+ unregister_memcg_shrinker mm/vmscan.c:403 [inline]
+ unregister_shrinker+0x1f9/0x300 mm/vmscan.c:817
+ deactivate_locked_super+0x89/0xf0 fs/super.c:330
+ cleanup_mnt+0x3ec/0x480 fs/namespace.c:1177
+ mntput_no_expire+0xecf/0x1000 fs/namespace.c:1263
+ free_ipc_ns ipc/namespace.c:152 [inline]
+ free_ipc+0x12a/0x2c0 ipc/namespace.c:179
+ process_one_work+0x83c/0x11a0 kernel/workqueue.c:2405
+ worker_thread+0xa6c/0x1290 kernel/workqueue.c:2552
+ kthread+0x2eb/0x310 kernel/kthread.c:379
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:308
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x2b/0x50 mm/kasan/common.c:45
+ __kasan_record_aux_stack mm/kasan/generic.c:491 [inline]
+ kasan_record_aux_stack_noalloc+0x82/0x90 mm/kasan/generic.c:501
+ __call_rcu_common kernel/rcu/tree.c:2627 [inline]
+ call_rcu+0x163/0xa20 kernel/rcu/tree.c:2741
+ xa_node_free lib/xarray.c:260 [inline]
+ xas_delete_node lib/xarray.c:497 [inline]
+ update_node lib/xarray.c:761 [inline]
+ xas_store+0x1020/0x19b0 lib/xarray.c:846
+ page_cache_delete_batch mm/filemap.c:314 [inline]
+ delete_from_page_cache_batch+0x648/0xd10 mm/filemap.c:336
+ truncate_inode_pages_range+0x2f2/0x1120 mm/truncate.c:369
+ ext4_evict_inode+0x24c/0xe40 fs/ext4/inode.c:193
+ evict+0x2a4/0x620 fs/inode.c:665
+ __dentry_kill+0x3b8/0x5b0 fs/dcache.c:607
+ dput+0x49e/0x730 fs/dcache.c:913
+ __fput+0x625/0x8c0 fs/file_table.c:329
+ task_work_run+0x243/0x300 kernel/task_work.c:179
+ exit_task_work include/linux/task_work.h:38 [inline]
+ do_exit+0x713/0x2340 kernel/exit.c:874
+ __x64_sys_exit_group+0x0/0x40 kernel/exit.c:1024
+ get_signal+0x2405/0x2480 kernel/signal.c:2876
+ arch_do_signal_or_restart+0x83/0x5f0 arch/x86/kernel/signal.c:306
+ exit_to_user_mode_loop kernel/entry/common.c:168 [inline]
+ exit_to_user_mode_prepare+0x6c/0x1f0 kernel/entry/common.c:204
+ irqentry_exit_to_user_mode+0x5/0x30 kernel/entry/common.c:310
+ exc_page_fault+0xe0/0x1e0 arch/x86/mm/fault.c:1593
+ asm_exc_page_fault+0x22/0x30 arch/x86/include/asm/idtentry.h:570
+
+The buggy address belongs to the object at ffff8880675ab180
+ which belongs to the cache radix_tree_node of size 576
+The buggy address is located 40 bytes inside of
+ freed 576-byte region [ffff8880675ab180, ffff8880675ab3c0)
+
+The buggy address belongs to the physical page:
+page:ffffea00019d6ac0 refcount:1 mapcount:0 mapping:0000000000000000 index:0xffff8880675abffb pfn:0x675ab
+memcg:ffff88806eb19a81
+flags: 0x4fff00000000200(slab|node=1|zone=1|lastcpupid=0x7ff)
+page_type: 0x5()
+raw: 04fff00000000200 ffff888013074100 ffffea0001aecdd0 ffffea0001eb27d0
+raw: ffff8880675abffb ffff8880675ab180 0000000100000005 ffff88806eb19a81
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 0, migratetype Reclaimable, gfp_mask 0x342030(__GFP_HIGH|__GFP_NOWARN|__GFP_COMP|__GFP_HARDWALL|__GFP_THISNODE|__GFP_RECLAIMABLE), pid 86666, tgid 86665 (syz-executor.2), ts 943598511165, free_ts 933787333130
+ set_page_owner include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x1e3/0x200 mm/page_alloc.c:1731
+ prep_new_page mm/page_alloc.c:1738 [inline]
+ get_page_from_freelist+0x75b/0xad0 mm/page_alloc.c:3502
+ __alloc_pages+0x282/0x5f0 mm/page_alloc.c:4768
+ __alloc_pages_node include/linux/gfp.h:237 [inline]
+ kmem_getpages+0x66/0x220 mm/slab.c:1360
+ cache_grow_begin+0x6b/0x2a0 mm/slab.c:2569
+ cache_alloc_refill+0x321/0x460 mm/slab.c:2942
+ ____cache_alloc mm/slab.c:3018 [inline]
+ __do_cache_alloc mm/slab.c:3201 [inline]
+ slab_alloc_node mm/slab.c:3249 [inline]
+ slab_alloc mm/slab.c:3265 [inline]
+ __kmem_cache_alloc_lru mm/slab.c:3442 [inline]
+ kmem_cache_alloc+0x2fb/0x370 mm/slab.c:3451
+ radix_tree_node_alloc+0x192/0x3b0 lib/radix-tree.c:251
+ idr_get_free+0x2ca/0xb20 lib/radix-tree.c:1505
+ idr_alloc_u32 lib/idr.c:46 [inline]
+ idr_alloc_cyclic+0x1cc/0x5a0 lib/idr.c:125
+ __kernfs_new_node+0x124/0x720 fs/kernfs/dir.c:617
+ kernfs_new_node+0x95/0x160 fs/kernfs/dir.c:673
+ __kernfs_create_file+0x45/0x2e0 fs/kernfs/file.c:1047
+ sysfs_add_file_mode_ns+0x21d/0x330 fs/sysfs/file.c:294
+ create_files fs/sysfs/group.c:64 [inline]
+ internal_create_group+0x4e3/0xd40 fs/sysfs/group.c:148
+ internal_create_groups fs/sysfs/group.c:188 [inline]
+ sysfs_create_groups+0x5d/0x130 fs/sysfs/group.c:214
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1302 [inline]
+ free_unref_page_prepare+0xc11/0xeb0 mm/page_alloc.c:2564
+ free_unref_page+0x2e/0x550 mm/page_alloc.c:2659
+ slab_destroy mm/slab.c:1612 [inline]
+ drain_freelist+0xe9/0x150 mm/slab.c:2205
+ cache_reap+0x93/0x3b0 mm/slab.c:3870
+ process_one_work+0x83c/0x11a0 kernel/workqueue.c:2405
+ worker_thread+0xa6c/0x1290 kernel/workqueue.c:2552
+ kthread+0x2eb/0x310 kernel/kthread.c:379
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:308
+
+Memory state around the buggy address:
+ ffff8880675ab080: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff8880675ab100: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff8880675ab180: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                  ^
+ ffff8880675ab200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff8880675ab280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
