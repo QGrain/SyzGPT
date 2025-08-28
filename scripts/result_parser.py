@@ -53,7 +53,7 @@ def request_get(url):
     random_header = {'User-Agent': ua.random}
     return requests.get(url=url, headers=random_header, proxies=PROXIES)
 
-def cached_gather_report(cache_ttl=3*86400, flush_cache=False):
+def cached_gather_report(cache_ttl=3*86400, flush_cache=False, no_ttl=False):
     # cache_ttl = 3*86400 # 3 day
     cache_fn = 'reports.pickle'
     cache_path = os.path.join(CACHE_DIR, cache_fn)
@@ -62,7 +62,7 @@ def cached_gather_report(cache_ttl=3*86400, flush_cache=False):
         if flush_cache == True:
             raise ValueError('Flush cache flag detected')
         cached_reports, cached_time = load_var(cache_path)
-        if cache_ttl and ((time()-cached_time) > cache_ttl):
+        if cache_ttl and ((time()-cached_time) > cache_ttl) and no_ttl == False:
             raise ValueError('Cache expired after TTL: %ds'%cache_ttl)
         print('[+] Load from cache: %s'%cache_path)
         return cached_reports
@@ -235,7 +235,8 @@ def arg_parse():
     parser.add_argument('-u', '--unique_only', action='store_true', help='unique crash only')
     parser.add_argument('-U', '--unique_only_strict', action='store_true', help='strict unique crash only (ignore suspicious)')
     parser.add_argument('-r', '--has_repro', action='store_true', help='filter out the reports that don\'t have any repro')
-    parser.add_argument('-f', '--flush_cache', action='store_true', help='flush cache and re-fetch the reports')
+    parser.add_argument('-f', '--flush_cache', action='store_true', help='flush cache and re-fetch the reports (priority higher than -n)')
+    parser.add_argument('-n', '--no_cache_ttl', action='store_true', help='no cache TTL, always use the existing local cache')
 
     args = parser.parse_args()
     return args
@@ -266,7 +267,7 @@ def main():
     syzbot_res_cache, search_res_cache = {}, {}
     if check_exist:
         print('[+] Fetching crash reports from syzbot for existence check')
-        reports = cached_gather_report(flush_cache=args.flush_cache)
+        reports = cached_gather_report(flush_cache=args.flush_cache, no_ttl=args.no_cache_ttl)
         console.print('[green][√][%.2fs] Get crash reports done[/]'%(time()-start_t))
         syzbot_res_cache = load_cache(os.path.join(CACHE_DIR, 'syzbot_results.json'))
         search_res_cache = load_cache(os.path.join(CACHE_DIR, 'search_results.json'))
