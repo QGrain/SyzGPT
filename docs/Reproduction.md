@@ -1,0 +1,29 @@
+# Comparing with SyzGPT Correctly
+
+> **We provide this documentation for accurately reproducing SyzGPT to avoid unfair comparisons** (Hope it's not too late). This instruction only includes **high-level** reproduction guidance. Please refer to READMEs for specific commands.
+
+
+As a LLM-Assisted kernel fuzzing framework, SyzGPT can not only pre generate a corpus at beginning, but also continuously generate seeds during fuzzting. We can refer to these two working modes as `SyzGPT-Init` and        `SyzGPT-Default`.
+
+
+## SyzGPT-Init
+
+As introduced in [Section 2.1 in ../README.md](../README.md#21-run-syzgpt-for-seed-generation-30min), SyzGPT can serve as a **standalone seed generator** through SyzGPT-generator.
+
+SyzGPT-Init works with a file (specified `-f`), which contains the list of syscalls to generate. We recommend you specify the LFSC (one of the `*.*_LFSC` files under [data/](../data/)) as targets rather the `sampled_variants.txt` (they are only parts of the observed LFSC).
+
+After generating the initial `corpus.db`, you use it with any Syzkaller-based fuzzers for fuzzing.
+
+## SyzGPT-Default
+
+As introduced in [Section 2.2 in ../README.md](../README.md#22-run-syzgpt-for-fuzzing-24h), SyzGPT can also cooperate with SyzGPT-fuzzer for **continuous kernel fuzzing**.
+
+SyzGPT-Default uses the same initial corpus as other fuzzers, without relying on any additional pre preparation. SyzGPT-Default generates seeds periodically during fuzzing.  We provide demonstrative settings: the generation interval `T` is set to `1h` and the generation amount `M` is set to `100`. You can also try other settings.
+
+## Contact
+
+If you have any problems in reproducing SyzGPT, feel free to email us.
+
+- Zhiyu Zhang \<zhangzhiyu1999@iie.ac.cn\>
+- Longxing Li \<lilongxing@iie.ac.cn\>
+
