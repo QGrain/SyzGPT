@@ -32,12 +32,17 @@ REPEAT_ARG = 2
 
 
 def extract_syscalls(s, syscalls):
-    var_calls = re.findall(r'(?<![\\])\b([A-Za-z_]*(?:\$)?[A-Za-z0-9_]+)\(', s)
+    prog_lines = s.splitlines()
     valid_variants = []
-    for variant in var_calls:
-        if variant == '' or variant.isdigit():
+    for line in prog_lines:
+        line = line.strip()
+        if line.startswith("#"):
             continue
-        valid_variants.append(variant)
+        # find the first syscall name in the line
+        line_syscalls = re.findall(r'(?<![\\])\b([A-Za-z0-9_$]+)\(', line)
+        if len(line_syscalls) > 0 and line_syscalls[0] != '' and not line_syscalls[0].isdigit():
+            valid_variants.append(line_syscalls[0])
+    for variant in valid_variants:
         call = variant.split('$')[0]
         if call == '':
             continue
