@@ -7,7 +7,7 @@
 </div>
 
 > [!TIP]
-> 📢[Sep 2025] We provide the correct posture of reproducing SyzGPT to facilitate the comparison with related work. Please refer to [docs/Reproduction.md](docs/Reproduction.md) for details. 
+> 📢[Sep 2025] We provide the correct posture of reproducing SyzGPT to facilitate the comparison with related work. Please refer to [docs/Reproduction.md](docs/Reproduction.md) for details first. 
 
 > [!NOTE]
 > 🔎 [Jun 2025] We are advancing the integration of SyzGPT modules into Syzkaller. Please refer to [Discussion](https://groups.google.com/g/syzkaller/c/SEEjp6m7lbA) for progress.
