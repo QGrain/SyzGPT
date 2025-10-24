@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x10)
+r1 = accept$inet(r0, &(0x7f0000000080), &(0x7f00000000a0))
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TEMPO(r1, 0x0, &(0x7f0000000140))

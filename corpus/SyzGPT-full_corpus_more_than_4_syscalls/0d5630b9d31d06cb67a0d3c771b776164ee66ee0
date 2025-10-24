@@ -1,0 +1,5 @@
+r0 = socket(0x3, 0x1, 0x3)
+bind$bt_l2cap(r0, &(0x7f0000000000)='0\x00', 0x5)
+listen(r0, 0x5)
+r1 = accept(r0, &(0x7f0000000040), &(0x7f0000000044))
+getsockopt$bt_rfcomm_RFCOMM_CONNINFO(r1, 0x3, 0x2, &(0x7f0000000080), &(0x7f0000000084))

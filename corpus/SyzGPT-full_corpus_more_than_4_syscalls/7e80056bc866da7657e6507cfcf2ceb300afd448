@@ -1,0 +1,6 @@
+r0 = openat$ttynull(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$GIO_FONT(r0, 0x0, &(0x7f0000000000))
+r2 = write(r0, &(0x7f0000000000), 0x4)
+r3 = read(r0, &(0x7f0000000000), 0x4)
+r4 = ioctl$GIO_FONT(r0, 0x0, &(0x7f0000000000))
+close(r0)

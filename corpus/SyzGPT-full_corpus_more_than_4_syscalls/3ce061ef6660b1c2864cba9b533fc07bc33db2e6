@@ -1,0 +1,5 @@
+r0 = openat$cdrom(nil, nil, 0x880, 0x0)
+ioctl$CDROMSEEK(r0, 0x530d, &(0x7f0000000a00))
+ioctl$CDROMREADMODE2(r0, 0x0, &(0x7f0000000a00))
+ioctl$CDROMMULTISESSION(r0, 0x0, 0x0)
+ioctl$CDROMEJECT(r0, 0x0, 0x0)

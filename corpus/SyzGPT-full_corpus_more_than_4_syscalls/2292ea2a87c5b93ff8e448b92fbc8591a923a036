@@ -1,0 +1,8 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f00000001c0)='./file1\x00', 0x2, 0x0)
+r1 = ioctl$PERF_EVENT_IOC_ENABLE(r0, 0x0)
+r2 = ioctl$PERF_EVENT_IOC_DISABLE(r0, 0x0)
+r3 = ioctl$PERF_EVENT_IOC_RESET(r0, 0x0)
+r4 = ioctl$PERF_EVENT_IOC_PERIOD(r0, 0x0)
+r5 = ioctl$PERF_EVENT_IOC_SET_FILTER(r0, &(0x7f0000000240), 0x0)
+r6 = ioctl$PERF_EVENT_IOC_ID(r0, 0x0)
+ioctl$VHOST_SET_VRING_ADDR(r0, 0x0, &(0x7f0000000280))

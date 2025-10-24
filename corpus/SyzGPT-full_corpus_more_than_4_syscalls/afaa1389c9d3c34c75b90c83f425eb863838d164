@@ -1,0 +1,5 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+bind$inet(r0, &(0x7f0000000080)={0x2, 0x0, 0x0})
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100)=@peercred, &(0x7f0000000140))
+syz_usbip_server_init(&(0x7f0000000180), r1)

@@ -1,0 +1,8 @@
+r0 = openat$vim2m(0xffffffffffffff9c, &(0x7f0000000000), 0x2, 0x0)
+ioctl$vim2m_VIDIOC_QUERYCAP(r0, 0xc0d05601, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_ENUM_FMT(r0, 0xc0d05602, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_G_FMT(r0, 0xc0d05604, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_S_FMT(r0, 0xc0d05605, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_REQBUFS(r0, 0xc0d05608, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_QUERYBUF(r0, 0xc0d0560e, &(0x7f0000000000))
+ioctl$vim2m_VIDIOC_QBUF(r0, 0xc0d0560f, &(0x7f0000000000))

@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x2, 0x84)
+r1 = bind$inet(r0, &(0x7f0000000200), 0x84)
+r2 = listen(r0, 0x1)
+r3 = accept$inet(r0, &(0x7f0000000240), &(0x7f0000000280))
+r4 = setsockopt$inet_sctp_SCTP_SET_PEER_PRIMARY_ADDR(r3, 0x84, 0x6, 0x0, &(0x7f00000002c0), 0x84)

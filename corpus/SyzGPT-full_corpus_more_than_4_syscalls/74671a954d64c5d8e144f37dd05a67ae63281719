@@ -1,0 +1,8 @@
+r0 = syz_init_net_socket$bt_l2cap(0x1f, 0x5, 0x2)
+r1 = socket$bt_hidp(0x1f, 0x2, 0x2)
+r2 = bind$bt_sco(r1, 0x7f0000000000, 0x2)
+r3 = listen(r1, 0x1)
+r4 = accept(r1, &(0x7f0000000000), &(0x7f0000000000))
+r5 = getsockopt$bt_sco_SCO_CONNINFO(r4, 0x1f, 0x1, &(0x7f0000000000), &(0x7f0000000000))
+r6 = close(r4)
+r7 = close(r1)

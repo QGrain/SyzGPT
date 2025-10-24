@@ -1,0 +1,5 @@
+r0 = ioctl$TIOCL_GETKMSGREDIRECT(0x0, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+write(r1, &(0x7f0000000200)='81', 0x1)
+ioctl$TCGETS(r1, &(0x7f0000000000))
+close(r1)

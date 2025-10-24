@@ -1,0 +1,6 @@
+r0 = socket$inet6(0xa, 0x3, 0x0)
+bind(r0, &(0x7f0000001300), 0x10)
+listen(r0, 0x5)
+r1 = accept(r0, &(0x7f0000001280), &(0x7f0000001284))
+r2 = openat(&(0x7f0000000040)='/sys/kernel/debug/tracing', 0x0, 0x0)
+r3 = read$watch_queue(r2, &(0x7f0000000100), 0x1000)

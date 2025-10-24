@@ -1,0 +1,6 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$nfc(&(0x7f0000000180), r0)
+r3 = open$dir(&(0x7f0000000240)='./file1\x00', 0x101040, 0x0)
+r4 = name_to_handle_at(0xffffffffffffff9c, &(0x7f0000000080)='./cgroup\x00', &(0x7f00000000c0)=@FILEID_UDF_WITHOUT_PARENT={0xc}, &(0x7f0000000100), 0x200)
+sendmsg$NFC_CMD_LLC_SDREQ(r1, &(0x7f0000000300)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000280)={0x14, r2, 0x1}, 0x14}}, 0x0)

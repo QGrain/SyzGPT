@@ -1,0 +1,5 @@
+r0 = syz_init_net_socket$rose(0xb, 0x5, 0x0)
+ioctl$sock_rose_SIOCRSCLRRT(r0, 0x89e4)
+bpf$BPF_LINK_UPDATE(0x1d, &(0x7f0000000080)={0xffffffffffffffff, 0xffffffffffffffff, 0xdcbc7e951624f8d4}, 0x10)
+shmdt(0x0)
+ioctl$VIDIOC_DV_TIMINGS_CAP(0x1, &(0x7f0000000080)={0xffffffffffffffff, 0xffffffffffffffff, 0xdcbc7e951624f8d4})

@@ -1,0 +1,6 @@
+r0 = openat$uhid(0xffffffffffffff9c, &(0x7f0000000000), 0x802, 0x0)
+writev(r0, &(0x7f0000000400)=[{&(0x7f0000000100)='a2', 0x1}], 0x1)
+r1 = fcntl$addseals(r0, 0x2)
+r2 = fstat(r0, &(0x7f0000000200))
+r3 = ioctl(r0, 0x40244551, &(0x7f0000000300))
+r4 = close(r0)

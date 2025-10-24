@@ -1,0 +1,6 @@
+r0 = syz_open_dev$usbmon(0x0, 0x0, 0x0)
+mmap$usbmon(&(0x7f0000ffd000/0x2000)=nil, 0x2000000, 0x2000001, 0x3eb6b06d1207692, r0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000000000)='/dev/usbmon#\x00', 0x400, 0x8000)
+read$usbmon(r1, &(0x7f0000000140)=''/1, 0x1)
+syz_open_dev$usbfs(&(0x7f0000001280)='/dev/bus/usb/00#/00#\x00', 0x1a9e, 0x802)
+ioctl$MON_IOCX_GET(0x0, 0x0, &(0x7f0000000040))

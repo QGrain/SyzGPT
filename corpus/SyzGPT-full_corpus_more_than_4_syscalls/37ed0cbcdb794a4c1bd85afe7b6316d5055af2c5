@@ -1,0 +1,6 @@
+r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
+r1 = bind(r0, &(0x7f0000000000), 0x10)
+r2 = setsockopt$inet_tcp_TLS_TX(r0, 0x6, 0x1, &(0x7f0000000000)=@gcm_256={{}, '993cfe95c9bebe82', 'bd9bf474e4b68322958de90290eaec6ec7641a88f1bce0f889c7ae271c3720a8', '487ce9c9', 'a20758902bb226d9'}, 0x38)
+r3 = listen(r0, 0x0)
+r4 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+write$RDMA_USER_CM_CMD_LEAVE_MCAST(r4, 0x0, 0x0)

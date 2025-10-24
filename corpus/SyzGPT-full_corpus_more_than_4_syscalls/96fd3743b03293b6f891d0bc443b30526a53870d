@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+ioctl$sock_SIOCGIFINDEX(r0, &(0x7f00000000c0))
+bind(r0, &(0x7f00000000c0), 0x10)
+syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$IEEE802154_LLSEC_LIST_DEV(r0, 0x0, 0x0)

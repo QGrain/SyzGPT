@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x5, 0x84)
+r1 = openat$ptp0(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+r2 = fcntl$dupfd(r1, 0x0, r0)
+r3 = ioctl$PTP_EXTTS_REQUEST2(r2, 0x40103d0b, &(0x7f0000000000))
+r4 = ioctl$PTP_CLOCK_GETCAPS(r2, &(0x7f0000000000))

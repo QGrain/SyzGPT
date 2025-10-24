@@ -1,0 +1,7 @@
+r0 = epoll_create1(0x0)
+r1 = timerfd_create(0x0, 0x0)
+epoll_ctl$EPOLL_CTL_ADD(r0, 0x1, r1, &(0x7f00000000c0))
+r2 = eventfd2(0x0, 0x0)
+epoll_ctl$EPOLL_CTL_MOD(r0, 0x3, r2, &(0x7f0000000000))
+r3 = syz_open_dev$sndpcmc(&(0x7f0000001200), 0x0, 0x0)
+ioctl$SNDRV_PCM_IOCTL_STATUS_EXT64(r3, 0x0)

@@ -1,0 +1,5 @@
+r0 = ioctl$SNDRV_SEQ_IOCTL_SUBSCRIBE_PORT(0xffffffffffffff9c, 0x0, &(0x7f0000000000))
+r1 = openat$proc_mixer('/proc/asound/seq/clients', 0x0, 0x0)
+read(r1, &(0x7f0000000080), 0x100)
+r2 = ioctl$SNDRV_SEQ_IOCTL_QUERY_SUBS(&(0x7f0000000000), 0x0)
+ioctl$SNDRV_SEQ_IOCTL_UNSUBSCRIBE_PORT(r0, 0x0, &(0x7f0000000000))

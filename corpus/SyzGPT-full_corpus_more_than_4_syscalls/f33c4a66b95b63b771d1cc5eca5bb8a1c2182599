@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+ioctl$VIDIOC_QUERYCAP(r0, 0xc0cc5609, &(0x7f0000000080)={0x0, @output})
+ioctl$VIDIOC_ENUM_FMT(r0, 0xc0cc5602, &(0x7f00000000c0)={0x0, @output})
+ioctl$VIDIOC_ENUM_FRAMESIZES(r0, 0xc0cc562b, &(0x7f0000000100)={0x0, @output})
+ioctl$VIDIOC_G_PARM(r0, 0xc0cc5615, &(0x7f0000000140)={0x0, @output})
+ioctl$VIDIOC_ENCODER_CMD(r0, 0xc0cc5676, &(0x7f0000000180)={0x0, @output})
+close_range(r0, 0xffffffffffffffff, 0x0)

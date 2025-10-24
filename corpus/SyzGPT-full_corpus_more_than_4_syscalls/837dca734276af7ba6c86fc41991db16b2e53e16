@@ -1,0 +1,5 @@
+r0 = syz_open_dev$sndctrl(0x0, 0x0, 0x482000)
+ioctl$KVM_CREATE_VM(0xffffffffffffffff, 0xae01, 0x0)
+ioctl$KVM_CAP_X86_DISABLE_EXITS(0xffffffffffffffff, 0x0)
+ioctl$VIDIOC_DQEVENT(0xffffffffffffffff, 0x80885659, 0x0)
+ioctl$SNDRV_CTL_IOCTL_PCM_INFO(r0, 0x401c5820, 0x0)

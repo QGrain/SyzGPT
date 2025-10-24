@@ -1,0 +1,5 @@
+r0 = socket$bt_rfcomm(0x1f, 0x0, 0x3)
+r1 = bind$bt_hci(r0, &(0x7f0000000000), 0x6)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000000))
+getsockopt$bt_rfcomm_RFCOMM_LM(r3, 0x1, 0x0)

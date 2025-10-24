@@ -1,0 +1,6 @@
+r0 = socket(0x1, 0x2, 0x1)
+r1 = bind$inet(r0, 0x7f0000000000, 0x10)
+r2 = getsockopt$nfc_llcp(r0, 0x1, 0x1, &(0x7f0000000240))
+r3 = setsockopt$inet_tcp_buf(r0, 0x6, 0x1, &(0x7f0000000240))
+r4 = getsockopt$nfc_llcp(r0, 0x1, 0x1, &(0x7f0000000240))
+r5 = close(r0)

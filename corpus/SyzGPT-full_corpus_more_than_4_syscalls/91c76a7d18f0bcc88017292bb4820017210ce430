@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000003240), 0x0, 0x0)
+r1 = ioctl$DRM_IOCTL_PRIME_FD_TO_HANDLE(r0, 0xc00c642e, &(0x7f00000001c0))
+r2 = ioctl$DRM_IOCTL_GET_CAP(r1, 0xc00c642e, &(0x7f00000001c0))
+r3 = ioctl$DRM_IOCTL_SET_MASTER(r1, 0xc00c642e, &(0x7f00000001c0))
+r4 = ioctl$DRM_IOCTL_MARK_BUFS(r1, 0xc00c642e, &(0x7f00000001c0))
+r5 = ioctl$DRM_IOCTL_SET_VERSION(r1, 0xc00c642e, &(0x7f00000001c0))

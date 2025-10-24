@@ -1,0 +1,7 @@
+ioctl$CDROMSEEK(0xffffffffffffff9c, 0x5324, 0x0)
+ioctl$CDROMPAUSE(0xffffffffffffff9c, 0x0)
+ioctl$CDROMRESUME(0xffffffffffffff9c, 0x0)
+ioctl$CDROMREADMODE2(0xffffffffffffff9c, 0x0)
+ioctl$CDROMVOLCTRL(0xffffffffffffff9c, 0x0)
+ioctl$CDROMCLOSETRAY(0xffffffffffffff9c, 0x0)
+ioctl$CDROMEJECT(0xffffffffffffff9c, 0x0)

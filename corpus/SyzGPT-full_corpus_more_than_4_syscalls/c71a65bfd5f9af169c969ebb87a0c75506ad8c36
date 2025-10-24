@@ -1,0 +1,7 @@
+r0 = openat$ppp(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+r1 = ioctl$PPPIOCGIDLE32(r0, &(0x7f0000000080))
+r2 = read(r0, &(0x7f0000000080), 0x100)
+r3 = write(r0, &(0x7f0000000080), 0x100)
+r4 = ioctl$PPPIOCGIDLE32(r0, &(0x7f0000000080))
+r5 = ioctl$PPPIOCGIDLE32(r0, &(0x7f0000000080))
+r6 = close(r0)

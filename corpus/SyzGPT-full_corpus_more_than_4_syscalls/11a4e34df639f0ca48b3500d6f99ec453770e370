@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x2, 0x1, 0x0)
+connect(r0, &(0x7f0000000000), 0x10)
+r1 = ioctl$KVM_CREATE_VM(0xffffffffffffffff, 0x0, 0x0)
+r2 = ioctl$KVM_CREATE_VCPU(r1, 0x0, 0x0)
+ioctl$KVM_CAP_DIRTY_LOG_RING(r2, 0x0)

@@ -1,0 +1,5 @@
+r0 = ioctl$KVM_GET_VCPU_MMAP_SIZE(0xffffffffffffff9c)
+r1 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+r2 = ioctl$KVM_CREATE_VM(r1, 0xae01, 0x0)
+r3 = ioctl$KVM_CREATE_VCPU(r2, 0xae41, 0x0)
+r4 = ioctl$KVM_SET_MSRS(r3, 0xc008ae88, &(0x7f0000000140)={0x1, 0x0, [{0xc0000080}]})

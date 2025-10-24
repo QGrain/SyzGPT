@@ -1,0 +1,6 @@
+r0 = socket$inet_sctp(0xa, 0x1, 0x84)
+r1 = bind(r0, &(0x7f0000000040)={0x2a0000000000, 0x10}, 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000080), &(0x7f0000000084))
+r4 = getsockopt$inet_sctp_SCTP_RTOINFO(r3, 0x84, 0x0, 0x0, &(0x7f00000000c0))
+r5 = close(r3)

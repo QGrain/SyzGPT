@@ -1,0 +1,5 @@
+r0 = socket$inet6_tcp(0x1c, 0x1, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+ioctl$AUTOFS_IOC_SETTIMEOUT(r1, 0x80000002, &(0x7f0000001000))

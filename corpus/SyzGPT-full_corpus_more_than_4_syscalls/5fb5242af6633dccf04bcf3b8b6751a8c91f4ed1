@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000080), 0x2, 0x0)
+r1 = write$FUSE_OPEN(r0, 0x7f0000000100, 0x0)
+r2 = read(r0, &(0x7f0000000200), 0x100)
+r3 = fstat(r0, &(0x7f0000000300))
+r4 = ioctl$FUSE_DEV_IOC_CLONE(r1, 0x8004e500, &(0x7f0000000000)=r0)
+r5 = close(r0)

@@ -1,0 +1,8 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = bind(r0, &(0x7f0000000000), 0x0)
+r2 = setsockopt$netlink_NETLINK_CAP_ACK(r0, 0x10e, 0x8, 0x0, 0x0)
+r3 = setsockopt$netlink_NETLINK_LISTEN_ALL_NSID(r0, 0x10e, 0x8, 0x0, 0x0)
+r4 = getsockname(r0, &(0x7f0000000000), &(0x7f0000000000))
+r5 = sendmsg(r0, &(0x7f0000000000), 0x0)
+r6 = recvmsg(r0, &(0x7f0000000000), 0x0)
+r7 = close(r0)

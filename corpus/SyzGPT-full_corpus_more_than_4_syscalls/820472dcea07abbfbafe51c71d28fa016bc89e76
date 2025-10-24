@@ -1,0 +1,8 @@
+write$9p(0xffffffffffffff9c, 0xffffffffffffff9c, 0x2, 0x2)
+r0 = sysinfo(&(0x7f0000000000))
+r1 = open(&(0x7f0000000000)='./file0\x00', 0x1, 0x0)
+write(r1, &(0x7f0000000100)='./data0\x00', 0x4)
+close(r1)
+r2 = open(&(0x7f0000000000)='./file1\x00', 0x1, 0x0)
+write(r2, &(0x7f0000000100)='./data1\x00', 0x4)
+close(r2)

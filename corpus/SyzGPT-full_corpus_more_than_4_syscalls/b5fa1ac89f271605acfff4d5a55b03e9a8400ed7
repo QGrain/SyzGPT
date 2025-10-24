@@ -1,0 +1,8 @@
+r0 = socket$inet6_dccp(0x1a, 0x2, 0x0)
+r1 = bind$inet6(r0, &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], 0x1a)
+r2 = connect$nfc_raw(r0, &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], 0x1a)
+r3 = getsockname(r0, &(0x7f0000000000)=ANY=[],[@ANYIPV6, @ANYRES16=0x1a], &(0x7f0000000000)=ANY=[])
+r4 = getsockopt$inet6_dccp_int(r0, 0x1a, 0x1a, &(0x7f0000000000)=ANY=[],[@ANYIPV6, @ANYRES16=0x1a], &(0x7f0000000000)=ANY=[])
+r5 = sendto$inet6(r0, &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], 0x1a, 0x0, &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], 0x1a)
+r6 = recvfrom$inet6(r0, &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], &(0x7f0000000000)=ANY=[@ANYIPV6, @ANYRES16=0x1a], &(0x7f0000000000)=ANY)
+r7 = close(r0)

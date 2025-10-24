@@ -1,0 +1,6 @@
+r0 = ioctl$KDSKBLED(0x0, 0x3, 0x0)
+r1 = ioctl$KDGKBMODE(0x0, &(0x7f0000000000))
+r2 = ioctl$KDSKBMODE(0x0, 0x0)
+r3 = ioctl$KDGKBLED(0x0, &(0x7f0000000080))
+r4 = ioctl$KDGKBENT(0x0, &(0x7f0000000100))
+r5 = ioctl$KDSKBENT(0x0, &(0x7f0000000180))

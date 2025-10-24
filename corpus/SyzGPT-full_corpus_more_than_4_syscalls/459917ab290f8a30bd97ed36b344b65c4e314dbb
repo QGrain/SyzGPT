@@ -1,0 +1,7 @@
+r0 = ptrace$peeksig(0x1, 0x2, 0x3, 0x4)
+r1 = syz_open_dev$rtc(0x0, 0x0, 0x0)
+fcntl$setownex(r1, 0x2)
+ioctl$RTC_IRQP_READ(r1, 0x8004667a)
+ioctl$RTC_IRQP_SET(r1, 0x8004667a)
+ioctl$RTC_IRQP_READ(r1, 0x8004667a)
+fcntl$setownex(r1, 0x0)

@@ -1,0 +1,5 @@
+r0 = openat(&(0x7f0000000000), &(0x7f0000000080), 0x0)
+r1 = open$dir(&(0x7f0000000080), 0x400000, 0x0)
+r2 = ioctl$SNDRV_CTL_IOCTL_ELEM_LIST(&(0x7f0000000000), 0xc0104123, &(0x7f00000000c0)={0x0, 0x0})
+r3 = ioctl$SNDRV_PCM_IOCTL_TTSTAMP(r1, 0xc0104123, &(0x7f00000000c0)={0x0, 0x0})
+close(r0)

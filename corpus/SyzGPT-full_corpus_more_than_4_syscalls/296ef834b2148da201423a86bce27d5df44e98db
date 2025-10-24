@@ -1,0 +1,6 @@
+r0 = ioctl$DRM_IOCTL_AGP_FREE(0xffffffffffffff9c, 0xc004642d, &(0x7f00000006c0), 0x0)
+syz_open_dev$dri(&(0x7f0000000000), 0x0, 0x0)
+ioctl$DRM_IOCTL_AUTH_MAGIC(r0, 0x40046411, &(0x7f0000000040))
+openat$drirender128(0xffffffffffffff9c, &(0x7f0000000100), 0x0, 0x0)
+ioctl$DRM_IOCTL_PRIME_FD_TO_HANDLE(r0, 0xc00c642e, &(0x7f00000001c0))
+openat$btrfs_control(0xffffffffffffff9c, &(0x7f0000000480), 0x0, 0x0)

@@ -1,0 +1,5 @@
+r0 = socket$inet(0x2, 0x1, 0x0)
+bind$inet(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000080), &(0x7f0000000100))
+getsockopt$SO_BINDTODEVICE(r1, 0x1a, 0x10, &(0x7f0000000000), &(0x7f0000000000))

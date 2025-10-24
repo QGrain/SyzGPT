@@ -1,0 +1,5 @@
+r0 = userfaultfd(0x80001)
+ioctl$UFFDIO_API(r0, 0x0)
+r1 = ioctl$UFFDIO_REGISTER(r0, 0x40000000, 0x40000000, 0x0)
+ioctl$UFFDIO_COPY(r1, 0x40000000, 0x40000000, 0x0)
+ioctl$UFFDIO_WAKE(r1, 0x0)

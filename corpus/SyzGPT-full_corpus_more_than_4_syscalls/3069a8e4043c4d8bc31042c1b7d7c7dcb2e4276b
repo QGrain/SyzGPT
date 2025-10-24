@@ -1,0 +1,5 @@
+r0 = socket(0x2, 0x2, 0x0)
+r1 = bind$llc(r0, &(0x7f00000001c0), 0x2a)
+r2 = listen(r0, 0x0)
+r3 = accept(r0, &(0x7f00000001c0), &(0x7f0000000200))
+getpeername$llc(r3, &(0x7f00000001c0), &(0x7f0000000200))

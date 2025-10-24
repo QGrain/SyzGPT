@@ -1,0 +1,5 @@
+r0 = socket$inet6_tcp(0x1c, 0x0, 0x0)
+r1 = bind$inet6(r0, &(0x7f0000000c50), 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000c90), &(0x7f0000000c98))
+ioctl$CAPI_NCCI_OPENCOUNT(r3, 0x0, 0x0)

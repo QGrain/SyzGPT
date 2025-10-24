@@ -1,0 +1,5 @@
+r0 = syz_open_dev$sndpcmc(&(0x7f0000000200), 0x0, 0x0)
+r1 = syz_open_dev$sndpcmp(&(0x7f0000000040), 0x0, 0x0)
+fcntl$getflags(r0, 0x401)
+ioctl$SNDRV_PCM_IOCTL_INFO(r1, 0x0, &(0x7f0000000000))
+ioctl$SNDRV_PCM_IOCTL_UNLINK(r1, 0x40044160)

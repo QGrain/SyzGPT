@@ -1,0 +1,5 @@
+r0 = openat$cdrom(0xffffffffffffff9c, &(0x7f0000000140), 0x0, 0x0)
+r1 = ioctl$CDROMREADTOCHDR(r0, &(0x7f0000000000))
+r2 = ioctl$CDROMPLAYTRKIND(r0, 0x0, &(0x7f0000000000))
+r3 = ioctl$CDROMEJECT(r0)
+r4 = close(r0)

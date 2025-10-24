@@ -1,0 +1,8 @@
+r0 = syz_open_dev$rtc(&(0x7f0000000080)={0x0, 0x0})
+ioctl$RTC_UIE_ON(r0, 0x0)
+r1 = syz_open_dev$rtc(&(0x7f0000000080)={0x0, 0x0})
+ioctl$RTC_UIE_ON(r1, 0x0)
+write(r0, &(0x7f0000000100)='alarm on', 0x9)
+ioctl$RTC_UIE_OFF(r0, 0x0)
+close(r0)
+close(r1)

@@ -1,0 +1,7 @@
+r0 = socket$inet6(0x2, 0x1, 0x0)
+connect(r0, &(0x7f0000000000), 0x10)
+r1 = ioctl$KVM_CREATE_VM(0xffffffffffffffff, 0x0, 0x0)
+r2 = ioctl$KVM_CREATE_VCPU(r1, 0x0, 0x0)
+ioctl$KVM_GET_FPU(r2, 0x81a0ae8c, &(0x7f0000000000))
+r3 = ioctl$KVM_S390_UCAS_MAP(r2, 0x0)
+r4 = ioctl$KVM_S390_VCPU_FAULT(r3, 0x0, 0x0)

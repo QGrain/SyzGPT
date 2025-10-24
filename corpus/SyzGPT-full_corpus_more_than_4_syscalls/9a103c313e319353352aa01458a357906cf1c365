@@ -1,0 +1,7 @@
+r0 = socket$inet_tcp(0x0, 0x0, 0x0)
+bind(r0, &(0x7f0000000040)={0x2, AF_INET, 0x0, inet_addr('127.0.0.1')}, 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000040)=nil, &(0x7f0000000040)=nil)
+r2 = ioctl$USBDEVFS_DISCARDURB(r1, 0x0, 0x0)
+close(r1)
+close(r0)

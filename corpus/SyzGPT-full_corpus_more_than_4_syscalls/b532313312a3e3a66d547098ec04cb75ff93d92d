@@ -1,0 +1,5 @@
+r0 = socket$inet()
+bind(r0, &(0x7f0000002100), 0x10)
+listen(r0, 0x5)
+r1 = accept(r0, &(0x7f0000002100), &(0x7f0000002104))
+ioctl(r1, 0x4004460a, 0x0)

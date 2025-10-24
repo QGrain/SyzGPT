@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./dev/sve\x00', 0x2, 0x0)
+ioctl$KBASE_IOCTL_VERSION_CHECK(r0, 0xc0048000, &AUTO={0xB, 0xF})
+ioctl$KBASE_IOCTL_SET_FLAGS(r0, 0x40048001, &AUTO={0x0})
+prctl$PR_SVE_SET_VL(0x0, 0x1)
+close(r0)

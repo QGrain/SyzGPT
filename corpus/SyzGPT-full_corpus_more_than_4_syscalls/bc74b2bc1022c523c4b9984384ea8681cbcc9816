@@ -1,0 +1,5 @@
+r0 = socket(0x1c, 0x3, 0x3)
+bind(r0, &(0x7f0000000a40), 0x6a)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000a40), &(0x7f0000000a44))
+sendmsg$NLBL_CALIPSO_C_LISTALL(r1, 0x7f0000000a60, 0x0)

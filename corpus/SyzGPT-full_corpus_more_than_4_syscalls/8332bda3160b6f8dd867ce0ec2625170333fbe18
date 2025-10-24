@@ -1,0 +1,5 @@
+ioctl$KVM_CREATE_VM(0x0)
+r0 = ioctl$KVM_GET_API_VERSION(0x0)
+r1 = ioctl$KVM_CHECK_EXTENSION(0x0, 0x6)
+r2 = ioctl$KVM_GET_MSR_INDEX_LIST(0x0, 0x0)
+ioctl$KVM_IOEVENTFD(0x0, 0x0, 0x0, 0x0)

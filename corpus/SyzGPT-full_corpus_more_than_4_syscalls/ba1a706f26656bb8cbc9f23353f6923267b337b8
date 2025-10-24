@@ -1,0 +1,6 @@
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+r1 = bind$inet(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+r4 = ioctl$sock_inet_tcp_SIOCOUTQ(r3, 0x5411, &(0x7f0000000200))
+r5 = shutdown(r3, 0x2)

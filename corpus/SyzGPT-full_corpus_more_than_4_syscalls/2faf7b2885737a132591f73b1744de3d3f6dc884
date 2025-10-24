@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+bind(r0, &(0x7f0000000280)={sa_family=0x1c, inet_pton(AF_INET6, "::1", &(0x7f0000000288)), sin6_port=0x0, sin6_flowinfo=0x0, sin6_addr=inet_pton(AF_INET6, "::1", &(0x7f0000000298)), sin6_scope_id=0x0}, 0x1c)
+listen(r0, 0x0)
+r1 = accept4(r0, 0x0, 0x0, 0x0)
+r2 = ioctl$sock_netdev_private(r1, 0x0, 0x0)

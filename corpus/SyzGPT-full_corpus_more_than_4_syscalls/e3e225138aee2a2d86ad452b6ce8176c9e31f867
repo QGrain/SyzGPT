@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x5, 0x84)
+r1 = getpid()
+ioctl$sock_FIOSETOWN(r0, 0x8901, &(0x7f0000000140)=r1)
+r2 = ptrace$PTRACE_SETSIGMASK()
+ptrace$PTRACE_SECCOMP_GET_FILTER(r2, 0x0, 0x0, 0x0)

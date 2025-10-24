@@ -1,0 +1,5 @@
+r0 = timerfd_create(0x0, 0x0)
+r1 = openat$rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r2 = ioctl$RFKILL_IOCTL_NOINPUT(r1, 0x0)
+poll(&(0x7f00000000c0)=[{r2}, {r0}], 0x2, 0xff)
+dup3(r1, r0, 0x0)

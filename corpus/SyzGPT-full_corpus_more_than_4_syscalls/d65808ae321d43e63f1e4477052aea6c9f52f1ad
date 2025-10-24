@@ -1,0 +1,7 @@
+r0 = syz_open_dev$video4linux(&(0x7f0000000000), 0x0, 0x0)
+r1 = dup(r0)
+r2 = ioctl$VIDIOC_QUERYCAP(r1, &(0x7f0000000080))
+r3 = ioctl$VIDIOC_ENUM_FMT(r1, 0xc040563d, &(0x7f0000000080))
+r4 = ioctl$VIDIOC_S_FMT(r1, 0xc040563d, &(0x7f0000000080))
+r5 = ioctl$VIDIOC_SUBDEV_S_SELECTION(r1, 0xc040563d, &(0x7f0000000080))
+close(r0)

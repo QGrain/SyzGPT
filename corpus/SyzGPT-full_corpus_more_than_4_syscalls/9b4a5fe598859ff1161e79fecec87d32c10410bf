@@ -1,0 +1,6 @@
+r0 = openat$ppp(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$PPPIOCGIDLE32(r0, 0x7f0000001300)
+r0 = socket$can_raw(0x1d, 0x2, 0x0)
+ioctl$sock_SIOCGIFINDEX(r0, &(0x7f00000000c0)='vcan0\x00')
+r0 = openat$ppp(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+write(r0, &(0x7f0000000f40)='test\x00', 0x4)

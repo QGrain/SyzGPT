@@ -1,0 +1,5 @@
+r0 = socket$inet6_tcp(0x2, 0x1, 0x0)
+bind(r0, &(0x7f0000000080)={sa_family=AF_INET6, sin6_port=htons(0x1), inet_pton(AF_INET6, '::1', &(0x7f0000000080).sin6_addr)=1, sin6_flowinfo=0x0, sin6_scope_id=0x0})
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f00000000c0), &(0x7f00000000c4))
+sendmsg$NLBL_UNLABEL_C_ACCEPT(r1, 0x0, 0x0)

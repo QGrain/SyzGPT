@@ -1,0 +1,6 @@
+syz_mount_image$squashfs(&(0x7f00000001c0), &(0x7f0000000200)='./file0\x00', 0x0, &(0x7f0000001a40)={[], [{@measure}]}, 0x1, 0x191, &(0x7f0000000280)='$eJw0kL9rU1EcxT/f+15+1FJLDChUMA8VX18wJu9VRZyeuDjkgYNLQaEhjW3xpdomg68kJu7+AS5SMgiCm+LWQcHB0UHIkledxQ6dSgep3Ho73Pu553LuuV/OamejkwP+7veahCCAxWl+IdhAUV8AB4bvDX8aDv6Di0Ynhm8M5zrJ1pNGHLc2ndsOzt1X4gCvHeZvUYARZxV7QoiM93vNoXjCcp1yH6uyzpw9i8WR22NR2BC3DrPVbvtZtZNsVdbajZXWSms9CBZu1q7XajeC6uO1uFX7hHiJqG/TfbyIXMSU1yfjHcqpyjv1+9wLe4dySvYRS7vW/KWrE9ozR3fAKyF8dvfITezVknrAFfIP9Yj3dAcjrAinzpTC5vibELmvPohv/7APMor80LKuNZ/Gy4NFJYfZ7VD+5MUfk3F9grLPQgGmKS4xojTRsfFJQZzhC4MUJyVM2U4Z71KUHe15aTz2UO9vjTrPBcjyvNHtbvpZ+CpuRKBXAWaO41TE5bpO+GjeGPDdHP4FAAD//6PoXBY=')
+stat(&(0x7f00000001c0)='./file0\x00', &(0x7f0000000200)={0x0, 0x0, 0x0, 0x0, <r0=>0x0})
+setreuid(0xffffffffffffffff, r0)
+r1 = socket$nl_rdma(0x10, 0x3, 0x14)
+setsockopt$netlink_NETLINK_LISTEN_ALL_NSID(r1, 0x10e, 0x8, 0x0, 0x0)
+r2 = sendmsg$RDMA_NLDEV_CMD_NEWLINK(r1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)

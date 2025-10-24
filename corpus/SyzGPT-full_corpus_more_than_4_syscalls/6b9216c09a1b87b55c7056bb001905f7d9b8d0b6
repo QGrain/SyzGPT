@@ -1,0 +1,6 @@
+r0 = socket$netlink(0x10, 0x1, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+getsockname(r0, &(0x7f0000000100), &(0x7f0000000108))
+socketpair(0x1f, 0x3, 0x0, &(0x7f0000000200))
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000300)='./sys/fs/cgroup/unified//cgroup.procs\x00', 0x0, 0x0)
+fsetxattr$trusted_overlay_opaque(r1, &(0x7f0000000400)='', 0x0, 0x0)

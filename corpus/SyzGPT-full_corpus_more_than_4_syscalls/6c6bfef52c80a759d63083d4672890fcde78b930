@@ -1,0 +1,5 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000100), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_SET_NR_MMU_PAGES(r1, 0xae4d)
+ioctl$KVM_CHECK_EXTENSION(r1, 0xae81)
+ioctl$KVM_RUN(r1, 0xae80, 0x0)

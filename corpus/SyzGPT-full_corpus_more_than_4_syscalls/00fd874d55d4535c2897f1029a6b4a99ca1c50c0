@@ -1,0 +1,8 @@
+r0 = prctl$PR_SET_DUMPABLE(0x1, 0x0, 0x0, 0x0, 0x0)
+r1 = openat$proc_capi20(0xffffffffffffff9c, &AUTO='/proc/sys/kernel/yama/ptrace_scope\x00', 0x2, 0x0)
+read(r1, &(0x7f0000000b40)='0\n', 0x1)
+close(r1)
+r2 = openat$proc_capi20(0xffffffffffffff9c, &AUTO='/proc/sys/kernel/yama/ptrace_scope\x00', 0x1, 0x0)
+write(r2, &(0x7f0000000b40)='0\n', 0x1)
+close(r2)
+prctl$PR_MPX_ENABLE_MANAGEMENT(0x1, 0x0, 0x0, 0x0, 0x0)

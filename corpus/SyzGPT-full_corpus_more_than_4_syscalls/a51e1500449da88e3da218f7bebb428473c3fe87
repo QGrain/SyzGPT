@@ -1,0 +1,8 @@
+r0 = socket$netlink(0x10, 0x3, 0x7d09175d4a8d6274)
+r1 = setsockopt$netlink_NETLINK_TX_RING(r0, 0x1a, 0x0, &(0x7f0000000100), 0x10)
+r2 = socket$inet_tcp(0x2, 0x1, 0x0)
+r3 = bind(r2, &(0x7f0000000100), 0x10)
+r4 = listen(r2, 0x5)
+r5 = accept(r2, &(0x7f0000000100), &(0x7f0000000100))
+r6 = close(r2)
+r7 = close(r0)

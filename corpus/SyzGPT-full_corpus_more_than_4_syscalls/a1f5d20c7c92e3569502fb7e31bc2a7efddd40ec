@@ -1,0 +1,7 @@
+r0 = open(&(0x7f0000000000), 0x2, 0x0)
+ioctl$KVM_GET_API_VERSION(r0, 0x0, 0x0)
+ioctl$KVM_CREATE_VM(r0, 0x0, 0x0)
+ioctl$KVM_CHECK_EXTENSION(r0, 0x3, 0x0)
+ioctl$KVM_GET_SUPPORTED_CPUID(r0, 0x0, &(0x7f0000000000))
+ioctl$KVM_GET_XCRS(r0, 0x0, 0x0)
+close(r0)

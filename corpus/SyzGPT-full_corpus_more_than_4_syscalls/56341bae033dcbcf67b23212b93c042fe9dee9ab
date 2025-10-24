@@ -1,0 +1,8 @@
+openat$dir(0xffffffffffffff9c, &(0x7f0000000000)='./file0\x00', 0x0, 0x0)
+ioctl$VIDIOC_QUERYCAP(0xffffffffffffffff, &(0x7f0000000080))
+ioctl$VIDIOC_ENUM_FMT(0xffffffffffffffff, 0x1, &(0x7f0000000100))
+ioctl$VIDIOC_G_FMT(0xffffffffffffffff, 0x1, &(0x7f0000000180))
+ioctl$VIDIOC_G_PARM(0xffffffffffffffff, &(0x7f0000000200))
+ioctl$VIDIOC_G_STD(0xffffffffffffffff, &(0x7f0000000280))
+ioctl$VIDIOC_ENUM_FRAMESIZES(0xffffffffffffffff, 0x1, &(0x7f0000000300))
+ioctl$VIDIOC_G_FBUF(0xffffffffffffffff, &(0x7f0000000380))

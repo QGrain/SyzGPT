@@ -1,0 +1,7 @@
+r0 = openat$vicodec1(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+r1 = ioctl$VIDIOC_QUERYCAP(r0, 0xc0cc5609, &(0x7f0000000080))
+r2 = ioctl$VIDIOC_ENUM_FMT(r0, 0xc0cc5670, &(0x7f00000000c0))
+r3 = ioctl$VIDIOC_G_FMT(r0, 0xc0cc5680, &(0x7f0000000100))
+r4 = ioctl$VIDIOC_S_FMT(r0, 0xc0cc5681, &(0x7f0000000140)={0x1, 0x1, 0x0, 0x0})
+r5 = ioctl$VIDIOC_CROPCAP(r0, 0xc0cc56b3, &(0x7f0000000180))
+r6 = ioctl$VIDIOC_SUBDEV_S_CROP(r0, 0xc0cc56c9, &(0x7f00000001c0)={0x0, 0x0, 0x0, 0x0})

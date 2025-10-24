@@ -1,0 +1,5 @@
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000000c0), 0x0, 0x0)
+r1 = dup2(r0, r0)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+r3 = ioctl$KDGKBDIACR(r2, 0x4b4b, &(0x7f0000000200)=''/242)
+ioctl$KDSKBLED(r3, 0x1, 0x0)

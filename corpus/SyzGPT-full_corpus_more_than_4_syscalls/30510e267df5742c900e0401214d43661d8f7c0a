@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x5, 0x84)
+r1 = bind$inet(0x0, 0x7f0000000000, 0x10)
+r2 = listen(r1, 0x5)
+r3 = accept$inet(r2, &(0x7f0000000030), &(0x7f0000000034))
+getsockopt$inet_sctp_SCTP_STREAM_SCHEDULER(r3, 0x84, 0x13, 0x0, &(0x7f0000000580))

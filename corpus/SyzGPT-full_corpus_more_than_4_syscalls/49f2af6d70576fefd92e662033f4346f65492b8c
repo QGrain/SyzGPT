@@ -1,0 +1,6 @@
+r0 = socket$inet6(0x1c, 0x1, 0x0)
+getsockopt(r0, 0x6, 0x1a, &(0x7f0000000000)='./file0\x00', 0x0)
+ioctl$KVM_CAP_EXIT_ON_EMULATION_FAILURE(r0, 0x0)
+r1 = openat(r0, './file1\x00', 0x0, 0x0)
+write(r1, './data\x00', 0x5)
+ioctl$KVM_CAP_EXIT_ON_EMULATION_FAILURE(r1, 0x0)

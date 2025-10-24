@@ -1,0 +1,5 @@
+r0 = open('/dev/fd0', 0, 0)
+ioctl$sock_FIOGETOWN(r0, @r1)
+ioctl$sock_FIOSETOWN(r0, r1)
+ioctl$FLOPPY_FDRESET(r0)
+close(r0)

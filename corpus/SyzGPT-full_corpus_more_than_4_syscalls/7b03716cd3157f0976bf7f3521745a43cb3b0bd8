@@ -1,0 +1,5 @@
+r0 = socket$inet(0x2, 0x2, 0x0)
+r1 = ioctl$SIOCGSKNS(r0, 0x89c3, &(0x7f00000001c0))
+r2 = read(r0, &(0x7f00000001c0), 0x10)
+r3 = write(r0, &(0x7f00000001c0), 0x10)
+r4 = close(r0)

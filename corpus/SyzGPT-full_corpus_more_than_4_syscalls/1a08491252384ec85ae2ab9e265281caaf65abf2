@@ -1,0 +1,6 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+r1 = fcntl$dupfd(r0, 0x0, r0)
+r2 = bind$inet(r1, &(0x7f00000004c0), 0x10)
+r3 = listen(r2, 0x10)
+r4 = accept(r3, &(0x7f00000004c0), &(0x7f00000004c8))
+getsockopt$inet_sctp_SCTP_PRIMARY_ADDR(r4, 0x84, 0x76, &(0x7f00000004c0), &(0x7f00000004c8))

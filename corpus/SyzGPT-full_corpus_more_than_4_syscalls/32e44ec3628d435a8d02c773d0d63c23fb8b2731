@@ -1,0 +1,5 @@
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+r1 = bind(r0, &(0x7f0000000100), 0x10)
+r2 = listen(r1, 0x5)
+r3 = accept(r2, &(0x7f0000000200), &(0x7f0000000080))
+getsockopt$bt_BT_DEFER_SETUP(r3, 0x1a, 0x1, &(0x7f0000000040), &(0x7f0000000080))

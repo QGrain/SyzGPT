@@ -1,0 +1,5 @@
+r0 = socket$tipc(0x2, 0x2, 0x0)
+bind$tipc(0xffffffffffffffff, 0x0, 0x0)
+getsockname(r0, &(0x7f0000000040), &(0x7f0000000048))
+r1 = sendmsg$TIPC_CMD_GET_NETID(r0, 0x0, 0x0)
+close(r0)

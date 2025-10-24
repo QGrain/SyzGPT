@@ -1,0 +1,5 @@
+r0 = socket$nl_rdma(0x10, 0x3, 0x14)
+bind(r0, &(0x7f0000000000)={sa_family=0x1c, sa_data='socket\x00'})
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000040), &(0x7f0000000080))
+r2 = sendmsg$RDMA_NLDEV_CMD_RES_MR_GET(r1, 0x0, 0x0)

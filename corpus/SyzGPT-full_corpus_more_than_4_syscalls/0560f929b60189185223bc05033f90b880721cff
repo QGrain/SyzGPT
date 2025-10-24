@@ -1,0 +1,5 @@
+r0 = socket$inet_udp(0x2, 0x2, 0x0)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = dup2(r0, r1)
+r3 = syz_genetlink_get_family_id$ethtool(&(0x7f0000000040), 0xffffffffffffffff)
+sendmsg$L2TP_CMD_TUNNEL_GET(r2, &(0x7f0000000080)={0x0, 0x0, &(0x7f0000000040)={&(0x7f00000012c0)=ANY=[@ANYBLOB=',\x00\x00\x00', @ANYRES16=r3, @ANYBLOB="013b0000000000000000130000001800018014000200766c616e31"], 0x2c}}, 0x0)

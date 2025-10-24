@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000002000)='./dev/video0\x00', 0x2, 0x0)
+r1 = ioctl$VIDIOC_QUERYCAP(r0, 0x0, &(0x7f0000002040))
+r2 = ioctl$VIDIOC_ENUM_FMT(r0, 0x1, &(0x7f0000002080))
+r3 = ioctl$VIDIOC_ENUM_FRAMESIZES(r0, 0x1, &(0x7f00000020c0))
+r4 = ioctl$VIDIOC_ENUM_FRAMEINTERVALS(r0, 0x1, &(0x7f0000002100))
+ioctl$VIDIOC_STREAMON(r0, 0x1)
+ioctl$VIDIOC_STREAMOFF(r0, 0x1)

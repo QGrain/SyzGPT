@@ -1,0 +1,6 @@
+r0 = socket(0x1, 0x2, 0x0)
+r1 = bind(r0, &(0x7f0000000000), 0x6)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+r4 = ioctl$VIDIOC_G_ENC_INDEX(r3, 0x0)
+r5 = close(r3)

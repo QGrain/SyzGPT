@@ -1,0 +1,8 @@
+r0 = socket$inet_tcp(0x0, 0x0, 0x0)
+bind(r0, &(0x7f0000000080)=0x7f0000000080, 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f0000000080)=0x7f0000000080, &(0x7f0000000080)=0x7f0000000080)
+r2 = openat$procfs(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+ioctl$VHOST_VDPA_SET_CONFIG_CALL(r2, 0x4008a1a7, &(0x7f0000000080)=0x7f0000000080)
+close(r1)
+close(r0)

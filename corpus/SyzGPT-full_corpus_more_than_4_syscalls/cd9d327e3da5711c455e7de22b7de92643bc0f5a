@@ -1,0 +1,7 @@
+r0 = syz_open_dev$ndb(&(0x7f0000000100), 0x0, 0x0)
+r1 = ioctl$NBD_SET_SIZE(r0, 0x1000)
+r2 = ioctl$NBD_CLEAR_SOCK(r0)
+r3 = ioctl$NBD_SET_BLKSIZE(r0, 0x100)
+r4 = ioctl$NBD_CLEAR_QUE(r0)
+r5 = ioctl$NBD_DO_IT(r0, 0x0)
+lseek(r0, 0x0, 0x0)

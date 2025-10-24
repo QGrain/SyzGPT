@@ -1,0 +1,5 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+getsockname(r0, 0x0, &(0x7f0000000280))
+syz_mount_image$squashfs(&(0x7f00000001c0), &(0x7f0000000200)='./file0\x00', 0x0, &(0x7f0000000280)=ANY=[], 0x1, 0x1a3, &(0x7f0000000440)='$eJwBAAD//wAAAAE=')
+name_to_handle_at(0xffffffffffffff9c, &(0x7f00000000c0)='./file0\x00', &(0x7f0000000100)=@ocfs2={0xc}, &(0x7f0000000140), 0x0)
+sendmsg$ETHTOOL_MSG_DEBUG_GET(r0, 0x0, 0x0)

@@ -1,0 +1,5 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f00000000c0), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_CREATE_VCPU(r1, 0xae41, 0x0)
+r3 = ioctl$KVM_SET_XCRS(r2, 0x4188aea7, 0x0)
+ioctl$KVM_DEASSIGN_DEV_IRQ(r3, 0xae81, 0x0)

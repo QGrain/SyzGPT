@@ -1,0 +1,5 @@
+r0 = socket$netlink(0x10, 0x3, 0x0)
+syz_genetlink_get_family_id$nl80211(&(0x7f0000000080), r0)
+r1 = openat(0xffffffffffffff9c, 0x0, 0x42, 0x0)
+close(r1)
+write$P9_RCREATE(r1, &(0x7f0000000140), 0x10)

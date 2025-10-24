@@ -1,0 +1,8 @@
+r0 = socket$inet6(0xa, 0x1, 0x0)
+r1 = bind(r0, &(0x7f0000000100)=''/101, 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000200)=''/101, &(0x7f0000000300)=0x10)
+r4 = socket$inet6(0xa, 0x1, 0x0)
+r5 = bind(r4, &(0x7f0000000400)=''/101, 0x10)
+r6 = connect(r4, &(0x7f0000000200)=''/101, 0x10)
+r7 = ioctl$SIOCRSSL2CALL(r4, 0x80000000, &(0x7f0000000300))

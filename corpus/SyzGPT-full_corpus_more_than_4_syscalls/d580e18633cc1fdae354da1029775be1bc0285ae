@@ -1,0 +1,6 @@
+syz_init_net_socket$rose(0xb, 0x5, 0x0)
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$DEVLINK_CMD_SB_OCC_SNAPSHOT(r0, &(0x7f0000000400)={0x0, 0x0, 0x0}, 0x0)
+syz_genetlink_get_family_id$wireguard(&(0x7f0000000cc0), 0xffffffffffffffff)
+syz_genetlink_get_family_id$devlink(&(0x7f0000000d40), 0xffffffffffffffff)
+sendmsg$NL80211_CMD_SET_WIPHY(r0, &(0x7f0000000b40)={0x0, 0x0, 0x0}, 0x0)

@@ -1,0 +1,5 @@
+ptrace$PTRACE_GETSIGMASK()
+arch_prctl$ARCH_MAP_VDSO_32(&(0x7f0000000100))
+syz_open_dev$mouse(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+ioctl$LOOP_SET_FD(0xffffffffffffffff, 0x4c00, 0xffffffffffffffff)
+write(0xffffffffffffffff, &AUTO='01010101', 0x4) (async)

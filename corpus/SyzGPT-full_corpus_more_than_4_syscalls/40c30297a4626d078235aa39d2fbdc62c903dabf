@@ -1,0 +1,5 @@
+r0 = socket$inet(0xa, 0x1, 0x0)
+r1 = bind(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r0, 0x5)
+r3 = accept(r0, &(0x7f0000000100), &(0x7f0000000200))
+r4 = setsockopt$inet_sctp_SCTP_DEFAULT_SNDINFO(r3, 0x84, 0x22, &(0x7f0000000300), 0x10)

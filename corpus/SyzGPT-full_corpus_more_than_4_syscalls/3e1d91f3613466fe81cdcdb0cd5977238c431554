@@ -1,0 +1,5 @@
+r0 = socket$inet(0xa, 0x2, 0x0)
+connect(r0, &(0x7f0000000000)={0x2, 0x7f0000000180, 0x10})
+r1 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000040), 0x2, 0x0)
+write$cgroup_subtree(r1, &(0x7f0000000080)='./cgroup/syz1\x00', 0x10)
+close(r0)

@@ -1,0 +1,8 @@
+r0 = socket$nl_rdma(0x10, 0x3, 0x14)
+r1 = bind(r0, &(0x7f0000000140)={0x2, 0x1, 0x0})
+r2 = getsockname(r0, &(0x7f0000000140), &(0x7f0000000100))
+r3 = listen(r0, 0x1)
+r4 = accept(r0, &(0x7f0000000140), &(0x7f0000000100))
+r5 = sendmsg$RDMA_NLDEV_CMD_GET_CHARDEV(r4, &(0x7f0000000180), 0x0)
+close(r0)
+close(r4)

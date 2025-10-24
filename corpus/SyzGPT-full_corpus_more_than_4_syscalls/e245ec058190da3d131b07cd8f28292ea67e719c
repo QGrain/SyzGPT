@@ -1,0 +1,7 @@
+syz_open_dev$hidraw(0x0, 0x0, 0x10f242)
+ioctl$HIDIOCSFEATURE(0xffffffffffffffff, 0x401c5820, &(0x7f00000002c0)=ANY=[@ANYBLOB='83'])
+r0 = syz_open_dev$hidraw(&(0x7f0000000280), 0x0, 0x400001)
+read$hidraw(0xffffffffffffffff, &(0x7f0000000480)=''/172, 0xac)
+ioctl$HIDIOCGRAWINFO(r0, 0x80084803, 0x0)
+syz_open_dev$char_usb(0xc, 0xb4, 0x10001fffc)
+ioctl$HIDIOCSFEATURE(r0, 0x401c5820, &(0x7f00000002c0)=ANY=[@ANYBLOB='83'])

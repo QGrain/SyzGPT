@@ -5,6 +5,7 @@ test/
 
 corpus/*
 !corpus/*.db
+!corpus/SyzGPT-full_corpus*/
 
 plots/
 plot/tmp/

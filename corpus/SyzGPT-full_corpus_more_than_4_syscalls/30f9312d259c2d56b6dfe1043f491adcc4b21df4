@@ -1,0 +1,5 @@
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$TUNGETFEATURES(r0, 0x0)
+r2 = ioctl$TUNGETIFF(r0, 0x0)
+r3 = ioctl$TUNSETQUEUE(r0, 0x0)
+r4 = ioctl$TUNGETSNDBUF(r0, 0x0)

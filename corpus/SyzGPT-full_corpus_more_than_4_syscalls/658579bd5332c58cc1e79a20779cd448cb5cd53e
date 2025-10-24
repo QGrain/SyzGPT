@@ -1,0 +1,8 @@
+r0 = open("/dev/vhost-net", 0x2, 0x0)
+ioctl$VHOST_SET_OWNER(r0) (fail_nth: 2)
+r1 = ioctl$VHOST_GET_FEATURES(r0)
+ioctl$VHOST_SET_FEATURES(r0, r1)
+ioctl$VHOST_SET_VRING_NUM(r0, 0x0, 0x10)
+r2 = ioctl$VHOST_GET_VRING_BASE(r0, 0x0)
+ioctl$VHOST_SET_VRING_BASE(r0, 0x0, r2)
+ioctl$VHOST_SET_VRING_ADDR(r0, 0x0, 0x0, 0x7f0000000000, 0x1000)

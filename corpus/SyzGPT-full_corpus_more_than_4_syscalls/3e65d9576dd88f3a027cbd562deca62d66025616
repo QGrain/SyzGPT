@@ -1,0 +1,8 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+r1 = bind(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r1, 0x10)
+r3 = accept(r2, &(0x7f0000000000), &(0x7f0000000000))
+r4 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r5 = ioctl$KVM_CREATE_VM(r4, 0xae01, 0x0)
+r6 = ioctl$KVM_CREATE_VCPU(r5, 0xae41, 0x2)
+r7 = ioctl$KVM_SET_TSC_KHZ(r6, 0xae81, 0x0)

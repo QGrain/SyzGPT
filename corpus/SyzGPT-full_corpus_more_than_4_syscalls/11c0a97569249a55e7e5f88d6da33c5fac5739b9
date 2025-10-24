@@ -1,0 +1,7 @@
+syz_init_net_socket$nfc_raw(0x27, 0x0, 0x10)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = open(&(0x7f0000000200)='./file0\x00', 0x101000, 0x0)
+r2 = socket$unix(0x1, 0x5, 0x0)
+connect$pppl2tp(r1, &(0x7f0000000240)=@pppol2tpin6={0x18, 0x1, {0x0, r2, 0x2, 0x2, 0x3, 0x4, {0xa, 0x4e22, 0x3ff, @private0={0xfc, 0x0, '\x00', 0x1}, 0x4}}}, 0x32)
+write$binfmt_script(r0, &(0x7f0000000280)={'#! ', './file0', [{0x20, '}'}, {0x20, '%'}, {0x20, '\xae\x15\xd7$W$\'\x81\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00'}, {0x20, ']'}, {}, {0x20, '.'}], 0xa, '96a2643281d64cbff6ec46e984bd9a8391b3b8d10e303a0b7bbc23e690a4e26fc550e4293715858a0a07ce4448b62e254800affa080a0a70b857aeb996c9ac33e26a242df89831e66cd467f676917408ac24359967a6ce925e4f0e87128bb526080af1fc92cb2a6b510625237e17436910148a7e1acd51275333a3c8144e'}, 0xa5)
+r3 = ioctl$PPPIOCGNPMODE(r0, 0x0)

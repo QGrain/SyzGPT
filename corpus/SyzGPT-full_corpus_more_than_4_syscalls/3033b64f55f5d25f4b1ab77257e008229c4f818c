@@ -1,0 +1,5 @@
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl802154(&(0x7f0000000300), 0xffffffffffffffff)
+ioctl$sock_SIOCGIFINDEX_802154(r0, 0x8933, &(0x7f0000000200)={'wpan0\x00'})
+sendmsg$NL802154_CMD_NEW_INTERFACE(r0, &(0x7f0000000300)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000240)={0x34, r1, 0x9, 0x0, 0x0, {}, [@NL802154_ATTR_IFNAME={0xa, 0x4, 'wpan0\x00'}, @NL802154_ATTR_EXTENDED_ADDR={0xc}, @NL802154_ATTR_WPAN_PHY={0x8}]}, 0x34}}, 0x0)
+sendmsg$NL802154_CMD_DEL_SEC_DEVKEY(r0, &(0x7f0000000300)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f0000000240)={0x34, r1, 0x9, 0x0, 0x0, {}, [@NL802154_ATTR_IFNAME={0xa, 0x4, 'wpan0\x00'}, @NL802154_ATTR_EXTENDED_ADDR={0xc}, @NL802154_ATTR_WPAN_PHY={0x8}]}, 0x34}}, 0x0)

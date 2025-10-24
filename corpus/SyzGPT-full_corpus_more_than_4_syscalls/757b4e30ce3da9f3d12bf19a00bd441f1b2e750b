@@ -1,0 +1,8 @@
+r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
+r1 = connect(r0, &(0x7f0000000c00), 0x10)
+r2 = ioctl$USBDEVFS_CLAIMINTERFACE(r0, 0x1, 0x1)
+r3 = ioctl$USBDEVFS_SETCONFIGURATION(r0, 0x1)
+r4 = ioctl$USBDEVFS_SETINTERFACE(r0, 0x0, 0x1)
+r5 = ioctl$USBDEVFS_SUBMITURB(r0, 0x7f0000000000, 0x7f0000000000, 0x0)
+r6 = ioctl$USBDEVFS_REAPURB(r0, 0x1, &(0x7f0000000000))
+r7 = close(r0)

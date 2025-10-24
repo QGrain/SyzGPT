@@ -1,0 +1,5 @@
+r0 = socket(0x1, 0x1, 0x0)
+r1 = ioctl$sock_SIOCETHTOOL(r0, 0x8912, &(0x7f0000002a80))
+r2 = ioctl$sock_SIOCGIFINDEX(r0, &(0x7f0000002a90))
+r3 = ioctl$sock_SIOCSIFVLAN_ADD_VLAN_CMD(r0, 0x8980, &(0x7f0000002aa0))
+r4 = ioctl$sock_SIOCSIFVLAN_SET_VLAN_FLAG_CMD(r0, 0x8982, &(0x7f0000002ac0))

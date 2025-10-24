@@ -1,0 +1,6 @@
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x2, 0x0)
+r1 = ioctl$KDMKTONE(r0, 0x4b, 0x3e9)
+ioctl$TCGETS(r0, &(0x7f0000000080))
+ioctl$KDSKBMODE(r0, 0x0)
+ioctl$KDGKBMODE(r0, &(0x7f0000000080))
+ioctl$KDGKBTYPE(r0, &(0x7f0000000080))

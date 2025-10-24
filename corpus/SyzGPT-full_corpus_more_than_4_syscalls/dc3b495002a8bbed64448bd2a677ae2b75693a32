@@ -1,0 +1,5 @@
+r0 = prctl$PR_SET_NAME(&AUTO='syz-executor0\x00')
+r1 = openat$procfs(0xffffffffffffff9c, &AUTO='/proc/self/status\x00', 0x0, 0x0)
+read(r1, &AUTO='buf\x00', 0x1000)
+close(r1)
+prctl$PR_SVE_SET_VL(0x1, 0x1)

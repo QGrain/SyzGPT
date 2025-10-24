@@ -1,0 +1,5 @@
+add_key$user(&(0x7f0000000080), &(0x7f0000000200)={'syz', 0x0}, &(0x7f0000000240)='b3', 0x1, 0x0)
+keyctl$set_reqkey_keyring(0xffffffffffffffff, 0x3)
+r0 = keyctl$KEYCTL_PKEY_ENCRYPT(&(0x7f0000000080), 0x0, 0x0, 0x0, 0x0)
+r1 = keyctl$KEYCTL_PKEY_QUERY(r0, &(0x7f0000000180), &(0x7f00000001c0), &(0x7f0000000200), &(0x7f0000000240), &(0x7f0000000280), &(0x7f00000002c0))
+keyctl$KEYCTL_PKEY_DECRYPT(r0, &(0x7f0000000180), &(0x7f00000001c0), &(0x7f0000000200), &(0x7f0000000240), &(0x7f0000000280), &(0x7f00000002c0), &(0x7f0000000300))

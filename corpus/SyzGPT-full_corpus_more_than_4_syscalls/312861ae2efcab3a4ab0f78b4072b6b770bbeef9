@@ -1,0 +1,6 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+syz_genetlink_get_family_id$nl80211(0x0, 0xffffffffffffffff)
+syz_genetlink_get_family_id$nl80211(&(0x7f0000000480), r0)
+r1 = sendmsg$NL80211_CMD_START_SCHED_SCAN(r0, 0x0, 0x0)
+r2 = recvmsg(r0, 0x0, 0x0)
+close(r0)

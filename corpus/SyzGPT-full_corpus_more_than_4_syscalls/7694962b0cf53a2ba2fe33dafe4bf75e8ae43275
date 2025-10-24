@@ -1,0 +1,5 @@
+ioctl$VHOST_GET_FEATURES(0xfffffffffffffffe, 0x40000000)
+ioctl$VHOST_SET_FEATURES(0xfffffffffffffffe, 0x40000000)
+ioctl$VHOST_GET_VRING_BASE(0xfffffffffffffffe, &(0x7f0000000000))
+ioctl$VHOST_SET_VRING_BASE(0xfffffffffffffffe, &(0x7f0000000000))
+ioctl$VHOST_VDPA_SET_VRING_ENABLE(0xfffffffffffffffe, &(0x7f0000000000))

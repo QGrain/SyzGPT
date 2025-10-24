@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./dev/timerfd\x00', 0x2, 0x0)
+r1 = ioctl$TCGETS(r0, &(0x7f00000000c0))
+ioctl$KDFONTOP_SET(r1, 0x1002)
+r2 = ioctl$FS_IOC_GET_ENCRYPTION_NONCE(r0, &(0x7f00000000c0))
+arch_prctl$ARCH_REQ_XCOMP_GUEST_PERM(r2, 0x1001, 0x0)

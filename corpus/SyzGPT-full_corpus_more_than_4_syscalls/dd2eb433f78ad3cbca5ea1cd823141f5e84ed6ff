@@ -1,0 +1,7 @@
+r0 = ptrace$ARCH_SET_CPUID(0x1, 0x2, 0x3, 0x4)
+syz_open_dev$rtc()
+ioctl$RTC_ALM_SET(r0, &(0x7f00000001c0))
+ioctl$RTC_IRQP_READ(r0, &(0x7f00000001c0))
+ioctl$RTC_IRQP_SET(r0, &(0x7f00000001c0))
+ioctl$RTC_PIE_ON(r0, &(0x7f00000001c0))
+ioctl$RTC_PIE_OFF(r0, &(0x7f00000001c0))

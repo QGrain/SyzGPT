@@ -1,0 +1,5 @@
+pipe(&(0x7f0000000000))
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./cgroup/cgroup.procs\x00', 0x2, 0x0)
+write$cgroup_pid(r0, &(0x7f00000000c0), 0x12)
+r1 = openat$cdrom(0xffffffffffffff9c, &(0x7f0000000040), 0x82b01, 0x0)
+ioctl$CDROMPLAYBLK(r1, 0x0)

@@ -1,0 +1,5 @@
+socket$netlink(0x10, 0x4, 0x1)
+bind(r0, &(0x7f0000000000)=@x25={0x9, @remote={'\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc', 0x3}}, 0x80)
+socket$inet(0x2, 0x1, 0x0)
+connect(r2, &(0x7f0000000000)=@x25={0x2, @remote={'\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc', 0x3}}, 0x80)
+ioctl$NBD_CLEAR_SOCK(r2, 0x0)

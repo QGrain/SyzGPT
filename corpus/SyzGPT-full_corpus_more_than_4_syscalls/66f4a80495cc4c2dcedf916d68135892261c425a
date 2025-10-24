@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, '/dev/ptmx', 0x2, 0x0)
+r1 = ioctl(r0, 0x540e, 0x0)
+r2 = ptrace$PTRACE_GETSIGMASK()
+r3 = ptrace$PTRACE_SETSIGMASK(r2, 0x0, 0x0, 0x400)
+r4 = ptrace$ARCH_GET_MAX_TAG_BITS(0x0, 0x0, 0x0, 0x0, 0x0)
+r5 = close(r0)

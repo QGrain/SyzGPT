@@ -1,0 +1,5 @@
+r0 = openat$null(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+ioctl$BTRFS_IOC_QGROUP_LIMIT(r0, 0x0, &(0x7f0000000e00))
+ioctl$BTRFS_IOC_QGROUP_ASSIGN(r0, &(0x7f0000000e40))
+ioctl$BTRFS_IOC_QUOTA_CTL(r0, 0x0, &(0x7f0000000e80))
+ioctl$BTRFS_IOC_QUOTA_RESCAN_WAIT(r0, 0x0, &(0x7f0000000ec0))

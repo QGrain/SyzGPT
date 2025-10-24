@@ -1,0 +1,5 @@
+r0 = openat$rdma_cm(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+write$RDMA_USER_CM_CMD_CREATE_ID(r0, &(0x7f00000001c0)={0x0, 0x18, 0xfa00, {0x0, &(0x7f0000000180)={<r1=>0xffffffffffffffff}, 0x106}}, 0x20)
+r2 = dup2(r0, r0)
+write$RDMA_USER_CM_CMD_MIGRATE_ID(r0, &(0x7f0000000080)={0x12, 0x10, 0xfa00, {&(0x7f0000000000), r1, r2}}, 0x18)
+ioctl$SNDRV_PCM_IOCTL_HW_REFINE(r0, 0x0, &(0x7f00000001c0))

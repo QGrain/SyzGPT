@@ -1,0 +1,5 @@
+r0 = socket$packet(0x11, 0x0, 0x300)
+r1 = ioctl$DRM_IOCTL_ADD_CTX(0xffffffffffffffff, 0xc0086420, 0x0)
+r2 = ioctl$DRM_IOCTL_SWITCH_CTX(0xffffffffffffffff, 0x40086424, 0x0)
+r3 = syz_open_dev$evdev(&(0x7f0000000400), 0x25a, 0x2)
+r4 = ioctl$DRM_IOCTL_GET_CTX(0xffffffffffffffff, 0x0)

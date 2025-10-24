@@ -1,0 +1,6 @@
+r0 = syz_open_dev$sndpcmc(&(0x7f0000000200), 0x0, 0x0)
+r1 = syz_open_dev$sndpcmp(&(0x7f0000000040), 0x0, 0x0)
+r2 = ioctl$SNDRV_PCM_IOCTL_PREPARE(r1, 0x0)
+ioctl$SNDRV_PCM_IOCTL_START(r1, 0x0)
+ioctl$SNDRV_PCM_IOCTL_DROP(r1, 0x0)
+ioctl$SNDRV_PCM_IOCTL_PREPARE(r1, 0x0)

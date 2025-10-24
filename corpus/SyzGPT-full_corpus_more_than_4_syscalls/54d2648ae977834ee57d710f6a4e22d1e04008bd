@@ -1,0 +1,6 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$team(&(0x7f0000002d40), 0xffffffffffffffff)
+r2 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+r3 = ioctl$ifreq_SIOCGIFINDEX_team(r2, 0x8933, &(0x7f0000002180)={'team0\x00', <r3=>0x0})
+r4 = sendmsg$TEAM_CMD_PORT_LIST_GET(r0, &(0x7f0000000180)={0x0, 0x0, &(0x7f0000000140)={&(0x7f0000000040)=ANY=[@ANYBLOB='d8000000', @ANYRES16=r1, @ANYBLOB='01002abd7000fcdbdf250300000008000100', @ANYRES32=r3], 0xd8}}, 0x0)
+r5 = sendmsg$DEVLINK_CMD_PORT_SPLIT(r0, &(0x7f0000000180)={0x0, 0x0, &(0x7f0000000140)={&(0x7f0000000040)=ANY=[@ANYBLOB='d8000000', @ANYRES16=r1, @ANYBLOB='01002abd7000fcdbdf250300000008000100', @ANYRES32=r3], 0xd8}}, 0x0)

@@ -1,0 +1,5 @@
+r0 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$ifreq_SIOCGIFINDEX_team(r0, 0x8933, &(0x7f0000002180)={'team0\x00', <r1=>0x0})
+r2 = socket$nl_generic(0x10, 0x3, 0x10)
+r3 = syz_genetlink_get_family_id$team(&(0x7f0000002d40), 0xffffffffffffffff)
+sendmsg$NL80211_CMD_STOP_AP(r2, &(0x7f0000003340)={0x0, 0x0, &(0x7f0000003300)={&(0x7f00000002c0)=ANY=[@ANYBLOB='`\x00\x00\x00', @ANYRES16=r3, @ANYBLOB='010000000000000000000100000008000100', @ANYRES32=r1, @ANYBLOB='440002804005'], 0x60}}, 0x0)

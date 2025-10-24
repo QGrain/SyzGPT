@@ -1,0 +1,8 @@
+r0 = socket$inet6(0xa, 0x401000000001, 0x0)
+close(r0)
+r1 = openat$sysfs(0xffffff9c, &(0x7f0000000080)='/sys/kernel/profiling', 0x2, 0x0)
+r2 = open(&(0x7f00000000c0)='./bus\x00', 0x10600c2, 0x0)
+r3 = creat(&(0x7f0000000240)='./bus\x00', 0x0)
+write$cgroup_int(r3, &(0x7f0000000000), 0x12)
+r4 = sendfile(r0, r2, 0x0, 0x20007904)
+ioctl$VHOST_VDPA_GET_CONFIG_SIZE(r1, 0x0, &(0x7f0000000000)=ANY=[])

@@ -1,0 +1,5 @@
+r0 = syz_open_dev$video4linux(&(0x7f0000000140), 0x52140fc1, 0x0)
+r1 = syz_open_dev$vivid(&(0x7f0000000000), 0x0, 0x2)
+ioctl$BTRFS_IOC_SUBVOL_SETFLAGS(r1, 0x4008941a, &(0x7f0000000040))
+statx(0xffffffffffffffff, 0x0, 0x0, 0x0, 0x0)
+ioctl$VIDIOC_TRY_ENCODER_CMD(r0, 0x0, &(0x7f0000000000))

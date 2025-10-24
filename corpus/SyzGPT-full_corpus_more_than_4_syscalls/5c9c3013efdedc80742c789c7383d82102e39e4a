@@ -1,0 +1,6 @@
+r0 = socket$tipc(0x1e, 0x2, 0x0)
+r1 = open(&(0x7f0000000000)='./file0\x00', 0x10200, 0x162)
+r2 = accept4$ax25(r1, &(0x7f0000000080)={{0x3, @bcast}, [@netrom, @default, @null, @bcast, @null, @bcast, @default, @bcast]}, &(0x7f00000001c0)=0x48, 0x80000)
+bind(r2, &(0x7f0000000100)=@rc={0x1f, @fixed={'\xaa\xaa\xaa\xaa\xaa', 0x12}}, 0x80)
+ioctl$sock_SIOCGIFVLAN_ADD_VLAN_CMD(r0, 0x8982, &(0x7f0000000180)={0x0, 'dummy0\x00', {0x4}, 0x1})
+ioctl$SIOCAX25OPTRT(r0, 0x89b2, &(0x7f0000000200)={0x0, 0x0})

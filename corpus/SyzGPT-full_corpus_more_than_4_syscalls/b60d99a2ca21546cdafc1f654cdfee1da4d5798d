@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000340)='./file0\x00', 0x42, 0x0)
+r1 = openat$nvme_fabrics(0xffffffffffffff9c, &(0x7f0000000080), 0x0, 0x0)
+r2 = gettid()
+r3 = getpid()
+kcmp$KCMP_EPOLL_TFD(r3, r2, 0x7, r0, &(0x7f0000000040)={r1})
+ptrace$PTRACE_SETSIGMASK()

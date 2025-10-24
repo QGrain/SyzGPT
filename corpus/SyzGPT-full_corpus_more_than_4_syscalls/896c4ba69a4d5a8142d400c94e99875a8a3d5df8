@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./dev/dri/renderD128\x00', 0x0, 0x0)
+ioctl$DRM_IOCTL_SET_MASTER(r0, 0x0)
+ioctl$EVIOCGVERSION(r0, &(0x7f0000000b00))
+ioctl(0xffffffffffffff9c, 0x20f4, &(0x7f0000000b40))
+ioctl$EVIOCRMFF(0xffffffffffffff9c, 0x0)

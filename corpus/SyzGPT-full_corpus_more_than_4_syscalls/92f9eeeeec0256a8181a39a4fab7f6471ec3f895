@@ -1,0 +1,5 @@
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000040)={'tunl0\x00'})
+r1 = openat(r0, 0x1, 0x0)
+ioctl$sock_SIOCGIFINDEX(r1, &(0x7f0000000040)={'tunl0\x00'})
+ioctl$TUNSETVNETLE(r0, 0x0)

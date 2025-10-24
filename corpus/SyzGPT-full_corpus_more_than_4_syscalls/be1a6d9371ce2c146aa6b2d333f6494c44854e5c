@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x1, 0x0)
+bind(r0, &(0x7f00000000c0)={sa_family=0x1c, inet_pton(AF_INET6, '::1', &(0x7f00000000c4)), sin6_port=htons(0x9896)})
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100)={sa_family=0x1c}, &(0x7f000000010c))
+ioctl$TUNGETDEVNETNS(r1, 0x0)

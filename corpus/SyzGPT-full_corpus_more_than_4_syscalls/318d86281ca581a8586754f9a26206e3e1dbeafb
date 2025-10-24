@@ -1,0 +1,5 @@
+ioctl$SNDCTL_DSP_GETCAPS(r0, &(0x7f0000000080))
+openat$audio(0xffffffffffffff9c, &(0x7f0000000080), 0x4281, 0x0)
+openat$dsp(0xffffffffffffff9c, &(0x7f0000000080), 0x4000, 0x0)
+timerfd_create(0x0, 0x0)
+ioctl$FAT_IOCTL_SET_ATTRIBUTES(r0, 0x40047211, 0x0)

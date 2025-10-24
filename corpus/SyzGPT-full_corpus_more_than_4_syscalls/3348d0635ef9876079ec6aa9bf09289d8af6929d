@@ -1,0 +1,7 @@
+r0 = openat$uinput(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$UI_SET_SNDBIT(r0, 0x0, 0x0)
+r1 = read(r0, &(0x7f0000000000), 0x100)
+r2 = write(r0, &(0x7f0000000000), 0x100)
+r3 = fstat(r0, &(0x7f0000000000))
+ioctl$UI_SET_SNDBIT(r0, 0x0, 0x0)
+close(r0)

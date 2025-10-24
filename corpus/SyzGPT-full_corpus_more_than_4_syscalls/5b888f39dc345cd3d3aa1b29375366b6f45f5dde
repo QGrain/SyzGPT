@@ -1,0 +1,5 @@
+r0 = socket$bt_bnep(0x1a, 0x1, 0x3)
+bind(r0, &(0x7f0000000040), 0x10)
+listen(r0, 0x1)
+accept(r0, &(0x7f0000000080), &(0x7f00000000c0))
+close(r0)

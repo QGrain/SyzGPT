@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, '/dev/vfio/vfio', 0x0, 0x0)
+ioctl$VFIO_GET_API_VERSION(r0, &(0x7f00000004c0))
+r1 = ioctl$VFIO_CHECK_EXTENSION(r0, 0x0)
+ioctl$IOMMU_VFIO_GET_API_VERSION(r0, &(0x7f00000004c0))
+close(r0)

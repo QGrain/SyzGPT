@@ -1,0 +1,7 @@
+r0 = openat$sequencer2(0xffffffffffffff9c, &(0x7f0000000080), 0x0, 0x0)
+r1 = ioctl$SNDCTL_TMR_TIMEBASE(r0, 0x0, &(0x7f0000000000))
+r2 = ioctl$SNDCTL_TMR_START(r0, 0x0, &(0x7f0000000000))
+r3 = ioctl$SNDCTL_SEQ_OUTOFBAND(r0, 0x40085112, &(0x7f0000000000)=@generic={0x80})
+r4 = ioctl$SNDCTL_SEQ_SYNC(r0, 0x0, &(0x7f0000000000))
+r5 = ioctl$SNDCTL_SEQ_CTRLRATE(r0, 0x0, &(0x7f0000000000))
+r6 = ioctl$SNDCTL_SEQ_RESET(r0, 0x0, &(0x7f0000000000))

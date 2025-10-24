@@ -1,0 +1,6 @@
+r0 = openat$damon_schemes(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+read(r0, &(0x7f00000000c0)=""/46, 0x2e)
+setpgid(0x0, 0xffffffffffffffff)
+r1 = syz_open_dev$vbi(&(0x7f0000001280), 0x2, 0x2)
+ioctl$VIDIOC_SUBDEV_S_DV_TIMINGS(r1, 0xc0845657, &(0x7f0000001740)={0x0, @reserved})
+ioctl$KVM_CAP_MSR_PLATFORM_INFO(r1, &(0x7f0000001740))

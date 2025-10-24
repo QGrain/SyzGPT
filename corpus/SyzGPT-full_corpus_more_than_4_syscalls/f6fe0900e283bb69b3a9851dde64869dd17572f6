@@ -1,0 +1,6 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+bind(r0, &(0x7f0000000080), 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f00000000c0), &(0x7f00000000c4))
+ioctl$PPPIOCSNPMODE(r1, 0x40047451, &(0x7f0000000100))
+close(r1)

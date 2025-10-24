@@ -1,0 +1,5 @@
+r0 = socket$inet6_sctp(0x2, 0x5, 0x84)
+r1 = bind$inet6(r0, 0x1e, 0x0)
+r2 = listen(r0, 0x1)
+r3 = accept$inet6(r0, &(0x7f0000000000), &(0x7f0000000040))
+getsockopt$inet_sctp6_SCTP_GET_PEER_ADDRS(r3, 0x84, 0x6c, &(0x7f0000000100)=ANY=[@ANYRES32=r3], &(0x7f0000000000)=0x1008)

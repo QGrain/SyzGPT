@@ -1,0 +1,5 @@
+r0 = socket$tipc(0x1e, 0x2, 0x0)
+r1 = bind$tipc(r0, &(0x7f0000000040), 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000080), &(0x7f0000000084))
+r4 = setsockopt$nfc_llcp_NFC_LLCP_RW(r3, 0x1, 0x1, &(0x7f00000000c0), 0x10)

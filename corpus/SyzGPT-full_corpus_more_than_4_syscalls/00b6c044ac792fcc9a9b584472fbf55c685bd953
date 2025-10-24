@@ -1,0 +1,5 @@
+r0 = openat$cgroup_int(0xffffffffffffff9c, &(0x7f0000000140), 0x0)
+r1 = ioctl$BLKGETSIZE64(r0, &(0x7f0000000148))
+r2 = ioctl$BLKFLSBUF(r0, 0x0)
+r3 = ioctl$BLKBSZGET(r0, &(0x7f000000014c))
+close(r0)

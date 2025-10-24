@@ -1,0 +1,6 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+getsockname(r0, 0x0, &(0x7f00000001c0))
+syz_mount_image$squashfs(&(0x7f0000000200), &(0x7f0000000240)='./file0\x00', 0x0, &(0x7f0000000280)=ANY=[], 0x1, 0x1a3, &(0x7f0000000440)='$eJwBAAD//wAAAAE=')
+r1 = syz_open_dev$sndctrl(&(0x7f00000001c0), 0x8, 0x0)
+r2 = ioctl$SNDRV_CTL_IOCTL_ELEM_READ(r1, 0x0, &(0x7f00000002c0))
+close(r1)

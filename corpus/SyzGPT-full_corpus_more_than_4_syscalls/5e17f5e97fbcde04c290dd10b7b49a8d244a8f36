@@ -1,0 +1,5 @@
+r0 = pipe2(&(0x7f0000000000)={0x0, <r1=>0x0}, 0x0)
+close(r1)
+r2 = io_uring_setup(0x43c2, &(0x7f0000000080))
+io_uring_register$IORING_UNREGISTER_EVENTFD(0x0, 0x1, 0x1, 0x1)
+io_uring_register$IORING_REGISTER_EVENTFD_ASYNC(r2, 0x0, 0x0)

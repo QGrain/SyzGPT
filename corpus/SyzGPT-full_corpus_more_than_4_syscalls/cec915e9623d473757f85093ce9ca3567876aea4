@@ -1,0 +1,7 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+r1 = getsockopt$inet6_mtu(r0, 0x29, 0x17, 0x0, &(0x7f0000000040))
+r2 = add_key$fscrypt_v1(&(0x7f0000000000), &(0x7f0000000180)={'fscrypt:', @desc1}, &(0x7f0000000080)={0x0, "25bbdf10b17d7f2c70461d11f341d213e4b8109c5453ec086f521e5105ff1838e4e84410ede330a820bfff811c42768078d055e0ce462c72c6c2c24a4b36bb11"}, 0x48, 0xffffffffffffffff)
+keyctl$setperm(0x5, r2, 0x0)
+r3 = syz_init_net_socket$bt_l2cap(0x1f, 0x2, 0x0)
+setsockopt$sock_linger(r3, 0x1, 0xd, &(0x7f0000000000)={0x1}, 0x8)
+r4 = sendmsg$NL80211_CMD_AUTHENTICATE(r3, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)

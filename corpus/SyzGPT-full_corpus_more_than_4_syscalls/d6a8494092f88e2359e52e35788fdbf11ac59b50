@@ -1,0 +1,6 @@
+r0 = socket$bt_rfcomm(0x1f, 0x0, 0x3)
+r1 = syz_init_net_socket$bt_hci(0x1f, 0x5, 0x0)
+bind$bt_rfcomm(r1, &(0x7f0000000000)={{0x1f, @rose}, [@rose, @rose, @default, @bt_rfcomm, @bt_rfcomm, @rose, @rose]}, 0x48)
+listen(r1, 0x0)
+accept(r1, &(0x7f0000000140)={{0x3, @bcast}, [@null, @bt_rfcomm, @rose, @rose, @default, @bt_rfcomm, @default, @bcast]}, &(0x7f00000001c0)=0x48)
+getsockopt$bt_rfcomm_RFCOMM_CONNINFO(r0, 0x1, &(0x7f0000000200), &(0x7f0000000000))

@@ -1,0 +1,7 @@
+r0 = socket$inet6(0x1c, 0x1, 0x0)
+r1 = bind$inet6(r0, &(0x7f00000000c0), 0x10)
+r2 = ioctl(r0, 0x0)
+r3 = ioctl(r0, 0x0)
+r4 = ioctl$PPPIOCCONNECT(r0, &(0x7f00000000c0), 0x10)
+r5 = ioctl$PPPIOCBRIDGECHAN(r0, 0x0, 0x0)
+r6 = close(r0)

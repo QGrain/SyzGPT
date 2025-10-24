@@ -1,0 +1,8 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r1 = ioctl$KVM_GET_VCPU_MMAP_SIZE(r0, 0x0)
+r2 = mmap(nil, r1, 0x3, 0x32, 0xffffffffffffffff, 0x0)
+ioctl$KVM_SET_USER_MEMORY_REGION(r0, 0x0, 0x0, r2)
+r3 = ioctl$KVM_CREATE_VCPU(r0, 0x0)
+ioctl$KVM_XEN_HVM_CONFIG(r0, 0x0, &(0x7f0000000000))
+ioctl$KVM_RUN(r3, 0x0)

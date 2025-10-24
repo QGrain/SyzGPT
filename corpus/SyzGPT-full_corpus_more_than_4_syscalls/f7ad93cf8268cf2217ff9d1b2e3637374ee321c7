@@ -1,0 +1,7 @@
+r0 = socket$nl_netfilter(0x10, 0x3, 0xc)
+ioctl$IOCTL_GET_NCIDEV_IDX(0xffffffffffffffff, 0x0, 0x0)
+syz_genetlink_get_family_id$nfc(0x0, 0xffffffffffffffff)
+sendmsg$NFC_CMD_DEV_UP(0xffffffffffffffff, 0x0, 0x0)
+sendmsg$NFC_CMD_ACTIVATE_TARGET(0xffffffffffffffff, 0x0, 0x0)
+sendmsg$NFC_CMD_DEV_DOWN(0xffffffffffffffff, 0x0, 0x0)
+sendmsg$IPSET_CMD_TEST(0xffffffffffffffff, 0x0, 0x0)

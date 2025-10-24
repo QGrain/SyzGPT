@@ -1,0 +1,5 @@
+r0 = socket$l2tp6(0x2, 0x2, 0x73)
+bind(r0, &(0x7f0000000000), 0x2)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000004))
+getpeername$l2tp6(r1, &(0x7f0000000000), &(0x7f0000000004))

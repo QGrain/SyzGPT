@@ -1,0 +1,7 @@
+r0 = socket$bt_hidp(0x1f, 0x3, 0x0)
+r1 = bind$bt_l2cap(r0, &(0x7f0000000000)={0x26, 'skcipher\x00', 0x0, 0x0, 'xchacha12\x00'}, 0x58)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000000)=ANY=[], &(0x7f0000000000)=ANY=[])
+r4 = getsockopt$bt_l2cap_L2CAP_CONNINFO(r3, 0x1, &(0x7f0000000000)=ANY=[], &(0x7f0000000000)=ANY=[])
+r5 = close(r3)
+r6 = close(r0)

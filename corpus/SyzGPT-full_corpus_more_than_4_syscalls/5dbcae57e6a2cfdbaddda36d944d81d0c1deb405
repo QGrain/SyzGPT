@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+r1 = openat$6lowpan_enable(0xffffffffffffff9c, &(0x7f0000001400), 0x2, 0x0)
+r2 = write$6lowpan_enable(r1, &(0x7f0000002000)='./data\x00', 0x6)
+fdatasync(r0)
+unlinkat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x0)

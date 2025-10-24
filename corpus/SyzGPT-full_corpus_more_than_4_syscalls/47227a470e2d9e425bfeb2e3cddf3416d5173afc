@@ -1,0 +1,7 @@
+r0 = socket$pppl2tp(0x18, 0x1, 0x1)
+r1 = setsockopt$pppl2tp_PPPOL2TP_SO_DEBUG(r0, 0x111, 0x1, 0x0, 0x4)
+r2 = bind(r0, 0x7f000001, 0x2)
+r3 = listen(r0, 0x5)
+r4 = accept(r0)
+r5 = ioctl$PPPIOCGL2TPSTATS(r4, 0x7f0000000000)
+r6 = close(r0)

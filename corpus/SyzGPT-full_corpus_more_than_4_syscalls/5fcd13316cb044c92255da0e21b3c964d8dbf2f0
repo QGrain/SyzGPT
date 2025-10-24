@@ -1,0 +1,5 @@
+r0 = socket$nl_rdma(0x10, 0x3, 0x14)
+bind(r0, &(0x7f0000000000)=ANY=[], 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f0000000001)=ANY=[], &(0x7f0000000002)=ANY=[])
+sendmsg$RDMA_NLDEV_CMD_RES_MR_GET(r1, &(0x7f0000000003)=ANY=[], 0x0)

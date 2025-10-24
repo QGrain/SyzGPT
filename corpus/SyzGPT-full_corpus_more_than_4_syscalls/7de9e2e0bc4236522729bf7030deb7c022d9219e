@@ -1,0 +1,6 @@
+r0 = socket$inet6_tcp(0x2, 0x1, 0x0)
+setsockopt$inet_tcp_int(r0, 0x6, 0x17, &(0x7f0000000000), 0x4)
+r1 = openat$dlm_plock(0xffffffffffffff9c, &(0x7f0000000100), 0x202001, 0x0)
+ioctl$sock_inet_tcp_SIOCOUTQNSD(r1, 0x894b, &(0x7f0000000140))
+connect(r0, &(0x7f0000002380)=@l2tp={0x2, 0x0, @loopback}, 0x80)
+ioctl$KVM_HYPERV_EVENTFD(r0, 0x4024ae60)

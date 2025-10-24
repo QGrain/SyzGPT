@@ -1,0 +1,8 @@
+r0 = socket$inet(0x2, 0x1, 0x0)
+bind(r0, &(0x7f0000000140), 0x10)
+listen(r0, 0x1)
+r1 = openat$ptp0(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+accept(r0, &(0x7f00000001c0), &(0x7f0000000200))
+r2 = openat$ptp0(0xffffffffffffff9c, &(0x7f0000000240), 0x0, 0x0)
+fremovexattr(r2, &(0x7f0000000280)=@random={'trusted.', '-*\\&\x00'})
+ioctl$PTP_PEROUT_REQUEST2(r2, 0x0, 0x0)

@@ -1,0 +1,5 @@
+r0 = socket(0x1a, 0x0, 0x0)
+r1 = bind(r0, &(0x7f0000000000), 0x6e)
+r2 = ioctl$sock_SIOCSIFVLAN_GET_VLAN_VID_CMD(r0, 0x8983, &(0x7f0000000000))
+r3 = ioctl$sock_SIOCGIFVLAN_DEL_VLAN_CMD(r0, 0x8983, &(0x7f0000000000))
+r4 = close(r0)

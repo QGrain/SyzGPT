@@ -1,0 +1,5 @@
+r0 = socket(0x2, 0x1, 0x0)
+r1 = bind$rose(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000080), &(0x7f00000000a0))
+r4 = getsockopt$rose(r3, 0x1, 0x2, &(0x7f0000000000), &(0x7f0000000080))

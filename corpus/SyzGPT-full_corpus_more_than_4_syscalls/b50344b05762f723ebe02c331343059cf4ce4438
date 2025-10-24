@@ -1,0 +1,6 @@
+r0 = socket$bt_rfcomm(0x1, 0x1, 0x3)
+bind(r0, &(0x7f0000000000)={0x2, @sockaddr_rc})
+listen(r0, 0x2)
+r1 = accept(r0, &(0x7f0000000080), &(0x7f0000000084))
+ioctl$sock_bt_hidp_HIDPGETCONNLIST(r1, &(0x7f00000000c0), 0x0)
+ioctl$sock_bt_hidp_HIDPCONNDEL(r1, 0x7f00000000c0)

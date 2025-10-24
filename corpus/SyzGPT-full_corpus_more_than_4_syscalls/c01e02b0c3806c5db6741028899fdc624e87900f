@@ -1,0 +1,5 @@
+r0 = socket$netlink(0x10, 0x3, 0x12)
+r1 = bind(r0, &(0x7f0000000000)={0x0, 0x0})
+r2 = getsockname(r0, &(0x7f0000000008), &(0x7f0000000010))
+r3 = getsockopt$netlink(r0, 0x1, 0x6, &(0x7f0000000018), &(0x7f000000001c))
+syz_genetlink_get_family_id$l2tp(&(0x7f0000000020), r0)

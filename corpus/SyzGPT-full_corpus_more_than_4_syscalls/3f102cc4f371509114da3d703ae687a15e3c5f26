@@ -1,0 +1,8 @@
+r0 = openat$nvram(0xffffffffffffff9c, &(0x7f0000000280), 0xa102, 0x0)
+r1 = ioctl$LOOP_CONFIGURE(r0, 0x4c00, 0xffffffffffffffff)
+r2 = ioctl$LOOP_GET_STATUS(r0, &(0x7f0000000180))
+r3 = ioctl$LOOP_SET_STATUS(r0, &(0x7f0000000180))
+r4 = ioctl$LOOP_GET_STATUS64(r0, &(0x7f0000000180))
+r5 = ioctl$LOOP_SET_STATUS64(r0, &(0x7f0000000180))
+r6 = ioctl$LOOP_CLR_FD(r0)
+r7 = ioctl$LOOP_SET_FD(r0, 0x4c00, 0xffffffffffffffff)

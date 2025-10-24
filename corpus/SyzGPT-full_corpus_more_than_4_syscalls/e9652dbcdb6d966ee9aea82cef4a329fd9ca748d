@@ -1,0 +1,5 @@
+r0 = pipe(0x0)
+r1 = syz_init_net_socket$netrom(0x6, 0x5, 0x0)
+r2 = getsockopt$netrom_NETROM_T1(r1, 0x103, 0x1, 0x0, &(0x7f00000013c0))
+r3 = sendmsg$RDMA_NLDEV_CMD_GET_CHARDEV(0xffffffffffffffff, 0x0, 0x0)
+r4 = sendmsg$DEVLINK_CMD_TRAP_POLICER_GET(0x0, 0x0, 0x0)

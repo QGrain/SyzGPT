@@ -1,0 +1,6 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+r1 = bind(r0, &(0x7f0000002480)=ANY=[@ANYRES32], 0x18)
+r2 = listen(r1, 0x1)
+r3 = accept(r1, &(0x7f0000002500)=ANY=[@ANYRES32], &(0x7f0000002580)=ANY=[@ANYRES32])
+getsockopt$inet_sctp_SCTP_GET_LOCAL_ADDRS(r3, 0x84, 0x7b, &(0x7f0000002600)=ANY=[@ANYRES32], &(0x7f0000002680)=0x18)
+getsockopt$inet_sctp_SCTP_MAXSEG(r3, 0x84, 0x7b, &(0x7f0000002600)=0x7f0000002600)

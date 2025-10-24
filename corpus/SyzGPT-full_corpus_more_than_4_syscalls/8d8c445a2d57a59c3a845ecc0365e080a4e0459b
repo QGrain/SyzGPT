@@ -1,0 +1,5 @@
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+bind$inet(r0, &(0x7f00000003c0), 0x10)
+listen(r0, 0x10)
+r1 = accept$inet(r0, &(0x7f00000003c0), &(0x7f00000003c0))
+ioctl$SIOCRSACCEPT(r1)

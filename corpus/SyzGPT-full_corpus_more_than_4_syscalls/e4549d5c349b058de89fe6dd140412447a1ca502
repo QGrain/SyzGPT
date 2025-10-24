@@ -1,0 +1,8 @@
+ptrace$ARCH_MAP_VDSO_X32(0x1, 0x2, 0x3, 0x4, 0x5, 0x6)
+r0 = getpid()
+r1 = gettid()
+r3 = getpgid(0x0)
+r4 = prctl$PR_SET_PTRACER(0x59616d61, r0)
+r5 = rt_sigqueueinfo(r1, 0xb, &(0x7f0000000000))
+r6 = rt_sigqueueinfo(r2, 0xb, &(0x7f0000000000))
+r7 = rt_sigqueueinfo(r3, 0xb, &(0x7f0000000000))

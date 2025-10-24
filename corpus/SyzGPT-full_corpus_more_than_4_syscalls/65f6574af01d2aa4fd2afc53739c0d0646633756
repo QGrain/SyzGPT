@@ -1,0 +1,5 @@
+r0 = socket$bt_hidp(0x3, 0x1, 0x3)
+bind(r0, &(0x7f0000000140), 0x4)
+listen(r0, 0x5)
+r1 = accept(r0, &(0x7f0000000140), &(0x7f0000000144))
+getsockopt$bt_BT_CHANNEL_POLICY(r1, 0x1a, 0x2, &(0x7f0000000140), &(0x7f0000000144))

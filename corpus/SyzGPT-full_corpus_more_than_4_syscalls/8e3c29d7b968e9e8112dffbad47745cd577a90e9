@@ -1,0 +1,7 @@
+r0 = socket$inet_mptcp(0x2, 0x1, 0x106)
+bind(r0, &(0x7f0000000080)=@l2tp={0x2, 0x0, @multicast1}, 0x80)
+setsockopt$SO_TIMESTAMPING(r0, 0x1, 0x25, &(0x7f0000000000)=0x3ca0, 0x4)
+r1 = userfaultfd(0x80801)
+ioctl$BTRFS_IOC_TREE_SEARCH_V2(r1, 0xc0709411, 0x0)
+prctl$PR_GET_NAME(0x10, &(0x7f0000000080)=""/4096)
+ioctl$DRM_IOCTL_FREE_BUFS(r0, 0x1, 0x7f0000000080)

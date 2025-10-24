@@ -1,0 +1,6 @@
+getuid()
+getgid()
+openat$fuse(0xffffffffffffff9c, 0x0, 0x2, 0x0)
+r0 = open(&(0x7f0000000280)='./file0\x00', 0x8c041, 0x0)
+quotactl_fd$Q_SYNC(r0, 0xffffffff80000102, 0x0, 0x0)
+r1 = ioctl$PIO_FONTRESET(r0)

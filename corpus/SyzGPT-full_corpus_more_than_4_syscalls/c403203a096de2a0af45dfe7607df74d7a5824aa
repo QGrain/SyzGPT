@@ -1,0 +1,5 @@
+r0 = socket$phonet_pipe(0x23, 0x5, 0x2)
+r1 = bind(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r1, 0x5)
+r3 = accept(r2, &(0x7f0000000000), &(0x7f0000000000))
+r4 = getsockopt$PNPIPE_INITSTATE(r3, 0x1, &(0x7f0000000000), &(0x7f0000000000))

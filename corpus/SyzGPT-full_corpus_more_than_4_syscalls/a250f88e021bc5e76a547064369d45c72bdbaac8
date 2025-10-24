@@ -1,0 +1,5 @@
+r0 = syz_open_dev$ndb(&(0x7f0000000000), 0x0, 0x0)
+r1 = socket$nl_audit(0x10, 0x3, 0x9)
+r2 = sendmsg$AUDIT_USER_TTY(r1, 0x0, 0x0)
+close_range(r0, 0xffffffffffffffff, 0x0)
+close(r1)

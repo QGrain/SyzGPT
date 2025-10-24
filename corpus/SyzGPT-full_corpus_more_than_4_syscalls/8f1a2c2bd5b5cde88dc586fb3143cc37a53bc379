@@ -1,0 +1,5 @@
+r0 = socket$inet_udp(0x2, 0x2, 0x0)
+connect(r0, &(0x7f0000000000), 0x10)
+ioctl$SNDRV_CTL_IOCTL_ELEM_READ(r0, 0x0, &(0x7f0000000000))
+ioctl$SNDRV_PCM_IOCTL_REWIND(r0, 0x0)
+close(r0)

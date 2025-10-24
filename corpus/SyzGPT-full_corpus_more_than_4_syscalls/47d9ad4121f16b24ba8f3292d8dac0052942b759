@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./dev/dri/renderD128\x00', 0x2, 0x0)
+ioctl$DRM_IOCTL_SET_MASTER(r0, 0x0)
+ioctl$DRM_IOCTL_GEM_CLOSE(r0, 0x0)
+close(r0)
+r1 = socket$inet_udp(0x2, 0x0)
+bind$inet(r1, &(0x7f0000000100), 0x10)
+arch_prctl$ARCH_REQ_XCOMP_GUEST_PERM(0x0, 0x0)

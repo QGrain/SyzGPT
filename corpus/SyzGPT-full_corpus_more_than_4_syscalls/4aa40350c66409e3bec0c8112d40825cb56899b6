@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file2\x00', 0xa0043, 0x0)
+close(r0)
+r1 = openat$vim2m(0xffffffffffffff9c, &(0x7f0000000240), 0x2, 0x0)
+ioctl$vim2m_VIDIOC_REQBUFS(r1, 0xc0145608, &(0x7f0000000280)={0x0, 0x1})
+ioctl$vim2m_VIDIOC_DQBUF(r1, 0xc0145608)
+write$UHID_SET_REPORT_REPLY(r0, 0x0, 0x0)

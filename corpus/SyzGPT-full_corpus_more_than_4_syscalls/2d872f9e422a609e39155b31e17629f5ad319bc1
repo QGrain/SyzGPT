@@ -1,0 +1,5 @@
+r0 = openat$autofs(0xffffffffffffff9c, &AUTO='/dev/autofs\x00', 0x2, 0x0)
+ioctl$KVM_SET_USER_MEMORY_REGION(r0, 0x0, 0x1, r0, 0x0)
+ioctl$KVM_CREATE_VM(r0, 0x0)
+ioctl$KVM_GET_DIRTY_LOG(r0, 0x0, &AUTO={0x0, 0x0})
+arch_prctl$ARCH_SET_GS(0x1000)

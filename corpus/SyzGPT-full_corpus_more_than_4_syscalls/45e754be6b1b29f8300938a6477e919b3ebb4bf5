@@ -1,0 +1,7 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+connect(r0, &(0x7f00000002c0), 0x10)
+r1 = openat(0xffffffffffffff9c, &(0x7f00000002e0)='./file2\x00', 0x105042, 0x0)
+r2 = write(r1, &(0x7f00000002c0), 0x10)
+close(r1)
+close(r0)
+write$vhost_msg(0xffffffffffffff9c, 0x2, &(0x7f00000002c0), 0x10)

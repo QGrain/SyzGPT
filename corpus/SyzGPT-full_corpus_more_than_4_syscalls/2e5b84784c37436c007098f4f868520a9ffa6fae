@@ -1,0 +1,5 @@
+r0 = socket$bt_bnep(0x1, 0x2, 0x10001)
+r1 = bind(r0, &(0x7f0000000000), 0x12)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000004))
+ioctl$sock_bt_bnep_BNEPCONNDEL(r3, 0x0, 0x0)

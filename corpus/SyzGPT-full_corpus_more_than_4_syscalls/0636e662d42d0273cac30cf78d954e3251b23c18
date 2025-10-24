@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000080), 0x0, 0x0)
+ioctl$TUNSETVNETBE(r0, 0x800454ca, &(0x7f00000000c0)={'pimreg0\x00', 0x1})
+ioctl$TUNGETIFF(r0, 0x800454d2, &(0x7f0000000100))
+ioctl$TUNGETSNDBUF(r0, 0x800454d3, &(0x7f0000000140))
+ioctl$TUNSETSNDBUF(r0, 0x400454d4, &(0x7f0000000180))
+ioctl(r0, 0x800454d5, &(0x7f00000001c0))
+ioctl(r0, 0x400454d6, &(0x7f0000000200))

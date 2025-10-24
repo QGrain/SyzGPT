@@ -1,0 +1,5 @@
+r0 = socket(0x3, 0x3, 0x1)
+r1 = bind(r0, &(0x7f0000000000)='./file0\x00', 0x2)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000004))
+r4 = ioctl$IMCTRLREQ(r3, 0x8008494e, &(0x7f0000000008))

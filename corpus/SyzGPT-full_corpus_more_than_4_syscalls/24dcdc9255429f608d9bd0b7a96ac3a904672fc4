@@ -1,0 +1,6 @@
+r0 = socket$inet6_udp(0x1c, 0x2)
+r1 = bind(r0, &(0x7f0000000040), 0x10)
+r2 = setsockopt(r0, 0x84, 0x1a, &(0x7f0000000080), 0x4)
+r3 = fcntl$F_GET_RW_HINT(r0, 0x2)
+r4 = write$RDMA_USER_CM_CMD_ACCEPT(r0, &(0x7f00000000c0), 0x1c)
+close(r0)

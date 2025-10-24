@@ -1,0 +1,5 @@
+r0 = ioctl$F2FS_IOC_START_ATOMIC_WRITE(0x0)
+r1 = open(&(0x7f0000000000)='./file0\x00', 0x0, 0x0)
+r2 = fcntl$getownex(r1, 0x4, 0x0)
+r3 = ioctl(r1, 0x4004667a, &(0x7f0000000b80)={0x0})
+r4 = close(r1)

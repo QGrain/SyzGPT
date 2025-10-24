@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+r1 = bind$inet(0x2, &(0x7f0000000ec0), 0x10)
+r2 = listen(r1, 0x1)
+r3 = accept(r1, &(0x7f0000000f00), &(0x7f0000000f40))
+getsockopt$inet_sctp_SCTP_CONTEXT(r3, 0x84, 0x76, &(0x7f0000000f80), &(0x7f0000000fc0))

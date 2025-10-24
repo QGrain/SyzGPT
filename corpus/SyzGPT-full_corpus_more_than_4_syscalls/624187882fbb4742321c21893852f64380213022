@@ -1,0 +1,6 @@
+r0 = socket$nl_audit(0x10, 0x3, 0x9)
+sendmsg(r0, 0x0, 0x0)
+r0 = open(&(0x7f0000000140)='./file0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x00', 0x0, 0x0)
+ioctl(r0, 0x80045430, &(0x7f00000000c0))
+r0 = socket$nl_audit(0x10, 0x3, 0x9)
+getsockopt(r0, 0x1, 0x17, &(0x7f00000000c0), &(0x7f0000000100))

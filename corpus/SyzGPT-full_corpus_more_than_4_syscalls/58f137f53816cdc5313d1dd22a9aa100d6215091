@@ -1,0 +1,5 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000140), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_GET_XCRS(r1, 0x8188aea6, &(0x7f0000000000))
+r3 = ioctl$KVM_X86_GET_MCE_CAP_SUPPORTED(r1, &(0x7f00000000c0))
+close(r0)

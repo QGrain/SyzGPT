@@ -1,0 +1,5 @@
+r0 = socket(0x17, 0x3, 0x0)
+bind(r0, &(0x7f0000000140)={sa_family=0x17, ieee802154_addr={addr_type=0x2, pan_id=0x2, short_addr=0x2, extended_addr=0x2}})
+getsockopt$SO_BINDTODEVICE(r0, 0x19, &(0x7f0000000180)={'wpan1\x00'})
+r1 = sendmsg$IEEE802154_LLSEC_SETPARAMS(r0, 0x0, 0x0)
+close(r0)

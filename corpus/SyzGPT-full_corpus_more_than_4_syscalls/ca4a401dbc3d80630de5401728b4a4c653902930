@@ -1,0 +1,8 @@
+r0 = open('/dev/dri/renderD128', 0, 0)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0x0)
+ioctl$DRM_IOCTL_MODE_ADDFB(r0, 0x0)
+ioctl$DRM_IOCTL_MODE_MAP_DUMB(r0, 0x0)
+r1 = ioctl$DRM_IOCTL_MODE_CURSOR(r0, 0x0)
+ioctl$DRM_IOCTL_MODE_RMFB(r0, r1)
+ioctl$DRM_IOCTL_MODE_DESTROY_DUMB(r0, 0x0)
+close(r0)

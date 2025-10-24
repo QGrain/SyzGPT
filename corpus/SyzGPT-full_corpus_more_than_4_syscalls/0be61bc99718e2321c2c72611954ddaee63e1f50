@@ -1,0 +1,6 @@
+r0 = socket$caif_stream(0x25, 0x1, 0x0)
+r1 = bind(r0, 0x7f0000000000, 0x10)
+r2 = getsockname(r0, 0x7f0000000000, 0x10)
+r3 = listen(r0, 0x5)
+r4 = accept(r0, 0x7f0000000000, 0x7f0000000000)
+connect$caif(r0, 0x7f0000000000, 0x10)

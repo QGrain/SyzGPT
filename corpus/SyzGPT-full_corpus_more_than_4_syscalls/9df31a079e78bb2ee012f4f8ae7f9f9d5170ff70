@@ -1,0 +1,8 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+r1 = bind(r0, &(0x7f0000000200), 0x10)
+r2 = setsockopt$inet_sctp6_SCTP_SET_PEER_PRIMARY_ADDR(r0, 0x84, 0x7f0000000300, 0x10)
+r3 = setsockopt$inet_sctp_SCTP_RTOINFO(r0, 0x84, &(0x7f0000000400), 0xc)
+r4 = listen(r0, 0x1)
+r5 = accept(r0, &(0x7f0000000500), &(0x7f0000000510))
+r6 = close(r0)
+r7 = close(r5)

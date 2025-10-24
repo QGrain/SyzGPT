@@ -1,0 +1,6 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = ioctl$VHOST_GET_FEATURES(r0, 0x0)
+r2 = ioctl$VHOST_SET_FEATURES(r0, r1)
+r3 = ioctl$VHOST_SET_OWNER(r0)
+r4 = ioctl$VHOST_SET_VRING_NUM(r0, 0x0, 0x0)
+ioctl$VHOST_VDPA_SET_GROUP_ASID(r0, 0x0, &(0x7f00000001a0)=@VHOST_VDPA_SET_GROUP_ASID={0x0, 0x0})

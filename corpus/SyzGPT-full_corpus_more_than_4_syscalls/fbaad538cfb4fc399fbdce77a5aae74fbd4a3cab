@@ -1,0 +1,6 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f00000002c0), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_CREATE_IRQCHIP(r1, 0x0)
+r3 = ioctl$KVM_CREATE_PIT2(r1, 0x0)
+r4 = ioctl$KVM_CREATE_VCPU(r1, 0xae41, 0x0)
+ioctl$KVM_SET_NESTED_STATE(r4, 0x0, &(0x7f00000001a0), 0x0)

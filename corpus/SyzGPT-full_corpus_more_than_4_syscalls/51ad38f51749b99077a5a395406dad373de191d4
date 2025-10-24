@@ -1,0 +1,7 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_SET_USER_MEMORY_REGION(r1, 0xae02, &(0x7f0000000000))
+r3 = ioctl$KVM_CREATE_VCPU(r1, 0xae03, 0x0)
+r4 = ioctl$KVM_RUN(r3, 0xae04)
+r5 = ioctl$KVM_GET_REGS(r3, 0xae05, &(0x7f0000000000))
+r6 = ioctl$KVM_X86_SETUP_MCE(r1, 0xae0e, &(0x7f0000000000))

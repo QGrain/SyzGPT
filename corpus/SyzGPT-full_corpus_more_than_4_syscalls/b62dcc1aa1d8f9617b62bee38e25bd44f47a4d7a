@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+r1 = ioctl$HIDIOCGVERSION(r0, &(0x7f0000000000))
+r2 = ioctl$HIDIOCGRDESC(r0, &(0x7f0000000000)={0x0, 0x20})
+r3 = ioctl$HIDIOCGRAWINFO(r0, &(0x7f0000000000))
+r4 = ioctl$HIDIOCGRAWNAME(r0, &(0x7f0000000000))

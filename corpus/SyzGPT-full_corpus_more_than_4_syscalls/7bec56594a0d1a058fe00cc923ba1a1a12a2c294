@@ -1,0 +1,7 @@
+r0 = ioctl$SNDCTL_TMR_TIMEBASE(0xffffffffffffff9c, 0x0)
+r1 = openat$sequencer(0xffffffffffffff9c, &(0x7f0000000080), 0xaa01, 0x0)
+ioctl$SNDCTL_SEQ_PANIC(r1, 0x5111)
+r2 = openat$sequencer2(0xffffffffffffff9c, 0x0, 0x226340, 0x0)
+ioctl$SNDCTL_SEQ_PANIC(r2, 0x0)
+r3 = syz_open_dev$vcsu(&(0x7f0000000080), 0x3f, 0x0)
+read$usbmon(r3, 0x0, 0x0)

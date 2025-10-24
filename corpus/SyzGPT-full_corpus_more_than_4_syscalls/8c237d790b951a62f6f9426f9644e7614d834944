@@ -1,0 +1,7 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$tipc(&(0x7f0000000200), 0xffffffffffffffff)
+r3 = bind$tipc(r2, &(0x7f0000000200), 0x10)
+r4 = connect$tipc(r2, &(0x7f0000000200), 0x10)
+r6 = bind$tipc(r5, &(0x7f0000000200), 0x10)
+r7 = connect$tipc(r5, &(0x7f0000000200), 0x10)
+sendmsg$TIPC_NL_NODE_GET(r0, &(0x7f0000000340)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000740)=ANY=[@ANYBLOB='@\x00\x00\x00', @ANYRES16=r1, @ANYBLOB='0509000000b3e4b6ad2ee8'], 0x40}}, 0x0)

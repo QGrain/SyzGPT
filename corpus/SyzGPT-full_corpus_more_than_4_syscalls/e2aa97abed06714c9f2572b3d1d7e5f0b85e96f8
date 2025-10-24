@@ -1,0 +1,5 @@
+ptrace$ARCH_GET_MAX_TAG_BITS(0x0)
+r0 = syz_open_dev$sndpcmp()
+fcntl$dupfd(0x3, 0x0, 0x0)
+ioctl$TCGETS(0x0, &(0x7f0000000080))
+sched_setscheduler(0x0, 0x0, &(0x7f0000000080)=0x80)

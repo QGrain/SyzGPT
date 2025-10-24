@@ -1,0 +1,5 @@
+r0 = ioctl$VIDIOC_OVERLAY(0xffffffffffffff9c, 0x4020565c)
+r1 = ioctl$VIDIOC_STREAMON(0xffffffffffffff9c, 0x4000000b)
+r2 = ioctl$VIDIOC_STREAMOFF(0xffffffffffffff9c, 0x4000000b)
+r3 = ioctl$VIDIOC_SUBSCRIBE_EVENT(0xffffffffffffff9c, 0x4020565d, &(0x7f0000000140))
+r4 = ioctl$VIDIOC_UNSUBSCRIBE_EVENT(0xffffffffffffff9c, 0x4020565e, &(0x7f0000000180)={0x1})

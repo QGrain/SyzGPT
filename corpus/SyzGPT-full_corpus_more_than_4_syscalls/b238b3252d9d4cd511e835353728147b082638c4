@@ -1,0 +1,5 @@
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = ioctl$USBDEVFS_CONNECTINFO(r0, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0})
+r2 = ioctl$USBDEVFS_RELEASE_PORT(r1, 0x0)
+r3 = ioctl$USBDEVFS_GET_CAPABILITIES(r1, &(0x7f0000000080)=0x0)
+r4 = ioctl$USBDEVFS_RESET(r1, 0x0)

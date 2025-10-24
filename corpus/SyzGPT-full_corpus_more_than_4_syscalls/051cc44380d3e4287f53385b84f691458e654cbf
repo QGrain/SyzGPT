@@ -1,0 +1,8 @@
+ioctl$VHOST_VDPA_GET_CONFIG_SIZE(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_GET_FEATURES(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_SET_MEM_TABLE(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_SET_MEM_TABLE(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_SET_VRING_NUM(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_SET_VRING_ADDR(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_SET_VRING_BASE(0xffffffffffffff9c, 0x400e709c)
+ioctl$VHOST_VDPA_SET_CONFIG(0xffffffffffffff9c, 0x400e709c)

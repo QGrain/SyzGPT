@@ -1,0 +1,6 @@
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000040), 0x0)
+r1 = ioctl$SNDRV_SEQ_IOCTL_CREATE_PORT(r0, &(0x7f0000000000))
+r2 = ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, &(0x7f0000000000))
+r3 = ioctl$SNDRV_SEQ_IOCTL_GET_SUBSCRIPTION(r0, 0xffffffffffffff9c, 0x0)
+r4 = ioctl$SNDRV_SEQ_IOCTL_DELETE_QUEUE(r0, r2)
+r5 = ioctl$SNDRV_SEQ_IOCTL_DELETE_PORT(r0, r1)

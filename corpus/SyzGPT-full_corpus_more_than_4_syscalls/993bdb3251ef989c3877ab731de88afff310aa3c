@@ -1,0 +1,5 @@
+socket$inet_sctp(0x2, 0x1, 0x84)
+r0 = dup(0x1)
+r1 = open(&(0x7f0000000080)='./file0\x00', 0xa0440, 0x0)
+ioctl$VFAT_IOCTL_READDIR_BOTH(r1, 0x0)
+syz_genetlink_get_family_id$mptcp(&(0x7f0000000440), r0)

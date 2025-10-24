@@ -1,0 +1,7 @@
+r0 = openat$urandom(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+ioctl(r0, 0x80045200, 0x0)
+close(r0)
+r1 = ioctl$RNDGETENTCNT(0xffffffffffffff9c, 0x0)
+r2 = openat$random(0xffffffffffffff9c, &(0x7f0000000c00), 0x0, 0x0)
+ioctl(r2, 0x80045200, 0x0)
+close(r2)

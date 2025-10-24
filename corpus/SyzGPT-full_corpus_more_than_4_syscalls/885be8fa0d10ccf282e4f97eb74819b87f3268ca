@@ -1,0 +1,6 @@
+r0 = openat$capi20(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$LOOP_SET_FD(r0, 0x7a00)
+ioctl$LOOP_SET_CAPACITY(r1, 0x8000000)
+r0 = openat$capi20(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = syz_open_dev$loop(&(0x7f0000000000), 0x0, 0x80)
+dup3(r0, r1, 0x0)

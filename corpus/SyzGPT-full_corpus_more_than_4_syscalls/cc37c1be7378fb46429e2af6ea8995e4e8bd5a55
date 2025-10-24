@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x2, 0x1, 0x0)
+bind(r0, &(0x7f0000000100), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100), &(0x7f0000000100))
+ioctl$PPPIOCGIDLE64(r1, 0xc4009420)

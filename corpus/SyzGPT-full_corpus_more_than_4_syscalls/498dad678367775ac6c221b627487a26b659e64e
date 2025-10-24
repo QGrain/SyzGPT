@@ -1,0 +1,5 @@
+r0 = socket$inet6_sctp(0xa, 0x5, 0x84)
+r1 = bind$inet6(r0, &(0x7f0000000080)=@sa_family=0xa, 0x1c)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f00000000c0), &(0x7f00000000e0))
+r4 = getsockopt$inet_sctp6_SCTP_MAX_BURST(r3, 0x84, 0x6, &(0x7f0000000100), &(0x7f0000000120))

@@ -1,0 +1,7 @@
+r0 = openat('/dev/vhost-vdpa', 0x0, 0x0)
+r1 = ioctl$VHOST_GET_FEATURES(r0, 0x0, 0x0)
+ioctl$VHOST_SET_FEATURES(r0, 0x1, 0x0)
+r2 = ioctl$VHOST_GET_VRING_BASE(r0, 0x0, 0x0)
+ioctl$VHOST_SET_VRING_BASE(r0, r2, 0x0)
+r3 = ioctl$VHOST_GET_VRING_BASE(r0, 0x0, 0x0)
+ioctl$VHOST_VDPA_SET_VRING_ENABLE(r0, r3, 0x0)

@@ -1,0 +1,5 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = bind(r0, &(0x7f0000002880)=ANY=[@ANYBLOB='10'], 0x10)
+r2 = sendmsg$IPVS_CMD_NEW_DAEMON(r0, &(0x7f0000002a00)=ANY=[@ANYBLOB='10'], 0x10)
+r3 = recvmsg(r0, &(0x7f0000002a80)=ANY=[@ANYBLOB='10'], 0x10)
+r4 = close(r0)

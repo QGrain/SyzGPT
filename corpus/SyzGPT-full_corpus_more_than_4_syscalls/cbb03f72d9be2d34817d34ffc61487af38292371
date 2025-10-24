@@ -1,0 +1,7 @@
+r0 = openat$cgroup(0xffffffffffffff9c, &(0x7f0000000780)='memory.current\x00', 0x0, 0x0)
+ioctl$NBD_SET_BLKSIZE(r0, 0x200)
+ioctl$NBD_SET_SIZE_BLOCKS(r0, 0x1)
+ioctl$NBD_CLEAR_SOCK(r0)
+ioctl$NBD_SET_SOCK(r0, 0x0)
+ioctl$NBD_SET_SIZE_BLOCKS(r0, 0x1)
+write$nbd(r0, &(0x7f0000000700)='test', 0x4)

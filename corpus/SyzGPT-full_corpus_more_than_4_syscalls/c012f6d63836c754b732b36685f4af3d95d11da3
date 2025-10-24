@@ -1,0 +1,6 @@
+r0 = openat$sequencer(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$SNDCTL_TMR_TIMEBASE(r0, 0x0, 0x0)
+r2 = ioctl$SNDCTL_TMR_START(r0, 0x0, 0x0)
+ioctl$SNDCTL_SEQ_THRESHOLD(r0, 0x0, 0x0)
+r3 = ioctl$SNDCTL_TMR_STOP(r0, 0x0, 0x0)
+close(r0)

@@ -1,0 +1,5 @@
+ioctl$DRM_IOCTL_GET_SAREA_CTX(0x0, &(0x7f0000000a00))
+openat(0xffffffffffffff9c, &(0x7f0000000a00)='./dev/dri/card#\x00', 0x0, 0x0)
+ioctl$DRM_IOCTL_SET_SAREA_CTX(0x0, &(0x7f0000000a00))
+ioctl$DRM_IOCTL_ADD_CTX(0x0, &(0x7f0000000a00))
+ioctl$DRM_IOCTL_RM_CTX(0x0, &(0x7f0000000a00))

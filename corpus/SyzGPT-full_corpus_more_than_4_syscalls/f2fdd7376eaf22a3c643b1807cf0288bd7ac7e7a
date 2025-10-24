@@ -1,0 +1,5 @@
+r0 = ioctl$CDROM_DEBUG(0xffffffffffffff9c, 0x0)
+r1 = openat$cdrom(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$CDROMSEEK(r1, 0x530d, 0x0)
+ioctl$CDROM_CHANGER_NSLOTS(r1, 0x5328)
+ioctl$CDROMEJECT(0xffffffffffffffff, 0x0)

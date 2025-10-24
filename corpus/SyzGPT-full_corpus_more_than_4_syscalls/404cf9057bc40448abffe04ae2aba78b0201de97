@@ -1,0 +1,5 @@
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x4080, 0x0)
+r1 = ioctl$TCSETAW(r0, 0x5402, &(0x7f0000000000))
+r2 = write(r0, &(0x7f0000000080), 0x1)
+r3 = read(r0, &(0x7f0000000100), 0x1)
+r4 = close(r0)

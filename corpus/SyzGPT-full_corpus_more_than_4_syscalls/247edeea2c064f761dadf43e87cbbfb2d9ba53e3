@@ -1,0 +1,8 @@
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+r1 = bind$inet6(r0, &(0x7f0000000140), 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000140), &(0x7f0000000140))
+r4 = read(r3, &(0x7f0000000140), 0x10)
+r5 = write(r3, &(0x7f0000000140), 0x10)
+r6 = ioctl$sock_inet6_tcp_SIOCATMARK(r3, &(0x7f0000000140))
+close(r0)

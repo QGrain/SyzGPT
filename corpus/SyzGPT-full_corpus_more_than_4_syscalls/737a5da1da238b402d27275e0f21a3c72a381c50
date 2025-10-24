@@ -1,0 +1,6 @@
+r0 = openat$vim2m(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+ioctl$vim2m_VIDIOC_QUERYBUF(r0, 0xc058560f, &(0x7f0000000080))
+ioctl$vim2m_VIDIOC_QBUF(r0, 0xc058560f, &(0x7f0000000100))
+ioctl$vim2m_VIDIOC_STREAMON(r0, 0xc058560f)
+ioctl$vim2m_VIDIOC_STREAMOFF(r0, 0xc058560f)
+close(r0)

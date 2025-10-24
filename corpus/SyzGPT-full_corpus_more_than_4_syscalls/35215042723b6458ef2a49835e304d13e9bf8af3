@@ -1,0 +1,5 @@
+r0 = socket$inet(0x2, 0x2, 0x0)
+r1 = bind$inet(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000000))
+ioctl$sock_SIOCSIFVLAN_GET_VLAN_INGRESS_PRIORITY_CMD(r3, 0x877f, &(0x7f0000000000))

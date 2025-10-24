@@ -1,0 +1,7 @@
+r0 = syz_open_dev$video4linux(&(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$VIDIOC_QUERYCAP(r0, &(0x7f0000000040))
+r2 = ioctl$VIDIOC_ENUM_FMT(r0, 0xc0305602, &(0x7f0000000080))
+r3 = ioctl$VIDIOC_S_FMT(r0, 0xc0cc5605, &(0x7f00000000c0))
+r4 = ioctl$VIDIOC_SUBDEV_QUERY_DV_TIMINGS(r0, 0xc0a0565d, &(0x7f0000000100))
+r5 = ioctl$VIDIOC_G_FMT(r0, 0xc0cc5604, &(0x7f0000000140))
+r6 = ioctl$VIDIOC_S_PARM(r0, 0xc0d4560e, &(0x7f0000000180))

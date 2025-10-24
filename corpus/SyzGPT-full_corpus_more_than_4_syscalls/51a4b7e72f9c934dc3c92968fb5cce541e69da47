@@ -1,0 +1,7 @@
+r0 = socket(0x1, 0x2, 0x3)
+bind(r0, &(0x7f0000000000), 0x6c)
+listen(r0, 0x1)
+r1 = accept4$nfc_llcp(r0, &(0x7f0000000080), &(0x7f00000000c0), 0x80800)
+sendmsg$nfc_llcp(r1, &(0x7f0000001140), 0x0)
+close(r1)
+close(r0)

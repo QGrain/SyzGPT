@@ -1,0 +1,6 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000400), 0xffffffffffffffff)
+r2 = socket$nl_generic(0x10, 0x3, 0x10)
+ioctl$sock_SIOCGIFINDEX_80211(r2, 0x8933, &(0x7f0000000700)={'wlan1\x00', <r3=>0x0})
+sendmsg$NL80211_CMD_SET_INTERFACE(r0, &(0x7f00000003c0)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000440)={0x38, r1, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r3}, @void}}, [@mon_options=[@NL80211_ATTR_MU_MIMO_GROUP_DATA={0x1c, 0xe7, 'ac7f084f9fb97575dda830d513985788047605b7e6d5abca'}]]}, 0x38}}, 0x0)
+sendmsg$TEAM_CMD_OPTIONS_GET(r0, &(0x7f00000003c0)={0x0, 0x0, &(0x7f0000000300)={&(0x7f0000000440)={0x38, r1, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r3}, @void}}, [@mon_options=[@NL80211_ATTR_MU_MIMO_GROUP_DATA={0x1c, 0xe7, 'ac7f084f9fb97575dda830d513985788047605b7e6d5abca'}]]}, 0x38}}, 0x0)

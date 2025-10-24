@@ -1,0 +1,6 @@
+ioctl$HIDIOCINITREPORT(0xffffffffffffffff, 0x4805, 0x0)
+ioctl$AUTOFS_DEV_IOCTL_ISMOUNTPOINT(0xffffffffffffffff, 0xc018937e, &(0x7f0000000040)={{0x1, 0x1, 0x18}, './file0\x00'})
+ioctl$HIDIOCSREPORT(0xffffffffffffffff, 0x400c4808, 0x0)
+openat$cuse(0xffffffffffffff9c, &(0x7f00000000c0), 0x2, 0x0)
+ioctl$HIDIOCGCOLLECTIONINDEX(0xffffffffffffffff, 0xc018480d, 0x0)
+ioctl$AUTOFS_DEV_IOCTL_READY(0xffffffffffffffff, 0xc0189376, 0x0)

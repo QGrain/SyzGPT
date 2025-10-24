@@ -1,0 +1,5 @@
+r0 = socket$packet(0x11, 0x3, 0x300)
+r1 = syz_open_dev$sndpcmp(&(0x7f0000000040), 0x0, 0x0)
+r2 = ioctl$SNDRV_PCM_IOCTL_WRITEI_FRAMES(r0, 0x0, 0x0, &(0x7f0000000080))
+r3 = read(r0, &(0x7f00000000c0), 0x1000)
+r4 = close(r0)

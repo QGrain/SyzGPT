@@ -1,0 +1,5 @@
+r0 = socket$bt_bnep(0x1a, 0x3, 0x1a)
+bind(r0, &(0x7f00000000c0)={sa_family=0x1a, bdaddr=00:00:00:00:00:00, cid=0x1a})
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100)={sa_family=0x1a, bdaddr=00:00:00:00:00:00, cid=0x1a}, &(0x7f0000000140)={0x0, 0x19})
+r2 = ioctl$sock_bt_bnep_BNEPGETSUPPFEAT(r1, 0x0)

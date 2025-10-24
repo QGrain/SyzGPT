@@ -1,0 +1,5 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+r1 = bind(r0, &(0x7f00000001c0), 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f00000001c0), &(0x7f00000001c4))
+r4 = ioctl$VHOST_SET_VRING_ERR(r3, 0x0, &(0x7f00000001b0))

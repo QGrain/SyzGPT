@@ -1,0 +1,5 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+bind(r0, &(0x7f0000000080), 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f00000000c0), &(0x7f0000000100))
+getsockopt$inet_sctp6_SCTP_RECVNXTINFO(r1, 0x84, &(0x7f0000000140), &(0x7f0000000180))

@@ -1,0 +1,7 @@
+r0 = socket$inet(0x2, 0x1, 0x0)
+r1 = bind$inet(r0, 0x7f0000000200, 0x10)
+r2 = connect$inet(r0, 0x7f0000000200, 0x10)
+r3 = socket(0x2, 0x1, 0x0)
+r4 = bind(r3, 0x7f0000000200, 0x10)
+r5 = connect(r3, 0x7f0000000200, 0x10)
+sendmsg$L2TP_CMD_SESSION_CREATE(r3, &(0x7f0000000340)={&(0x7f0000000180)={0x0, 0x0, 0x0, &(0x7f0000000380)=ANY=[@ANYBLOB='T\x00\x00\x00', @ANYRES16=r1, @ANYBLOB='0500000000000000000007'], 0x54}}, 0x0)

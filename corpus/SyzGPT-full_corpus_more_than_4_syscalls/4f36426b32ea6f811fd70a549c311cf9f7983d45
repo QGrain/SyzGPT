@@ -1,0 +1,5 @@
+mkdirat$cgroup_root(0xffffffffffffff9c, &(0x7f0000000000)='./cgroup.net/syz1\x00', 0x1ff)
+r0 = openat$cgroup_root(0xffffffffffffff9c, &(0x7f0000000000), 0x200002, 0x0)
+r1 = openat$cgroup_pressure(r0, &(0x7f00000001c0), 0x2, 0x0)
+write$cgroup_pressure(r1, &(0x7f0000000040)='PRESSURE\x00', 0x8)
+mkdirat$cgroup(r0, &(0x7f0000000180)='syz0\x00', 0x1ff)

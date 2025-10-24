@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file2\x00', 0xa0043, 0x0)
+r1 = ioctl$NBD_SET_BLKSIZE(r0, 0x1000)
+r2 = ioctl$NBD_SET_SIZE(r1, 0x100000)
+r3 = ioctl$NBD_SET_FLAGS(r2, 0x0)
+ioctl$NBD_DO_IT(r3)

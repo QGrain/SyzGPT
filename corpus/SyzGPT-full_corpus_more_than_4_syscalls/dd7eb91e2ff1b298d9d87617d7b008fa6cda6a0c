@@ -1,0 +1,8 @@
+r0 = socket$inet(0x2, 0x3, 0x0)
+setsockopt$MRT_INIT(r0, 0x0, 0x0)
+setsockopt$MRT_ADD_MFC(r0, 0x0, &(0x7f0000000000)={@mfc_source, @mfc_group, @mfc_parent}, 0x0)
+setsockopt$MRT_DEL_MFC_PROXY(r0, 0x0, &(0x7f0000000000)={@mfc_source, @mfc_group, @mfc_parent}, 0x0)
+setsockopt$MRT_DEL_MFC_PROXY(r0, 0x0, &(0x7f0000000000)={@mfc_source, @mfc_group, @mfc_parent}, 0x0)
+setsockopt$MRT_DEL_MFC_PROXY(r0, 0x0, &(0x7f0000000000)={@mfc_source, @mfc_group, @mfc_parent}, 0x0)
+setsockopt$MRT_DEL_MFC_PROXY(r0, 0x0, &(0x7f0000000000)={@mfc_source, @mfc_group, @mfc_parent}, 0x0)
+close(r0)

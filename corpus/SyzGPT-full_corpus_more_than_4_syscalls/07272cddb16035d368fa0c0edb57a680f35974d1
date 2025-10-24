@@ -1,0 +1,7 @@
+r0 = socket$inet_tcp(0x2, 0x0)
+bind$inet(r0, &(0x7f00000000c0), 0x10)
+listen(r0, 0x5)
+r1 = accept(r0, &(0x7f00000000e0), &(0x7f00000000e4))
+ioctl$IOMMU_IOAS_MAP(r1, 0x0, &(0x7f0000000100))
+close(r1)
+close(r0)

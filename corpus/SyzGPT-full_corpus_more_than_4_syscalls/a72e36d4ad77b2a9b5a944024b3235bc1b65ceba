@@ -1,0 +1,8 @@
+ioctl$CDROMMULTISESSION(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$CDROM_GET_CAPABILITY(0xffffffffffffff9c, &(0x7f0000000040))
+ioctl$CDROM_SEND_PACKET(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$CDROM_MEDIA_CHANGED(0xffffffffffffff9c, &(0x7f0000000040))
+ioctl$CDROM_LAST_WRITTEN(0xffffffffffffff9c, &(0x7f0000000040))
+ioctl$CDROM_SELECT_SPEED(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$CDROM_SELECT_DISK(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$CDROM_DEBUG(0xffffffffffffff9c, 0x0, 0x0)

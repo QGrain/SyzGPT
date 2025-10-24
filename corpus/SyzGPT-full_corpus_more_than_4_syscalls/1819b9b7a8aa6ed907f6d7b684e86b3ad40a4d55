@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &AUTO='./sys/kernel/debug/tracing/trace_marker\x00', 0x2, 0x0)
+write(r0, &AUTO='Hello, world!\x00', 0x10)
+close(r0)
+r1 = socket(0x2, 0x1, 0x0)
+connect(r1, &AUTO='127.0.0.1:1234\x00', 0x10)
+r2 = prctl$PR_SET_TSC(0x0, 0x0)
+close(r1)

@@ -1,0 +1,7 @@
+r0 = socket$nl_rdma(0x10, 0x3, 0x14)
+r1 = bind(r0, &(0x7f0000000000)=ANY=[], 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000001)=ANY=[], &(0x7f0000000002)=ANY=[], 0x0)
+r4 = socket$inet6_tcp(0xa, 0x1, 0x6)
+r5 = connect(r4, &(0x7f0000000003)=ANY=[], 0x10)
+r6 = sendmsg$RDMA_NLDEV_CMD_RES_CQ_GET(r3, &(0x7f0000000004)=ANY=[], 0x0)

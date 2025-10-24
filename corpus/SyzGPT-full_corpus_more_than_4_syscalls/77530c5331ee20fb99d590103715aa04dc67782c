@@ -1,0 +1,5 @@
+r0 = open('/dev/tty', 0x0, 0x0)
+r1 = ioctl$TIOCPKT(r0, 0x0)
+r2 = fcntl$F_GET_RW_HINT(r0, 0x2)
+r3 = ioctl$TIOCGWINSZ(r0, &(0x7f0000000000))
+close(r0)

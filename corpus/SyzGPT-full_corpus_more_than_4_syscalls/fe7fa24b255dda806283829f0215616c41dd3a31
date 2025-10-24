@@ -1,0 +1,8 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+connect(r0, &(0x7f0000000040)=@ipv4={0x2, 0x7f000001, 0x1f90})
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = dup2(r0, r1)
+r3 = sendmsg$DEVLINK_CMD_PORT_SPLIT(r2, &(0x7f0000000100)={0x2, 0x0}, 0x0)
+close(r0)
+close(r1)
+close(r2)

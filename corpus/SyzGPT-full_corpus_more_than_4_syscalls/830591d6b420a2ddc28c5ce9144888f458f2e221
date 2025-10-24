@@ -1,0 +1,8 @@
+mkdir(&(0x7f0000000140)='./file0\x00', 0x0)
+open(&(0x7f0000000000)='./file0\x00', 0x0, 0x0)
+mount(0x0, &(0x7f0000000040)='./file0\x00', &(0x7f00000001c0)='cgroup2\x00', 0x0, 0x0)
+r0 = openat$cgroup_root(0xffffffffffffff9c, &(0x7f0000000000), 0x200002, 0x0)
+r1 = openat$cgroup(r0, &(0x7f0000000380)='syz1\x00', 0x200002, 0x0)
+r2 = mkdirat$cgroup(r1, &(0x7f0000000180)='dir\x00', 0x1ff)
+r3 = openat$cgroup_int(r1, &(0x7f0000000180)='memory.max\x00', 0x2, 0x0)
+sendfile(r3, r3, 0x0, 0x3)

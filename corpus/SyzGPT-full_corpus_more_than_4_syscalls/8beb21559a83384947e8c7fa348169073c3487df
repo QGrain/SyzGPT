@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+bind$inet6(r0, &(0x7f0000000000), 0x1c)
+listen(r0, 0x1c)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+getsockopt$inet_IP_IPSEC_POLICY(r1, 0x0, 0x1, &(0x7f0000000080), &(0x7f0000000010))

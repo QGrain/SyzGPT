@@ -1,0 +1,5 @@
+r0 = socket$inet(0x2, 0x1, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+sendmsg$MPTCP_PM_CMD_SUBFLOW_DESTROY(r1, 0x0, 0x0)

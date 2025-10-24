@@ -1,0 +1,5 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+bind$inet(r0, &(0x7f0000000080)={0x2, 0x0, @remote}, 0x10)
+connect$inet(r0, &(0x7f0000000000)={0x2, 0x0, @broadcast}, 0x10)
+r1 = getsockopt$inet_sctp_SCTP_STATUS(r0, 0x84, &(0x7f0000000000))
+close(r0)

@@ -1,0 +1,5 @@
+r0 = socket$inet6_udp(0x2, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r1, 0x81009431, 0x0, &(0x7f0000000000), 0x0)

@@ -1,0 +1,7 @@
+r0 = socket$inet6(0xa, 0x1, 0x0)
+bind$inet6(r0, &(0x7f0000000080), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000500), &(0x7f0000000504))
+ioctl$SG_GET_PACK_ID(0xffffffffffffff9c, 0x0, &(0x7f0000000100))
+syz_open_dev$vcsu(&(0x7f0000000100)='/dev/bpfilter', 0x2, 0x0)
+bpf$LINK_GET_NEXT_ID(0xffffffffffffff9c, 0x0, &(0x7f0000000100))

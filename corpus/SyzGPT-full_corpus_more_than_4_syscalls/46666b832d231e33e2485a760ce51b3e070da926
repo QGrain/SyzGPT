@@ -1,0 +1,6 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000000)='./cgroup.cpu/cgroup.procs\x00', 0x0, 0x0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x0, 0x0)
+r2 = ioctl$VHOST_SET_VRING_BASE(r1, 0x0, &(0x7f0000000080)={0x1, 0x2})
+r3 = read(r0, &(0x7f0000000100), 0x100)
+r4 = write(r1, &(0x7f0000000180), 0x100)
+r5 = close(r1)

@@ -1,0 +1,5 @@
+r0 = syz_open_dev$evdev(&(0x7f0000000000), 0x8, 0xc0b02)
+r1 = syz_open_dev$loop(&(0x7f0000000180), 0x0, 0x0)
+ioctl$EVIOCGSND(0xffffffffffffffff, 0x8040451a, &(0x7f0000000040)=""/188)
+ioctl$LOOP_SET_FD(r1, 0x4c06, r0)
+ioctl$EVIOCSABS20(r0, 0x0, &(0x7f0000000040))

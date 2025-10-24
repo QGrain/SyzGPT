@@ -1,0 +1,8 @@
+r0 = socket(0x1, 0x1, 0x0)
+r1 = setsockopt(r0, 0xffff, 0x10, &(0x7f0000000000)=ANY=[@ANYBLOB='0800000002000000f8'], 0x4)
+r2 = bind(r0, &(0x7f0000000000)=ANY=[@ANYBLOB='0800000002000000f8'], 0x4)
+r3 = listen(r0, 0x1)
+r4 = accept(r0, &(0x7f0000000000)=ANY=[],[@ANYBLOB='0800000002000000f8'], &(0x7f0000000004)=ANY=[])
+r5 = ioctl$PPPIOCGIDLE32(r4, 0xffffffffffffff9c)
+r6 = close(r4)
+r7 = close(r0)

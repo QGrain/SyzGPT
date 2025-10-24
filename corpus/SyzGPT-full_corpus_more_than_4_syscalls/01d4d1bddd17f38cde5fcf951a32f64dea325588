@@ -1,0 +1,7 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+connect$netlink(r0, &(0x7f0000000000), 0xc)
+r1 = openat$loop_ctrl(0xffffffffffffff9c, &(0x7f00000008c0), 0x0, 0x0)
+r2 = ioctl$LOOP_CTL_ADD(r1, 0x4c80, 0x0)
+syz_genetlink_get_family_id$l2tp(&(0x7f0000000140), r0)
+ioctl$LOOP_CTL_REMOVE(r1, 0x4c81, r2)
+ioctl$KVM_IRQFD(r1, 0x0, &(0x7f0000000000), 0x0)

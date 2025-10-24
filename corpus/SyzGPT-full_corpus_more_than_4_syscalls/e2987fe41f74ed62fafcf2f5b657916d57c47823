@@ -1,0 +1,5 @@
+r0 = socket$bt_rfcomm(0x1, 0x3, 0x3)
+bind$bt_rfcomm(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f0000000040), &(0x7f0000000080))
+connect$bt_rfcomm(r1, &(0x7f0000000000), 0x10)

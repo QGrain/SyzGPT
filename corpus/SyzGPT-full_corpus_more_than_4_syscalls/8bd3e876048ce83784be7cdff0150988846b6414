@@ -1,0 +1,5 @@
+r0 = socket$inet6(0xa, 0x1, 0x0)
+r1 = connect(r0, &(0x7f00000003c0), 0x10)
+r2 = ioctl$VIDIOC_QUERYCAP(r0, &(0x7f0000000400))
+r3 = ioctl$VIDIOC_ENUM_FMT(r0, 0x0, &(0x7f0000000440))
+r4 = ioctl$VIDIOC_S_HW_FREQ_SEEK(r0, &(0x7f0000000480)={0x1}, 0x1)

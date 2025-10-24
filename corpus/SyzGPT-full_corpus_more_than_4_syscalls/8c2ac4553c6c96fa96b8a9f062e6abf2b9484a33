@@ -1,0 +1,8 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+r1 = bind$inet(r0, 0x7f000001, 0x0)
+r2 = listen(r0, 0x5)
+r3 = accept(r0)
+r4 = setsockopt$inet_sctp_SCTP_PARTIAL_DELIVERY_POINT(r3, 0x6, 0x0, 0x0, 0x0)
+r7 = getsockopt$inet_sctp_SCTP_PARTIAL_DELIVERY_POINT(r3, 0x6, 0x0, 0x0, 0x0)
+r8 = close(r3)
+r9 = close(r0)

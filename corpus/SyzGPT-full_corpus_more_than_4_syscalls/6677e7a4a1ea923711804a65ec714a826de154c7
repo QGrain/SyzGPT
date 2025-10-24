@@ -1,0 +1,6 @@
+r0 = openat$hwrng(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+ioctl$vim2m_VIDIOC_CREATE_BUFS(r0, 0xc100565c, 0x0)
+r2 = ioctl$vim2m_VIDIOC_CREATE_BUFS(r0, 0xc100565c, 0x0)
+ioctl$vim2m_VIDIOC_TRY_FMT(r0, 0xc0d05604, 0x0)
+ioctl$vim2m_VIDIOC_QBUF(r0, r2, 0x0, 0x0, 0x0)
+ioctl$vim2m_VIDIOC_STREAMON(r0, 0x0)

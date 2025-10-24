@@ -1,0 +1,5 @@
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_init_net_socket$802154_raw(0x24, 0x3, 0x0)
+r2 = dup2(r1, r0)
+r3 = ioctl$sock_SIOCGIFINDEX_80211(r2, 0x8933, &(0x7f00000002c0)={'wlan0\x00'})
+r4 = sendmsg$NL80211_CMD_TDLS_OPER(r3, 0x0, 0x0)

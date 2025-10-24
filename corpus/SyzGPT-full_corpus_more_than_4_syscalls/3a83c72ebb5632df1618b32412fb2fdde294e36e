@@ -1,0 +1,7 @@
+r0 = socket$inet6_tcp(0x1c, 0x1, 0x0)
+bind(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+r2 = open('/dev/autofs', 0x2, 0x0)
+ioctl$AUTOFS_IOC_SETTIMEOUT(r2, 0x80000002, &(0x7f0000001000))
+close(r2)

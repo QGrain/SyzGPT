@@ -1,0 +1,6 @@
+ioctl$CDROMPAUSE(0xffffffffffffffff, 0x5301)
+r0 = bpf$ITER_CREATE(0x21, &(0x7f0000000140), 0x8)
+syz_genetlink_get_family_id$l2tp(&(0x7f0000000d80), 0xffffffffffffffff)
+ioctl$IOMMU_IOAS_ALLOC(0xffffffffffffffff, 0x3b81, 0x0)
+r1 = ioctl$CDROMVOLREAD(r0, 0x5313, 0x0)
+ioctl$CDROMVOLCTRL(r1, 0x5303, 0x0)

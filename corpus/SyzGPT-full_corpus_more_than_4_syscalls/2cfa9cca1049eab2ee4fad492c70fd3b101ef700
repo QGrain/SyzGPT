@@ -1,0 +1,5 @@
+r0 = socket$inet6_sctp(0xa, 0x1, 0x84)
+bind$inet6(r0, &(0x7f0000006d00)={0xa, 0x0, 0x0, @rand_addr=' \x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'}, 0x1c)
+setsockopt$inet_sctp6_SCTP_PRIMARY_ADDR(r0, 0x84, &(0x7f0000006d80)={0xa, 0x0, 0x0, @rand_addr=' \x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'}, 0x1c)
+getsockopt$inet_sctp6_SCTP_PRIMARY_ADDR(r0, 0x84, &(0x7f0000006d80)={0xa, 0x0, 0x0, @rand_addr=' \x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01'}, &(0x7f0000006d80)={0x0, 0x0, 0x0, 0x0}, &(0x7f0000006d80)={0x1c})
+close(r0)

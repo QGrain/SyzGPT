@@ -1,0 +1,7 @@
+r0 = syz_open_dev$ttys(&(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$TCGETS(r0, &(0x7f0000000000))
+r2 = read(r0, &(0x7f0000000000), 0x100)
+r3 = write(r0, &(0x7f0000000000), r2)
+r4 = ioctl$TCSETS(r0, &(0x7f0000000000))
+r5 = read$snddsp(r0, &(0x7f0000000000), r2)
+r6 = close(r0)

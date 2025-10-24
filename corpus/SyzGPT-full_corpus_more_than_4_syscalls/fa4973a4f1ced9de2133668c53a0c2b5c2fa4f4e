@@ -1,0 +1,5 @@
+r0 = socket$tipc(0x1e, 0x5, 0x0)
+bind$tipc(r0, &(0x7f0000000140)=@id, 0x10)
+listen(r0, 0x5)
+r1 = accept4$tipc(r0, &(0x7f0000000140), &(0x7f0000000300), 0x0)
+close(r1)

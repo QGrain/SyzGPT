@@ -1,0 +1,7 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000000), 0x2, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0x0)
+r2 = ioctl$KVM_CHECK_EXTENSION(r1, 0x3)
+r3 = ioctl$KVM_GET_API_VERSION(r1, &(0x7f0000000000))
+r4 = ioctl$KVM_CREATE_VCPU(r1, 0x0)
+r5 = ioctl$KVM_RUN(r4, 0x0)
+r6 = ioctl$KVM_CAP_DISABLE_QUIRKS(r1, 0x0)

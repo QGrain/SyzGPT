@@ -1,0 +1,5 @@
+r0 = socket$inet6(0xa, 0x1, 0x0)
+bind$inet6(r0, &(0x7f0000000080), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100), &(0x7f0000000140))
+ioctl$PTP_SYS_OFFSET_EXTENDED(r1, 0x802c741a, &(0x7f00000000c0))

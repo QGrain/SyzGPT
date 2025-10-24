@@ -1,0 +1,7 @@
+r0 = openat$cdrom(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+r1 = ioctl$CDROM_GET_CAPABILITY(r0, &(0x7f0000000000))
+r2 = ioctl$CDROM_DISC_STATUS(r0, &(0x7f0000000000))
+r3 = ioctl$CDROM_DISC_STATUS(r0, 0x0)
+r4 = ioctl$CDROMSETSPINDOWN(r0, 0x0)
+r5 = ioctl$CDROM_DISC_STATUS(r0, &(0x7f0000000000))
+close(r0)

@@ -1,0 +1,7 @@
+r0 = openat$khugepaged_scan(0xffffffffffffff9c, &(0x7f0000000040), 0x1, 0x0)
+r1 = ioctl$PPPIOCGFLAGS(r0, 0x40047438, &(0x7f0000000000))
+r2 = ioctl$PPPIOCNEWUNIT(r0, 0x0, &(0x7f0000000000))
+r3 = ioctl$PPPIOCGUNIT(r0, &(0x7f0000000000))
+r4 = ioctl$PPPIOCATTCHAN(r0, 0x40047438, &(0x7f0000000000))
+r5 = ioctl(r0, 0x0, &(0x7f0000000000))
+r6 = ioctl$PPPIOCATTCHAN(r0, 0x40047438, &(0x7f0000000000))

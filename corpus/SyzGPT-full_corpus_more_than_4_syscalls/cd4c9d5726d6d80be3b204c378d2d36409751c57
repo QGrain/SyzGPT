@@ -1,0 +1,5 @@
+ioctl$SCSI_IOCTL_GET_BUS_NUMBER(0x0, &(0x7f0000000000)=''/4096)
+r0 = openat(0xffffffffffffff9c, '/dev/sda', 0x0, 0x0)
+ioctl$BLKGETSIZE64(r0, &(0x7f0000000000))
+ioctl$BLKGETSIZE(r0, &(0x7f0000000000))
+close(r0)

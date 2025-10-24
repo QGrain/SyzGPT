@@ -1,0 +1,8 @@
+syz_mount_image$ext4(&(0x7f0000000140), &(0x7f0000000180)='./file0\x00', 0x0, &(0x7f00000001c0)={{'fd', 0x3d, 0x0}, 0x0, {'flags', 0x3d, 0x0}}, 0x0, 0x0, 0x0)
+ioctl$FIBMAP(0xffffffffffffff9c, 0x0)
+ioctl$FS_IOC_GETFLAGS(0xffffffffffffff9c, 0x0)
+ioctl$FS_IOC_SETFLAGS(0xffffffffffffff9c, 0x0)
+ioctl$FS_IOC_GETVERSION(0xffffffffffffff9c, 0x0)
+ioctl$FS_IOC_SETVERSION(0xffffffffffffff9c, 0x0)
+ioctl$FS_IOC_GETFSLABEL(0xffffffffffffff9c, &(0x7f00000001c0))
+ioctl$FS_IOC_SETFSLABEL(0xffffffffffffff9c, &(0x7f0000000200))

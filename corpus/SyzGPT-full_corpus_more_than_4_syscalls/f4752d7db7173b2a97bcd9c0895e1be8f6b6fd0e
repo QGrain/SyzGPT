@@ -1,0 +1,6 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+bind(r0, &(0x7f0000001200), 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f0000001200), &(0x7f0000001200))
+r2 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000001200), 0x0)
+ioctl$SNDRV_SEQ_IOCTL_PVERSION(r2, 0x0)

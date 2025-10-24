@@ -1,0 +1,5 @@
+ioctl$TUNGETFEATURES(&(0x7f0000000000), &(0x7f0000000080)={'tun_flags\x00'})
+ioctl$TUNGETIFF(r0, &(0x7f0000000080)={'tun_flags\x00'})
+ioctl$TUNGETFILTER(r0, &(0x7f0000000080)={'tun_flags\x00'})
+ioctl$TUNGETVNETHDRSZ(r0, &(0x7f0000000080)={'tun_flags\x00'})
+ioctl$TUNGETVNETBE(r0, &(0x7f0000000080)={'tun_flags\x00'})

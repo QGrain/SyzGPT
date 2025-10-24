@@ -1,0 +1,7 @@
+r0 = openat$cgroup_root(0xffffffffffffff9c, &(0x7f0000000000)='./cgroup.net/syz0\x00', 0x200002, 0x0)
+r1 = openat$vimc1(0xffffffffffffff9c, 0x0, 0x2, 0x0)
+r2 = bpf$OBJ_GET_MAP(0x7, &(0x7f0000001240)=@generic={&(0x7f0000001200)='./file0\x00'}, 0x18)
+r3 = setsockopt$bt_rfcomm_RFCOMM_LM(0xffffffffffffffff, 0x12, 0x3, 0x0, 0x0)
+r4 = syz_genetlink_get_family_id$gtp(&(0x7f00000029c0), 0xffffffffffffffff)
+r5 = syz_genetlink_get_family_id$tipc(&(0x7f0000002a80), 0xffffffffffffffff)
+write$cgroup_devices(r0, &(0x7f0000002f40)='./devices\x00', 0x8, 0x0)

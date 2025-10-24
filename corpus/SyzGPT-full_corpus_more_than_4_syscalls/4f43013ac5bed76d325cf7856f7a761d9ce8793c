@@ -1,0 +1,5 @@
+ioctl$CDROM_GET_CAPABILITY(0xffffffffffffff9c, 0xffffffffffffff9c)
+r0 = syz_open_dev$I2C(&(0x7f0000000000), 0x0, 0x0)
+ioctl$TIOCGPTPEER(r0, 0xc00854b3, &(0x7f00000001c0))
+ioctl$VHOST_GET_FEATURES(r0, 0xc02054b4, &(0x7f0000000200))
+mmap(&(0x7f0000000140), 0x1000, 0x3, 0x22, r0, 0x0)

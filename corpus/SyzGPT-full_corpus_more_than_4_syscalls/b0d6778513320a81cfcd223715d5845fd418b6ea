@@ -1,0 +1,7 @@
+r0 = socket$inet_sctp(0x2, 0x1, 0x84)
+r1 = bind(r0, &(0x7f0000000040)=@sockaddr_inet4)
+listen(r0, 0x10)
+r2 = accept(r0, &(0x7f0000000080)=@sockaddr_inet4)
+r3 = getsockopt$inet_sctp_SCTP_PEER_AUTH_CHUNKS(r2, 0x84, 0x13, &(0x7f00000000c0)=@assoc_value={<r4=>0x0}, &(0x7f0000000100)=0x8)
+close(r2)
+close(r0)

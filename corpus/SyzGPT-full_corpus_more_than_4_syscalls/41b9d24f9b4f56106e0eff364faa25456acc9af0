@@ -1,0 +1,8 @@
+r0 = socket$inet6(0x2, 0x1, 0x0)
+bind(r0, &(0x7f00000001c0), 0x10)
+listen(r0, 0x10)
+r1 = accept(r0, &(0x7f00000001c0), &(0x7f00000001c4))
+r2 = openat(0xffffffffffffff9c, &(0x7f00000001c0), 0x0, 0x0)
+ioctl$BTRFS_IOC_DEFAULT_SUBVOL(r2, 0x0, 0x0)
+close(r1)
+close(r0)

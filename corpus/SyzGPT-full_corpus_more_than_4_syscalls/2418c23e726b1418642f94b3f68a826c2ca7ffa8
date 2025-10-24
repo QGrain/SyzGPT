@@ -1,0 +1,5 @@
+mkdirat$cgroup_root(0xffffffffffffff9c, &(0x7f0000000080)='./cgroup.cpu/syz0\x00', 0x1ff)
+r0 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x5f0f03, 0x0)
+ioctl$KDGKBLED(r0, 0x4b64, &(0x7f0000000000))
+openat$cgroup_freezer_state(0xffffffffffffff9c, &(0x7f00000000c0)='./cgroup/syz0\x00', 0x200002, 0x0)
+ioctl$TIOCSBRK(r0, 0x541e)

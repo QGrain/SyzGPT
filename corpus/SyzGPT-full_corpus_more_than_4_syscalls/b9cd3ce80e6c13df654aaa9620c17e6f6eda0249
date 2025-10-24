@@ -1,0 +1,6 @@
+pipe(&(0x7f0000000000)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+r1 = socket$inet_udp(0x2, 0x2, 0x0)
+r2 = socket(0x2, 0x2, 0x0)
+sendmsg(r2, 0x0, &(0x7f0000000140)='2e0000003100050ad25a80648c6394fb0124fc0010000b400c000200053582c137153e37090001', 0x27)
+close(r1)
+close(r2)

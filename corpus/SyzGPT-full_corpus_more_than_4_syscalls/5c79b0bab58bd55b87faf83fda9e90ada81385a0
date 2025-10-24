@@ -1,0 +1,5 @@
+r0 = socket$inet_icmp_raw(0x2, 0x3, 0x1)
+fcntl$getown(r0, 0x9)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000000), 0x0)
+r2 = ioctl$EVIOCGREP(r1, 0x40044552, &(0x7f0000000040))
+ioctl$EVIOCSREP(r1, 0x40044552, &(0x7f0000000040)=0x1)

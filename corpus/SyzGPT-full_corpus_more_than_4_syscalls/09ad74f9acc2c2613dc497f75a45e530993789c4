@@ -1,0 +1,7 @@
+pipe(&(0x7f0000001480)={<r0=>0xffffffffffffffff})
+close_range(r0, 0xffffffffffffffff, 0x0)
+tee(0xffffffffffffffff, 0xffffffffffffffff, 0x80000001, 0x0)
+dup3(r0, 0xffffffffffffffff, 0x0)
+ioctl$EVIOCSREP(0xffffffffffffffff, 0x40084503, 0x0)
+ioctl$EVIOCSABS2F(r0, 0x40084503, &(0x7f00000004c0))
+ioctl$EVIOCSREP(0xffffffffffffffff, 0x40084503, 0x0)

@@ -1,0 +1,8 @@
+r0 = openat$cgroup_root(0xffffffffffffff9c, 0x0, 0x200002, 0x0)
+r1 = mknodat(r0, '/dev/syz0', 0x200006, 0x0)
+r2 = openat(r0, '/dev/syz0', 0x2, 0x0)
+r3 = write(r2, 'test', 0x4)
+close(r2)
+write$cgroup_devices(r0, 0x0, 0x0, 0x0)
+unlinkat(r0, '/dev/syz0', 0x0)
+close(r0)

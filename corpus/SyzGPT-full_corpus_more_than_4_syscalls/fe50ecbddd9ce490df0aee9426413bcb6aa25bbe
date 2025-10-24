@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000100)='./dev/video0\x00', 0x0, 0x0)
+ioctl$VIDIOC_QUERYCAP(r0, &(0x7f0000000140))
+ioctl$VIDIOC_ENUM_FMT(r0, 0x1, &(0x7f0000000180))
+ioctl$VIDIOC_ENUM_FRAMESIZES(r0, 0x1, &(0x7f00000001c0))
+ioctl$VIDIOC_QUERY_DV_TIMINGS(r0, &(0x7f0000000200))

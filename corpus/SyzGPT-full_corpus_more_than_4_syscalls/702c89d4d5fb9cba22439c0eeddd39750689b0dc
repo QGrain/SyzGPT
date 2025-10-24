@@ -1,0 +1,5 @@
+r0 = ioctl$IOCTL_VMCI_CTX_GET_CPT_STATE(0xffffffffffffff9c, 0xc0189436, &(0x7f0000000000))
+openat$vmci(0xffffffffffffff9c, &(0x7f0000000000), 0x2, 0x0)
+ioctl$IOCTL_VMCI_GET_CONTEXT_ID(r0, 0xc0189436, &(0x7f0000001080))
+r1 = openat$cuse(0xffffffffffffff9c, &(0x7f0000000240), 0x2, 0x0)
+read$FUSE(r1, &(0x7f0000001140)={0x2020}, 0x2020)

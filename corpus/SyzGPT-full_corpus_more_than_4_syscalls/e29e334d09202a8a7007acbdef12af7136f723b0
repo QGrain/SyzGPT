@@ -1,0 +1,8 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f00000000c0), 0x0)
+r1 = openat(r0, &(0x7f00000000c0), 0x0)
+r2 = ioctl(r1, 0x1234, &(0x7f0000000000))
+r3 = read(r1, &(0x7f0000000000), 0x100)
+r4 = write(r1, &(0x7f0000000000), r3)
+ioctl$DRM_IOCTL_CONTROL(r1, r2, &(0x7f0000000000))
+close(r1)
+close(r0)

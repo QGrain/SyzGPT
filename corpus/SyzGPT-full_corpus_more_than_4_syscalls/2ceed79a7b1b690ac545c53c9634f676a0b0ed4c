@@ -1,0 +1,8 @@
+r0 = openat$cdrom(0xffffffffffffff9c, &(0x7f0000000080), 0x40b80, 0x0)
+r1 = ioctl$CDROM_GET_CAPABILITY(r0, 0x0)
+r2 = ioctl$CDROM_GET_MCN(r0, &(0x7f0000000080))
+r3 = ioctl$CDROM_DISC_STATUS(r0, 0x0)
+r4 = ioctl$CDROM_LOCKDOOR(r0, 0x0)
+r5 = ioctl$CDROM_MEDIA_CHANGED(r0, 0x0, 0x0)
+r6 = ioctl$CDROM_SELECT_DISK(r0, 0x0)
+r7 = ioctl$CDROM_DEBUG(r0, 0x0)

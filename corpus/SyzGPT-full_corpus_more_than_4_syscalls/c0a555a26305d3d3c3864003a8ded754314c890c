@@ -1,0 +1,8 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000001100), 0x0, 0x0)
+ioctl$BTRFS_IOC_SET_RECEIVED_SUBVOL(0xffffffffffffffff, 0xc0c89425, 0x0)
+r1 = fcntl$dupfd(0xffffffffffffffff, 0x0, 0xffffffffffffffff)
+r2 = landlock_create_ruleset(&(0x7f0000000240)={0x1fff}, 0x10, 0x0)
+landlock_restrict_self(r2, 0x0)
+landlock_add_rule$LANDLOCK_RULE_PATH_BENEATH(r1, 0x1, &(0x7f0000002280)={0x0, r2}, 0x0)
+r3 = ptrace$setopts(0xffffffffffffffff, 0x0, 0x0)
+ioctl$BTRFS_IOC_SNAP_CREATE_V2(r0, 0x50009417, &(0x7f0000001280)={{}, 0x0, 0x0, @unused, @subvolid})

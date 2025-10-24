@@ -1,0 +1,5 @@
+ioctl$SNDRV_SEQ_IOCTL_GET_CLIENT_INFO(0xffffffffffffff9c, 0x0, &(0x7f0000000140))
+openat2$dir(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', &(0x7f0000000080)={0x109840, 0x0, 0x8}, 0x18)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000140), 0x0)
+name_to_handle_at(0xffffffffffffffff, 0x0, 0x0, 0x0, 0x1000)
+ioctl$SNDRV_SEQ_IOCTL_SET_PORT_INFO(0xffffffffffffff9c, 0x40a85323, &(0x7f0000000140))

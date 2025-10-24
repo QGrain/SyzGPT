@@ -1,0 +1,5 @@
+r0 = socket$inet6_udp(0xa, 0x2, 0x0)
+ioctl$VIDIOC_S_MODULATOR(r0, 0x402d3210, &(0x7f00000004c0)={'vivid-00000000\x00', 0x0})
+r1 = openat$hpet(0xffffffffffffff9c, &(0x7f0000003b00), 0x0, 0x0)
+timerfd_gettime(r1, 0x0)
+ioctl$sock_ipv6_tunnel_SIOCADD6RD(r0, 0x89f7, &(0x7f00000004c0)={'sit0\x00', 0x0})

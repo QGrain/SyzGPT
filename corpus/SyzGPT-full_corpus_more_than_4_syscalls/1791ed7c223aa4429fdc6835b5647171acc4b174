@@ -1,0 +1,7 @@
+r0 = socket$tipc(0x2, 0x3, 0x0)
+bind(r0, &(0x7f0000000100), 0x10)
+r1 = socket$netlink(0x10, 0x3, 0x10)
+connect(r1, &(0x7f0000000140), 0x10)
+r2 = sendmsg$TIPC_NL_BEARER_GET(r1, &(0x7f0000000180), 0x0)
+r3 = recvmsg(r1, &(0x7f00000001c0), 0x0)
+r4 = sendmsg$TIPC_NL_BEARER_DISABLE(r1, &(0x7f0000000200), 0x0)

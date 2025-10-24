@@ -1,0 +1,6 @@
+r0 = socket(0x1, 0x2, 0x0)
+r1 = bind(r0, &(0x7f0000000000), 0x2)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, 0x0, 0x0)
+r4 = ioctl$sock_SIOCGIFINDEX(r0, 0x8912, &(0x7f00000000c0))
+ioctl$sock_SIOCDELDLCI(r4, 0x8946, &(0x7f00000000c0))

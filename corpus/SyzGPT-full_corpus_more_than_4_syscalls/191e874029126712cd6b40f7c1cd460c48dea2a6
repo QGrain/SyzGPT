@@ -1,0 +1,5 @@
+r0 = openat$uhid(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+write$UHID_CREATE(r0, &(0x7f0000000040), 0x8)
+write$UHID_INPUT(r0, &(0x7f0000000080), 0x8)
+write$UHID_DESTROY(r0, &(0x7f00000000c0), 0x8)
+close(r0)

@@ -1,0 +1,5 @@
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x105042, 0x0)
+r1 = open_by_handle_at(r0, &(0x7f00000001c0)=@ceph_nfs_confh={0x10, 0x2, {0xcd3}}, 0x7400)
+r2 = openat$damon_mk_contexts(0xffffffffffffff9c, &(0x7f0000000000), 0x474001, 0x0)
+r3 = sysfs$2(0x2, 0x4, &(0x7f00000000c0)=''/35)
+write$P9_RWSTAT(r1, &(0x7f0000000200), 0x20)

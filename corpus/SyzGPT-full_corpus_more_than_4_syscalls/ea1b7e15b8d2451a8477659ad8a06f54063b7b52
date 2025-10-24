@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x2, 0x0)
+r1 = bind(r0, &(0x7f0000000100), 0x10)
+r2 = listen(r0, 0x1)
+r3 = accept(r0, &(0x7f0000000140), &(0x7f0000000144))
+ioctl$HIDIOCGRAWINFO(r3, 0x0)

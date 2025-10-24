@@ -1,0 +1,6 @@
+socket$inet_sctp(0x2, 0x5, 0x84)
+openat$binderfs(0xffffffffffffff9c, &(0x7f00000007c0)='./binderfs/binder1\x00', 0x0, 0x0)
+socket$inet_sctp(0x2, 0x5, 0x84)
+ioctl$sock_FIOSETOWN(r0, 0x8901, &(0x7f0000000140)=r1)
+fcntl$getown(r0, 0x9)
+ioctl$BINDER_GET_NODE_DEBUG_INFO(r0, &(0x7f0000000140))

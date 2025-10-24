@@ -1,0 +1,5 @@
+r0 = socket$inet6(0xa, 0x2, 0x88)
+r1 = bind(r0, &(0x7f0000000000), 0x10)
+r2 = listen(r0, 0x10)
+r3 = accept(r0, &(0x7f0000000000), &(0x7f0000000010))
+ioctl$BTRFS_IOC_SNAP_CREATE_V2(r3, &(0x7f0000000000), &(0x7f0000000010))

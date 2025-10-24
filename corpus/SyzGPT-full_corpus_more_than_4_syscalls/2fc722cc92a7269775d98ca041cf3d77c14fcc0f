@@ -1,0 +1,8 @@
+r0 = socket$inet(0x2, 0x2, 0x0)
+lsetxattr$security_evm(0xffffffffffffffff, &(0x7f00000001c0), 0x0, 0x0, 0x0)
+ioctl$sock_inet6_SIOCADDRT(0xffffffffffffffff, 0x890b, &(0x7f0000000200)={@ipv4={'\x00', '\xff\xff', @private}, @loopback, @private2})
+socket$inet6_udplite(0xa, 0x2, 0x88)
+socket$inet6_tcp(0xa, 0x1, 0x0)
+sendmsg$inet6(0xffffffffffffffff, 0x0, 0x0)
+ioctl$SNDRV_SEQ_IOCTL_RUNNING_MODE(r0, 0xc0105303, 0x0)
+ioctl$sock_ipv4_tunnel_SIOCADDTUNNEL(0xffffffffffffffff, 0x89f1, 0x0)

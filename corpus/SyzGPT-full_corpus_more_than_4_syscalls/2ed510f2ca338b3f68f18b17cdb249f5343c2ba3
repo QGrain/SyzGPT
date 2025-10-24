@@ -1,0 +1,5 @@
+r0 = socket$inet6(0x1c, 0x3, 0x0)
+r1 = bind(r0, &(0x7f0000001180), 0x20)
+ioctl$sock_SIOCGIFINDEX(r0, 0x8933, &(0x7f0000001180))
+ioctl$SIOCGIFHWADDR(r0, 0x8927, &(0x7f0000001180))
+ioctl$SIOCGETVIFCNT(r0, 0x893e, &(0x7f0000001180))

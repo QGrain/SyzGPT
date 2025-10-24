@@ -1,0 +1,6 @@
+r0 = openat$kvm(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+r1 = ioctl$KVM_CREATE_VM(r0, 0xae01, 0x0)
+r2 = ioctl$KVM_SET_USER_MEMORY_REGION(r1, 0x0, 0x0, 0x0, &(0x7f0000000000))
+r3 = ioctl$KVM_SET_TSS_ADDR(r1, 0x0)
+r4 = ioctl$KVM_CREATE_IRQCHIP(r1)
+r5 = ioctl$KVM_SET_VCPU_EVENTS(r1, 0x0, &(0x7f0000000000))

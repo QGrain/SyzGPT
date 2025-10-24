@@ -1,0 +1,6 @@
+r0 = socket$inet_tcp(0x2, 0x0, 0x0)
+bind$inet(r0, &(0x7f0000000000), 0x10)
+listen(r0, 0x1)
+r1 = accept(r0, &(0x7f0000000100), &(0x7f0000000104))
+ioctl$DRM_IOCTL_GET_MAP(r1, 0x0, &(0x7f0000000200))
+ioctl$IOMMU_IOAS_MAP(r1, &(0x7f0000000200), 0x1)

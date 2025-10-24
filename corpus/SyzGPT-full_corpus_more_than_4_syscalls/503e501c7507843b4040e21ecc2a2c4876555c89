@@ -1,0 +1,5 @@
+r0 = open(0x7f00000001c0, 0x0, 0x0)
+r1 = write(r0, 0x7f00000001c0, 0x0)
+r2 = ioctl$SNDRV_PCM_IOCTL_WRITEN_FRAMES(r0, 0x40044102, 0x0)
+r3 = read(r0, 0x7f00000001c0, 0x0)
+r4 = close(r0)

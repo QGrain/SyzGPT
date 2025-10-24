@@ -1,0 +1,5 @@
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x0)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_PORT(r0, &(0x7f0000000580)={0x0, 0x0, 'port1\x00'})
+ioctl$SNDRV_SEQ_IOCTL_CLIENT_ID(r0, &(0x7f0000000580))
+ioctl$SNDRV_SEQ_IOCTL_DELETE_PORT(r0, 0x408c5333)
+ioctl$SNDRV_SEQ_IOCTL_DELETE_QUEUE(r0, 0x408c5333, &(0x7f0000001080)={0x20, 0x0, 0x0, 'queue1\x00'})

@@ -1,0 +1,7 @@
+r0 = openat$sysfs(0xffffffffffffff9c, &(0x7f0000000080)='/dev/net/tun', 0x2, 0x0)
+r1 = ioctl$TUNSETIFF(r0, 0x400454ca)
+r2 = ioctl$TUNGETIFF(r0, &(0x7f0000000084)=r1)
+r3 = ioctl$TUNSETQUEUE(r0, 0x400454ca)
+r4 = ioctl(r0, &(0x7f0000000088)=r3)
+r5 = ioctl$TUNSETIFINDEX(r0, 0x400454ca)
+close(r0)

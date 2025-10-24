@@ -1,0 +1,5 @@
+r0 = socket(0x2, 0x3, 0x1)
+r1 = fcntl$F_GET_RW_HINT(r0, 0x800)
+r2 = fcntl$F_SET_FILE_RW_HINT(r0, 0x40e, &(0x7f0000000140)=0x3)
+r3 = read(r0, 0x0, 0x0)
+r4 = ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(r0, 0xc018643a, &(0x7f0000000080))

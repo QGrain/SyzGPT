@@ -1,0 +1,6 @@
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000000c0), 0x0, 0x0)
+r1 = ioctl$TCGETS(r0, 0x0)
+r2 = ioctl$TCSETSF2(r0, 0x0, &(0x7f0000000130))
+ioctl$TIOCGWINSZ(r0, &(0x7f0000000110))
+ioctl$TIOCSWINSZ(r0, &(0x7f0000000110))
+ioctl$TCGETS(r0, &(0x7f0000000130))

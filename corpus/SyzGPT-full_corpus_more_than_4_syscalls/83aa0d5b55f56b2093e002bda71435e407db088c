@@ -1,0 +1,6 @@
+r0 = socket$inet_sctp(0xa, 0x5, 0x84)
+r1 = connect$inet(r0, 0x7f0000000000, 0x10)
+r2 = getsockopt$inet_sctp6_SCTP_GET_ASSOC_NUMBER(r0, 0x84, &(0x7f0000000000), &(0x7f0000000000))
+syz_emit_ethernet(&(0x7f0000000000), &(0x7f0000000000), 0x86dd)
+syz_extract_tcp_res(&(0x7f0000000000), &(0x7f0000000000), &(0x7f0000000000), &(0x7f0000000000))
+syz_extract_tcp_res(&(0x7f0000000000), &(0x7f0000000000), &(0x7f0000000000), &(0x7f0000000000))

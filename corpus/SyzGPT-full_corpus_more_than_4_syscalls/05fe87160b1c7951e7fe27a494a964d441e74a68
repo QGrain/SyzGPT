@@ -1,0 +1,8 @@
+r0 = openat$vimc1(0xffffffffffffff9c, &(0x7f0000000000), 0x2, 0x0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000280)='./cgroup\x00', 0x0, 0x0)
+mkdirat(r1, &(0x7f00000000c0)='./cgroup\x00', 0x8)
+fsconfig$FSCONFIG_SET_BINARY(r1, 0x2, &(0x7f0000002080)='GPL\x00', &(0x7f00000020c0), 0x0)
+ioctl$VIDIOC_SUBSCRIBE_EVENT(r1, 0x4020565a, &(0x7f0000000080)={0x1, 0x7, 0x2})
+ioctl$VIDIOC_G_CROP(r0, 0xc014563b, &(0x7f0000000140)={0xa})
+r2 = syz_open_dev$char_usb(0xc, 0xb4, 0xc6a)
+r3 = write$char_usb(r2, &(0x7f00000000c0)='./cgroup\x00', 0x8)
