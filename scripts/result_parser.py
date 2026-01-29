@@ -209,15 +209,11 @@ def find_workdirs(paths):
         if os.path.basename(path) == 'crashes':
             workdir_list.append(os.path.dirname(path))
             continue
-        find = 0
         for root, dirs, _ in os.walk(path):
             for d in dirs:
                 if d == 'crashes':
                     workdir_list.append(root)
-                    find = 1
                     break
-            if find == 1:
-                break
     return workdir_list
 
 
