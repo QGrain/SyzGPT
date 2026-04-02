@@ -7,11 +7,15 @@
 
 </div>
 
-> [!TIP]
-> 📢[Sep 2025] We provide the correct posture of reproducing SyzGPT to facilitate the comparison with related work. Please refer to [docs/Reproduction.md](docs/Reproduction.md) for details first. 
+## 📰 News
 
-> [!NOTE]
-> 🔎 [Jun 2025] We are advancing the integration of SyzGPT modules into Syzkaller. Please refer to [Discussion](https://groups.google.com/g/syzkaller/c/SEEjp6m7lbA) for progress.
+| Date 📢 | Update 🔎 |
+|------|--------|
+| **Apr 2026** | We share our thoughts on how SyzGPT evolves in the era of AI agents — why DRAG remains relevant and where agents can help. Read [SyzGPT in the Era of Agent](docs/SyzGPT_in_the_era_of_agent.md) for details. |
+| **Sep 2025** | We provide guidelines for correctly reproducing SyzGPT to facilitate comparison with related work. Please refer to [docs/Reproduction.md](docs/Reproduction.md) first. |
+| **Jun 2025** | We are advancing the integration of SyzGPT modules into Syzkaller. Please refer to this [Discussion](https://groups.google.com/g/syzkaller/c/SEEjp6m7lbA) for progress. |
+
+---
 
 This is the implementation of paper titled "**Unlocking Low Frequency Syscalls in Kernel Fuzzing with Dependency-Based RAG**". For more details about SyzGPT, please refer to [our paper](https://zhiyu.netlify.app/files/issta25main_syzgpt.pdf) from ISSTA'25. We also provide a [README_for_review](./docs/README_for_review.md), which was once located in an [anonymous repository](https://anonymous.4open.science/r/SyzGPT-eval) for better understanding by reviewers.
 
