@@ -1,5 +1,5 @@
 QEMU emulator version 4.2.1 (Debian 1:4.2-3ubuntu6.24)
-qemu-system-x86_64 ["-m" "2048" "-smp" "2" "-chardev" "socket,id=SOCKSYZ,server=on,wait=off,host=localhost,port=56104" "-mon" "chardev=SOCKSYZ,mode=control" "-display" "none" "-serial" "stdio" "-no-reboot" "-name" "VM-1" "-device" "virtio-rng-pci" "-enable-kvm" "-cpu" "host,migratable=off" "-device" "e1000,netdev=net0" "-netdev" "user,id=net0,restrict=on,hostfwd=tcp:127.0.0.1:41131-:22" "-hda" "/root/images/image-enriched/bullseye.img" "-snapshot" "-kernel" "/g.linux/deadline/code/objs/linux-stable-6.6/arch/x86/boot/bzImage" "-append" "root=/dev/sda console=ttyS0 "]
+qemu-system-x86_64 ["-m" "2048" "-smp" "2" "-chardev" "socket,id=SOCKSYZ,server=on,wait=off,host=localhost,port=64065" "-mon" "chardev=SOCKSYZ,mode=control" "-display" "none" "-serial" "stdio" "-no-reboot" "-name" "VM-6" "-device" "virtio-rng-pci" "-enable-kvm" "-cpu" "host,migratable=off" "-device" "e1000,netdev=net0" "-netdev" "user,id=net0,restrict=on,hostfwd=tcp:127.0.0.1:64899-:22" "-hda" "/root/images/image-enriched/bullseye.img" "-snapshot" "-kernel" "/g.linux/deadline/code/objs/linux-stable-6.6/arch/x86/boot/bzImage" "-append" "root=/dev/sda console=ttyS0 "]
 
 [CPU Info]
 processor           : 0, 1

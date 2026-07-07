@@ -1,0 +1,83 @@
+BUG: memory leak
+unreferenced object 0xffff888014692f00 (size 240):
+  comm "softirq", pid 0, jiffies 4295021440 (age 364.230s)
+  hex dump (first 32 bytes):
+    c0 f2 d3 12 80 88 ff ff 00 00 00 00 00 00 00 00  ................
+    00 e0 fe 16 80 88 ff ff 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<00000000032ba245>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<00000000032ba245>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000fe01976a>] __alloc_skb+0x284/0x330 net/core/skbuff.c:640
+    [<00000000121a982a>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000121a982a>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<00000000dbb3d006>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<000000000e52b7e0>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<000000009fc8266f>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<000000009fc8266f>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<000000006b5081a2>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: memory leak
+unreferenced object 0xffff888017e11e00 (size 640):
+  comm "softirq", pid 0, jiffies 4295021440 (age 364.230s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<00000000032ba245>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<00000000032ba245>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000921b0c73>] kmalloc_reserve+0x163/0x260 net/core/skbuff.c:559
+    [<0000000030c35f4c>] __alloc_skb+0x125/0x330 net/core/skbuff.c:650
+    [<00000000121a982a>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000121a982a>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<00000000dbb3d006>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<000000000e52b7e0>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<000000009fc8266f>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<000000009fc8266f>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<000000006b5081a2>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: memory leak
+unreferenced object 0xffff888012d3f2c0 (size 240):
+  comm "softirq", pid 0, jiffies 4295021456 (age 364.070s)
+  hex dump (first 32 bytes):
+    00 85 86 17 80 88 ff ff 00 00 00 00 00 00 00 00  ................
+    00 e0 fe 16 80 88 ff ff 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<00000000032ba245>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<00000000032ba245>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000fe01976a>] __alloc_skb+0x284/0x330 net/core/skbuff.c:640
+    [<00000000121a982a>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000121a982a>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<00000000dbb3d006>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<000000000e52b7e0>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<000000009fc8266f>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<000000009fc8266f>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<000000006b5081a2>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: memory leak
+unreferenced object 0xffff888079542400 (size 640):
+  comm "softirq", pid 0, jiffies 4295021456 (age 364.070s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<00000000032ba245>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<00000000032ba245>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000921b0c73>] kmalloc_reserve+0x163/0x260 net/core/skbuff.c:559
+    [<0000000030c35f4c>] __alloc_skb+0x125/0x330 net/core/skbuff.c:650
+    [<00000000121a982a>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000121a982a>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<00000000dbb3d006>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<000000000e52b7e0>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<000000009fc8266f>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<000000009fc8266f>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<000000009fc8266f>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<000000006b5081a2>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: leak checking failed

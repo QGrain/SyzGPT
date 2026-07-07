@@ -1,0 +1,42 @@
+BUG: memory leak
+unreferenced object 0xffff88802140b2c0 (size 240):
+  comm "softirq", pid 0, jiffies 4294991264 (age 121.310s)
+  hex dump (first 32 bytes):
+    80 27 45 1a 80 88 ff ff 00 00 00 00 00 00 00 00  .'E.............
+    00 20 e9 42 80 88 ff ff 00 00 00 00 00 00 00 00  . .B............
+  backtrace:
+    [<000000004686ab62>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<000000004686ab62>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000f59bc12a>] __alloc_skb+0x284/0x330 net/core/skbuff.c:640
+    [<00000000bde41535>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000bde41535>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<0000000089f5c9cc>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<0000000067edc180>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<00000000b255ef4d>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<00000000b255ef4d>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<00000000b255ef4d>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<00000000b255ef4d>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<0000000049359070>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: memory leak
+unreferenced object 0xffff88807d42e400 (size 640):
+  comm "softirq", pid 0, jiffies 4294991264 (age 121.310s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<000000004686ab62>] slab_alloc_node mm/slub.c:3470 [inline]
+    [<000000004686ab62>] kmem_cache_alloc_node+0x1b8/0x380 mm/slub.c:3515
+    [<00000000c7ebbd2c>] kmalloc_reserve+0x163/0x260 net/core/skbuff.c:559
+    [<00000000a323f061>] __alloc_skb+0x125/0x330 net/core/skbuff.c:650
+    [<00000000bde41535>] alloc_skb include/linux/skbuff.h:1289 [inline]
+    [<00000000bde41535>] wg_packet_send_keepalive+0x6e/0x310 drivers/net/wireguard/send.c:226
+    [<0000000089f5c9cc>] wg_expired_send_persistent_keepalive+0x5a/0x70 drivers/net/wireguard/timers.c:141
+    [<0000000067edc180>] call_timer_fn+0x19e/0x580 kernel/time/timer.c:1700
+    [<00000000b255ef4d>] expire_timers kernel/time/timer.c:1751 [inline]
+    [<00000000b255ef4d>] __run_timers kernel/time/timer.c:2022 [inline]
+    [<00000000b255ef4d>] __run_timers kernel/time/timer.c:1995 [inline]
+    [<00000000b255ef4d>] run_timer_softirq+0xfd7/0x1620 kernel/time/timer.c:2035
+    [<0000000049359070>] __do_softirq+0x1ba/0x82b kernel/softirq.c:553
+
+BUG: leak checking failed
