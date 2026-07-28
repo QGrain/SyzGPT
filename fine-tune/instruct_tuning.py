@@ -1,34 +1,24 @@
 import argparse
 import os
-import torch
-from torch.optim import AdamW
-from transformers import get_cosine_schedule_with_warmup
-from torch.utils.data import DataLoader
-import numpy
 
+import torch
 from accelerate import Accelerator
 from datasets import load_dataset
 from peft import (
     LoraConfig,
     get_peft_model,
     prepare_model_for_kbit_training,
-    set_peft_model_state_dict,
 )
-from torch.utils.data import IterableDataset, Subset
+from torch.optim import AdamW
+from torch.utils.data import DataLoader, IterableDataset
 from tqdm import tqdm
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    Trainer,
-    TrainingArguments,
+    BitsAndBytesConfig,
+    get_cosine_schedule_with_warmup,
     logging,
     set_seed,
-)
-from transformers import (
-    TrainerCallback,
-    TrainingArguments,
-    TrainerState,
-    TrainerControl,
 )
 
 
@@ -69,7 +59,6 @@ def get_args():
     parser.add_argument("--log_freq", default=10, type=int)
     parser.add_argument("--eval_freq", default=1000, type=int)
     parser.add_argument("--save_freq", default=4000, type=int)
-    parser.add_argument("--nosafe_save_freq", default=4000, type=int)
     parser.add_argument("--enable_wandb", action="store_true")
 
     return parser.parse_args()
@@ -225,10 +214,13 @@ def run_training(args, train_data, val_data, tokenizer):
         accelerator = Accelerator()
     print("Loading the model")
 
+    quantization_config = BitsAndBytesConfig(load_in_8bit=True)
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path,
         use_cache=args.no_gradient_checkpointing,
-        load_in_8bit=True,
+        quantization_config=quantization_config,
+        trust_remote_code=False,
+        use_safetensors=True,
     )
     model = prepare_model_for_kbit_training(model)
 
@@ -296,12 +288,11 @@ def run_training(args, train_data, val_data, tokenizer):
             )
 
 
-            if step % args.nosafe_save_freq == 0:
-                chpt = os.path.join(args.output_dir, f"checkpoint_nosafe_{step}")
-                accelerator.unwrap_model(model).save_pretrained(chpt, safe_serialization=False)
-            elif step % args.save_freq == 0:
+            if step % args.save_freq == 0:
                 chpt = os.path.join(args.output_dir, f"checkpoint_{step}")
-                accelerator.unwrap_model(model).save_pretrained(chpt)
+                accelerator.unwrap_model(model).save_pretrained(
+                    chpt, safe_serialization=True
+                )
 
             accelerator.log(
                 {"loss": output.loss.item(), "LR": scheduler.get_last_lr()[0]}, step=step
@@ -310,11 +301,16 @@ def run_training(args, train_data, val_data, tokenizer):
                 break
 
     chpt = os.path.join(args.output_dir, f"checkpoint_{step}")
-    accelerator.unwrap_model(model).save_pretrained(chpt)
+    accelerator.unwrap_model(model).save_pretrained(
+        chpt, safe_serialization=True
+    )
 
 
 def main(args):
-    tokenizer = AutoTokenizer.from_pretrained(args.model_path)
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.model_path,
+        trust_remote_code=False,
+    )
     train_dataset, eval_dataset = create_datasets(tokenizer, args)
     run_training(args, train_dataset, eval_dataset, tokenizer)
 

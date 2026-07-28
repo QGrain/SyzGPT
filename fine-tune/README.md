@@ -14,11 +14,20 @@ python build_dataset_from_fuzzing.py -h
 
 ### 2.1 Environments
 
+- Use Python 3.10 or newer.
+- Install the PyTorch 2.6.0 wheel that matches the target CUDA runtime
+  (`cu118`, `cu124`, or `cu126`) from the
+  [official PyTorch wheel index](https://pytorch.org/get-started/previous-versions/).
 - Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+The fine-tuning script accepts local paths and Hugging Face model IDs, but it
+only loads trusted model implementations and `safetensors` weights. Convert
+legacy pickle-based `.bin`/`.pth` weights before using them.
+
 - Configure **accelerator** to use specific GPUs: Please refer to Internet for guidance.
 - Configure **wandb** according to your need: Please refer to Internet for guidance.
 - Download base LLM **CodeLlama-7b-Instruct-hf**.

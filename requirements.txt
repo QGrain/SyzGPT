@@ -6,7 +6,7 @@ matplotlib==3.7.1
 numpy==1.24.2
 openai==1.34.0
 pandas==1.5.3
-Requests==2.32.3
+requests==2.32.4
 rich==13.7.1
 seaborn==0.13.2
 tiktoken==0.5.1
