@@ -44,43 +44,35 @@ python result_parser.py -D WORKDIR1 WORKDIR2 ... -C -u
 > [!NOTE]
 > For **every bug report** marked as "NO", "NO (S)" or "NO (SG)", we recommend you double check it by searching through google and syzkaller google group with "bug_func".
 
-## Results Plotting
+## Results Analysis and Plotting
 
-**bench_parser.py**: plot the curves of bench logs from different fuzzers.
+**bench_parser.py**: analyze and plot syzkaller-like bench logs. Logs are
+ordered by fuzzer and then by repeat.
 
-- **Synopsis**:
-```bash
-bench_parser.py [-h] [-b [BENCH_FILE ...]] [-t TIME] [-T TITLE] [-i INTERVAL] [-k [KEYS ...]] [-r [RATIO ...]] [-l [LEGEND ...]] [-a AVERAGE] [-p] [-s] [-o OUT_DIR]
-
-Parse fuzzing results from bench files
-
-options:
-  -h, --help            show this help message and exit
-  -b [BENCH_FILE ...], --bench_file [BENCH_FILE ...]
-                        bench file(s) to parse
-  -t TIME, --time TIME  print the results around specified time
-  -T TITLE, --title TITLE
-                        title of the plot, use with -p
-  -i INTERVAL, --interval INTERVAL
-                        sample interval (e.g. 10m, 30m, 1h), 1h by default. BUG: please use 1h only until the bug is fixed
-  -k [KEYS ...], --keys [KEYS ...]
-                        keys to parse
-  -r [RATIO ...], --ratio [RATIO ...]
-                        calc ratio of 2 keys
-  -l [LEGEND ...], --legend [LEGEND ...]
-                        legends for multi bench files, work with -p
-  -a AVERAGE, --average AVERAGE
-                        average number, work with -p
-  -p, --plot            plot, work with -b, -t, -k, -l
-  -s, --stat            stat the bench log, this option is prior to the others
-  -o OUT_DIR, --out_dir OUT_DIR
-                        out dir to save the plot fig
-```
+- `stat`: print observed metrics at one or more target uptimes.
+- `plot`: generate metric-over-time and optional VIR-over-coverage figures,
+  together with CSV and JSON provenance. Incomplete curves remain
+  observed-only unless `--curve-completion` is explicitly selected.
 
 - **Common usage**:
 ```bash
-python bench_parser.py -b benchlogA1 benchlogA2 benchlogA3 benchlogB1 benchlogB2 benchlogB3 ... -l fuzzerA fuzzerB ... -k coverage crashes 'crash types' syscalls -t 24h -T fuzz-6.6 -a 3 -p -o ~/SyzGPT/plots/
+# Statistics only
+python bench_parser.py stat -b benchlogA{1..3} benchlogB{1..3} -a 3 \
+  -l fuzzerA fuzzerB -t 6h 12h 24h \
+  -k coverage crashes 'crash types' 'exec total'
+
+# Publication-style plots (no figure title by default)
+python bench_parser.py plot -b benchlogA{1..3} benchlogB{1..3} -a 3 \
+  -l fuzzerA fuzzerB -t 24h -i 1h \
+  -k coverage crashes 'crash types' 'exec total' \
+  --error-band sd -o ../plots/
 ```
+
+Use `--curve-completion repeat` for a horizontal tail, or
+`--curve-completion trend` for a growth-rate continuation. The `auto` mode
+selects between them per fuzzer and metric. Add `-D` to display inferred tails
+as dashed lines for inspection. See `python bench_parser.py stat --help`,
+`plot --help`, and `plot --help-all` for the complete options.
 
 ## Others
 
