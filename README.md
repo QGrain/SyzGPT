@@ -319,11 +319,19 @@ python scripts/bench_parser.py stat -b logA logB ... -l fuzzerA fuzzerB ... \
 See [scripts/README.md](scripts/README.md) for curve completion, VIR plotting,
 and detailed command-line options.
 
-- Visualize the crashes
+- Analyze and visualize crashes
 
 ```bash
-python /root/SyzGPT/scripts/result_parser.py -D /path/to/WORKDIR1/crashes /path/to/WORKDIR2/crashes ... -c
+python scripts/result_parser.py \
+  -D /path/to/WORKDIR1/crashes /path/to/WORKDIR2/crashes ... -c
 ```
+
+`result_parser.py` uses the separately released `syzbot-client` package and
+can be copied to other fuzzing hosts once its PyPI dependencies are installed.
+Use `-C` to add automatic cached Web search through the free `ddgs` package,
+or `--json` for structured output suitable for scripts and CI. See
+[scripts/README.md](scripts/README.md#bug-checking) for status semantics,
+supported syzbot targets, and installation details.
 
 ### 2.3 Extract Syscall Dependency
 
